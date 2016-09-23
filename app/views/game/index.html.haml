@@ -1,0 +1,5 @@
+%h1 Best Games
+- @games.order(:line_diff).each do |game|
+  %p= game.home_team_name
+  %p= game.away_team_name
+  %p= game.line_diff

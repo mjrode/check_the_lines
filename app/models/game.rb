@@ -15,6 +15,7 @@
 #  massey_over_under     :float
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  line_diff             :float
 #
 
 class Game < ActiveRecord::Base
