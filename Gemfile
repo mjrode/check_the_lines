@@ -21,6 +21,7 @@ gem 'nokogiri', "1.6.7"
 gem 'watir'
 gem "selenium-webdriver", "~> 2.38.0"
 gem 'httparty'
+gem 'capybara'
 
 
 group :development, :test do
