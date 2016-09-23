@@ -1,0 +1,42 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/**
+    - config/**
+    - script/**
+    - log/**
+Documentation:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Next:
+  Enabled: false
+Metrics/LineLength:
+  Max: 99
+Rails:
+  Enabled: true
+RedundantSelf:
+  Enabled: false
+Style/TrailingWhitespace:
+  Description: 'Avoid trailing whitespace.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-trailing-whitespace'
+  Enabled: true
+StringLiterals:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  SupportedStyles:
+    - nested
+    - compact
+Style/FileName:
+  Enabled: false
+Style/AccessorMethodName:
+  Description: Check the naming of accessor methods for get_/set_.
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/MethodDefParentheses:
+  Enabled: false
+
