@@ -16,6 +16,9 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  line_diff             :float
+#  over_under_diff       :float
+#  team_to_bet           :string
+#  over_under_pick       :string
 #
 
 class Game < ActiveRecord::Base

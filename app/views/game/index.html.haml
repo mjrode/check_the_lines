@@ -1,5 +1,40 @@
-%h1 Best Games
-- @games.order(:line_diff).each do |game|
-  %p= game.home_team_name
-  %p= game.away_team_name
-  %p= game.line_diff
+%h1 Best Games By Line
+%table.table.striped
+  %thead
+    %tr
+      %th Away Team
+      %th Home Team
+      %th Home Team Vegas Line
+      %th Home Team Massey Line
+      %th Point Differential
+      %th Team to bet
+  %tbody
+    - @line_games.order(:line_diff).each do |game|
+      %tr
+        %td= game.away_team_name
+        %td= game.home_team_name
+        %td= game.home_team_vegas_line
+        %td= game.home_team_massey_line
+        %td= game.line_diff
+        %td= game.team_to_bet
+
+%h1 Best Games By Total
+%table.table.striped
+  %thead
+    %tr
+      %th Away Team
+      %th Home Team
+      %th Vegas Total
+      %th Massey Total
+      %th Point Differential
+      %th Team to bet
+  %tbody
+    - @over_under_games.order(:over_under_diff).each do |game|
+      %tr
+        %td= game.away_team_name
+        %td= game.home_team_name
+        %td= game.vegas_over_under
+        %td= game.massey_over_under
+        %td= game.over_under_diff
+        %td= game.over_under_pick
+

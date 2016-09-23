@@ -20,6 +20,7 @@ gem 'mechanize'
 gem 'nokogiri', "1.6.7"
 gem 'watir'
 gem "selenium-webdriver", "~> 2.38.0"
+gem 'httparty'
 
 
 group :development, :test do

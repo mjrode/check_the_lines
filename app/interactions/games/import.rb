@@ -2,6 +2,7 @@ class Games::Import < Less::Interaction
   expects :url
   expects :sport
   #  http://www.masseyratings.com/pred.php?s=cf&sub=11604
+  # Games::Import.run(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
 
   def run
     html = get_massey_html
@@ -11,13 +12,13 @@ class Games::Import < Less::Interaction
   private
 
   def save_game(game_hash)
-    unless Game.where(home_team_name: game_hash[:team_name_1], away_team_name: game_hash["team_name_2"]).present?
+    unless Game.where(home_team_name: game_hash[:home_team_name], away_team_name: game_hash["away_team_name"]).present?
       Game.create!(game_hash)
     end
   end
 
   def get_massey_html
-    browser = Watir::Browser.new
+    browser = Watir::Browser.new :phantomjs
     browser.goto url
     browser.button(id: 'showVegas').click
     doc = Nokogiri::HTML(browser.html)
@@ -28,8 +29,8 @@ class Games::Import < Less::Interaction
   def fetch_and_save_team_data(html)
     html.each do |row|
       unless invalid_data(row)
-        # game_data = set_game_data(row)
         game_hash = set_game_hash(row)
+
         save_game(game_hash)
       end
     end
@@ -51,8 +52,8 @@ class Games::Import < Less::Interaction
     {
       home_team_massey_line:  get_home_team_massey_line(row),
       away_team_massey_line:  -get_home_team_massey_line(row),
-      home_team_name:         row.css('.fteam').first.css('a').first.children.text,
-      away_team_name:         row.css('.fteam').first.css('a').last.children.text,
+      away_team_name:         row.css('.fteam').first.css('a').first.children.text,
+      home_team_name:         row.css('.fteam').first.css('a').last.children.text,
       home_team_vegas_line:   get_home_team_vegas_line(row),
       away_team_vegas_line:   -get_home_team_vegas_line(row),
       vegas_over_under:       row.css('.fscore').last.children.first.text.to_f,
@@ -60,8 +61,26 @@ class Games::Import < Less::Interaction
       date:                   format_date(row),
       sport:                  sport,
       line_diff:              (get_home_team_massey_line(row) - get_home_team_vegas_line(row)).abs,
-      over_under_diff:        (row.css('.fscore').last.children.first.text.to_f - row.css('.fscore').last.children.last.text.to_f).abs
+      over_under_diff:        (row.css('.fscore').last.children.first.text.to_f - row.css('.fscore').last.children.last.text.to_f).abs,
+      team_to_bet:            find_team_to_bet(row),
+      over_under_pick:        pick_over_under(row)
     }
+  end
+
+  def pick_over_under(row)
+    if row.css('.fscore').last.children.last.text.to_f - row.css('.fscore').last.children.first.text.to_f > 0
+      "Over"
+    else
+      "Under"
+    end
+  end
+
+  def find_team_to_bet(row)
+    if get_home_team_massey_line(row) - get_home_team_vegas_line(row) > 0
+      row.css('.fteam').first.css('a').first.children.text
+    else
+      row.css('.fteam').first.css('a').last.children.text
+    end
   end
 
   def format_date(row)
