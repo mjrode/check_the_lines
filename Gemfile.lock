@@ -46,6 +46,8 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (9.0.5)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -54,6 +56,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    commonwatir (4.0.0)
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -63,6 +66,8 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    domain_name (0.5.20160826)
+      unf (>= 0.0.5, < 1.0.0)
     draper (2.1.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -70,6 +75,7 @@ GEM
       request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -85,8 +91,10 @@ GEM
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
-      nokogiri (~> 1.6.0)
+      nokogiri (= 1.6.7)
       ruby_parser (~> 3.5)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -105,9 +113,20 @@ GEM
     letter_opener (1.4.1)
       launchy (~> 2.2)
     loofah (2.0.3)
-      nokogiri (>= 1.5.9)
+      nokogiri (= 1.6.7)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    materialize-sass (0.97.5)
+      sass (~> 3.3)
+    mechanize (2.7.5)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (3.1)
@@ -120,8 +139,11 @@ GEM
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.12.1)
-    nokogiri (1.6.7.2)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
+    nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
+    ntlm-http (0.1.1)
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.19.0)
@@ -150,7 +172,7 @@ GEM
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
-      nokogiri (~> 1.6.0)
+      nokogiri (= 1.6.7)
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
@@ -173,6 +195,7 @@ GEM
     ruby-progressbar (1.8.1)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
+    rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -184,6 +207,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.38.0)
+      childprocess (>= 0.2.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0.4)
     sexp_processor (4.7.0)
     slop (3.6.0)
     spring (1.7.2)
@@ -204,8 +232,16 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     unicode-display_width (1.1.1)
     vcr (3.0.3)
+    watir (5.0.0)
+      commonwatir (~> 4)
+      watir-webdriver
+    watir-webdriver (0.6.11)
+      selenium-webdriver (>= 2.18.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -215,6 +251,8 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    webrobots (0.1.2)
+    websocket (1.0.7)
 
 PLATFORMS
   ruby
@@ -232,19 +270,24 @@ DEPENDENCIES
   kaminari
   less_interactions (~> 0.2.0)
   letter_opener
+  materialize-sass
+  mechanize
   minitest
   minitest-around
   mocha
+  nokogiri (= 1.6.7)
   pg
   pry-rails
   rails (~> 4.2.0)
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  selenium-webdriver (~> 2.38.0)
   spring
   turbolinks
   uglifier (>= 1.3.0)
   vcr
+  watir
   web-console (~> 2.0)
   webmock
 

@@ -15,6 +15,13 @@ gem 'honeybadger'
 gem 'haml-rails'
 gem 'delayed_job_active_record'
 gem 'draper'
+gem 'materialize-sass'
+gem 'mechanize'
+gem 'nokogiri', "1.6.7"
+gem 'watir'
+gem "selenium-webdriver", "~> 2.38.0"
+
+
 group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
