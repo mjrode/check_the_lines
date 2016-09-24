@@ -1,0 +1,6 @@
+Pull in all past scores from previous weeks and save
+Have cron job run the interaction twice, once on wednesday when the lines are posted and then once
+on Sunday after all of the scores are updated.
+- Have a way to sort games by week
+- Have a way to auto increment the url
+
