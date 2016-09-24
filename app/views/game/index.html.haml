@@ -8,6 +8,8 @@
       %th Home Team Massey Line
       %th Point Differential
       %th Team to bet
+      %th Away Game Final Score
+      %th Home Game Final Score
   %tbody
     - @line_games.order(:line_diff).each do |game|
       %tr
@@ -17,6 +19,8 @@
         %td= game.home_team_massey_line
         %td= game.line_diff
         %td= game.team_to_bet
+        %td= game.away_team_final_score
+        %td= game.home_team_final_score
 
 %h1 Best Games By Total
 %table.table.striped

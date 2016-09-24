@@ -2,7 +2,7 @@ class Games::Import < Less::Interaction
   expects :url
   expects :sport
   #  http://www.masseyratings.com/pred.php?s=cf&sub=11604
-  # Games::Import.run(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
+  # Games::Import.run(url: 'http://www.masseyratings.com/cf/11604/games?dt=20160919', sport: 'ncaa_football' )
 
   def run
     html = get_massey_html
@@ -30,18 +30,17 @@ class Games::Import < Less::Interaction
 
   def fetch_and_save_team_data(html)
     html.each do |row|
-      binding.pry
       create_instance_variables(row)
-      save_game(game_hash) unless invalid_data
+      save_game(game_hash) unless invalid_data(row)
     end
   end
 
-  def invalid_data
-    if    @home_team_vegas_line == "---"
+  def invalid_data(row)
+    if row.css('.fscore')[1].children.first.text == "---"
       true
-    elsif @away_team_vegas_line == "---"
+    elsif row.css('.fscore')[1].children.last.text == "---"
       true
-    elsif @vegas_over_under == "---"
+    elsif row.css('.fscore').last.children.first.text == "---"
       true
     else
       false
@@ -63,7 +62,9 @@ class Games::Import < Less::Interaction
       line_diff:              @line_diff,
       over_under_diff:        @over_under_diff,
       team_to_bet:            @team_to_bet,
-      over_under_pick:        @over_under_pick
+      over_under_pick:        @over_under_pick,
+      away_team_final_score:  @away_team_final_score,
+      home_team_final_score:  @home_team_final_score
     }
   end
 
@@ -114,5 +115,7 @@ class Games::Import < Less::Interaction
     @over_under_diff       =  (row.css('.fscore').last.children.first.text.to_f - row.css('.fscore').last.children.last.text.to_f).abs
     @team_to_bet           =  find_team_to_bet
     @over_under_pick       =  pick_over_under
+    @away_team_final_score =  row.css('.fscore').first.children.first.text
+    @home_team_final_score =  row.css('.fscore').first.children.last.children.text
   end
 end

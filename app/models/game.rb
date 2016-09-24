@@ -19,6 +19,8 @@
 #  over_under_diff       :float
 #  team_to_bet           :string
 #  over_under_pick       :string
+#  home_team_final_score :integer
+#  away_team_final_score :integer
 #
 
 class Game < ActiveRecord::Base
