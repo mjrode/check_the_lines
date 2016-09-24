@@ -157,6 +157,7 @@ GEM
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.19.0)
+    phantomjs (1.9.8.0)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -291,6 +292,7 @@ DEPENDENCIES
   mocha
   nokogiri (= 1.6.7)
   pg
+  phantomjs
   pry-rails
   rails (~> 4.2.0)
   rubocop

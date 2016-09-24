@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923195134) do
+ActiveRecord::Schema.define(version: 20160924204156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160923195134) do
     t.float    "over_under_diff"
     t.string   "team_to_bet"
     t.string   "over_under_pick"
+    t.integer  "home_team_final_score"
+    t.integer  "away_team_final_score"
   end
 
 end

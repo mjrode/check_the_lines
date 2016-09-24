@@ -22,6 +22,8 @@ gem 'watir'
 gem "selenium-webdriver", "~> 2.38.0"
 gem 'httparty'
 gem 'capybara'
+gem 'phantomjs'
+
 
 
 group :development, :test do
