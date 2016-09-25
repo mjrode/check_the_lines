@@ -3,6 +3,7 @@ class Games::Import < Less::Interaction
   expects :sport
   #  http://www.masseyratings.com/pred.php?s=cf&sub=11604
   # Games::Import.run(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
+  # Games::Import.run(url: 'http://www.masseyratings.com/pred.php?s=nfl', sport: 'nfl_football' )
 
   def run
     html = get_massey_html

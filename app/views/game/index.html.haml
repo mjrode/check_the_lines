@@ -9,6 +9,7 @@
       %th Point Differential
       %th Team to bet
       %th Correct Prediction?
+      %th Sport
   %tbody
     - @line_games.order(:line_diff).each do |game|
       %tr
@@ -22,6 +23,7 @@
           %td Yes
         -else
           %td No
+        %td= game.sport.gsub('_', ' ')
 
 %h1 Best Games By Total
 %table.table.striped
@@ -33,6 +35,7 @@
       %th Massey Total
       %th Point Differential
       %th Team to bet
+      %th Sport
   %tbody
     - @over_under_games.order(:over_under_diff).each do |game|
       %tr
@@ -42,4 +45,5 @@
         %td= game.massey_over_under
         %td= game.over_under_diff
         %td= game.over_under_pick
+        %td= game.sport.gsub('_', ' ')
 
