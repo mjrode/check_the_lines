@@ -10,6 +10,7 @@
       %th Team to bet
       %th Away Game Final Score
       %th Home Game Final Score
+      %th Correct Prediction?
   %tbody
     - @line_games.order(:line_diff).each do |game|
       %tr
@@ -19,8 +20,16 @@
         %td= game.home_team_massey_line
         %td= game.line_diff
         %td= game.team_to_bet
-        %td= game.away_team_final_score
-        %td= game.home_team_final_score
+        - if !Game.inprogress?(game)
+          %td= game.away_team_final_score
+          %td= game.home_team_final_score
+        - else
+          %td "Game in Progress..."
+          %td "Game in Progress..."
+        -if Game.correct_prediction?(game)
+          %td Yes
+        -else
+          %td No
 
 %h1 Best Games By Total
 %table.table.striped

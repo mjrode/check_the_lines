@@ -13,10 +13,11 @@ class Games::Import < Less::Interaction
 
   def save_game(game_hash)
       game = Game.find_or_create_by(
-        home_team_name: game_hash[:home_team_name],
-        away_team_name: game_hash["away_team_name"]
+        home_team_name: @home_team_name,
+        away_team_name: @away_team_name,
       )
       Game.update(game, game_hash)
+
   end
 
   def get_massey_html
@@ -42,6 +43,8 @@ class Games::Import < Less::Interaction
       true
     elsif row.css('.fscore').last.children.first.text == "---"
       true
+    elsif row.css('.fscore').last.children.last.children.first.text == "---"
+      true
     else
       false
     end
@@ -55,8 +58,8 @@ class Games::Import < Less::Interaction
       home_team_name:         @home_team_name,
       home_team_vegas_line:   @home_team_vegas_line,
       away_team_vegas_line:   @away_team_vegas_line,
-      vegas_over_under:       @vegas_over_under,
       massey_over_under:      @massey_over_under,
+      vegas_over_under:       @vegas_over_under,
       date:                   @date,
       sport:                  @sport,
       line_diff:              @line_diff,
@@ -115,7 +118,7 @@ class Games::Import < Less::Interaction
     @over_under_diff       =  (row.css('.fscore').last.children.first.text.to_f - row.css('.fscore').last.children.last.text.to_f).abs
     @team_to_bet           =  find_team_to_bet
     @over_under_pick       =  pick_over_under
-    @away_team_final_score =  row.css('.fscore').first.children.first.text
-    @home_team_final_score =  row.css('.fscore').first.children.last.children.text
+    @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
+    @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
   end
 end
