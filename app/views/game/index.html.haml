@@ -68,7 +68,7 @@
       %th Correct Prediction?
       %th Sport
   %tbody
-    - @nfl_line_games.order(:line_diff).each do |game|
+    - @ncaa_line_games.order(:line_diff).each do |game|
       %tr
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
@@ -96,7 +96,7 @@
       %th Correct Prediction
       %th Sport
   %tbody
-    - @nfl_over_under_games.order(:over_under_diff).each do |game|
+    - @ncaa_over_under_games.order(:over_under_diff).each do |game|
       %tr
         %td= game.away_team_name
         %td= game.home_team_name
