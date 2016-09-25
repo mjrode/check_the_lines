@@ -19,10 +19,13 @@
         %td= game.home_team_massey_line
         %td= game.line_diff
         %td= game.team_to_bet
-        -if Game.correct_line_prediction?(game)
-          %td Yes
+        - if Game.game_over?(game)
+          -if Game.correct_line_prediction?(game)
+            %td Yes
+          -else
+            %td No
         -else
-          %td No
+          %td Game still in progress...
         %td= game.sport.gsub('_', ' ')
 
 %h1 Best Games By Total
@@ -48,10 +51,13 @@
         %td= game.massey_over_under
         %td= game.over_under_diff
         %td= game.over_under_pick
-        -if Game.correct_over_under_prediction?(game)
-          %td Yes
+        - if Game.game_over?(game)
+          -if Game.correct_over_under_prediction?(game)
+            %td Yes
+          -else
+            %td No
         -else
-          %td No
+          %td Game still in progress
         %td= game.sport.gsub('_', ' ')
 
 
@@ -76,10 +82,13 @@
         %td= game.home_team_massey_line
         %td= game.line_diff
         %td= game.team_to_bet
-        -if Game.correct_line_prediction?(game)
-          %td Yes
+        - if Game.game_over?(game)
+          -if Game.correct_line_prediction?(game)
+            %td Yes
+          -else
+            %td No
         -else
-          %td No
+          %td Game still in progress
         %td= game.sport.gsub('_', ' ')
 
 %h1 Best Games By Total
@@ -105,9 +114,12 @@
         %td= game.massey_over_under
         %td= game.over_under_diff
         %td= game.over_under_pick
-        -if Game.correct_over_under_prediction?(game)
-          %td Yes
+        - if Game.game_over?(game)
+          -if Game.correct_over_under_prediction?(game)
+            %td Yes
+          -else
+            %td No
         -else
-          %td No
+          Game still in progress
         %td= game.sport.gsub('_', ' ')
 
