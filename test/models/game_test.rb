@@ -21,6 +21,7 @@
 #  over_under_pick       :string
 #  home_team_final_score :integer
 #  away_team_final_score :integer
+#  week_id               :integer
 #
 
 require 'test_helper'

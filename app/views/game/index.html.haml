@@ -19,7 +19,7 @@
         %td= game.home_team_massey_line
         %td= game.line_diff
         %td= game.team_to_bet
-        -if Game.correct_prediction?(game)
+        -if Game.correct_line_prediction?(game)
           %td Yes
         -else
           %td No
@@ -32,9 +32,11 @@
       %th Away Team
       %th Home Team
       %th Vegas Total
+      %th Final Total
       %th Massey Total
       %th Point Differential
-      %th Team to bet
+      %th Bet Over/Under?
+      %th Correct Prediction
       %th Sport
   %tbody
     - @over_under_games.order(:over_under_diff).each do |game|
@@ -42,8 +44,13 @@
         %td= game.away_team_name
         %td= game.home_team_name
         %td= game.vegas_over_under
+        %td= game.away_team_final_score + game.home_team_final_score
         %td= game.massey_over_under
         %td= game.over_under_diff
         %td= game.over_under_pick
+        -if Game.correct_over_under_prediction?(game)
+          %td Yes
+        -else
+          %td No
         %td= game.sport.gsub('_', ' ')
 

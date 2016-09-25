@@ -21,6 +21,7 @@
 #  over_under_pick       :string
 #  home_team_final_score :integer
 #  away_team_final_score :integer
+#  week_id               :integer
 #
 
 class Game < ActiveRecord::Base
@@ -33,11 +34,18 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def actual_line(game)
-
+  def self.correct_over_under_prediction?(game)
+    total = game.away_team_final_score + game.home_team_final_score
+    if game.over_under_pick == 'Over' && total > game.vegas_over_under
+      true
+    elsif game.over_under_pick == 'Under' && total < game.vegas_over_under
+      true
+    else
+      false
+    end
   end
 
-  def self.correct_prediction?(game)
+  def self.correct_line_prediction?(game)
     if game.team_to_bet == game.home_team_name
       vegas_line  = game.home_team_vegas_line
       actual_line = game.away_team_final_score - game.home_team_final_score
