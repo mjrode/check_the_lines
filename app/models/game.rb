@@ -62,7 +62,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.game_over?(game)
-    return false if Date.today > game.date
+    return false if Time.zone.today > game.date
     true
   end
 end

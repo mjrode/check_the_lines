@@ -1,0 +1,125 @@
+%h1.center NCAA predictions
+%table.table.striped
+  %thead
+    %tr
+      %th Away Team
+      %th Home Team
+      %th Home Team Vegas Line
+      %th Home Team Massey Line
+      %th Point Differential
+      %th Team to bet
+      %th Correct Prediction?
+      %th Sport
+  %tbody
+    - @ncaa_line_games.order(:line_diff).each do |game|
+      %tr
+        %td= "#{game.away_team_name}: #{game.away_team_final_score}"
+        %td= "#{game.home_team_name}: #{game.home_team_final_score}"
+        %td= game.home_team_vegas_line
+        %td= game.home_team_massey_line
+        %td= game.line_diff
+        %td= game.team_to_bet
+        - if !Game.game_over?(game)
+          -if Game.correct_line_prediction?(game)
+            %td Yes
+          -else
+            %td No
+        -else
+          %td Game still in progress...
+        %td= game.sport.gsub('_', ' ')
+
+-# %h1 Best Games By Total
+-# %table.table.striped
+-#   %thead
+-#     %tr
+-#       %th Away Team
+-#       %th Home Team
+-#       %th Vegas Total
+-#       %th Final Total
+-#       %th Massey Total
+-#       %th Point Differential
+-#       %th Bet Over/Under?
+-#       %th Correct Prediction
+-#       %th Sport
+-#   %tbody
+-#     - @nfl_over_under_games.order(:over_under_diff).each do |game|
+-#       %tr
+-#         %td= game.away_team_name
+-#         %td= game.home_team_name
+-#         %td= game.vegas_over_under
+-#         %td= game.away_team_final_score + game.home_team_final_score
+-#         %td= game.massey_over_under
+-#         %td= game.over_under_diff
+-#         %td= game.over_under_pick
+-#         - if Game.game_over?(game)
+-#           -if Game.correct_over_under_prediction?(game)
+-#             %td Yes
+-#           -else
+-#             %td No
+-#         -else
+-#           %td Game still in progress
+-#         %td= game.sport.gsub('_', ' ')
+
+
+-# %h1.center NCAA Predictions for 09/24/2016
+-# %table.table.striped
+-#   %thead
+-#     %tr
+-#       %th Away Team
+-#       %th Home Team
+-#       %th Home Team Vegas Line
+-#       %th Home Team Massey Line
+-#       %th Point Differential
+-#       %th Team to bet
+-#       %th Correct Prediction?
+-#       %th Sport
+-#   %tbody
+-#     - @ncaa_line_games.order(:line_diff).each do |game|
+-#       %tr
+-#         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
+-#         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
+-#         %td= game.home_team_vegas_line
+-#         %td= game.home_team_massey_line
+-#         %td= game.line_diff
+-#         %td= game.team_to_bet
+-#         - if Game.game_over?(game)
+-#           -if Game.correct_line_prediction?(game)
+-#             %td Yes
+-#           -else
+-#             %td No
+-#         -else
+-#           %td Game still in progress
+-#         %td= game.sport.gsub('_', ' ')
+
+-# %h1 Best Games By Total
+-# %table.table.striped
+-#   %thead
+-#     %tr
+-#       %th Away Team
+-#       %th Home Team
+-#       %th Vegas Total
+-#       %th Final Total
+-#       %th Massey Total
+-#       %th Point Differential
+-#       %th Bet Over/Under?
+-#       %th Correct Prediction
+-#       %th Sport
+-#   %tbody
+-#     - @ncaa_over_under_games.order(:over_under_diff).each do |game|
+-#       %tr
+-#         %td= game.away_team_name
+-#         %td= game.home_team_name
+-#         %td= game.vegas_over_under
+-#         %td= game.away_team_final_score + game.home_team_final_score
+-#         %td= game.massey_over_under
+-#         %td= game.over_under_diff
+-#         %td= game.over_under_pick
+-#         - if Game.game_over?(game)
+-#           -if Game.correct_over_under_prediction?(game)
+-#             %td Yes
+-#           -else
+-#             %td No
+-#         -else
+-#           Game still in progress
+-#         %td= game.sport.gsub('_', ' ')
+
