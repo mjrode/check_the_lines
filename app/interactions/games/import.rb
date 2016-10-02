@@ -1,6 +1,6 @@
 class Games::Import < Less::Interaction
   expects :massey_url
-  expects :public_betting_url
+  # expects :public_betting_url
   expects :sport
   #  http://www.masseyratings.com/pred.php?s=cf&sub=11604
   # Games::Import.run(massey_url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
