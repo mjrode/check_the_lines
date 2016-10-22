@@ -13,4 +13,8 @@ class GamesController < ApplicationController
   def unplayed
     @games = Game.all.unplayed
   end
+
+  def played
+    @games = Game.all.played
+  end
 end

@@ -26,7 +26,7 @@ class Games::GetFinalScore < Less::Interaction
   end
 
   def update_score
-    game = Game.find_by_away_team_name(@away_team_name)
+    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
     game.update(
       away_team_final_score: @away_team_final_score,
       home_team_final_score: @home_team_final_score
@@ -37,6 +37,7 @@ class Games::GetFinalScore < Less::Interaction
     @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
     @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
     @away_team_name        =  row.css('.fteam').first.css('a').first.children.text
+    @home_team_name        =  row.css('.fteam').first.css('a').last.children.text
   end
 
 

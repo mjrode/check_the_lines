@@ -26,6 +26,12 @@
 
 class Game < ActiveRecord::Base
   scope :unplayed, ->  { where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
+  scope :played, ->  { where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
+
+  def self.get_game_data(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604')
+    Games::ImportMasseyData.run(massey_url: url, sport: 'ncaa_football' )
+    Games::GetFinalScore.run(massey_url: url, sport: 'ncaa_football' )
+  end
 
   def correct_over_under_prediction?
     total = away_team_final_score + home_team_final_score

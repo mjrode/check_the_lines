@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :games do
     collection do
       get 'unplayed'
+      get 'played'
     end
   end
 
