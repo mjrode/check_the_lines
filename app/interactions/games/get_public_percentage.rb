@@ -22,17 +22,21 @@ class Games::GetPublicPercentage < Less::Interaction
   end
 
   def update_score
-    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").last
     game.update(
-      away_team_final_score: @away_team_final_score,
-      home_team_final_score: @home_team_final_score
+      home_team_money_percent: @home_team_money_percent,
+      away_team_money_percent: @away_team_money_percent,
+      home_team_spread_percent: @home_team_spread_percent,
+      away_team_spread_percent: @away_team_spread_percent,
+      over_percent: @over_percent,
+      under_percent: @under_percent
     ) unless game.nil?
   end
 
   def create_instance_variables(row)
     parse_json(row)
-    @home_team_name           = "@ #{@team_array[5]}"
-    @away_team_name           = @team_array[3]
+    @home_team_name           = "@ #{@team_array[5]}".gsub("'","")
+    @away_team_name           = @team_array[3].gsub("'","")
     @home_team_money_percent  = @team_array[10]
     @away_team_money_percent  = @team_array[7]
     @home_team_spread_percent = @team_array[19]
@@ -44,6 +48,4 @@ class Games::GetPublicPercentage < Less::Interaction
   def parse_json(row)
     @team_array = row.css('.hidden-xs.col-sm-1').first.children[1].attributes.first[1].value.gsub('viewMatchup','').gsub('(', '[').gsub(')',']').split(',')
   end
-
-
 end

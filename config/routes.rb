@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get 'unplayed'
       get 'played'
+      get 'best_bets'
     end
   end
 

@@ -2,26 +2,32 @@
 #
 # Table name: games
 #
-#  id                    :integer          not null, primary key
-#  sport                 :string
-#  home_team_name        :string
-#  away_team_name        :string
-#  date                  :date
-#  home_team_massey_line :float
-#  away_team_massey_line :float
-#  home_team_vegas_line  :float
-#  away_team_vegas_line  :float
-#  vegas_over_under      :float
-#  massey_over_under     :float
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  line_diff             :float
-#  over_under_diff       :float
-#  team_to_bet           :string
-#  over_under_pick       :string
-#  home_team_final_score :integer
-#  away_team_final_score :integer
-#  week_id               :integer
+#  id                       :integer          not null, primary key
+#  sport                    :string
+#  home_team_name           :string
+#  away_team_name           :string
+#  date                     :date
+#  home_team_massey_line    :float
+#  away_team_massey_line    :float
+#  home_team_vegas_line     :float
+#  away_team_vegas_line     :float
+#  vegas_over_under         :float
+#  massey_over_under        :float
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  line_diff                :float
+#  over_under_diff          :float
+#  team_to_bet              :string
+#  over_under_pick          :string
+#  home_team_final_score    :integer
+#  away_team_final_score    :integer
+#  week_id                  :integer
+#  home_team_money_percent  :string
+#  away_team_money_percent  :string
+#  home_team_spread_percent :string
+#  away_team_spread_percent :string
+#  over_percent             :string
+#  under_percent            :string
 #
 
 class Game < ActiveRecord::Base
@@ -31,6 +37,7 @@ class Game < ActiveRecord::Base
   def self.get_game_data(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604')
     Games::ImportMasseyData.run(massey_url: url, sport: 'ncaa_football' )
     Games::GetFinalScore.run(massey_url: url, sport: 'ncaa_football' )
+    Games::GetPublicPercentage.run()
   end
 
   def correct_over_under_prediction?
@@ -68,5 +75,10 @@ class Game < ActiveRecord::Base
   def game_over?
     return true if Time.zone.today > date
     false
+  end
+
+  def public_percent_on_massey_team
+    return home_team_spread_percent if team_to_bet == home_team_name
+    return away_team_spread_percent if team_to_bet == away_team_name
   end
 end
