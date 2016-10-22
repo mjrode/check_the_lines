@@ -1,15 +1,15 @@
-class Games::Import < Less::Interaction
+class Games::ImportMasseyData < Less::Interaction
   expects :massey_url
   # expects :public_betting_url
   expects :sport
   #  http://www.masseyratings.com/pred.php?s=cf&sub=11604
-  # Games::Import.run(massey_url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
-  # Games::Import.run(massey_url: 'http://www.masseyratings.com/pred.php?s=nfl', sport: 'nfl_football' )
+  # Games::ImportMasseyData.run(massey_url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604', sport: 'ncaa_football' )
+  # Games::ImportMasseyData.run(massey_url: 'http://www.masseyratings.com/pred.php?s=nfl', sport: 'nfl_football' )
 
   def run
     html = get_massey_html
     fetch_and_save_team_data(html)
-    public_betting = get_public_betting_info
+    # public_betting = get_public_betting_info
   end
 
   private
@@ -36,11 +36,7 @@ class Games::Import < Less::Interaction
     browser.goto public_betting_url
     doc = Nokogiri::HTML(browser.html)
     button = doc.css('.lnk')[1].children[1].attributes['id'].value
-    binding.pry
     doc = browser.button(id: button).click
-
-
-    browser.close
     doc
   end
 
@@ -49,23 +45,27 @@ class Games::Import < Less::Interaction
     rows = html.css('.bodyrow')
     rows.each do |row|
       create_instance_variables(row)
-      save_game(game_hash)
+      save_game(game_hash) unless invalid_data?
     end
   end
 
-  def invalid_data(row)
-    if row.css('.fscore')[1].children.first.text == "---"
-      true
-    elsif row.css('.fscore')[1].children.last.text == "---"
-      true
-    elsif row.css('.fscore').last.children.first.text == "---"
-      true
-    elsif row.css('.fscore').last.children.last.children.first.text == "---"
-      true
-    else
-      false
-    end
+  def invalid_data?
+    @away_team_vegas_line == 0.0 || @home_team_vegas_line == 0.0 #|| @vegas_over_under == 0.0
   end
+
+  # def invalid_data(row)
+  #   if row.css('.fscore')[1].children.first.text == "---"
+  #     true
+  #   elsif row.css('.fscore')[1].children.last.text == "---"
+  #     true
+  #   elsif row.css('.fscore').last.children.first.text == "---"
+  #     true
+  #   elsif row.css('.fscore').last.children.last.children.first.text == "---"
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
 
   def game_hash
     {
@@ -106,7 +106,9 @@ class Games::Import < Less::Interaction
   end
 
   def format_date(row)
-    Date.parse(row.css('.fdate').first.children.first.children.first.text)
+    date = row.css('.fdate').first.children.first.children.first.text
+    date = date[-2 .. -1]
+    Date.parse(date)
   end
 
   def get_home_team_massey_line(row)
@@ -136,7 +138,7 @@ class Games::Import < Less::Interaction
     @over_under_diff       =  (row.css('.fscore').last.children.first.text.to_f - row.css('.fscore').last.children.last.text.to_f).abs
     @team_to_bet           =  find_team_to_bet
     @over_under_pick       =  pick_over_under
-    @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
-    @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
+    # @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
+    # @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
   end
 end

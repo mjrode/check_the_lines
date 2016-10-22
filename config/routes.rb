@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  get 'game/index'
-
-  get 'game/show'
 
   get 'pages/home'
 
   get 'pages/about'
+
+  resources :games do
+    collection do
+      get 'unplayed'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
 
   # root 'welcome#index'
 
-  root 'game#unplayed'
+  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

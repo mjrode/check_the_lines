@@ -25,44 +25,42 @@
 #
 
 class Game < ActiveRecord::Base
+  scope :unplayed, ->  { where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
 
-  def self.inprogress?(game)
-    if game.home_team_final_score.zero? && game.away_team_final_score.zero?
+  def correct_over_under_prediction?
+    total = away_team_final_score + home_team_final_score
+    if over_under_pick == 'Over' && total > vegas_over_under
+      true
+    elsif over_under_pick == 'Under' && total < vegas_over_under
       true
     else
       false
     end
   end
 
-  def self.correct_over_under_prediction?(game)
-    total = game.away_team_final_score + game.home_team_final_score
-    if game.over_under_pick == 'Over' && total > game.vegas_over_under
-      true
-    elsif game.over_under_pick == 'Under' && total < game.vegas_over_under
-      true
-    else
-      false
-    end
+  def correct_line_prediction?
+    return correct_home_prediction if team_to_bet_home_or_away? == "home"
+    correct_away_prediction if team_to_bet_home_or_away? == "away"
   end
 
-  def self.correct_line_prediction?(game)
-    if game.team_to_bet == game.home_team_name
-      vegas_line  = game.home_team_vegas_line
-      actual_line = game.away_team_final_score - game.home_team_final_score
-    else
-      vegas_line  = game.home_team_vegas_line
-      actual_line = game.home_team_final_score - game.away_team_final_score
-    end
-
-    if actual_line > vegas_line
-      false
-    else
-      true
-    end
+  def team_to_bet_home_or_away?
+    name = team_to_bet
+    return "away" if name == away_team_name
+    "home" if name == home_team_name
   end
 
-  def self.game_over?(game)
-    return true if Time.zone.today > game.date
+  def correct_home_prediction
+    actual_line = home_team_final_score - away_team_final_score
+    actual_line >= home_team_vegas_line.abs
+  end
+
+  def correct_away_prediction
+    actual_line = away_team_final_score - home_team_final_score
+    actual_line >= away_team_vegas_line.abs
+  end
+
+  def game_over?
+    return true if Time.zone.today > date
     false
   end
 end

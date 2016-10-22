@@ -1,4 +1,4 @@
-class GameController < ApplicationController
+class GamesController < ApplicationController
   def index
     @current_games = Game.where("date > ?", Date.today)
     @ncaa_line_games = Game.where('line_diff > ?', 5).order('line_diff DESC').where(sport: 'ncaa_football')
@@ -11,6 +11,6 @@ class GameController < ApplicationController
   end
 
   def unplayed
-    @ncaa_line_games = Game.where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0)
+    @games = Game.all.unplayed
   end
 end
