@@ -32,14 +32,42 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed, ->  { where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
-  scope :played, ->  { where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
+  scope :unplayed, ->  { where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
+  scope :played, ->  { where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
   scope :best_bets, ->  { where('date >= ?', Date.today).order('line_diff DESC').where('public_percentage_on_massey_team < ?', 35) }
 
   def self.get_game_data(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604')
     Games::ImportMasseyData.run(massey_url: url, sport: 'ncaa_football' )
-    Games::GetFinalScore.run(massey_url: url, sport: 'ncaa_football' )
     Games::GetPublicPercentage.run()
+    Games::GetFinalScore.run(massey_url: url, sport: 'ncaa_football' )
+    self.calculate_picks
+  end
+
+  def self.calculate_picks
+    Game.all.each do |game|
+      game.update(
+        line_diff: (game.home_team_massey_line - game.home_team_vegas_line).abs,
+        over_under_diff: game.massey_over_under - game.vegas_over_under,
+        team_to_bet: self.find_team_to_bet(game),
+        over_under_pick: self.pick_over_under(game)
+      ) unless game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
+    end
+  end
+
+  def self.pick_over_under(game)
+    if game.massey_over_under - game.vegas_over_under > 0
+      "Over"
+    else
+      "Under"
+    end
+  end
+
+  def self.find_team_to_bet(game)
+    if game.home_team_massey_line - game.home_team_vegas_line > 0
+      game.away_team_name
+    else
+      game.home_team_name
+    end
   end
 
   def correct_over_under_prediction?

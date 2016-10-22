@@ -5,6 +5,8 @@
       %th Away Team
       %th Home Team
       %th Team To Bet
+      %th Home Team Vegas Line
+
       %th Point Differential
       %th Public % on Massey Team
   %tbody
@@ -14,4 +16,5 @@
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
         %td= game.team_to_bet
         %td= game.line_diff
-        %td= game.public_percentage_on_massey_team
+        %td= game.home_team_vegas_line
+        %td= game.get_public_percent_on_massey_team
