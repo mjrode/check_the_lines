@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022175522) do
+ActiveRecord::Schema.define(version: 20161022185146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20161022175522) do
     t.float    "away_team_vegas_line"
     t.float    "vegas_over_under"
     t.float    "massey_over_under"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.float    "line_diff"
     t.float    "over_under_diff"
     t.string   "team_to_bet"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20161022175522) do
     t.string   "away_team_spread_percent"
     t.string   "over_percent"
     t.string   "under_percent"
+    t.integer  "public_percentage_on_massey_team"
   end
 
 end

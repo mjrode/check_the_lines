@@ -2,37 +2,39 @@
 #
 # Table name: games
 #
-#  id                       :integer          not null, primary key
-#  sport                    :string
-#  home_team_name           :string
-#  away_team_name           :string
-#  date                     :date
-#  home_team_massey_line    :float
-#  away_team_massey_line    :float
-#  home_team_vegas_line     :float
-#  away_team_vegas_line     :float
-#  vegas_over_under         :float
-#  massey_over_under        :float
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  line_diff                :float
-#  over_under_diff          :float
-#  team_to_bet              :string
-#  over_under_pick          :string
-#  home_team_final_score    :integer
-#  away_team_final_score    :integer
-#  week_id                  :integer
-#  home_team_money_percent  :string
-#  away_team_money_percent  :string
-#  home_team_spread_percent :string
-#  away_team_spread_percent :string
-#  over_percent             :string
-#  under_percent            :string
+#  id                                  :integer          not null, primary key
+#  sport                               :string
+#  home_team_name                      :string
+#  away_team_name                      :string
+#  date                                :date
+#  home_team_massey_line               :float
+#  away_team_massey_line               :float
+#  home_team_vegas_line                :float
+#  away_team_vegas_line                :float
+#  vegas_over_under                    :float
+#  massey_over_under                   :float
+#  created_at                          :datetime         not null
+#  updated_at                          :datetime         not null
+#  line_diff                           :float
+#  over_under_diff                     :float
+#  team_to_bet                         :string
+#  over_under_pick                     :string
+#  home_team_final_score               :integer
+#  away_team_final_score               :integer
+#  week_id                             :integer
+#  home_team_money_percent             :string
+#  away_team_money_percent             :string
+#  home_team_spread_percent            :string
+#  away_team_spread_percent            :string
+#  over_percent                        :string
+#  under_percent                       :string
+#  pubpublic_percentage_on_massey_team :integer
 #
 
 class Game < ActiveRecord::Base
   scope :unplayed, ->  { where('date >= ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
   scope :played, ->  { where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: -0.0).where.not(home_team_vegas_line: 0.0) }
+  scope :best_bets, ->  { where('date >= ?', Date.today).order('line_diff DESC').where('public_percentage_on_massey_team < ?', 35) }
 
   def self.get_game_data(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604')
     Games::ImportMasseyData.run(massey_url: url, sport: 'ncaa_football' )
@@ -77,7 +79,7 @@ class Game < ActiveRecord::Base
     false
   end
 
-  def public_percent_on_massey_team
+  def get_public_percent_on_massey_team
     return home_team_spread_percent if team_to_bet == home_team_name
     return away_team_spread_percent if team_to_bet == away_team_name
   end

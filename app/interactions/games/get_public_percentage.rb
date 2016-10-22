@@ -23,13 +23,15 @@ class Games::GetPublicPercentage < Less::Interaction
 
   def update_score
     game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").last
+    @public_percent_on_massey_team = game.get_public_percent_on_massey_team unless game.nil?
     game.update(
       home_team_money_percent: @home_team_money_percent,
       away_team_money_percent: @away_team_money_percent,
       home_team_spread_percent: @home_team_spread_percent,
       away_team_spread_percent: @away_team_spread_percent,
       over_percent: @over_percent,
-      under_percent: @under_percent
+      under_percent: @under_percent,
+      public_percentage_on_massey_team: @public_percent_on_massey_team
     ) unless game.nil?
   end
 
@@ -37,12 +39,13 @@ class Games::GetPublicPercentage < Less::Interaction
     parse_json(row)
     @home_team_name           = "@ #{@team_array[5]}".gsub("'","")
     @away_team_name           = @team_array[3].gsub("'","")
-    @home_team_money_percent  = @team_array[10]
-    @away_team_money_percent  = @team_array[7]
-    @home_team_spread_percent = @team_array[19]
-    @away_team_spread_percent = @team_array[16]
-    @over_percent             = @team_array[22]
-    @under_percent            = @team_array[25]
+    @home_team_money_percent  = @team_array[10].delete! "''%"
+    @away_team_money_percent  = @team_array[7].delete! "''%"
+    @home_team_spread_percent = @team_array[19].delete! "''%"
+    @away_team_spread_percent = @team_array[16].delete! "''%"
+    @over_percent             = @team_array[22].delete! "''%"
+    @under_percent            = @team_array[25].delete! "''%"
+
   end
 
   def parse_json(row)
