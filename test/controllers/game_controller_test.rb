@@ -1,14 +1,14 @@
-require 'test_helper'
+# require 'test_helper'
 
-class GameControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
+# class GamesControllerTest < ActionController::TestCase
+#   test "should get index" do
+#     get :index
+#     assert_response :success
+#   end
 
-  test "should get show" do
-    get :show
-    assert_response :success
-  end
+#   test "should get show" do
+#     get :show
+#     assert_response :success
+#   end
 
-end
+# end

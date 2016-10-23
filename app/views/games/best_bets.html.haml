@@ -1,3 +1,12 @@
+-@games.each do |game|
+  .col.s6
+    =game.home_team_name
+  .col.s6.offset-s6
+    =game.away_team_name
+
+
+
+
 %h1.center
 %table.table.striped
   %thead
@@ -7,6 +16,7 @@
       %th Team To Bet
       %th Point Differential
       %th Public % on Massey Team
+      %th Correct
   %tbody
     - @games.order(:line_diff).each do |game|
       %tr
@@ -15,3 +25,4 @@
         %td= game.team_to_bet
         %td= game.line_diff
         %td= game.public_percentage_on_massey_team
+        %td= game.correct_line_prediction?

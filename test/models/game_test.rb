@@ -2,33 +2,33 @@
 #
 # Table name: games
 #
-#  id                                  :integer          not null, primary key
-#  sport                               :string
-#  home_team_name                      :string
-#  away_team_name                      :string
-#  date                                :date
-#  home_team_massey_line               :float
-#  away_team_massey_line               :float
-#  home_team_vegas_line                :float
-#  away_team_vegas_line                :float
-#  vegas_over_under                    :float
-#  massey_over_under                   :float
-#  created_at                          :datetime         not null
-#  updated_at                          :datetime         not null
-#  line_diff                           :float
-#  over_under_diff                     :float
-#  team_to_bet                         :string
-#  over_under_pick                     :string
-#  home_team_final_score               :integer
-#  away_team_final_score               :integer
-#  week_id                             :integer
-#  home_team_money_percent             :string
-#  away_team_money_percent             :string
-#  home_team_spread_percent            :string
-#  away_team_spread_percent            :string
-#  over_percent                        :string
-#  under_percent                       :string
-#  pubpublic_percentage_on_massey_team :integer
+#  id                               :integer          not null, primary key
+#  sport                            :string
+#  home_team_name                   :string
+#  away_team_name                   :string
+#  date                             :date
+#  home_team_massey_line            :float
+#  away_team_massey_line            :float
+#  home_team_vegas_line             :float
+#  away_team_vegas_line             :float
+#  vegas_over_under                 :float
+#  massey_over_under                :float
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  line_diff                        :float
+#  over_under_diff                  :float
+#  team_to_bet                      :string
+#  over_under_pick                  :string
+#  home_team_final_score            :integer
+#  away_team_final_score            :integer
+#  week_id                          :integer
+#  home_team_money_percent          :string
+#  away_team_money_percent          :string
+#  home_team_spread_percent         :string
+#  away_team_spread_percent         :string
+#  over_percent                     :string
+#  under_percent                    :string
+#  public_percentage_on_massey_team :integer
 #
 
 require 'test_helper'
@@ -94,7 +94,7 @@ class GameTest < ActiveSupport::TestCase
       team_to_bet: "San Diego St",
       over_under_pick: "Over",
       home_team_final_score: 16,
-      away_team_final_score: 17,
+      away_team_final_score: 1,
       week_id: 20_161_017
     )
 
@@ -138,6 +138,33 @@ class GameTest < ActiveSupport::TestCase
        away_team_final_score: 48,
        week_id: 20161017
      )
+    @game5 = Game.create(
+      id: 2751,
+      sport: "ncaa_football",
+      home_team_name: "@ Texas Tech",
+      away_team_name: "Oklahoma",
+      date: "Sat, 22 Oct 2016",
+      home_team_massey_line: 6.5,
+      away_team_massey_line: -6.5,
+      home_team_vegas_line: 16.0,
+      away_team_vegas_line: -16.0,
+      vegas_over_under: 84.5,
+      massey_over_under: 93.5,
+      line_diff: 9.5,
+      over_under_diff: 9.0,
+      team_to_bet: "@ Texas Tech",
+      over_under_pick: "Over",
+      home_team_final_score: 52,
+      away_team_final_score: 59,
+      week_id: 20161023,
+      home_team_money_percent: nil,
+      away_team_money_percent: nil,
+      home_team_spread_percent: "36%",
+      away_team_spread_percent: "64%",
+      over_percent: "69%",
+      under_percent: "31%",
+      public_percentage_on_massey_team: 36
+    )
   end
 
   test 'returns true if massey makes correct pick' do
@@ -166,5 +193,9 @@ class GameTest < ActiveSupport::TestCase
 
   test 'correct line prediction does not return nil' do
     refute @nil_game.correct_line_prediction?.nil?
+  end
+
+  test 'Underdog Covers and massey predicts correct' do
+    assert @game5.correct_line_prediction? == true
   end
 end
