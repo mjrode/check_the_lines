@@ -49,7 +49,8 @@ class Game < ActiveRecord::Base
         line_diff: (game.home_team_massey_line - game.home_team_vegas_line).abs,
         over_under_diff: game.massey_over_under - game.vegas_over_under,
         team_to_bet: self.find_team_to_bet(game),
-        over_under_pick: self.pick_over_under(game)
+        over_under_pick: self.pick_over_under(game),
+        public_percentage_on_massey_team: self.get_public_percentage_on_massey_team(game)
       ) unless game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
     end
   end
@@ -60,6 +61,11 @@ class Game < ActiveRecord::Base
     else
       "Under"
     end
+  end
+
+  def self.get_public_percentage_on_massey_team(game)
+    return game.home_team_spread_percent if game.team_to_bet == game.home_team_name
+    return game.away_team_spread_percent if game.team_to_bet == game.away_team_name
   end
 
   def self.find_team_to_bet(game)
@@ -107,8 +113,4 @@ class Game < ActiveRecord::Base
     false
   end
 
-  def get_public_percent_on_massey_team
-    return home_team_spread_percent if team_to_bet == home_team_name
-    return away_team_spread_percent if team_to_bet == away_team_name
-  end
 end
