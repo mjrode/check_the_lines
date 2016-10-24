@@ -29,7 +29,8 @@ class Games::GetPublicPercentage < Less::Interaction
   end
 
   def update_score
-    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").last
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where('date >= ?', Date.today).last
+    puts "Updating #{@away_team_name}, #{@home_team_name}"
     # @public_percent_on_massey_team = game.get_public_percent_on_massey_team unless game.nil?
     game.update(
       home_team_spread_percent: @home_team_spread_percent,

@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    # @games = Game.where(week_id: params(week_id))
   end
 
   def unplayed

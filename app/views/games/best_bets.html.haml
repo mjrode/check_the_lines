@@ -1,16 +1,20 @@
--@games.each do |game|
-  .col.s6
-    =game.home_team_name
-  .col.s6.offset-s6
-    =game.away_team_name
-
-
-
+-@games.order(:line_diff). each do |game|
+  .large-4-columns.center
+    %h1= "#{game.away_team_name} #{game.home_team_name}"
+    %h3= "MJM Pick: #{game.team_to_bet}"
+    %h3= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    %h3= "Final Score:"
+    %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+    - if game.correct_line_prediction?
+      %h2 "Correct"
+    -else
+      %h2 "Incorrect"
 
 %h1.center
 %table.table.striped
   %thead
     %tr
+      %th Week ID
       %th Away Team
       %th Home Team
       %th Team To Bet
@@ -20,6 +24,7 @@
   %tbody
     - @games.order(:line_diff).each do |game|
       %tr
+        %td= game.week_id
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
         %td= game.team_to_bet
