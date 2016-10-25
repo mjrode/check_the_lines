@@ -20,6 +20,8 @@ class Games::GetPublicPercentage < Less::Interaction
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)
     end
+  rescue NoMethodError
+      puts "Unable to Read Row #{row.css('td:nth-child(4)').first.children.text.strip}"
   end
 
   def valid_row(row)
