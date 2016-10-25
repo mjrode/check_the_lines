@@ -32,9 +32,9 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed, ->  { where('date >= ?', Date.today-1).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
-  scope :played, ->  { where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
-  scope :best_bets, ->  {order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_on_massey_team < ?', 35).where.not(public_percentage_on_massey_team: nil) }
+  scope :unplayed,  -> { where.not(home_team_vegas_line: 0.0).where('date >= ?', Date.today-1).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
+  scope :played,    -> { where.not(home_team_vegas_line: 0.0).where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
+  scope :best_bets, -> { where.not(home_team_vegas_line: 0.0).order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_on_massey_team < ?', 35).where.not(public_percentage_on_massey_team: nil) }
 
   # def self.get_game_data(url: 'http://www.masseyratings.com/pred.php?s=cf&sub=11604')
   #   Games::ImportMasseyData.run(massey_url: url, sport: 'ncaa_football' )
