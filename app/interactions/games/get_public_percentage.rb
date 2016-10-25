@@ -33,19 +33,20 @@ class Games::GetPublicPercentage < Less::Interaction
   def update_score
     puts "Updating #{@away_team_name}, #{@home_team_name}"
     game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: false).last
+    binding.pry
     game.update(game_hash) unless game.nil?
   end
 
   def create_instance_variables(row)
-    @home_team_name           = row.css('td:nth-child(4)').first.children.text.strip
+    @away_team_name           = row.css('td:nth-child(4)').first.children.text.strip
     @home_spread              = row.css('.block td:nth-child(5)').text.strip.to_i
     @vegas_over_under         = row.css('.block td:nth-child(7)').text.gsub(/\(.*?\)/, '').gsub('u','').strip.to_i
-    @away_team_name           = row.css('.block strong').text.strip
+    @home_team_name           = row.css('.block strong').text.strip
     @away_spread              = -@home_spread
     @away_team_spread_percent = row.css('.perc:nth-child(10) .sblock').text.to_i
     @home_team_spread_percent = 100 - @away_team_spread_percent
-    @over_percent             = row.css('.perc:nth-child(12)').text.to_i
-    @under_percent            = 100 - @over_percent
+    @under_percent             = row.css('.perc:nth-child(12)').text.to_i
+    @over_percent            = 100 - @under_percent
 
   rescue NoMethodError
     puts "Error getting data for #{@home_team_name} vs #{@away_team_name}"
