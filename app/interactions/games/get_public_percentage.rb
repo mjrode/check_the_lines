@@ -21,7 +21,7 @@ class Games::GetPublicPercentage < Less::Interaction
       update_score if valid_row(row)
     end
   rescue NoMethodError
-      puts "Unable to Read Row #{row.css('td:nth-child(4)').first.children.text.strip}"
+      puts "Unable to Read Row"
   end
 
   def valid_row(row)
