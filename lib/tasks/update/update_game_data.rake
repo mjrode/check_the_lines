@@ -8,6 +8,9 @@ namespace :update do
 
   desc 'Fetch all Game Data'
   task games: :environment do
+    Game.all.each do |game|
+      CheckIfOver.new(game).game_over?
+    end
     FetchGameData.new.fetch
   end
 end
