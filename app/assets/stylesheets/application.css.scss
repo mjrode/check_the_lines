@@ -25,7 +25,41 @@
   display: block;
   margin: 0 auto;
 }
+.marg-right{
+  margin-right: 5px;
+}
+.custom-home-row{
+  width: 100%;
+  margin: 5px auto;
+  display: block;
+  height: 20em;
+  /*background-color: white;*/
+}
+.quarter-width{
+  width: 25%;
+  display: block;
+  margin: 0 auto;
+}
 
+.links{
+  font-size: 5em;
+}
+.big-font{
+  font-family: 'Russo One', sans-serif;
+}
+.white{
+  color: #F6F6F6;
+}
+.top-bar .custom{
+  background-color: #FFFFFF;;
+}
+.menu>li>a{
+  color: black;
+}
+.menu>li>a:hover{
+  color: gray;
+  background-color: #D5FAFF;
+}
 .header-font{
   font-family: 'Proza Libre', sans-serif;
 }
@@ -36,4 +70,21 @@
 
 .alt-font{
   font-family: 'Amatic SC', cursive;
+}
+
+.home-buttons{
+  margin-bottom: 1em;
+  background-color:  #DE1B1B;
+}
+body{
+  background-color: rgba(43, 43, 43, 0.6);
+  background-size: 80%;
+  height: 50%;
+  background-repeat: no-repeat;
+}
+
+.center-all{
+  display: block;
+  margin: auto auto;
+  text-align: center;
 }

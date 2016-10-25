@@ -1,5 +1,7 @@
+%h1.center.alt-font= "Picks for #{Game.last.week_id}"
+
 -@new_games.sort_by{|game| game.strength }.reverse.each do |game|
-  .large-4-columns.center.callout.warning.half-width
+  .large-3-columns.center.callout.warning.half-width
     %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
 
     %h3.secondary-font= "MJM Pick: #{game.team_to_bet}"
@@ -12,29 +14,4 @@
       -else
         %h2 "Incorrect"
 
-%h1.center
-%table.table.striped
-  %thead
-    %tr
-      %th Week ID
-      %th Away Team
-      %th Home Team
-      %th Strength
-      %th Team To Bet
-      %th Point Differential
-      %th Public % on Massey Team
-      %th Correct
-  %tbody
-    - @old_games.sort_by{|game| game.strength }.reverse.each do |game|
-      %tr
-        %td= game.week_id
-        %td= "#{game.away_team_name}: #{game.away_team_final_score}"
-        %td= "#{game.home_team_name}: #{game.home_team_final_score}"
-        %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-        %td= game.team_to_bet
-        %td= game.line_diff
-        %td= game.public_percentage_on_massey_team
-        - if game.game_over
-          %td= game.correct_line_prediction?
-        - else
-          %td Game unplayed
+

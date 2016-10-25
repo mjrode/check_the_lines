@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'unplayed'
       get 'played'
       get 'best_bets'
+      get 'old_best_bets'
     end
   end
 
