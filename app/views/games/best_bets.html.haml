@@ -1,8 +1,9 @@
--@old_games.order(:line_diff). each do |game|
-  .large-4-columns.center
-    %h1= "#{game.away_team_name} #{game.home_team_name}"
-    %h3= "MJM Pick: #{game.team_to_bet}"
-    %h3= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+-@new_games.sort_by{|game| game.strength }.reverse.each do |game|
+  .large-4-columns.center.callout.warning.half-width
+    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
+
+    %h3.secondary-font= "MJM Pick: #{game.team_to_bet}"
+    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
     - if game.game_over
       %h3= "Final Score:"
       %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
@@ -18,16 +19,18 @@
       %th Week ID
       %th Away Team
       %th Home Team
+      %th Strength
       %th Team To Bet
       %th Point Differential
       %th Public % on Massey Team
       %th Correct
   %tbody
-    - @old_games.order(:line_diff).each do |game|
+    - @old_games.sort_by{|game| game.strength }.reverse.each do |game|
       %tr
         %td= game.week_id
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
+        %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
         %td= game.team_to_bet
         %td= game.line_diff
         %td= game.public_percentage_on_massey_team
