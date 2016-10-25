@@ -10,5 +10,6 @@ class FetchGameData
     Games::GetPublicPercentage.run()
     Games::GameOver.run
     Game.calculate_picks
+    Game.was_i_right?
   end
 end

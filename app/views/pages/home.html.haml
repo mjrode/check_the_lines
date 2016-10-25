@@ -1,5 +1,5 @@
 .home
-  %h1.white.big-font.center Check The Lines
+  %h1.white.big-font.center.iamhuge Check The Lines
 
 
   .row.custom-home-row
@@ -17,7 +17,10 @@
     .small-6.columns
       =image_tag "http://image.flaticon.com/icons/svg/127/127963.svg", class: "quarter-width center-all"
       .center= link_to "Past Data", played_games_path, class: "alt-font white links"
-
+  .row.custom-home-row
+    .small-6.columns.marg-right
+      = image_tag "http://image.flaticon.com/icons/svg/149/149150.svg", class: "quarter-width center-all"
+      .center= link_to "About Scoring", pages_about_path, class: "alt-font white links"
 
 
 
