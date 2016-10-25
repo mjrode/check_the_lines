@@ -1,2 +1,7 @@
-%h1 Pages#about
-%p Find me in app/views/pages/about.html.haml
+%h1.center.big-font About The System
+
+.large-3-columns.center.callout.half-width.margin-bottom.header-font.bigger
+  %p CheckTheLines is a side-project that pulls in different information from across the web to try to predict the correct side for NCAA and NFL football games.
+  %p As of now the ranking system is composed of two main features. The first is using MasseyRatings line prediction. I scrape all of his data to try to find the largest line discrepancies. After I have this information I scrape other betting sites to get the vegas lines and public betting percentages.
+  %p Using a combination of this information I create a score that represents how likely I think the predicted team is to cover the spread. If a game has a very high line discrepancy and a very low public betting percentage it will rank very.
+  %p This is a work in progress and there should be new features added every week.
