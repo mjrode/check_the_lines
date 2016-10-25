@@ -34,7 +34,7 @@ class Games::GetPublicPercentage < Less::Interaction
     binding.pry
     game.update(game_hash) unless game.nil?
   rescue NoMethodError
-    puts "Unable to Read Row #{away_team_name}"
+    puts "Unable to Read Row #{@away_team_name}"
   end
 
   def create_instance_variables(row)
