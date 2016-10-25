@@ -20,8 +20,6 @@ class Games::GetPublicPercentage < Less::Interaction
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)
     end
-  rescue NoMethodError
-      puts "Unable to Read Row"
   end
 
   def valid_row(row)
@@ -35,6 +33,8 @@ class Games::GetPublicPercentage < Less::Interaction
     game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: false).last
     binding.pry
     game.update(game_hash) unless game.nil?
+  rescue NoMethodError
+    puts "Unable to Read Row #{away_team_name}"
   end
 
   def create_instance_variables(row)
