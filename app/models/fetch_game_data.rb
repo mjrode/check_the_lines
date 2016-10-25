@@ -8,6 +8,7 @@ class FetchGameData
   def fetch
     Games::ImportMasseyData.run(massey_url: @url, sport: @sport)
     Games::GetPublicPercentage.run()
+    Games::GameOver.run
     Game.calculate_picks
   end
 end

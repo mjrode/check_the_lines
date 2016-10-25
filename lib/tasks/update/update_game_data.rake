@@ -7,7 +7,7 @@ namespace :update do
   end
 
   desc 'Fetch all Game Data'
-  task update_games: :environment do
+  task games: :environment do
     FetchGameData.new.fetch
   end
 end

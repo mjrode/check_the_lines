@@ -3,12 +3,13 @@
     %h1= "#{game.away_team_name} #{game.home_team_name}"
     %h3= "MJM Pick: #{game.team_to_bet}"
     %h3= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    %h3= "Final Score:"
-    %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-    - if game.correct_line_prediction?
-      %h2 "Correct"
-    -else
-      %h2 "Incorrect"
+    - if game.game_over
+      %h3= "Final Score:"
+      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+      - if game.correct_line_prediction?
+        %h2 "Correct"
+      -else
+        %h2 "Incorrect"
 
 %h1.center
 %table.table.striped
@@ -30,4 +31,7 @@
         %td= game.team_to_bet
         %td= game.line_diff
         %td= game.public_percentage_on_massey_team
-        %td= game.correct_line_prediction?
+        - if game.game_over
+          %td= game.correct_line_prediction?
+        - else
+          %td Game unplayed
