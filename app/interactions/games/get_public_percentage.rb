@@ -32,6 +32,7 @@ class Games::GetPublicPercentage < Less::Interaction
 
   def update_score
     puts "Updating #{@away_team_name}, #{@home_team_name}"
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: false).last
     game.update(game_hash) unless game.nil?
   end
 
@@ -61,9 +62,5 @@ class Games::GetPublicPercentage < Less::Interaction
       away_team_vegas_line: @away_spread,
       vegas_over_under: @vegas_over_under
     }
-  end
-
-  def game
-    Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: false).last
   end
 end
