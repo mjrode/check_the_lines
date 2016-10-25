@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022185146) do
+ActiveRecord::Schema.define(version: 20161025111655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161022185146) do
     t.string   "over_percent"
     t.string   "under_percent"
     t.integer  "public_percentage_on_massey_team"
+    t.boolean  "game_over"
   end
 
 end

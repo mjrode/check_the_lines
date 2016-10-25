@@ -15,6 +15,7 @@ class GamesController < ApplicationController
   end
 
   def best_bets
-    @games = Game.all.best_bets
+    @new_games = Game.all.best_bets.where('date > ?', Date.today-1)
+    @old_games = Game.all.best_bets
   end
 end
