@@ -29,6 +29,8 @@
 #  over_percent                     :string
 #  under_percent                    :string
 #  public_percentage_on_massey_team :integer
+#  game_over                        :boolean
+#  correct_prediction               :boolean
 #
 
 class Game < ActiveRecord::Base
@@ -120,6 +122,14 @@ class Game < ActiveRecord::Base
         game.correct_prediction = false
         game.save
       end
+    end
+  end
+
+  def team_to_bet_line
+    if team_to_bet_home_or_away? == "away"
+      away_team_vegas_line
+    else
+      home_team_vegas_line
     end
   end
 

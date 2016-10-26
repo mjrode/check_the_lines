@@ -6,7 +6,7 @@
 
     %h3.secondary-font
       Pick:
-      .bold=game.team_to_bet
+      .bold="#{game.team_to_bet} #{game.team_to_bet_line}"
     %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
     - if game.game_over
       %h3= "Final Score:"

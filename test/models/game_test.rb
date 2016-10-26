@@ -29,6 +29,8 @@
 #  over_percent                     :string
 #  under_percent                    :string
 #  public_percentage_on_massey_team :integer
+#  game_over                        :boolean
+#  correct_prediction               :boolean
 #
 
 require 'test_helper'
