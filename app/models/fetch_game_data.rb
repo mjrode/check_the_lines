@@ -12,5 +12,6 @@ class FetchGameData
     Games::GetFinalScore.run(massey_url: @url, sport: @sport)
     Game.calculate_picks
     Game.was_i_right?
+    Game.calculate_picks
   end
 end

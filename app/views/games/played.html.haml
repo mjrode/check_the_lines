@@ -2,6 +2,7 @@
 %table.table.striped
   %thead
     %tr
+      %th Date
       %th Away Team
       %th Home Team
       %th Team To Bet
@@ -12,6 +13,7 @@
   %tbody
     - @games.sort_by{|game| game.strength }.reverse.each do |game|
       %tr
+        %td= game.date
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
         %td= game.team_to_bet

@@ -7,11 +7,11 @@ class GamesController < ApplicationController
   end
 
   def unplayed
-    @games = Game.all.unplayed
+    @games = Game.all.unplayed.valid_public
   end
 
   def played
-    @games = Game.all.played
+    @games = Game.all.played.valid_public
   end
 
   def best_bets
