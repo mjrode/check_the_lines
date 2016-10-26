@@ -100,12 +100,12 @@ class Game < ActiveRecord::Base
 
   def correct_home_prediction
     actual_line = away_team_final_score - home_team_final_score
-    home_team_vegas_line > actual_line
+    home_team_vegas_line > actual_line unless home_team_vegas_line.nil?
   end
 
   def correct_away_prediction
     actual_line = home_team_final_score - away_team_final_score
-    away_team_vegas_line > actual_line
+    away_team_vegas_line > actual_line unless away_team_vegas_line.nil?
   end
 
   def game_over?
