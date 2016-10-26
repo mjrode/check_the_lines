@@ -7,7 +7,7 @@
       Correct: #{Game.all.best_bets.where(game_over: true).where(correct_prediction: true).count}
       Incorrect: #{Game.all.best_bets.where(game_over: true).where(correct_prediction: false).count}
 
-%h1.center.big-font= "Picks for #{Date.today}"
+%h1.center.big-font Past Best Bets
 
 -@old_games.sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
