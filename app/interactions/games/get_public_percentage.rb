@@ -1,4 +1,5 @@
 class Games::GetPublicPercentage < Less::Interaction
+  expects :date, allow_nil: true
 
   def run
     html = get_public_html
@@ -9,6 +10,10 @@ class Games::GetPublicPercentage < Less::Interaction
     browser = Watir::Browser.new :phantomjs
     browser.goto "http://pregame.com/sportsbook_spy/default.aspx"
     browser.link(:text =>"CFB").when_present.click
+    unless date.nil?
+      browser.link(:text =>"Change Date").when_present.click
+      browser.link(:text =>date).when_present.click
+    end
     doc = Nokogiri::HTML(browser.html)
     browser.close
     doc
@@ -30,10 +35,9 @@ class Games::GetPublicPercentage < Less::Interaction
 
   def update_score
     puts "Updating #{@away_team_name}, #{@home_team_name}"
-    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: false).last
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: [false, nil]).last
     game.update(game_hash) unless game.nil?
   rescue NoMethodError
-    # binding.pry
     puts "Unable to Read Row #{@away_team_name}"
   end
 

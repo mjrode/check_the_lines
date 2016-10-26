@@ -14,7 +14,6 @@ class Games::GetPredictions < Less::Interaction
   end
 
   def fetch_and_save_team_data(html)
-    binding.pry
     @week_id = html.css('#datepicker').first.attributes['value'].value
     rows = html.css('.bodyrow')
     rows.each do |row|

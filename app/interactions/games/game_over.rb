@@ -14,7 +14,7 @@ class Games::GameOver < Less::Interaction
   end
 
   def week_ids
-    Game.where(game_over: false).pluck(:week_id).uniq
+    Game.where(game_over: [false, nil]).pluck(:week_id).uniq
   end
 
   def get_massey_html(url)

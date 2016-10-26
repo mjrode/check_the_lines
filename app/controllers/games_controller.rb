@@ -15,10 +15,10 @@ class GamesController < ApplicationController
   end
 
   def best_bets
-    @new_games = Game.all.best_bets.where(game_over: false)
+    @new_games = Game.all.best_bets.valid_public.where(game_over: false)
   end
 
   def old_best_bets
-    @old_games = Game.all.best_bets.where(game_over: true)
+    @old_games = Game.all.best_bets.valid_public.where(game_over: true)
   end
 end

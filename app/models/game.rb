@@ -37,16 +37,15 @@ class Game < ActiveRecord::Base
   scope :unplayed,  -> { where.not(home_team_vegas_line: 0.0).where('date >= ?', Date.today-1).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
   scope :played,    -> { where.not(home_team_vegas_line: 0.0).where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
   scope :best_bets, -> { where.not(home_team_vegas_line: 0.0).order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_on_massey_team < ?', 35).where.not(public_percentage_on_massey_team: nil) }
+  scope :valid_public, -> {where.not(home_team_spread_percent: "100").where.not(home_team_spread_percent: "0")}
 
   def self.calculate_picks
     Game.all.each do |game|
       game.update(
         line_diff: (game.home_team_massey_line - game.home_team_vegas_line).abs,
-        over_under_diff: game.massey_over_under - game.vegas_over_under,
         team_to_bet: self.find_team_to_bet(game),
-        over_under_pick: self.pick_over_under(game),
         public_percentage_on_massey_team: self.get_public_percentage_on_massey_team(game)
-      ) unless game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
+      ) unless game.home_team_vegas_line.nil?
     end
   end
 
@@ -99,13 +98,13 @@ class Game < ActiveRecord::Base
   end
 
   def correct_home_prediction
-    actual_line = away_team_final_score - home_team_final_score
-    home_team_vegas_line > actual_line unless home_team_vegas_line.nil?
+    actual_line = away_team_final_score - home_team_final_score unless home_team_final_score.nil? || away_team_final_score.nil?
+    home_team_vegas_line > actual_line unless home_team_vegas_line.nil? || actual_line.nil?
   end
 
   def correct_away_prediction
-    actual_line = home_team_final_score - away_team_final_score
-    away_team_vegas_line > actual_line unless away_team_vegas_line.nil?
+    actual_line = home_team_final_score - away_team_final_score unless home_team_final_score.nil? || away_team_final_score.nil?
+    away_team_vegas_line > actual_line unless away_team_vegas_line.nil? || actual_line.nil?
   end
 
   def game_over?
