@@ -4,8 +4,28 @@
     %h2.seconday-font.center
       Overall Record
     %h1.secondary-font.center
-      Correct: #{Game.all.best_bets.where(game_over: true).select {|game| game.correct_line_prediction? == true}.count}
-      Incorrect: 1
+      Correct: #{Game.all.best_bets.where(game_over: true).where(correct_prediction: true).count}
+      Incorrect: #{Game.all.best_bets.where(game_over: true).where(correct_prediction: false).count}
+
+%h1.center.big-font= "Picks for #{Date.today}"
+
+-@old_games.sort_by{|game| game.strength }.reverse.each do |game|
+  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
+    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
+
+    %h3.secondary-font
+      Pick:
+      .bold="#{game.team_to_bet} #{game.team_to_bet_line}"
+    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    - if game.game_over
+      %h3= "Final Score:"
+      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+      - if game.correct_prediction
+        %h2 "Correct"
+      -else
+        %h2 "Incorrect"
+
+
 
 
 
