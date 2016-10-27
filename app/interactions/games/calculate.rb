@@ -77,10 +77,14 @@ class Games::Calculate < Less::Interaction
 
   def correct_over_pick
     game.over_under_pick == 'Over' && game_total > game.vegas_over_under
+  rescue NoMethodError
+    nil
   end
 
   def correct_under_pick
     game.over_under_pick == 'Under' && game_total < game.vegas_over_under
+  rescue NoMethodError
+    nil
   end
 
   def game_total
