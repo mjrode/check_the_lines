@@ -84,7 +84,9 @@ class Games::Calculate < Less::Interaction
   end
 
   def game_total
-   game.away_team_final_score + game.home_team_final_score
+    game.away_team_final_score + game.home_team_final_score
+  rescue NoMethodError
+    nil
   end
 
   def correct_line_prediction?
