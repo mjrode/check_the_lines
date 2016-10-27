@@ -26,6 +26,7 @@ gem 'phantomjs'
 
 
 
+
 group :development, :test do
   gem 'byebug'
   gem 'pry-rails'

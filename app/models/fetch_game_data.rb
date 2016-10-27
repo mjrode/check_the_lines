@@ -10,8 +10,8 @@ class FetchGameData
     Games::GetPublicPercentage.run(date: @date)
     Games::GameOver.run
     Games::GetFinalScore.run(massey_url: @url, sport: @sport)
-    Game.calculate_picks
-    Game.was_i_right?
-    Game.calculate_picks
+    Game.all.each do |game|
+      Games::Calculate.run(game: game)
+    end
   end
 end

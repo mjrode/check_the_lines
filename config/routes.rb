@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'best_bets'
       get 'old_best_bets'
       get 'old_over_under_best_bets'
+      get 'refresh'
     end
   end
 

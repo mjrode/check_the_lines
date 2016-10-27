@@ -2,11 +2,11 @@
 
 -@new_games.sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
+    %h1.secondary-font= "#{game.away_team_name} #{game.home_team_name}"
 
-    %h3.secondary-font
+    %h3.header-font
       Pick:
-      .bold="#{game.team_to_bet} #{game.team_to_bet_line}"
+      = team_to_bet_name_and_line(game)
     %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
     - if game.game_over
       %h3= "Final Score:"

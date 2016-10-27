@@ -169,37 +169,42 @@ class GameTest < ActiveSupport::TestCase
       under_percent: "31%",
       public_percentage_on_massey_team: 36
     )
+
+    Game.all.each do |game|
+      Games::Calculate.run(game: game)
+    end
   end
 
+
   test 'returns true if massey makes correct pick' do
-    assert @game1.correct_line_prediction? == true
+    assert @game1.correct_prediction == true
   end
 
   test 'returns false if massey makes incorrect pick' do
-    assert @game2.correct_line_prediction? == false
+    assert @game2.correct_prediction == false
   end
 
   test 'returns false if massey is incorrect and lines are past zero' do
-    assert @game3.correct_line_prediction? == false
+    assert @game3.correct_prediction == false
   end
 
   test 'returns true if massey is correct and lines are past zero' do
-    assert @game4.correct_line_prediction? == true
+    assert @game4.correct_prediction == true
   end
 
   test 'returns true if game is over' do
-    assert @game1.game_over? == true
+    assert @game1.game_over == true
   end
 
   test 'returns false if game is not over' do
-    assert @not_over.game_over? == false
+    assert @not_over.game_over == false
   end
 
   test 'correct line prediction does not return nil' do
-    refute @nil_game.correct_line_prediction?.nil?
+    refute @nil_game.correct_prediction.nil?
   end
 
   test 'Underdog Covers and massey predicts correct' do
-    assert @game5.correct_line_prediction? == true
+    assert @game5.correct_prediction == true
   end
 end

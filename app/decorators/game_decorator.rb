@@ -10,4 +10,5 @@ class GameDecorator < Draper::Decorator
   #     end
   #   end
 
+
 end
