@@ -4,23 +4,23 @@
     %h2.seconday-font.center
       Overall Record
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).count}
+      Correct: #{Game.all.over_under_best_bets.where(game_over: true).where(correct_over_under_prediction: true).count}
+      Incorrect: #{Game.all.over_under_best_bets.where(game_over: true).where(correct_over_under_prediction: false).count}
 
 %h1.center.big-font Past Best Bets
 
--@old_games.sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
+-@old_games.sort_by{|game| game.over_under_strength }.reverse.each do |game|
+  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_over_under_prediction == true),('alert' unless game.correct_over_under_prediction)]}
     %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
 
     %h3.secondary-font
       Pick:
-      .bold="#{game.team_to_bet} #{game.team_to_bet_line}"
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+      .bold="#{game.over_under_pick}"
+    %h3.header-font= "Strength: #{game.over_under_strength}"
     - if game.game_over
       %h3= "Final Score:"
       %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
+      - if game.correct_over_under_prediction
         %h2 "Correct"
       -else
         %h2 "Incorrect"
@@ -36,9 +36,9 @@
       %th Away Team
       %th Home Team
       %th Strength
-      %th Team To Bet
+      %th Side to Bet
       %th Point Differential
-      %th Public % on Massey Team
+      %th Public % on Massey O/U
       %th Correct
   %tbody
     - @old_games.sort_by{|game| game.strength }.reverse.each do |game|
@@ -46,11 +46,11 @@
         %td= game.week_id
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
-        %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+        %td= game.over_under_strength
         %td= game.team_to_bet
-        %td= game.line_diff
-        %td= game.public_percentage_on_massey_team
+        %td= game.over_under_diff
+        %td= game.public_percentage_massey_over_under
         - if game.game_over
-          %td= game.correct_line_prediction?
+          %td= game.correct_over_under_prediction
         - else
           %td Game unplayed

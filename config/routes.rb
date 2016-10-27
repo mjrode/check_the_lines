@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'played'
       get 'best_bets'
       get 'old_best_bets'
+      get 'old_over_under_best_bets'
     end
   end
 

@@ -2,50 +2,58 @@
 #
 # Table name: games
 #
-#  id                               :integer          not null, primary key
-#  sport                            :string
-#  home_team_name                   :string
-#  away_team_name                   :string
-#  date                             :date
-#  home_team_massey_line            :float
-#  away_team_massey_line            :float
-#  home_team_vegas_line             :float
-#  away_team_vegas_line             :float
-#  vegas_over_under                 :float
-#  massey_over_under                :float
-#  created_at                       :datetime         not null
-#  updated_at                       :datetime         not null
-#  line_diff                        :float
-#  over_under_diff                  :float
-#  team_to_bet                      :string
-#  over_under_pick                  :string
-#  home_team_final_score            :integer
-#  away_team_final_score            :integer
-#  week_id                          :integer
-#  home_team_money_percent          :string
-#  away_team_money_percent          :string
-#  home_team_spread_percent         :string
-#  away_team_spread_percent         :string
-#  over_percent                     :string
-#  under_percent                    :string
-#  public_percentage_on_massey_team :integer
-#  game_over                        :boolean
-#  correct_prediction               :boolean
+#  id                                  :integer          not null, primary key
+#  sport                               :string
+#  home_team_name                      :string
+#  away_team_name                      :string
+#  date                                :date
+#  home_team_massey_line               :float
+#  away_team_massey_line               :float
+#  home_team_vegas_line                :float
+#  away_team_vegas_line                :float
+#  vegas_over_under                    :float
+#  massey_over_under                   :float
+#  created_at                          :datetime         not null
+#  updated_at                          :datetime         not null
+#  line_diff                           :float
+#  over_under_diff                     :float
+#  team_to_bet                         :string
+#  over_under_pick                     :string
+#  home_team_final_score               :integer
+#  away_team_final_score               :integer
+#  week_id                             :integer
+#  home_team_money_percent             :string
+#  away_team_money_percent             :string
+#  home_team_spread_percent            :string
+#  away_team_spread_percent            :string
+#  over_percent                        :string
+#  under_percent                       :string
+#  public_percentage_on_massey_team    :integer
+#  game_over                           :boolean
+#  correct_prediction                  :boolean
+#  correct_over_under_prediction       :boolean
+#  public_percentage_massey_over_under :integer
 #
 
 class Game < ActiveRecord::Base
   scope :unplayed,  -> { where.not(home_team_vegas_line: 0.0).where('date >= ?', Date.today-1).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
   scope :played,    -> { where.not(home_team_vegas_line: 0.0).where('date < ?', Date.today).order('line_diff DESC').where(sport: 'ncaa_football').where.not(home_team_vegas_line: nil).where.not(vegas_over_under: nil) }
-  scope :best_bets, -> { where.not(home_team_vegas_line: 0.0).order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_on_massey_team < ?', 35).where.not(public_percentage_on_massey_team: nil) }
-  scope :valid_public, -> {where.not(home_team_spread_percent: "100").where.not(home_team_spread_percent: "0")}
+  scope :spread_best_bets, -> { where.not(home_team_vegas_line: 0.0).order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_on_massey_team < ?', 35).where.not(public_percentage_on_massey_team: nil) }
+  scope :over_under_best_bets, -> { where.not(vegas_over_under: 0.0).order('line_diff DESC').where('line_diff > ?', 3).where('public_percentage_massey_over_under > ?', 65).where.not(public_percentage_massey_over_under: nil) }
+  scope :spread_valid_public, -> {where.not(home_team_spread_percent: "100").where.not(home_team_spread_percent: "0")}
+  scope :over_under_valid_public, -> {where.not(over_percent: "100").where.not(under_percent: "0")}
 
   def self.calculate_picks
     Game.all.each do |game|
       game.update(
         line_diff: (game.home_team_massey_line - game.home_team_vegas_line).abs,
+        over_under_diff: game.massey_over_under - game.vegas_over_under,
         team_to_bet: self.find_team_to_bet(game),
-        public_percentage_on_massey_team: self.get_public_percentage_on_massey_team(game)
-      ) unless game.home_team_vegas_line.nil?
+        over_under_pick: self.pick_over_under(game),
+        public_percentage_on_massey_team: self.get_public_percentage_on_massey_team(game),
+        public_percentage_massey_over_under: self.get_public_percentage_massey_over_under(game),
+        correct_over_under_prediction: game.correct_over_under_prediction?
+      ) unless game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
     end
   end
 
@@ -62,9 +70,19 @@ class Game < ActiveRecord::Base
     0
   end
 
+  def over_under_strength
+    return (over_under_diff * 100 / public_percentage_on_massey_team).round(2) unless public_percentage_on_massey_team.nil?
+    0
+  end
+
   def self.get_public_percentage_on_massey_team(game)
     return game.home_team_spread_percent if game.team_to_bet == game.home_team_name
     return game.away_team_spread_percent if game.team_to_bet == game.away_team_name
+  end
+
+  def self.get_public_percentage_massey_over_under(game)
+    return game.over_percent.to_i if game.over_under_pick == "Over"
+    return game.under_percent.to_i if game.over_under_pick =="Under"
   end
 
   def self.find_team_to_bet(game)
