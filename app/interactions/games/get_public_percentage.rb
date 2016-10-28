@@ -10,13 +10,15 @@ class Games::GetPublicPercentage < Less::Interaction
     browser = Watir::Browser.new :phantomjs
     browser.goto "http://pregame.com/sportsbook_spy/default.aspx"
     browser.link(:text =>"CFB").when_present.click
-    unless date.nil?
-      browser.link(:text =>"Change Date").when_present.click
-      browser.link(:text =>date).when_present.click
-    end
+    change_date(browser) unless date.nil?
     doc = Nokogiri::HTML(browser.html)
     browser.close
     doc
+  end
+
+  def change_date(browser)
+    browser.link(:text =>"Change Date").when_present.click
+    browser.link(:text =>date).when_present.click
   end
 
   def fetch_and_save_team_data(html)
@@ -35,14 +37,21 @@ class Games::GetPublicPercentage < Less::Interaction
 
   def update_score
     puts "Updating #{@away_team_name}, #{@home_team_name}"
-    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(game_over: [false, nil]).last
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(date: formatted_date).first
     game.update(game_hash) unless game.nil?
-    binding.pry if @away_team_name == "Delaware St"
   rescue NoMethodError
     puts "Unable to Read Row #{@away_team_name}"
   end
 
+  def formatted_date
+    year  = @remote_date.last(2)
+    month = @remote_date.first(2)
+    day   = @remote_date[3..4]
+    Date.parse("#{year}/#{month}/#{day}")
+  end
+
   def create_instance_variables(row)
+    @remote_date              = row.css('td:nth-child(1)').first.text.strip
     @away_team_name           = row.css('td:nth-child(4)').first.children.text.strip
     @home_spread              = row.css('.block td:nth-child(5)').text.strip.to_i
     @vegas_over_under         = row.css('.block td:nth-child(7)').text.gsub(/\(.*?\)/, '').gsub('u','').strip.to_i
