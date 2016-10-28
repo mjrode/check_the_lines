@@ -1,5 +1,5 @@
 class Games::ImportMasseyData < Less::Interaction
-  expects :massey_url
+  expects :url, allow_nil: true
   expects :sport
 
   def run
@@ -14,13 +14,16 @@ class Games::ImportMasseyData < Less::Interaction
         home_team_name: @home_team_name,
         away_team_name: @away_team_name
       )
-      Game.update(game, game_hash)
+      Game.update(game.id, game_hash)
+  end
+
+  def base_url
+    url  || "http://www.masseyratings.com/pred.php?s=cf&sub=11604"
   end
 
   def get_massey_html
     browser = Watir::Browser.new :phantomjs
-    browser.goto massey_url
-    browser.button(id: 'showVegas').click
+    browser.goto base_url
     doc = Nokogiri::HTML(browser.html)
     browser.close
     doc
