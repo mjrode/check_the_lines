@@ -99,12 +99,14 @@ class Games::Calculate < Less::Interaction
     correct_away_prediction
   end
 
+  # TODO: Figure out why these values are not saving when GetPublicPercentage is run
   def correct_home_prediction
-    game.home_team_vegas_line > actual_home_line
+    game.home_team_vegas_line > actual_home_line unless game.home_team_vegas_line.nil?
   end
 
+  # TODO: Figure out why these values are not saving when GetPublicPercentage is run
   def correct_away_prediction
-    game.away_team_vegas_line > actual_away_line
+    game.away_team_vegas_line > actual_away_line unless game.away_team_vegas_line.nil?
   end
 
   def actual_home_line
