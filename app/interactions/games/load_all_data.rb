@@ -6,21 +6,33 @@ class Games::LoadAllData < Less::Interaction
   private
 
   def load
-    date_url.each do |date, url|
-      Games::Fetch.run(date: date, url: url, sport: "ncaa_football")
+    import_massey_data
+    import_public_percentage
+    Games::Fetch.run
+  end
+
+  def import_massey_data
+    urls.each do |url|
+      Games::ImportMasseyData.run(url: url, sport: "ncaa_football")
     end
   end
 
-  def dates
-    dates = ["1", "8", "15", "22"]
+  def import_public_percentage
+    dates.each do |date|
+      Games::GetPublicPercentage.run(date: date)
+    end
   end
 
-  def date_url
-    {
-      "1"  => "http://www.masseyratings.com/cf/11604/games?dt=20160927",
-      "8"  =>  "http://www.masseyratings.com/cf/11604/games?dt=20161004",
-      "15" => "http://www.masseyratings.com/cf/11604/games?dt=20161011",
-      "22" => "http://www.masseyratings.com/cf/11604/games?dt=20161018"
-    }
+  def urls
+    [
+      "http://www.masseyratings.com/cf/11604/games?dt=20160927",
+      "http://www.masseyratings.com/cf/11604/games?dt=20161004",
+      "http://www.masseyratings.com/cf/11604/games?dt=20161011",
+      "http://www.masseyratings.com/cf/11604/games?dt=20161018"
+    ]
+  end
+
+  def dates
+    ["1", "8", "15", "22"]
   end
 end

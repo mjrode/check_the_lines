@@ -10,6 +10,7 @@ class Games::GameOver < Less::Interaction
   private
 
   def urls
+    binding.pry
     week_ids.map {|id| "http://www.masseyratings.com/cf/11604/games?dt=#{id}"}
   end
 
@@ -37,6 +38,7 @@ class Games::GameOver < Less::Interaction
 
   def update_game
     game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
+    binding.pry if game.nil?
     game.update(
       game_over: true
     ) unless game.nil?

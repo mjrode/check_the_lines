@@ -36,7 +36,7 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed,            -> { where.not(game_over: true) }
+  scope :unplayed,            -> { where(game_over: [false, nil]) }
   scope :played,              -> { where(game_over: true) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
