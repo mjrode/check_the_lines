@@ -26,7 +26,7 @@ class Games::GetPublicPercentage < Less::Interaction
     rows.each do |row|
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)
-      binding.pry if team_to_bet == "@ Toledo"
+      binding.pry if @away_team_name == "@ Toledo"
     end
   end
 
