@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026145322) do
+ActiveRecord::Schema.define(version: 20161029184949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 20161026145322) do
     t.integer  "home_team_final_score"
     t.integer  "away_team_final_score"
     t.integer  "week_id"
-    t.string   "home_team_money_percent"
-    t.string   "away_team_money_percent"
     t.string   "home_team_spread_percent"
     t.string   "away_team_spread_percent"
     t.string   "over_percent"

@@ -1,7 +1,7 @@
-class Games::Fetch < Less::Interaction
+class Games::Import < Less::Interaction
   expects :sport, allow_nil: true
-  expects :date, allow_nil: true
   expects :url, allow_nil: true
+  expects :date, allow_nil: true
 
   def run
     fetch
@@ -18,7 +18,7 @@ class Games::Fetch < Less::Interaction
   end
 
   def fetch
-    Games::ImportMasseyData.run(massey_url: set_url, sport: set_sport)
+    Games::ImportMasseyData.run(massey_url: set_url)
     Games::GetPublicPercentage.run(date: date)
     Games::GameOver.run
     Games::GetFinalScore.run(massey_url: set_url, sport: set_sport)

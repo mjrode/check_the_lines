@@ -36,8 +36,8 @@ class Games::GetFinalScore < Less::Interaction
   def create_instance_variables(row)
     @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
     @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
-    @away_team_name        =  row.css('.fteam').first.css('a').first.children.text
-    @home_team_name        =  row.css('.fteam').first.css('a').last.children.text
+    @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
+    @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
   end
 
 

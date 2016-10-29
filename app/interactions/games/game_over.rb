@@ -10,7 +10,6 @@ class Games::GameOver < Less::Interaction
   private
 
   def urls
-    binding.pry
     week_ids.map {|id| "http://www.masseyratings.com/cf/11604/games?dt=#{id}"}
   end
 
@@ -50,8 +49,8 @@ class Games::GameOver < Less::Interaction
   end
 
   def create_instance_variables(row)
-    @away_team_name        =  row.css('.fteam').first.css('a').first.children.text
-    @home_team_name        =  row.css('.fteam').first.css('a').last.children.text
+    @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
+    @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
   end
 
 

@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   def played
-    @games = Game.all.played.valid_spread
+    @games = Game.all
   end
 
   def best_bets

@@ -22,8 +22,6 @@
 #  home_team_final_score               :integer
 #  away_team_final_score               :integer
 #  week_id                             :integer
-#  home_team_money_percent             :string
-#  away_team_money_percent             :string
 #  home_team_spread_percent            :string
 #  away_team_spread_percent            :string
 #  over_percent                        :string
@@ -36,7 +34,7 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed,            -> { where(game_over: [false, nil]) }
+  scope :unplayed,            -> { where("date < ?", Date.today+1) }
   scope :played,              -> { where(game_over: true) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).

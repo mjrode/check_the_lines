@@ -16,18 +16,17 @@ class Games::GetPublicPercentage < Less::Interaction
     doc
   end
 
-  def change_date(browser)
-    browser.link(:text =>"Change Date").when_present.click
-    browser.link(:text =>date).when_present.click
-  end
-
   def fetch_and_save_team_data(html)
     rows = html.css('#tblSpy').children
     rows.each do |row|
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)
-      binding.pry if @home_team_name == "@ Utah St"
     end
+  end
+
+  def change_date(browser)
+    browser.link(:text =>"Change Date").when_present.click
+    browser.link(:text =>date).when_present.click
   end
 
   def valid_row(row)
@@ -37,11 +36,8 @@ class Games::GetPublicPercentage < Less::Interaction
   end
 
   def update_score
-    puts "Updating #{@away_team_name}, #{@home_team_name}"
-    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "@ #{@home_team_name}").where(date: formatted_date).first
+    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+1).first
     game.update(game_hash) unless game.nil?
-  rescue NoMethodError
-    puts "Unable to Read Row #{@away_team_name}"
   end
 
   def formatted_date
@@ -62,9 +58,6 @@ class Games::GetPublicPercentage < Less::Interaction
     @home_team_spread_percent = 100 - @away_team_spread_percent
     @under_percent             = row.css('.perc:nth-child(12)').text.to_i
     @over_percent            = 100 - @under_percent
-
-  rescue NoMethodError
-    puts "Error getting data for #{@home_team_name} vs #{@away_team_name}"
   end
 
   def game_hash

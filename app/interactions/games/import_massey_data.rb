@@ -9,6 +9,24 @@ class Games::ImportMasseyData < Less::Interaction
 
   private
 
+  def get_massey_html
+    browser = Watir::Browser.new :phantomjs
+    browser.goto base_url
+    doc = Nokogiri::HTML(browser.html)
+    browser.close
+    doc
+  end
+
+  def fetch_and_save_team_data(html)
+    set_week_id(html)
+    rows = html.css('.bodyrow')
+    rows.each do |row|
+      create_instance_variables(row)
+      binding.pry if @home_team_name == "W Michigan"
+      save_game(game_hash)
+    end
+  end
+
   def save_game(game_hash)
       game = Game.find_or_create_by(
         home_team_name: @home_team_name,
@@ -21,25 +39,9 @@ class Games::ImportMasseyData < Less::Interaction
     url  || "http://www.masseyratings.com/pred.php?s=cf&sub=11604"
   end
 
-  def get_massey_html
-    browser = Watir::Browser.new :phantomjs
-    browser.goto base_url
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
-  end
 
-  def fetch_and_save_team_data(html)
+  def set_week_id(html)
     @week_id = html.css('#datepicker').first.attributes['value'].value
-    rows = html.css('.bodyrow')
-    rows.each do |row|
-      create_instance_variables(row)
-      save_game(game_hash) unless invalid_data?
-    end
-  end
-
-  def invalid_data?
-    @away_team_vegas_line == 0.0 || @home_team_vegas_line == 0.0 #|| @vegas_over_under == 0.0
   end
 
   def game_hash
@@ -70,8 +72,8 @@ class Games::ImportMasseyData < Less::Interaction
   def create_instance_variables(row)
     @home_team_massey_line =  get_home_team_massey_line(row)
     @away_team_massey_line =  -get_home_team_massey_line(row)
-    @away_team_name        =  row.css('.fteam').first.css('a').first.children.text
-    @home_team_name        =  row.css('.fteam').first.css('a').last.children.text
+    @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
+    @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
     @massey_over_under     =  row.css('.fscore').last.children.first.text.to_f
     @date                  =  format_date(row)
     @sport                 =  sport

@@ -22,8 +22,6 @@
 #  home_team_final_score               :integer
 #  away_team_final_score               :integer
 #  week_id                             :integer
-#  home_team_money_percent             :string
-#  away_team_money_percent             :string
 #  home_team_spread_percent            :string
 #  away_team_spread_percent            :string
 #  over_percent                        :string
@@ -42,7 +40,7 @@ class GameTest < ActiveSupport::TestCase
     @game1 = Game.create(
       id: 1704,
       sport: "ncaa_football",
-      home_team_name: "@ ULL",
+      home_team_name: "ULL",
       away_team_name: "Appalachian St",
       date: "Wed, 19 Oct 2016",
       home_team_massey_line: 14.5,
@@ -65,7 +63,7 @@ class GameTest < ActiveSupport::TestCase
     @game2 = Game.create(
       id: 1708,
       sport: "ncaa_football",
-      home_team_name: "@ Fresno St",
+      home_team_name: "Fresno St",
       away_team_name: "San Diego St",
       date: "Fri, 21 Oct 2016",
       home_team_massey_line: 17.5,
@@ -88,7 +86,7 @@ class GameTest < ActiveSupport::TestCase
     @game3 = Game.create(
       id: 1709,
       sport: "ncaa_football",
-      home_team_name: "@ Fresno St",
+      home_team_name: "Fresno St",
       away_team_name: "San Diego St",
       date: "Fri, 21 Oct 2016",
       home_team_massey_line: 5,
@@ -105,7 +103,7 @@ class GameTest < ActiveSupport::TestCase
     @game4 = Game.create(
       id: 1711,
       sport: "ncaa_football",
-      home_team_name: "@ Fresno St",
+      home_team_name: "Fresno St",
       away_team_name: "San Diego St",
       date: "Fri, 21 Oct 2016",
       home_team_massey_line: 5,
@@ -126,7 +124,7 @@ class GameTest < ActiveSupport::TestCase
     @nil_game = Game.create(
       id: 1739,
        sport: "ncaa_football",
-       home_team_name: "@ Arizona",
+       home_team_name: "Arizona",
        away_team_name: "USC",
        home_team_massey_line: 4.5,
        away_team_massey_line: -4.5,
@@ -136,7 +134,7 @@ class GameTest < ActiveSupport::TestCase
        massey_over_under: 65.5,
        line_diff: 2.5,
        over_under_diff: 65.5,
-       team_to_bet: "@ Arizona",
+       team_to_bet: "Arizona",
        over_under_pick: "Over",
        home_team_final_score: 14,
        away_team_final_score: 48,
@@ -145,7 +143,7 @@ class GameTest < ActiveSupport::TestCase
     @game5 = Game.create(
       id: 2751,
       sport: "ncaa_football",
-      home_team_name: "@ Texas Tech",
+      home_team_name: "Texas Tech",
       away_team_name: "Oklahoma",
       date: "Sat, 22 Oct 2016",
       home_team_massey_line: 6.5,
@@ -156,7 +154,7 @@ class GameTest < ActiveSupport::TestCase
       massey_over_under: 93.5,
       line_diff: 9.5,
       over_under_diff: 9.0,
-      team_to_bet: "@ Texas Tech",
+      team_to_bet: "Texas Tech",
       over_under_pick: "Over",
       home_team_final_score: 52,
       away_team_final_score: 59,
