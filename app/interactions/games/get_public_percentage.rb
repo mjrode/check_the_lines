@@ -25,6 +25,7 @@ class Games::GetPublicPercentage < Less::Interaction
     rows = html.css('#tblSpy').children
     rows.each do |row|
       create_instance_variables(row) if valid_row(row)
+      binding.pry if @home_spread.nil?
       update_score if valid_row(row)
     end
   end
