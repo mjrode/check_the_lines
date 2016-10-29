@@ -23,13 +23,13 @@ gem "selenium-webdriver", "~> 2.38.0"
 gem 'httparty'
 gem 'capybara'
 gem 'phantomjs'
+gem 'pry-rails'
 
 
 
 
 group :development, :test do
   gem 'byebug'
-  gem 'pry-rails'
   gem 'annotate'
   gem 'letter_opener'
 end
