@@ -1,7 +1,7 @@
 class Games::Import < Less::Interaction
-  expects :sport, allow_nil: true
-  expects :url, allow_nil: true
-  expects :date, allow_nil: true
+  expects :url
+  expects :sport
+  expects :date
 
   def run
     fetch
@@ -9,21 +9,11 @@ class Games::Import < Less::Interaction
 
   private
 
-  def set_url
-    url || 'http://www.masseyratings.com/cf/11604/games?dt=20161017'
-  end
-
-  def set_sport
-    sport || 'ncaa_football'
-  end
-
   def fetch
-    Games::ImportMasseyData.run(massey_url: set_url)
-    Games::GetPublicPercentage.run(date: date)
+    Games::ImportMasseyData.run(massey_url: url, sport: sport)
+    Games::GetPublicPercentage.run(date: date, sport: sport)
     Games::GameOver.run
-    Games::GetFinalScore.run(massey_url: set_url, sport: set_sport)
-    Game.all.each do |game|
-      Games::Calculate.run(game: game)
-    end
+    Games::GetFinalScore.run(massey_url: url, sport: sport)
+		Games::CalculateAll.run()
   end
 end
