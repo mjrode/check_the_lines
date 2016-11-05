@@ -28,6 +28,7 @@ class Games::GetPublicPercentage < Less::Interaction
   def update_score
     game = Game.where(sport: sport).where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+2).first
     game.update(game_hash) unless game.nil?
+		binding.pry
   end
 
   def formatted_date
