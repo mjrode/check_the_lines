@@ -1,20 +1,15 @@
 class Games::GetPublicPercentage < Less::Interaction
   expects :date, allow_nil: true
+  expects :sport, allow_nil: true
 
   def run
-    html = get_public_html
+    html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport)
     fetch_and_save_team_data(html)
   end
 
-  def get_public_html
-    browser = Watir::Browser.new :phantomjs
-    browser.goto "http://pregame.com/sportsbook_spy/default.aspx"
-    browser.link(:text =>"CFB").when_present.click
-    change_date(browser) unless date.nil?
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
-  end
+	def public_betting_url
+    "http://pregame.com/sportsbook_spy/default.aspx"
+	end
 
   def fetch_and_save_team_data(html)
     rows = html.css('#tblSpy').children
@@ -24,11 +19,6 @@ class Games::GetPublicPercentage < Less::Interaction
     end
   end
 
-  def change_date(browser)
-    browser.link(:text =>"Change Date").when_present.click
-    browser.link(:text =>date).when_present.click
-  end
-
   def valid_row(row)
     return false if row.children.blank?
     return false if row.children[1].children[7].blank? && row.children[3].children[5].blank?
@@ -36,7 +26,7 @@ class Games::GetPublicPercentage < Less::Interaction
   end
 
   def update_score
-    game = Game.where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+1).first
+    game = Game.where(sport: sport).where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+2).first
     game.update(game_hash) unless game.nil?
   end
 

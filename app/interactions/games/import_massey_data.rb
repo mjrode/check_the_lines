@@ -1,28 +1,19 @@
 class Games::ImportMasseyData < Less::Interaction
-  expects :url, allow_nil: true
+  expects :url
   expects :sport
 
   def run
-    html = get_massey_html
+    html = Games::FetchHtml.run(url: url, sport: sport)
     fetch_and_save_team_data(html)
   end
 
   private
-
-  def get_massey_html
-    browser = Watir::Browser.new :phantomjs
-    browser.goto base_url
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
-  end
 
   def fetch_and_save_team_data(html)
     set_week_id(html)
     rows = html.css('.bodyrow')
     rows.each do |row|
       create_instance_variables(row)
-      binding.pry if @home_team_name == "W Michigan"
       save_game(game_hash)
     end
   end
@@ -34,11 +25,6 @@ class Games::ImportMasseyData < Less::Interaction
       )
       Game.update(game.id, game_hash)
   end
-
-  def base_url
-    url  || "http://www.masseyratings.com/pred.php?s=cf&sub=11604"
-  end
-
 
   def set_week_id(html)
     @week_id = html.css('#datepicker').first.attributes['value'].value

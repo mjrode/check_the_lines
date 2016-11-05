@@ -10,12 +10,9 @@ class Games::GameOver < Less::Interaction
   private
 
   def urls
-    week_ids.map {|id| "http://www.masseyratings.com/cf/11604/games?dt=#{id}"}
+    Games::FetchUrls.run
   end
 
-  def week_ids
-    Game.where(game_over: [false, nil]).pluck(:week_id).uniq
-  end
 
   def get_massey_html(url)
     browser = Watir::Browser.new :phantomjs

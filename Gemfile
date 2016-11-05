@@ -24,6 +24,7 @@ gem 'httparty'
 gem 'capybara'
 gem 'phantomjs'
 gem 'pry-rails'
+gem 'vcr'
 
 
 
