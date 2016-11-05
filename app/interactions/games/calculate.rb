@@ -8,7 +8,6 @@ class Games::Calculate < Less::Interaction
   private
 
   def calculate_picks
-		binding.pry
     game.update(game_params) unless invalid_data?
   end
 
