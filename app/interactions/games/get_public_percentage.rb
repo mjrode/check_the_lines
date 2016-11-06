@@ -22,7 +22,7 @@ class Games::GetPublicPercentage < Less::Interaction
 
   def valid_row(row)
     return false if row.children.blank?
-    return false if row.children[1].children[7].blank? && row.children[3].children[5].blank?
+    return false if row.css('.block td:nth-child(5)').text.strip.to_i.nil?
     true
   end
 
