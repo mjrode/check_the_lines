@@ -1,3 +1,4 @@
+#TODO: Write test for this class
 class Games::Calculate < Less::Interaction
   expects :game
 

@@ -1,9 +1,10 @@
 class Games::GetPublicPercentage < Less::Interaction
   expects :date, allow_nil: true
   expects :sport, allow_nil: true
+	expects :last_month, allow_nil: true
 
   def run
-    html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport)
+    html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, last_month: last_month)
     fetch_and_save_team_data(html)
   end
 

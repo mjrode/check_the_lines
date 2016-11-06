@@ -2,7 +2,7 @@
 
 -@new_games.sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.secondary-font= "#{game.away_team_name} #{game.home_team_name}"
+    %h1.secondary-font= "#{game.away_team_name} @ #{game.home_team_name}"
 
     %h3.header-font
       Pick:

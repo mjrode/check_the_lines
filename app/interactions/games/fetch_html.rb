@@ -25,13 +25,13 @@ class Games::FetchHtml < Less::Interaction
 
 	def select_pregame_page(browser)
 		browser.link(:text =>"CFB").when_present.click if sport == "ncaa_football"
-		browser.link(:text => "NFL").when_present.click if sport == "nfl"
     change_date(browser) unless date.nil?
 	end
 
 	def change_date(browser)
+		#TODO: Need to fix line 36, unable to find date after clicking back one month
     browser.link(:text =>"Change Date").when_present.click
-		browser.link(:text => "Prev").when_present.click if last_month
+  	browser.link(:text => "Prev").when_present.click #if last_month
     browser.link(:text =>date).when_present.click
   end
 end
