@@ -4,8 +4,8 @@
     %h2.seconday-font.center
       Overall Record
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).count}
+      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: true).count}
+      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_football").count}
 
 %h1.center.big-font Past Best Bets
 
