@@ -2,7 +2,7 @@ class Games::GameOver < Less::Interaction
 
   def run
     urls.each do |url|
-      html = get_massey_html(url)
+      html = Games::FetchHtml.run(url: url.values.first, sport: url.keys.first )
       fetch_and_save_team_data(html)
     end
   end
@@ -11,16 +11,6 @@ class Games::GameOver < Less::Interaction
 
   def urls
     Games::FetchUrls.run
-  end
-
-
-  def get_massey_html(url)
-    browser = Watir::Browser.new :phantomjs
-    browser.goto url
-    browser.button(id: 'showVegas').click
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
   end
 
   def fetch_and_save_team_data(html)
@@ -34,7 +24,6 @@ class Games::GameOver < Less::Interaction
 
   def update_game
     game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
-    binding.pry if game.nil?
     game.update(
       game_over: true
     ) unless game.nil?

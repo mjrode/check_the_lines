@@ -34,8 +34,8 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed,            -> { where("date < ?", Date.today+1) }
-  scope :played,              -> { where(game_over: true) }
+  scope :unplayed,            -> { where("date < ?", Date.today+2) }
+  scope :played,              -> { where("date > ?", Date.today) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
     where.not(public_percentage_on_massey_team: nil).

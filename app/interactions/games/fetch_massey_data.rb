@@ -1,4 +1,4 @@
-class Games::ImportMasseyData < Less::Interaction
+class Games::FetchMasseyData < Less::Interaction
   expects :url
   expects :sport
 
@@ -45,8 +45,10 @@ class Games::ImportMasseyData < Less::Interaction
 
   def format_date(row)
     date = row.css('.fdate').first.children.first.children.first.text
-    date = date[-2 .. -1]
-    Date.parse(date)
+		day = date.last(2)
+		year = Date.today.to_s.first(4)
+		month = date[4..5]
+		Date.parse("#{year}/#{month}/#{day}")
   end
 
   def get_home_team_massey_line(row)

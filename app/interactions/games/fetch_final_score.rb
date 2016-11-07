@@ -1,13 +1,16 @@
-class Games::GetPredictions < Less::Interaction
+class Games::FetchFinalScore < Less::Interaction
+  expects :massey_url
+  expects :sport
 
   def run
-    html = get_html
+    html = get_massey_html
     fetch_and_save_team_data(html)
   end
 
-  def get_html
+  def get_massey_html
     browser = Watir::Browser.new :phantomjs
-    browser.goto "http://www.thepredictiontracker.com//predncaa.html"
+    browser.goto massey_url
+    browser.button(id: 'showVegas').click
     doc = Nokogiri::HTML(browser.html)
     browser.close
     doc
@@ -33,8 +36,8 @@ class Games::GetPredictions < Less::Interaction
   def create_instance_variables(row)
     @away_team_final_score =  row.css('.fscore').first.children.first.text.to_i
     @home_team_final_score =  row.css('.fscore').first.children.last.children.text.to_i
-    @away_team_name        =  row.css('.fteam').first.css('a').first.children.text
-    @home_team_name        =  row.css('.fteam').first.css('a').last.children.text
+    @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
+    @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
   end
 
 

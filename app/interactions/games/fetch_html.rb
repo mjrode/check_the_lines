@@ -29,9 +29,8 @@ class Games::FetchHtml < Less::Interaction
 	end
 
 	def change_date(browser)
-		#TODO: Need to fix line 36, unable to find date after clicking back one month
-    browser.link(:text =>"Change Date").when_present.click
-  	browser.link(:text => "Prev").when_present.click #if last_month
-    browser.link(:text =>date).when_present.click
+    browser.link(:text =>"Change Date").click
+  	browser.link(:title => "Prev").click # if last_month
+    browser.link(:text =>date).click
   end
 end

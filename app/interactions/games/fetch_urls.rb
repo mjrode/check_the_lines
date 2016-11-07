@@ -10,17 +10,19 @@ class Games::FetchUrls < Less::Interaction
   end
 
   def urls
-    week_ids.map do |week_id|
-      ncaa_football_url(week_id) if week_id.last == "ncaa_football"
-      nfl_url(week_id) if week_id.last == "nfl"
+		url = []
+    week_ids.each do |week_id|
+      ncaa_football_url(week_id, url) if week_id.last == "ncaa_football"
+      nfl_url(week_id, url) if week_id.last == "nfl"
     end
+		url
   end
 
-  def ncaa_football_url(week_id)
-    "http://www.masseyratings.com/cf/11604/games?dt=#{week_id.first}"
+  def ncaa_football_url(week_id, url)
+		url << {"ncaa_football": "http://www.masseyratings.com/cf/11604/games?dt=#{week_id.first}"}
   end
 
-  def nfl_url(week_id)
-    "http://www.masseyratings.com/nfl/games?dt=#{week_id.first}"
+  def nfl_url(week_id, url)
+		url << {"nfl": "http://www.masseyratings.com/nfl/games?dt=#{week_id.first}"}
   end
 end

@@ -1,4 +1,4 @@
-class Games::GetPublicPercentage < Less::Interaction
+class Games::FetchPublicPercentage < Less::Interaction
   expects :date, allow_nil: true
   expects :sport, allow_nil: true
 	expects :last_month, allow_nil: true
@@ -6,6 +6,7 @@ class Games::GetPublicPercentage < Less::Interaction
   def run
     html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, last_month: last_month)
     fetch_and_save_team_data(html)
+		Games::CalculateAll.run
   end
 
 	def public_betting_url
@@ -21,8 +22,7 @@ class Games::GetPublicPercentage < Less::Interaction
   end
 
   def valid_row(row)
-    return false if row.children.blank?
-    return false if row.css('.block td:nth-child(5)').text.strip.to_i.nil?
+    return false if row.css('.block td:nth-child(5)').text.strip.blank?
     true
   end
 
