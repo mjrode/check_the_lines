@@ -1,6 +1,6 @@
 class Games::FetchAllGameData < Less::Interaction
 	expects :url
-	expects :date
+	expects :date, allow_nil: true
 	expects :sport
 	expects :next_month, allow_nil: true
 
