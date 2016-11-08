@@ -1,28 +1,30 @@
 %h1.big-font.white.center Past Picks
 %row.custom-home-row
-  .small-6.columns.white.small-offset-3
+  .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
       Overall NCAA Football Record
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_football").count}
-.small-6.columns.white.small-offset-3
+  .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
       Overall NFL Record
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nfl").count}
 
-.small-6.columns.white.small-offset-3
+  .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
       Overall NFL Record
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nba").count}
+  .small-6.columns.white.small-offset-3
+
 
 
  
-%h1.center.big-font Past Best Bets
+%h1.clear.center.big-font Past Best Bets
 
 -@old_games.sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}

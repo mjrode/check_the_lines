@@ -19,7 +19,12 @@
 .center{
   text-align: center
 }
-
+.clear{
+	clear: both;
+}
+.border{
+	border: 1px solid;
+}
 .half-width{
   width: 50%;
   display: block;
