@@ -15,7 +15,7 @@
 
   .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
-      Overall NFL Record
+      Overall NBA Record
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nba").count}
