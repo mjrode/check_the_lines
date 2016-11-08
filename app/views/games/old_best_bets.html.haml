@@ -2,11 +2,26 @@
 %row.custom-home-row
   .small-6.columns.white.small-offset-3
     %h2.seconday-font.center
-      Overall Record
+      Overall NCAA Football Record
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_football").count}
+.small-6.columns.white.small-offset-3
+    %h2.seconday-font.center
+      Overall NFL Record
+    %h1.secondary-font.center
+      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nfl").where(correct_prediction: true).count}
+      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nfl").count}
 
+.small-6.columns.white.small-offset-3
+    %h2.seconday-font.center
+      Overall NFL Record
+    %h1.secondary-font.center
+      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nba").where(correct_prediction: true).count}
+      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nba").count}
+
+
+ 
 %h1.center.big-font Past Best Bets
 
 -@old_games.sort_by{|game| game.strength }.reverse.each do |game|
