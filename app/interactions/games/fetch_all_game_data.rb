@@ -12,7 +12,7 @@ class Games::FetchAllGameData < Less::Interaction
 		Games::CalculateAll.run()
 	end
 
-	def months_back
+  def months_back
 	 	Date.today.strftime("%m").to_i - url.last(8)[4..5].to_i
   end
 end
