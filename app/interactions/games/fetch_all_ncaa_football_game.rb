@@ -1,4 +1,4 @@
-class Games::FetchAllNbaGames < Less::Interaction
+class Games::FetchAllNcaaFootballGames < Less::Interaction
 
 	def run
 		param_hash.each do |game|
