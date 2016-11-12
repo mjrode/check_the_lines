@@ -7,7 +7,6 @@ class FetchGameData
 
   def fetch
     Games::ImportMasseyData.run(date: @date, sport: @sport)
-    binding.pry
     Games::GetPublicPercentage.run(date: @date)
     Games::GameOver.run
     Games::GetFinalScore.run(massey_url: @url, sport: @sport)

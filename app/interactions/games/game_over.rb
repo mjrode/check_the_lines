@@ -29,7 +29,6 @@ class Games::GameOver < Less::Interaction
     game.update(
       game_over: true
     ) unless game.nil?
-		binding.pry if game.nil? 
   end
 
   def game_over(row)
