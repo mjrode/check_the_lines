@@ -18,7 +18,7 @@ class Games::FetchAllNcaaFootballGames < Less::Interaction
 			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160915", date: "15", sport: "ncaa_football", sportsbook_month: "october" },
 			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160922", date: "22", sport: "ncaa_football", sportsbook_month: "october" },
 			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160929", date: "29", sport: "ncaa_football", sportsbook_month: "october" },
-			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160905", date: "05", sport: "ncaa_football", sportsbook_month: "november" },
+			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160905", date: "5", sport: "ncaa_football", sportsbook_month: "november" },
 			{ url: "http://www.masseyratings.com/cf/11604/games?dt=20160912", date: "12", sport: "ncaa_football", sportsbook_month: "november" }
 		]
 	end
