@@ -4,8 +4,8 @@
     %h2.seconday-font.center
       Overall NCAA Football Record
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_football").count}
+      Correct: #{Game.correct_best_bets}
+      Incorrect: #{Game.incorrect_best_bets}
 
     %p.center I am having trouble with the NFL and NBA data right now. I will update their records when I get this fixed.
   -# .small-6.columns.white.small-offset-3.border
