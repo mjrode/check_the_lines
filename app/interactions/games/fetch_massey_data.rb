@@ -3,9 +3,11 @@ class Games::FetchMasseyData < Less::Interaction
 	
   expects :url
   expects :sport
+  expects :sportsbook_month, allow_nil: true
+	expects :date, allow_nil: true
 
   def run
-    html = Games::FetchHtml.run(url: url, sport: sport)
+    html = Games::FetchHtml.run(url: url, sport: sport, sportsbook_month: sportsbook_month, date: date)
     fetch_and_save_team_data(html)
   end
 

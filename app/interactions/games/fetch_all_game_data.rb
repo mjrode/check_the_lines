@@ -6,7 +6,7 @@ class Games::FetchAllGameData < Less::Interaction
 
 	def run
     Games::FetchMasseyData.run(url: url, sport: sport, sportsbook_month: sportsbook_month)
-    Games::FetchPublicPercentage.run(date: date, sport: sport, months_back: months_back)
+    Games::FetchPublicPercentage.run(date: date, sport: sport, sportsbook_month: sportsbook_month)
     Games::GameOver.run
     Games::FetchFinalScore.run(url: url, sport: sport)
 		Games::CalculateAll.run()
