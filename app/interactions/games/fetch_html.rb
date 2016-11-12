@@ -1,8 +1,8 @@
 class Games::FetchHtml < Less::Interaction
+	 expects :sportsbook_month, allow_nil: true
 	 expects :url
 	 expects :sport, allow_nil: true
 	 expects :date, allow_nil: true
-   expects :last_month, allow_nil: true
 
 	 def run
      browser = Watir::Browser.new :phantomjs
@@ -29,9 +29,13 @@ class Games::FetchHtml < Less::Interaction
      change_date(browser) unless date.nil?
 	 end
 
-	 def change_date(browser)
-     browser.link(:text =>"Change Date").click
-  	 browser.link(:title => "Prev").click  if last_month
-     browser.link(:text =>date).click
-   end
+  def change_date(browser)
+	  browser.link(:text =>"Change Date").click
+	  months_back.times{browser.link(:title => "Prev").click}
+    browser.link(:text =>date).click
+  end
+
+	 def months_back
+     Date::MonthDiff.run(month: sportsbook_month)
+	 end
 end

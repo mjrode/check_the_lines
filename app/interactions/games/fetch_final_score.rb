@@ -1,5 +1,5 @@
 class Games::FetchFinalScore < Less::Interaction
-  expects :massey_url
+  expects :url
   expects :sport
 
   def run
@@ -9,7 +9,7 @@ class Games::FetchFinalScore < Less::Interaction
 
   def get_massey_html
     browser = Watir::Browser.new :phantomjs
-    browser.goto massey_url
+    browser.goto url
     browser.button(id: 'showVegas').click
     doc = Nokogiri::HTML(browser.html)
     browser.close

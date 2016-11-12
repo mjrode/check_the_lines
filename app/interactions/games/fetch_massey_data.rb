@@ -1,4 +1,6 @@
 class Games::FetchMasseyData < Less::Interaction
+	#TODO: Fix the mapping of NBA names
+	
   expects :url
   expects :sport
 
@@ -14,7 +16,6 @@ class Games::FetchMasseyData < Less::Interaction
     rows = html.css('.bodyrow')
     rows.each do |row|
       create_instance_variables(row)
-			set_nba_name if sport == "nba"
       save_game(game_hash)
     end
   end
@@ -67,9 +68,4 @@ class Games::FetchMasseyData < Less::Interaction
     @date                  =  format_date(row)
     @sport                 =  sport
   end
-
-	def set_nba_name
-    @away_team_name = Games::MapNbaGame.run(team_name: @away_team_name)
-    @home_team_name = Games::MapNbaGame.run(team_name: @home_team_name)
-	end
 end

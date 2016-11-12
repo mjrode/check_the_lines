@@ -1,8 +1,10 @@
 class Games::GameOver < Less::Interaction
+	#TODO: Fix the mapping of NBA names
 
   def run
     urls.each do |url|
-      html = Games::FetchHtml.run(url: url.values.first, sport: url.keys.first )
+			@sport = url.keys.first
+      html = Games::FetchHtml.run(url: url.values.first, sport: @sport)
       fetch_and_save_team_data(html)
     end
   end
@@ -27,6 +29,7 @@ class Games::GameOver < Less::Interaction
     game.update(
       game_over: true
     ) unless game.nil?
+		binding.pry if game.nil? 
   end
 
   def game_over(row)
@@ -38,6 +41,4 @@ class Games::GameOver < Less::Interaction
     @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
     @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
   end
-
-
 end

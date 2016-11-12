@@ -1,10 +1,10 @@
 class Games::FetchPublicPercentage < Less::Interaction
   expects :date, allow_nil: true
   expects :sport, allow_nil: true
-	expects :last_month, allow_nil: true
+  expects :sportsbook_month, allow_nil: true
 
   def run
-    html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, last_month: last_month)
+    html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, sportsbook_month: sportsbook_month)
     fetch_and_save_team_data(html)
 		Games::CalculateAll.run
   end
@@ -49,6 +49,7 @@ class Games::FetchPublicPercentage < Less::Interaction
     @home_team_spread_percent = 100 - @away_team_spread_percent
     @under_percent             = row.css('.perc:nth-child(12)').text.to_i
     @over_percent            = 100 - @under_percent
+	  set_nba_name if sport == "nba"
   end
 
   def game_hash
@@ -63,4 +64,10 @@ class Games::FetchPublicPercentage < Less::Interaction
       vegas_over_under: @vegas_over_under
     }
   end
+
+	def set_nba_name
+		@away_team_name = Games::MapNbaGame.run(team_name: @away_team_name)
+		@home_team_name = Games::MapNbaGame.run(team_name: @home_team_name)
+	end
 end
+
