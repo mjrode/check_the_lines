@@ -50,6 +50,7 @@ class Games::FetchPublicPercentage < Less::Interaction
     @under_percent             = row.css('.perc:nth-child(12)').text.to_i
     @over_percent            = 100 - @under_percent
 	  set_nba_name if sport == "nba"
+	  set_ncaa_basketball_name if sport == "ncaa_basketball"
   end
 
   def game_hash
@@ -68,6 +69,11 @@ class Games::FetchPublicPercentage < Less::Interaction
 	def set_nba_name
 		@away_team_name = Games::MapNbaGame.run(team_name: @away_team_name)
 		@home_team_name = Games::MapNbaGame.run(team_name: @home_team_name)
+	end
+
+	def set_ncaa_basketball_name
+    @away_team_name = Games::MapNcaaBasketball.run(team_name: @away_team_name)
+		@home_team_name = Games::MapNcaaBasketball.run(team_name: @home_team_name)
 	end
 end
 

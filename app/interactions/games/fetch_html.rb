@@ -26,6 +26,7 @@ class Games::FetchHtml < Less::Interaction
 	 def select_pregame_page(browser)
 	 	 browser.link(:text =>"NBA").when_present.click if sport == "nba"
 	   browser.link(:text =>"CFB").when_present.click if sport == "ncaa_football"
+		 browser.link(:text =>"CBB").when_present.click if sport == "ncaa_basketball"
      change_date(browser) unless date.nil?
 	 end
 
