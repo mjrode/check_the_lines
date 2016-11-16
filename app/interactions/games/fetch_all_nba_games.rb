@@ -28,6 +28,10 @@ class Games::FetchAllNbaGames < Less::Interaction
 			{ url: "http://www.masseyratings.com/nba/games?dt=20161110", date: "10", sport: "nba", sportsbook_month: "november"},
 			{ url: "http://www.masseyratings.com/nba/games?dt=20161111", date: "11", sport: "nba", sportsbook_month: "november"},
 			{ url: "http://www.masseyratings.com/nba/games?dt=20161112", date: "12", sport: "nba", sportsbook_month: "november"},
+			{ url: "http://www.masseyratings.com/nba/games?dt=20161113", date: "13", sport: "nba", sportsbook_month: "november"},
+			{ url: "http://www.masseyratings.com/nba/games?dt=20161114", date: "14", sport: "nba", sportsbook_month: "november"},
+			{ url: "http://www.masseyratings.com/nba/games?dt=20161115", date: "15", sport: "nba", sportsbook_month: "november"},
+			{ url: "http://www.masseyratings.com/nba/games?dt=20161116", date: "16", sport: "nba", sportsbook_month: "november"},
 		]
 	end
 end
