@@ -8,6 +8,9 @@
       Pick:
       = team_to_bet_name_and_line(game)
     %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    %h3.header-font
+      Sport:
+      =game.sport
     - if game.game_over
       %h1= game.date
       %h3= "Final Score:"
