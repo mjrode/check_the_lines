@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/about'
 
-  get 'pages/about'
+  get 'pages/admin'
+
+	get 'pages/fetch_data'
 
   resources :games do
     collection do
