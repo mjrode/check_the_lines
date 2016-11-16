@@ -2,12 +2,10 @@
 %row.custom-home-row
   .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
-      Overall NCAA Football Record
+      Overall NCAAF Record
     %h1.secondary-font.center
       Correct: #{Game.correct_best_bets}
       Incorrect: #{Game.incorrect_best_bets}
-    %h1.seconday-font.center
-      Units Won: #{Game.correct_best_bets - Game.incorrect_best_bets}
 
   .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center
@@ -22,6 +20,21 @@
     %h1.secondary-font.center
       Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nba").count}
+
+  .small-6.columns.white.small-offset-3.border
+    %h2.seconday-font.center
+      Overall NCAAB Record
+    %h1.secondary-font.center
+      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_basketball").where(correct_prediction: true).count}
+      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_basketball").count}
+
+  .small-6.columns.white.small-offset-3.border
+    %h2.seconday-font.center
+      Total Record
+    %h1.secondary-font.center
+      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: true).count}
+      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).count}
+  
   .small-6.columns.white.small-offset-3
 
 
@@ -47,10 +60,6 @@
         %h2 "Correct"
       -else
         %h2 "Incorrect"
-
-
-
-
 
 %table.table.striped
   %thead

@@ -1,7 +1,8 @@
 module GameHelper
 
   def team_to_bet_name_and_line(game)
-    "#{game.team_to_bet} | #{team_to_bet_line(game)}"
+    return "#{game.team_to_bet} +#{team_to_bet_line(game)}" if team_to_bet_line(game) > 0
+		"#{game.team_to_bet} #{team_to_bet_line(game)}"
   end
 
   def team_to_bet_line(game)
