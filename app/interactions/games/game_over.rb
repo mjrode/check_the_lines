@@ -12,7 +12,7 @@ class Games::GameOver < Less::Interaction
   private
 
   def urls
-    Games::FetchUrls.run
+    Games::FetchUrls.run(function: "game_over")
   end
 
   def fetch_and_save_team_data(html)

@@ -1,10 +1,15 @@
 class Games::FetchFinalScore < Less::Interaction
-  expects :url
-  expects :sport
 
   def run
-    html = Games::FetchHtml.run(url: url, sport: sport)
-    fetch_and_save_team_data(html)
+    urls.each do |url|
+			@sport = url.keys.first
+      html = Games::FetchHtml.run(url: url.values.first, sport: @sport)
+      fetch_and_save_team_data(html)
+    end
+  end
+
+  def urls
+    Games::FetchUrls.run(function: "final_score")
   end
 
   def fetch_and_save_team_data(html)
@@ -18,7 +23,6 @@ class Games::FetchFinalScore < Less::Interaction
 
   def update_score
     game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).last
-		binding.pry if @away_team_name == "Houston"
     game.update(
       away_team_final_score: @away_team_final_score,
       home_team_final_score: @home_team_final_score

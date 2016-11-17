@@ -1,4 +1,6 @@
 class Games::FetchUrls < Less::Interaction
+	expects :function
+
   def run
     urls
   end
@@ -6,7 +8,8 @@ class Games::FetchUrls < Less::Interaction
   private
 
   def week_ids
-    Game.where(game_over: [false, nil]).pluck(:week_id, :sport).uniq
+    return Game.where(game_over: [false, nil]).pluck(:week_id, :sport).uniq if function == "game_over"
+    return Game.where(home_team_final_score: [0, nil]).pluck(:week_id, :sport).uniq if function == "final_score"
   end
 
   def urls
