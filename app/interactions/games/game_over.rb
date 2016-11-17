@@ -25,7 +25,7 @@ class Games::GameOver < Less::Interaction
   end
 
   def update_game
-    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
+    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).last
     game.update(
       game_over: true
     ) unless game.nil?

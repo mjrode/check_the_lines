@@ -3,17 +3,8 @@ class Games::FetchFinalScore < Less::Interaction
   expects :sport
 
   def run
-    html = get_massey_html
+    html = Games::FetchHtml.run(url: url, sport: sport)
     fetch_and_save_team_data(html)
-  end
-
-  def get_massey_html
-    browser = Watir::Browser.new :phantomjs
-    browser.goto url
-    browser.button(id: 'showVegas').click
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
   end
 
   def fetch_and_save_team_data(html)
@@ -26,7 +17,7 @@ class Games::FetchFinalScore < Less::Interaction
   end
 
   def update_score
-    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).first
+    game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).last
     game.update(
       away_team_final_score: @away_team_final_score,
       home_team_final_score: @home_team_final_score
