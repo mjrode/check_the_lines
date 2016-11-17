@@ -18,6 +18,7 @@ class Games::FetchFinalScore < Less::Interaction
 
   def update_score
     game = Game.where(away_team_name: @away_team_name, home_team_name: @home_team_name).last
+		binding.pry if @away_team_name == "Houston"
     game.update(
       away_team_final_score: @away_team_final_score,
       home_team_final_score: @home_team_final_score
