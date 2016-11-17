@@ -15,8 +15,13 @@ class Games::FetchUrls < Less::Interaction
       ncaa_football_url(week_id, url) if week_id.last == "ncaa_football"
       nfl_url(week_id, url) if week_id.last == "nfl"
 			nba_url(week_id, url) if week_id.last == "nba"
+			ncaa_basketball_url(week_id, url) if week_id.last == "ncaa_basketball"
     end
 		url
+  end
+
+  def ncaa_basketball_url(week_id, url)
+		url << {"ncaa_basketball": "http://www.masseyratings.com/cf/11604/games?dt=#{week_id.first}"}
   end
 
   def ncaa_football_url(week_id, url)
