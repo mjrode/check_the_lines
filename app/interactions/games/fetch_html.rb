@@ -37,6 +37,7 @@ class Games::FetchHtml < Less::Interaction
   end
 
 	 def months_back
+		 return 0 if sportsbook_month.nil?
      Date::MonthDiff.run(month: sportsbook_month)
 	 end
 end

@@ -27,7 +27,7 @@ class Games::FetchPublicPercentage < Less::Interaction
   end
 
   def update_score
-    game = Game.where(sport: sport).where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+2).first
+    game = Game.where(sport: sport).where('away_team_name=? OR home_team_name=?', "#{@away_team_name}", "#{@home_team_name}").where(date: formatted_date-5..formatted_date+2).last
     game.update(game_hash) unless game.nil?
   end
 
@@ -49,7 +49,6 @@ class Games::FetchPublicPercentage < Less::Interaction
     @home_team_spread_percent = 100 - @away_team_spread_percent
     @under_percent             = row.css('.perc:nth-child(12)').text.to_i
     @over_percent            = 100 - @under_percent
-	  set_nba_name if sport == "nba"
   end
 
   def game_hash
@@ -58,7 +57,6 @@ class Games::FetchPublicPercentage < Less::Interaction
       away_team_spread_percent: @away_team_spread_percent,
       over_percent: @over_percent,
       under_percent: @under_percent,
-      public_percentage_on_massey_team: @public_percent_on_massey_team,
       home_team_vegas_line: @home_spread,
       away_team_vegas_line: @away_spread,
       vegas_over_under: @vegas_over_under
