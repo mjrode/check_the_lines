@@ -37,12 +37,75 @@
   
   .small-6.columns.white.small-offset-3
 
+%h1.clear.center.big-font NCAA Football Record
+
+-@old_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
+  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
+    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
+
+    %h3.header-font
+      Pick:
+      = team_to_bet_name_and_line(game)
+    %h3.header-font
+      Sport:
+      = game.sport
+    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    - if game.game_over
+      %h3= "Final Score:"
+      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+      - if game.correct_prediction
+        %h2 "Correct"
+      -else
+        %h2 "Incorrect"
 
 
+%h1.clear.center.big-font NCAA Basketball Record
 
-%h1.clear.center.big-font Past Best Bets
+-@old_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
+  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
+    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
 
--@old_games.sort_by{|game| game.strength }.reverse.each do |game|
+    %h3.header-font
+      Pick:
+      = team_to_bet_name_and_line(game)
+    %h3.header-font
+      Sport:
+      = game.sport
+    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    - if game.game_over
+      %h3= "Final Score:"
+      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+      - if game.correct_prediction
+        %h2 "Correct"
+      -else
+        %h2 "Incorrect"
+
+
+%h1.clear.center.big-font NFL Record
+
+-@old_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
+  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
+    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
+
+    %h3.header-font
+      Pick:
+      = team_to_bet_name_and_line(game)
+    %h3.header-font
+      Sport:
+      = game.sport
+    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+    - if game.game_over
+      %h3= "Final Score:"
+      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
+      - if game.correct_prediction
+        %h2 "Correct"
+      -else
+        %h2 "Incorrect"
+
+
+%h1.clear.center.big-font NBA Record
+
+-@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
     %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
 
