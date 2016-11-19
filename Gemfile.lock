@@ -77,8 +77,6 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
-    disqus_rails (0.0.6)
-      rails
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     draper (2.1.0)
@@ -289,7 +287,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
-  disqus_rails
   draper
   foundation-rails
   haml-rails
