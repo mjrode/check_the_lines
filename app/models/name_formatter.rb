@@ -38,7 +38,7 @@ class NameFormatter
   end
 
   def format_nc_state
-    @team_name = 'N.C State' if @team_name == "NC State"
+    @team_name = 'N.C. State' if @team_name == "NC State"
   end
 
   def format_miami
