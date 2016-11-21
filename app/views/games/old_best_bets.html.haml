@@ -1,4 +1,10 @@
 %h1.big-font.white.center Past Picks
+.small-4.small-offset-4
+  = form_tag games_path, :method => 'custom_search' do
+    %p
+      = number_field_tag :search, params[:search], placeholder: "Enter score here to show only games that score higher then that number"
+      = submit_tag "Search", :name => nil, class: "button"
+
 %row.custom-home-row
   .small-6.columns.white.small-offset-3.border
     %h2.seconday-font.center

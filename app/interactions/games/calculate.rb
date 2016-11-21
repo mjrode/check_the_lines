@@ -25,9 +25,15 @@ class Games::Calculate < Less::Interaction
       public_percentage_on_massey_team: get_public_percentage_on_massey_team,
       public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
-      correct_prediction:  correct_line_prediction?
+      correct_prediction:  correct_line_prediction?,
+			strength: game_strength
     }
   end
+
+	def game_strength
+		return game.strength unless game.strength == Float::INFINITY
+		0
+	end
 
   def line_diff
     (game.home_team_massey_line - game.home_team_vegas_line).abs

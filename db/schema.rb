@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029184949) do
+ActiveRecord::Schema.define(version: 20161119143437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161029184949) do
     t.boolean  "correct_prediction"
     t.boolean  "correct_over_under_prediction"
     t.integer  "public_percentage_massey_over_under"
+    t.decimal  "strength"
   end
 
 end

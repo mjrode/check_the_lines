@@ -18,7 +18,7 @@ class GamesController < ApplicationController
   end
 
   def old_best_bets
-    @old_games = Game.all.played.valid_spread.spread_best_bets
+    @old_games = Game.all.played.valid_spread.spread_best_bets.search(params[:search])
   end
 
   def old_over_under_best_bets

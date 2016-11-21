@@ -34,7 +34,7 @@
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed,            -> { where("date > ?", Date.today-3) }
+  scope :unplayed,            -> { where("date > ?", Date.today) }
   scope :played,              -> { where("date < ?", Date.today) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
@@ -50,7 +50,8 @@ class Game < ActiveRecord::Base
   }
   scope :spread_best_bets,    -> {
     where('line_diff > ?', 3).
-    where('public_percentage_on_massey_team < ?', 35)
+    where('public_percentage_on_massey_team < ?', 35).
+		where('strength > ?', 35)
   }
   scope :over_under_best_bets, -> {
     where('line_diff > ?', 3).
@@ -68,6 +69,14 @@ class Game < ActiveRecord::Base
   def strength
     return (line_diff * 100 / public_percentage_on_massey_team).round(2) unless public_percentage_on_massey_team.nil?
     0
+  end
+
+  def self.search(search)
+    if search
+      find(:conditions => ['strength > ?', "%#{search.to_i}%"])
+    else
+      find(all)
+    end  	
   end
 
   def over_under_strength
