@@ -50,8 +50,7 @@ class Game < ActiveRecord::Base
   }
   scope :spread_best_bets,    -> {
     where('line_diff > ?', 3).
-    where('public_percentage_on_massey_team < ?', 35).
-		where('strength > ?', 35)
+    where('public_percentage_on_massey_team < ?', 35)
   }
   scope :over_under_best_bets, -> {
     where('line_diff > ?', 3).

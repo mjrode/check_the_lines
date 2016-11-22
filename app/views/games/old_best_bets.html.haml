@@ -1,49 +1,52 @@
-%h1.big-font.white.center Past Picks
+%h1.big-font.center Past Picks
 .small-4.small-offset-4
-  = form_tag games_path, :method => 'custom_search' do
+  %p.callout.center To filter by 'Strength' enter a number here to only show results of games that scored above that number
+  = form_tag old_best_bets_games_path, :method => 'get' do
     %p
-      = number_field_tag :search, params[:search], placeholder: "Enter score here to show only games that score higher then that number"
-      = submit_tag "Search", :name => nil, class: "button"
+      = number_field_tag :search, params[:search], placeholder: "Strength", class: "center form-width-25"
+      = submit_tag "Search", :name => nil, class: "button strength-button"
 
 %row.custom-home-row
-  .small-6.columns.white.small-offset-3.border
+  .small-6.columns.small-offset-3.border
     %h2.seconday-font.center
-      Overall NCAAF Record
+      = link_to "Overall NCAAF Record", "#ncaaf"
     %h1.secondary-font.center
-      Correct: #{Game.correct_best_bets}
-      Incorrect: #{Game.incorrect_best_bets}
+      Correct: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
 
-  .small-6.columns.white.small-offset-3.border
+  .small-6.columns.small-offset-3.border
     %h2.seconday-font.center
-      Overall NFL Record
+      = link_to "Overall NFL Record", "#nfl"
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nfl").where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nfl").count}
+      Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
 
-  .small-6.columns.white.small-offset-3.border
+  .small-6.columns.small-offset-3.border
     %h2.seconday-font.center
-      Overall NBA Record
+      = link_to "Overall NBA Record", "#nba"
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "nba").where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "nba").count}
+      Correct: #{@old_games.where(sport: "nba").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "nba").where(correct_prediction: false).count}
 
-  .small-6.columns.white.small-offset-3.border
+
+  .small-6.columns.small-offset-3.border
     %h2.seconday-font.center
-      Overall NCAAB Record
+      = link_to "Overall NCAAB Record", "#ncaab"
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(sport: "ncaa_basketball").where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).where(sport: "ncaa_basketball").count}
+      Correct: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
 
-  .small-6.columns.white.small-offset-3.border
+  .small-6.columns.small-offset-3.border
     %h2.seconday-font.center
       Total Record
     %h1.secondary-font.center
-      Correct: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: true).count}
-      Incorrect: #{Game.all.spread_best_bets.where(game_over: true).where(correct_prediction: false).count}
-  
-  .small-6.columns.white.small-offset-3
+      Correct: #{@old_games.where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(correct_prediction: false).count}
 
-%h1.clear.center.big-font NCAA Football Record
+  
+  .small-6.columns.small-offset-3
+
+%h1.clear.center.big-font#ncaaf NCAA Football Record
 
 -@old_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
@@ -68,7 +71,7 @@
         %h2 "Incorrect"
 
 
-%h1.clear.center.big-font NCAA Basketball Record
+%h1.clear.center.big-font#ncaab NCAA Basketball Record
 
 -@old_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
@@ -92,7 +95,7 @@
         %h2 "Incorrect"
 
 
-%h1.clear.center.big-font NFL Record
+%h1.clear.center.big-font#nfl NFL Record
 
 -@old_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
@@ -116,7 +119,7 @@
         %h2 "Incorrect"
 
 
-%h1.clear.center.big-font NBA Record
+%h1.clear.center.big-font#nba NBA Record
 
 -@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
   .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
