@@ -1,35 +1,29 @@
-%h1.big-font.center Past Picks
-%a{"data-reveal-id" => "myModal", :href => "#"} Click Me For A Modal
-#myModal.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "modalTitle", "data-reveal" => "", :role => "dialog"}
-  %h2#modalTitle Awesome. I have it.
-  %p.lead Your couch.  It is mine.
-  %p I'm a cool paragraph that lives inside of an even cooler modal. Wins!
-  %a.close-reveal-modal{"aria-label" => "Close"} ×
 
-.small-4.small-offset-4
-  %p.callout.center.gray.border
-    To filter by 'Strength' enter a number here to only show results of games that scored above that number
+.jumbotron.col-xs-6.offset-xs-3
+  %h1.display-3.center.big-font Past Picks
+  %p.center.gray.border
   %p
     = form_tag old_best_bets_games_path, :method => 'get' do
-      = number_field_tag :search, params[:search], placeholder: "Strength", class: "center form-width-25 border-black"
-      = submit_tag "Search", :name => nil, class: "button strength-button"
+      = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black"
+      = submit_tag "Filter", :name => nil, class: "btn strength-button"
+      %button.btn.question-button{"data-target" => ".bd-example-modal-lg", "data-toggle" => "modal"} ?
 
 %row.custom-home-row
-  .small-6.columns.small-offset-3.border
+  .col-xs-8.offset-xs-2.border
     %h2.seconday-font.center
       = link_to "Overall NCAAF Record", "#ncaaf"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
 
-  .small-6.columns.small-offset-3.border
+  .col-xs-8.offset-xs-2.border
     %h2.seconday-font.center
       = link_to "Overall NFL Record", "#nfl"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
 
-  .small-6.columns.small-offset-3.border
+  .col-xs-8.offset-xs-2.border
     %h2.seconday-font.center
       = link_to "Overall NBA Record", "#nba"
     %h1.secondary-font.center
@@ -37,14 +31,14 @@
       Incorrect: #{@old_games.where(sport: "nba").where(correct_prediction: false).count}
 
 
-  .small-6.columns.small-offset-3.border
+  .col-xs-8.offset-xs-2.border
     %h2.seconday-font.center
       = link_to "Overall NCAAB Record", "#ncaab"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
 
-  .small-6.columns.small-offset-3.border
+  .col-xs-8.offset-xs-2.border
     %h2.seconday-font.center
       Total Record
     %h1.secondary-font.center
@@ -52,107 +46,26 @@
       Incorrect: #{@old_games.where(correct_prediction: false).count}
 
 
-  .small-6.columns.small-offset-3
 
-%h1.clear.center.big-font#ncaaf NCAA Football Record
+%h1.clear.center.big-font.padding-top-5#ncaaf NCAA Football Record
 
 -@old_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
-    =render "bet_display", game: game
+  =render "bet_display", game: game
 
 %h1.clear.center.big-font#ncaab NCAA Basketball Record
-
 -@old_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
-    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
-    %h3.header-font
-      Date:
-      = game.date
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font
-      Sport:
-      = game.sport
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    - if game.game_over
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
-
+  =render "bet_display", game: game
 
 %h1.clear.center.big-font#nfl NFL Record
-
 -@old_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
-    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
-    %h3.header-font
-      Date:
-      = game.date
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font
-      Sport:
-      = game.sport
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    - if game.game_over
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
-
+  =render "bet_display", game: game
 
 %h1.clear.center.big-font#nba NBA Record
-
 -@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom{:class => [("success" if game.correct_prediction == true),('alert' unless game.correct_prediction)]}
-    %h1.alt-font= "#{game.away_team_name} #{game.home_team_name}"
-    %h3.header-font
-      Date:
-      = game.date
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font
-      Sport:
-      = game.sport
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    - if game.game_over
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
+  =render "bet_display", game: game
 
-%table.table.striped
-  %thead
-    %tr
-      %th Week ID
-      %th Away Team
-      %th Home Team
-      %th Strength
-      %th Team To Bet
-      %th Point Differential
-      %th Public % on Massey Team
-      %th Correct
-  %tbody
-    - @old_games.sort_by{|game| game.strength }.reverse.each do |game|
-      %tr
-        %td= game.week_id
-        %td= "#{game.away_team_name}: #{game.away_team_final_score}"
-        %td= "#{game.home_team_name}: #{game.home_team_final_score}"
-        %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-        %td= game.team_to_bet
-        %td= game.line_diff
-        %td= game.public_percentage_on_massey_team
-        - if game.game_over
-          %td= game.correct_prediction
-        - else
-          %td Game unplayed
+.modal.fade.bd-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .jumbotron To filter by 'Strength' enter a number here to only show results of games that scored above that number
+

@@ -6,6 +6,8 @@
     %meta{:content => "Uses analytics and public betting percentages to make sports picks against the spread.", :name => "description"}/
     %meta{:content => "sports gambling betting sportsbook", :name => "keywords"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Amatic+SC|Bungee+Hairline|Inconsolata|Open+Sans+Condensed:300|Proza+Libre|Russo+One", :rel => "stylesheet"}/
+    %link{:href => "assets/images/favicon.png", :rel => "shortcut icon"}/
+
 
 
 
@@ -21,29 +23,7 @@
           background-color: #FFFFFF;
       }
   %body
-    - flash.each do |key, value|
-      .alert-box{"data-alert" => ""}
-        = value
-        %a.close{:href => "#"} ×
-    %nav#nav-menu.top-bar.custom
-      %ul.vertical.medium-horizontal.menu
-        %li.divider
-      / Right Nav Section
-      .top-bar-left
-        %li.divider
-          =link_to "Home", root_path
-      .top-bar-right
-        %ul.vertical.medium-horizontal.menu
-          %li.divider
-            =link_to "Best Bets", best_bets_games_path
-          %li.divider
-            =link_to "Past Record", old_best_bets_games_path
-          %li.divider
-            =link_to "About", pages_about_path
-          -# %li.hide-for-small-only
-          -#   = link_to "Refresh Account Information", "/auth/twitter"
-          %li.divider
-          %li.hide-for-small-only
+    = render "layouts/navbar"
     .container
       = yield
 

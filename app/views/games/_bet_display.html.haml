@@ -1,28 +1,26 @@
-.large-3-columns.center.callout.half-width.margin-bottom
+.center.jumbotron.margin-bottom
   %h2= "#{game.away_team_name} @ #{game.home_team_name}"
   %h4= "#{game.time}"
-  %table
-    %th.center-text.center
-      %tr.center-text
-        %th.center-text Day
-        %th.center-text Pick
-        %th.center-text Strength
-        %th.center-text Sport
+  %table.table.table-striped
+    %tr
+      %th.center-text Day
+      %th.center-text Pick
+      %th.center-text Strength
+      %th.center-text Sport
     %tbody
       %tr
         %td= game.date.strftime('%A')
         %td= team_to_bet_name_and_line(game)
         %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
         %td= game.sport
-  %table
-    %th.center-text.center
+  -if game.game_over
+    %table.table.table-striped
       %tr
         %th.center-text= game.away_team_name
         %th.center-text= game.home_team_name
         %th.center-text Prediction Correct?
-    %tbody
-      %tr
-        -if game.game_over
+      %tbody
+        %tr
           %td= game.away_team_final_score
           %td= game.home_team_final_score
           -if game.correct_prediction

@@ -15,7 +15,6 @@ gem 'honeybadger'
 gem 'haml-rails'
 gem 'delayed_job_active_record'
 gem 'draper'
-gem 'foundation-rails'
 gem 'mechanize'
 gem 'nokogiri', "1.6.7"
 gem 'watir'
@@ -24,7 +23,7 @@ gem 'httparty'
 gem 'capybara'
 gem 'phantomjs'
 gem 'pry-rails'
-gem 'foundation_rails_helper'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 
 
 

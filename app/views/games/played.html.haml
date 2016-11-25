@@ -1,5 +1,5 @@
 %h1.center NCAA Results
-%table.table.striped
+%table.table.striped.white-table
   %thead
     %tr
       %th Date
@@ -10,6 +10,7 @@
       %th Point Differential
       %th Public % on Massey Team
       %th Correct Prediction
+      %th Strength
   %tbody
     - @games.sort_by{|game| game.strength }.reverse.each do |game|
       %tr
@@ -21,4 +22,5 @@
         %td= game.line_diff
         %td= game.public_percentage_on_massey_team
         %td= game.correct_prediction
+        %td= game.strength
 

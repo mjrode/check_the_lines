@@ -1,19 +1,29 @@
-%h1.big-font.white.center NCAA predictions
-%table.table.striped
+%h1.big-font.white.center
+  This Weeks Data
+  %br
+  = @games.count
+  Games
+%table.table.striped.white-table
   %thead
     %tr
+      %th Sport
+      %th Time
       %th Away Team
       %th Home Team
       %th Team To Bet
       %th Point Differential
       %th Home Team Vegas Line
       %th Public % on Massey Team
+      %th Strength
   %tbody
     - @games.order(:line_diff).each do |game|
       %tr
+        %td= game.sport
+        %td= game.time
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
         %td= "#{game.home_team_name}: #{game.home_team_final_score}"
         %td= game.team_to_bet
         %td= game.line_diff
         %td= game.home_team_vegas_line
         %td= game.public_percentage_on_massey_team
+        %td= game.strength
