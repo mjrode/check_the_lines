@@ -1,6 +1,5 @@
 class Games::FetchMasseyData < Less::Interaction
-	#TODO: Fix the mapping of NBA names
-	
+
   expects :url
   expects :sport
   expects :sportsbook_month, allow_nil: true

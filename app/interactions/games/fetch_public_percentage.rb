@@ -49,6 +49,7 @@ class Games::FetchPublicPercentage < Less::Interaction
     @home_team_spread_percent = 100 - @away_team_spread_percent
     @under_percent             = row.css('.perc:nth-child(12)').text.to_i
     @over_percent            = 100 - @under_percent
+		@time                    = row.css('td:nth-child(1)').last.text.strip
   end
 
   def game_hash
@@ -59,7 +60,8 @@ class Games::FetchPublicPercentage < Less::Interaction
       under_percent: @under_percent,
       home_team_vegas_line: @home_spread,
       away_team_vegas_line: @away_spread,
-      vegas_over_under: @vegas_over_under
+      vegas_over_under: @vegas_over_under,
+			time: @time
     }
   end
 
