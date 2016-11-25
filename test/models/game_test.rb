@@ -31,6 +31,8 @@
 #  correct_prediction                  :boolean
 #  correct_over_under_prediction       :boolean
 #  public_percentage_massey_over_under :integer
+#  strength                            :decimal(, )
+#  time                                :string
 #
 
 require 'test_helper'

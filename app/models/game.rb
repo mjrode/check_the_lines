@@ -31,10 +31,12 @@
 #  correct_prediction                  :boolean
 #  correct_over_under_prediction       :boolean
 #  public_percentage_massey_over_under :integer
+#  strength                            :decimal(, )
+#  time                                :string
 #
 
 class Game < ActiveRecord::Base
-  scope :unplayed,            -> { where("date > ?", Date.today) }
+  scope :unplayed,            -> { where("date > ?", Date.today-3) }
   scope :played,              -> { where("date < ?", Date.today) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
@@ -68,14 +70,6 @@ class Game < ActiveRecord::Base
   def strength
     return (line_diff * 100 / public_percentage_on_massey_team).round(2) unless public_percentage_on_massey_team.nil?
     0
-  end
-
-  def self.search(search)
-    if search
-      find(:conditions => ['strength > ?', "%#{search.to_i}%"])
-    else
-      find(all)
-    end  	
   end
 
   def over_under_strength
