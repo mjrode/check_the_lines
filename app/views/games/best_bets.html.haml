@@ -1,89 +1,21 @@
 %h1.center.big-font= "Picks for #{Date.today}"
 
-%h1.center.big-font 
+%h1.center.big-font
   NCAA Football Picks
 -@new_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.secondary-font= "#{game.away_team_name} @ #{game.home_team_name}"
+  =render "bet_display", game: game
 
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    %h3.header-font
-      Sport:
-      =game.sport
-    - if game.game_over
-      %h1= game.date
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
-%h1.center.big-font 
+%h1.center.big-font
   NCAA Basketball Picks
 -@new_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.secondary-font= "#{game.away_team_name} @ #{game.home_team_name}"
-
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    %h3.header-font
-      Sport:
-      =game.sport
-    - if game.game_over
-      %h1= game.date
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
+  =render "bet_display", game: game
 
 %h1.center.big-font
   NFL Picks
 -@new_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.secondary-font= "#{game.away_team_name} @ #{game.home_team_name}"
-
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    %h3.header-font
-      Sport:
-      =game.sport
-    - if game.game_over
-      %h1= game.date
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
+  =render "bet_display", game: game
 
 %h1.center.big-font
   NBA Picks
 -@new_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
-  .large-3-columns.center.callout.half-width.margin-bottom
-    %h1.secondary-font= "#{game.away_team_name} @ #{game.home_team_name}"
-
-    %h3.header-font
-      Pick:
-      = team_to_bet_name_and_line(game)
-    %h3.header-font= "Strength: #{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
-    %h3.header-font
-      Sport:
-      =game.sport
-    - if game.game_over
-      %h1= game.date
-      %h3= "Final Score:"
-      %h3= "#{game.away_team_name}: #{game.away_team_final_score} #{game.home_team_name}: #{game.home_team_final_score}"
-      - if game.correct_prediction
-        %h2 "Correct"
-      -else
-        %h2 "Incorrect"
-
+  =render "bet_display", game: game
