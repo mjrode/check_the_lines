@@ -19,8 +19,8 @@
 	padding-top: 6em;
 }
 .form-width-25{
-	width: 75%;
-	float: left;
+	width: 25%;
+
 	margin-bottom: 0.5em;
 }
 .gray{
@@ -37,22 +37,23 @@
 	margin-left: .25em;
 }
 .strength-button{
-	width: 75%;
-	float: left;
 }
 .white-table{
 	background: white;
 }
 
 .center{
-  text-align: center
+  text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
 }
 .clear{
 	clear: both;
 }
 .border{
 	border: 1px solid;
-	background-color: white;
+	background-color: rgba(158, 158, 158, 0.33);
 }
 .half-width{
   width: 50%;
@@ -85,7 +86,7 @@
   font-size: 8em;
 }
 .white{
-  color: #F6F6F6;
+  color: black;
 }
 .top-bar .custom{
   background-color: #FFFFFF;;
@@ -112,12 +113,6 @@
 .home-buttons{
   margin-bottom: 1em;
   background-color:  #DE1B1B;
-}
-body{
-  background-color: rgba(43, 43, 43, 0.6);
-  background-size: 80%;
-  height: 50%;
-  background-repeat: no-repeat;
 }
 
 .center-all{

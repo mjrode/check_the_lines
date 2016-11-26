@@ -1,51 +1,42 @@
-
-.jumbotron.col-xs-6.offset-xs-3
-  %h1.display-3.center.big-font Past Picks
-  %p.center.gray.border
-  %p
-    = form_tag old_best_bets_games_path, :method => 'get' do
-      = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black"
-      = submit_tag "Filter", :name => nil, class: "btn strength-button"
-      %button.btn.question-button{"data-target" => ".bd-example-modal-lg", "data-toggle" => "modal"} ?
-
-%row.custom-home-row
-  .col-xs-8.offset-xs-2.border
+.card.card-block
+  %h4.card-title.center Past Picks
+  %p.card-text.center Enter Strength number to filter by game strength
+  = form_tag old_best_bets_games_path, :method => 'get' do
+    = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black center"
+    = submit_tag "Filter", :name => nil, class: "btn strength-button center"
+%ul.list-group
+  %li.list-group-item
     %h2.seconday-font.center
       = link_to "Overall NCAAF Record", "#ncaaf"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
-
-  .col-xs-8.offset-xs-2.border
+  %li.list-group-item
     %h2.seconday-font.center
       = link_to "Overall NFL Record", "#nfl"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
-
-  .col-xs-8.offset-xs-2.border
+  %li.list-group-item
     %h2.seconday-font.center
       = link_to "Overall NBA Record", "#nba"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nba").where(correct_prediction: false).count}
 
-
-  .col-xs-8.offset-xs-2.border
+  %li.list-group-item
     %h2.seconday-font.center
       = link_to "Overall NCAAB Record", "#ncaab"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
 
-  .col-xs-8.offset-xs-2.border
+  %li.list-group-item
     %h2.seconday-font.center
       Total Record
     %h1.secondary-font.center
       Correct: #{@old_games.where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(correct_prediction: false).count}
-
-
 
 %h1.clear.center.big-font.padding-top-5#ncaaf NCAA Football Record
 

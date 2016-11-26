@@ -20,7 +20,7 @@ class GamesController < ApplicationController
   def old_best_bets
     if params[:search].present?
       @old_games = Game.all.played.valid_spread.spread_best_bets.where('strength > ?', params[:search].to_i)
-    else 
+    else
       @old_games = Game.all.played.valid_spread.spread_best_bets
     end
   end
