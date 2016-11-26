@@ -9,7 +9,7 @@
       %th.center-text Sport
     %tbody
       %tr
-        %td= game.date.strftime('%A')
+        %td= game.date
         %td= team_to_bet_name_and_line(game)
         %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
         %td= game.sport
