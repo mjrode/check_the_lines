@@ -7,7 +7,7 @@ require 'webmock/minitest'
 
 VCR.configure do |config|
 	config.cassette_library_dir = "test/cassettes"
-	config.hook_into :webmock 
+	config.hook_into :webmock
 end
 
 class ActiveSupport::TestCase
