@@ -1,5 +1,4 @@
 class Games::GameOver < Less::Interaction
-	#TODO: Fix the mapping of NBA names
 
   def run
     urls.each do |url|

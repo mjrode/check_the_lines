@@ -6,6 +6,8 @@ class Games::FetchPublicPercentage < Less::Interaction
   def run
     html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, sportsbook_month: sportsbook_month)
     fetch_and_save_team_data(html)
+		Games::GameOver.run
+		Games::FetchFinalScore.run
 		Games::CalculateAll.run
   end
 
@@ -47,8 +49,8 @@ class Games::FetchPublicPercentage < Less::Interaction
     @away_spread              = -@home_spread
     @away_team_spread_percent = row.css('.perc:nth-child(10) .sblock').text.to_i
     @home_team_spread_percent = 100 - @away_team_spread_percent
-    @under_percent             = row.css('.perc:nth-child(12)').text.to_i
-    @over_percent            = 100 - @under_percent
+    @over_percent             = row.css('.perc:nth-child(12)').text.to_i
+    @under_percent            = 100 - @over_percent
 		@time                    = row.css('td:nth-child(1)').last.text.strip
   end
 
