@@ -7,36 +7,64 @@
 %ul.list-group
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to "Overall NCAAF Record", "#ncaaf"
+      = link_to " NCAAF Record", "#ncaaf"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to "Overall NFL Record", "#nfl"
+      = link_to " NFL Record", "#nfl"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to "Overall NBA Record", "#nba"
+      = link_to " NBA Record", "#nba"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nba").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to "Overall NCAAB Record", "#ncaab"
+      = link_to " NCAAB Record", "#ncaab"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
+      = link_to " NFL Over/Under Record", "#nflou"
+    %h1.secondary-font.center
+      Correct: #{@over_under_games.where(sport: "nfl").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "nfl").where(correct_prediction: false).count}
+
+  %li.list-group-item
+    %h2.seconday-font.center
+      = link_to " NBA Over/Under Record", "#nbaou"
+    %h1.secondary-font.center
+      Correct: #{@over_under_games.where(sport: "nba").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "nba").where(correct_prediction: false).count}
+
+  %li.list-group-item
+    %h2.seconday-font.center
+      = link_to " NCAAF Over/Under Record", "#ncaafou"
+    %h1.secondary-font.center
+      Correct: #{@over_under_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
+
+  %li.list-group-item
+    %h2.seconday-font.center
+      = link_to " NCAAB Over/Under Record", "#ncaabou"
+    %h1.secondary-font.center
+      Correct: #{@over_under_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
+
+  %li.list-group-item
+    %h2.seconday-font.center
       Total Record
     %h1.secondary-font.center
-      Correct: #{@old_games.where(correct_prediction: true).count}
-      Incorrect: #{@old_games.where(correct_prediction: false).count}
+      Correct: #{@old_games.where(correct_prediction: true).count + @over_under_games.where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(correct_prediction: false).count + @over_under_games.where(correct_prediction: false).count}
 
 %h1.clear.center.big-font.padding-top-5#ncaaf NCAA Football Record
 
