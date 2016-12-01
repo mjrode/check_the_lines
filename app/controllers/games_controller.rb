@@ -15,6 +15,7 @@ class GamesController < ApplicationController
 
   def best_bets
     @new_games = Game.all.unplayed.valid_spread.spread_best_bets
+    @over_under_games = Game.all.unplayed.valid_spread.over_under_best_bets
   end
 
   def old_best_bets

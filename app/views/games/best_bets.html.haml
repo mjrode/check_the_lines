@@ -1,6 +1,8 @@
 %h1.center.big-font= "Picks for #{Date.today}"
 
 %h1.center.big-font
+  Spread Picks
+%h1.center.big-font
   NCAA Football Picks
 -@new_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
@@ -19,3 +21,25 @@
   NBA Picks
 -@new_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
+
+%h1.center.big-font
+  Over Under Picks
+%h1.center.big-font
+  NCAA Football Picks
+-@over_under_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "over_under_display", game: game
+
+%h1.center.big-font
+  NCAA Basketball Picks
+-@over_under_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "over_under_display", game: game
+
+%h1.center.big-font
+  NFL Picks
+-@over_under_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "over_under_display", game: game
+
+%h1.center.big-font
+  NBA Picks
+-@over_under_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "over_under_display", game: game

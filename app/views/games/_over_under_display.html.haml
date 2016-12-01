@@ -10,8 +10,8 @@
     %tbody
       %tr
         %td= game.date
-        %td= team_to_bet_name_and_line(game)
-        %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
+        %td= over_under_pick_and_line(game)
+        %td= "#{(game.line_diff * 100 / game.public_percentage_massey_over_under).round(2)}"
         %td= game.sport
   -if game.game_over
     %table.table.table-striped
@@ -23,15 +23,8 @@
         %tr
           %td= game.away_team_final_score
           %td= game.home_team_final_score
-          -if game.correct_over_under_prediction
+          -if game.correct_prediction
             %td.success Correct
           -else
             %td Incorrect
-
-
-
-
-
-
-
 
