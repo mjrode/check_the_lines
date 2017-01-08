@@ -6,17 +6,15 @@ class Games::FetchPublicPercentage < Less::Interaction
   def run
     html = Games::FetchHtml.run(url: public_betting_url, date: date, sport: sport, sportsbook_month: sportsbook_month)
     fetch_and_save_team_data(html)
-		Games::GameOver.run
-		Games::FetchFinalScore.run
-		Games::CalculateAll.run
   end
 
-	def public_betting_url
+  def public_betting_url
     "http://pregame.com/sportsbook_spy/default.aspx"
-	end
+  end
 
   def fetch_and_save_team_data(html)
     rows = html.css('#tblSpy').children
+		binding.pry
     rows.each do |row|
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)

@@ -1,5 +1,5 @@
 class Date::MonthDiff < Less::Interaction
-	expects :month, allow_nil: true
+	expects :date
 
 	def run
 		month_diff
@@ -8,16 +8,15 @@ class Date::MonthDiff < Less::Interaction
 	private
 
 	def month_diff
-		current_month - sportsbook_month
+		(current_date.year * 12 + current_date.month) - (sportsbook_date.year * 12 + sportsbook_date.month)
 	end
 
-	def sportsbook_month
-		Date.parse(month).strftime("%m").to_i
+	def sportsbook_date
+		Date.parse(date)
 	end
 
-	def current_month
-		return 11 if Rails.env.test?
-		Date.today.strftime("%m").to_i 
-	
+	def current_date
+		return Date.parse('2016-11-09') if Rails.env.test?
+		Date.today
 	end
 end

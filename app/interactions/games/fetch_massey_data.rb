@@ -48,10 +48,10 @@ class Games::FetchMasseyData < Less::Interaction
 
   def format_date(row)
     date = row.css('.fdate').first.children.first.children.first.text
-		day = date.last(2)
-		year = Date.today.to_s.first(4)
-		month = date[4..5]
-		Date.parse("#{year}/#{month}/#{day}")
+    day = date.last(2)
+    year = Date.today.to_s.first(4)
+    month = date[4..5]
+    Date.parse("#{year}/#{month}/#{day}")
   end
 
   def get_home_team_massey_line(row)
