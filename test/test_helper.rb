@@ -1,9 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require 'vcr'
+# require 'vcr'
 require 'mocha/mini_test'
 require 'webmock/minitest'
+require 'minitest/unit'
+
 
 
 VCR.configure do |config|

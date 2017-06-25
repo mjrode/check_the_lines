@@ -1,24 +1,41 @@
 class Games::FetchMasseyData < Less::Interaction
-
-  expects :url
   expects :sport
-  expects :sportsbook_month, allow_nil: true
-	expects :date, allow_nil: true
+	expects :date
 
   def run
-    html = Games::FetchHtml.run(url: url, sport: sport, sportsbook_month: sportsbook_month, date: date)
-    fetch_and_save_team_data(html)
+    url = construct_url
+    games = Common::FetchJSON.run(url: url)["DI"]
+    fetch_and_save_massey_data(games)
   end
 
   private
 
-  def fetch_and_save_team_data(html)
-    set_week_id(html)
-    rows = html.css('.bodyrow')
-    rows.each do |row|
-      create_instance_variables(row)
+  def construct_url
+    "http://www.masseyratings.com/predjson.php?s=#{sport_code}&dt=#{format_date}"
+  end
+
+  def sport_code
+    case sport
+    when 'mlb'
+      'mlb&sub=14342'
+    when 'cf'
+      'cf&sub=11604'
+    else
+      sport
+    end
+  end
+
+  def fetch_and_save_massey_data(games)
+    games.each do |game|
+      game = convert_to_hash(game)
+      create_instance_variables(game)
       save_game(game_hash)
     end
+  end
+
+  def convert_to_hash(game)
+    hash = Hash[game.map.with_index.to_a]
+    Hash[hash.to_a.collect(&:reverse)]
   end
 
   def save_game(game_hash)
@@ -29,44 +46,41 @@ class Games::FetchMasseyData < Less::Interaction
       Game.update(game.id, game_hash)
   end
 
-  def set_week_id(html)
-    @week_id = html.css('#datepicker').first.attributes['value'].value
-  end
-
   def game_hash
     {
-      home_team_massey_line:  @home_team_massey_line,
-      away_team_massey_line:  @away_team_massey_line,
-      away_team_name:         @away_team_name,
-      home_team_name:         @home_team_name,
-      massey_over_under:      @massey_over_under,
-      date:                   @date,
-      sport:                  @sport,
-      week_id:                @week_id
+      home_team_massey_line:       @home_team_massey_line,
+      away_team_massey_line:       @away_team_massey_line,
+      away_team_name:              @away_team_name,
+      home_team_name:              @home_team_name,
+      massey_over_under:           @massey_over_under,
+      home_team_vegas_line_massey: @home_team_vegas_line_massey,
+      away_team_vegas_line_massey: @away_team_vegas_line_massey,
+      date:                        @date,
+      sport:                       @sport
     }
   end
 
-  def format_date(row)
-    date = row.css('.fdate').first.children.first.children.first.text
-    day = date.last(2)
-    year = Date.today.to_s.first(4)
-    month = date[4..5]
-    Date.parse("#{year}/#{month}/#{day}")
+  def format_date
+    date.gsub('/', '')
   end
 
-  def get_home_team_massey_line(row)
-    game_array = row.css('.fscore')[1].children.to_a
-    return -1 * game_array.first.text.to_f if game_array.first.attributes["class"].value == 'ltgreen'
-    return game_array.last.text.to_f if game_array.last.attributes["class"].value == ' ltgreen'
+  def get_home_team_massey_line(game)
+    game[13].include?("ltgreen") ? game[13][0].to_f : game[12][0].to_f * -1
   end
 
-  def create_instance_variables(row)
-    @home_team_massey_line =  get_home_team_massey_line(row)
-    @away_team_massey_line =  -get_home_team_massey_line(row)
-    @away_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').first.children.text).format_name
-    @home_team_name        =  NameFormatter.new(row.css('.fteam').first.css('a').last.children.text).format_name
-    @massey_over_under     =  row.css('.fscore').last.children.first.text.to_f
-    @date                  =  format_date(row)
-    @sport                 =  sport
+  def home_team_vegas_line_massey(game)
+    game[13].include?("ltred") ? game[13][0].to_f : game[12][0].to_f * -1
+  end
+
+  def create_instance_variables(game)
+    @date                        =  date
+    @home_team_massey_line       =  get_home_team_massey_line(game).to_f
+    @away_team_massey_line       =  -get_home_team_massey_line(game).to_f
+    @away_team_name              =  NameFormatter.new(game[2][0]).format_name
+    @home_team_name              =  NameFormatter.new(game[3][0]).format_name
+    @massey_over_under           =  game[14][0].to_f
+    @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
+    @away_team_vegas_line_massey = home_team_vegas_line_massey(game) * -1
+    @sport                       =  sport
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125175850) do
+ActiveRecord::Schema.define(version: 20170625171712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20161125175850) do
     t.integer  "public_percentage_massey_over_under"
     t.decimal  "strength"
     t.string   "time"
+    t.float    "home_team_vegas_line_massey"
+    t.float    "away_team_vegas_line_massey"
   end
 
 end
