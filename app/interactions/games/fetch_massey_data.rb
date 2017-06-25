@@ -39,11 +39,12 @@ class Games::FetchMasseyData < Less::Interaction
   end
 
   def save_game(game_hash)
-      game = Game.find_or_create_by(
-        home_team_name: @home_team_name,
-        away_team_name: @away_team_name
-      )
-      Game.update(game.id, game_hash)
+    return "Missing Massey data" if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
+    game = Game.find_or_create_by(
+      home_team_name: @home_team_name,
+      away_team_name: @away_team_name
+    )
+    Game.update(game.id, game_hash)
   end
 
   def game_hash

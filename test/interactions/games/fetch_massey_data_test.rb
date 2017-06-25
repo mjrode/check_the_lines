@@ -39,7 +39,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
  end
 
- test "Fetches and sotes CF data from Massey" do
+ test "Fetches and stores CF data from Massey" do
    VCR.use_cassette("massey_cf") do
      Games::FetchMasseyData.run(sport: "cf", date: "2016/12/20")
    end
@@ -52,15 +52,10 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
    assert game.date.to_s == "2016-12-20"
  end
 
-#  test 'fetchs NCAAF data from MasseyRatings for previous month' do
-# 		VCR.use_cassette("ncaam_football_past_month") do
-# 		  Games::FetchMasseyData.run(url: "http://www.masseyratings.com/cf/11604/games?dt=20160917", sport: "ncaa_football", sportsbook_month: "September", date: "17")
-# 			game = Game.find_by_home_team_name("Rice")
-#
-# 			assert game.away_team_name == "Baylor"
-# 			assert game.home_team_massey_line == 26.5
-# 			assert game.away_team_massey_line == -26.5
-# 			assert game.week_id == 20160917
-# 		end
-#  end
+ test "Skips and invalid Massey data" do
+   VCR.use_cassette("invalid_massey_cf") do
+     Games::FetchMasseyData.run(sport: "cf", date: "2016/11/13")
+   end
+   assert Game.count == 0
+ end
 end
