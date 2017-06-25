@@ -23,6 +23,7 @@ gem 'httparty'
 gem 'capybara'
 gem 'phantomjs'
 gem 'pry-rails'
+gem "http"
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
 

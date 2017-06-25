@@ -14,7 +14,6 @@ class Games::FetchPublicPercentage < Less::Interaction
 
   def fetch_and_save_team_data(html)
     rows = html.css('#tblSpy').children
-		binding.pry
     rows.each do |row|
       create_instance_variables(row) if valid_row(row)
       update_score if valid_row(row)
@@ -71,4 +70,3 @@ class Games::FetchPublicPercentage < Less::Interaction
 	end
 
 end
-

@@ -18,5 +18,5 @@ class Date::MonthDiff < Less::Interaction
 	def current_date
 		return Date.parse('2016-11-09') if Rails.env.test?
 		Date.today
-	end
+  end
 end
