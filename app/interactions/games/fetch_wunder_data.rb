@@ -20,8 +20,9 @@ class Games::FetchWunderData < Less::Interaction
     games.drop(3).each_slice(2) do |game|
       create_instance_variables(game)
       fetch_spread_data(game)
-      game = WunderGame.find_or_create_by(external_id: @external_id)
-      WunderGame.update(game.id, game_hash)
+      game = WunderGame.find_or_initialize_by(external_id: @external_id)
+      game.update(game_hash)
+      # WunderGame.update(game.id, game_hash)
     end
   end
 

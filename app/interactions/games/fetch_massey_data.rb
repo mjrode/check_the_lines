@@ -5,6 +5,7 @@ class Games::FetchMasseyData < Less::Interaction
   def run
     url = construct_url
     games = Common::FetchJSON.run(url: url)["DI"]
+    return "No games found" if games.blank?
     fetch_and_save_massey_data(games)
   end
 
@@ -40,8 +41,8 @@ class Games::FetchMasseyData < Less::Interaction
 
   def save_game(game_hash)
     return "Missing Massey data" if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
-    game = MasseyGame.find_or_create_by(external_id: @external_id)
-    MasseyGame.update(game.id, game_hash)
+    game = MasseyGame.find_or_initialize_by(external_id: @external_id)
+    game.update(game_hash)
   end
 
   def game_hash

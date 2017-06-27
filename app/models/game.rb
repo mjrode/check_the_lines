@@ -33,6 +33,10 @@
 #  public_percentage_massey_over_under :integer
 #  strength                            :decimal(, )
 #  time                                :string
+#  home_team_vegas_line_massey         :float
+#  away_team_vegas_line_massey         :float
+#  home_team_vegas_line_wunder         :float
+#  away_team_vegas_line_wunder         :float
 #
 
 class Game < ActiveRecord::Base
