@@ -40,11 +40,8 @@ class Games::FetchMasseyData < Less::Interaction
 
   def save_game(game_hash)
     return "Missing Massey data" if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
-    game = Game.find_or_create_by(
-      home_team_name: @home_team_name,
-      away_team_name: @away_team_name
-    )
-    Game.update(game.id, game_hash)
+    game = MasseyGame.find_or_create_by(external_id: @external_id)
+    MasseyGame.update(game.id, game_hash)
   end
 
   def game_hash
@@ -54,10 +51,11 @@ class Games::FetchMasseyData < Less::Interaction
       away_team_name:              @away_team_name,
       home_team_name:              @home_team_name,
       massey_over_under:           @massey_over_under,
-      home_team_vegas_line_massey: @home_team_vegas_line_massey,
-      away_team_vegas_line_massey: @away_team_vegas_line_massey,
-      date:                        @date,
-      sport:                       @sport
+      home_team_vegas_line:        @home_team_vegas_line_massey,
+      away_team_vegas_line:        @away_team_vegas_line_massey,
+      external_id:                 @external_id,
+      date:                        Date.parse(date),
+      sport:                       sport
     }
   end
 
@@ -74,14 +72,13 @@ class Games::FetchMasseyData < Less::Interaction
   end
 
   def create_instance_variables(game)
-    @date                        =  date
-    @home_team_massey_line       =  get_home_team_massey_line(game).to_f
-    @away_team_massey_line       =  -get_home_team_massey_line(game).to_f
-    @away_team_name              =  NameFormatter.new(game[2][0]).format_name
-    @home_team_name              =  NameFormatter.new(game[3][0]).format_name
-    @massey_over_under           =  game[14][0].to_f
+    @home_team_massey_line       = get_home_team_massey_line(game).to_f
+    @away_team_massey_line       = -get_home_team_massey_line(game).to_f
+    @away_team_name              = NameFormatter.new(game[2][0]).format_name
+    @home_team_name              = NameFormatter.new(game[3][0]).format_name
+    @massey_over_under           = game[14][0].to_f
+    @external_id                 = game[0][2].split("=")[1].to_i
     @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
     @away_team_vegas_line_massey = home_team_vegas_line_massey(game) * -1
-    @sport                       =  sport
   end
 end
