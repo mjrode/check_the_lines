@@ -6,7 +6,7 @@ class Games::FetchHtml < Less::Interaction
 
   def run
     browser = Watir::Browser.new :phantomjs
-    navigate_to_page(browser)
+    browser.goto url
     doc = Nokogiri::HTML(browser.html)
     browser.close
     doc
@@ -14,22 +14,17 @@ class Games::FetchHtml < Less::Interaction
 
   private
 
-  def navigate_to_page(browser)
-    browser.goto base_url
-    select_pregame_page(browser) if url.include?("pregame")
-  end
+  # def base_url
+  #   binding.pry if url.nil?
+  #   return url unless url.nil?
+  # end
 
-  def base_url
-    binding.pry if url.nil?
-    return url unless url.nil?
-  end
-
-  def select_pregame_page(browser)
-    browser.link(:text =>"NBA").when_present.click if sport == "nba"
-    browser.link(:text =>"CFB").when_present.click if sport == "ncaa_football"
-    browser.link(:text =>"CBB").when_present.click if sport == "ncaa_basketball"
-    change_date(browser) unless date.nil?
-  end
+  # def select_pregame_page(browser)
+  #   browser.link(:text =>"NBA").when_present.click if sport == "nba"
+  #   browser.link(:text =>"CFB").when_present.click if sport == "ncaa_football"
+  #   browser.link(:text =>"CBB").when_present.click if sport == "ncaa_basketball"
+  #   change_date(browser) unless date.nil?
+  # end
 
   def change_date(browser)
     binding.pry

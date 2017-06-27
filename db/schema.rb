@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625171712) do
+ActiveRecord::Schema.define(version: 20170627022109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,27 @@ ActiveRecord::Schema.define(version: 20170625171712) do
     t.string   "time"
     t.float    "home_team_vegas_line_massey"
     t.float    "away_team_vegas_line_massey"
+    t.float    "home_team_vegas_line_wunder"
+    t.float    "away_team_vegas_line_wunder"
+  end
+
+  create_table "wunder_games", force: :cascade do |t|
+    t.date     "date"
+    t.string   "sport"
+    t.string   "home_team_name"
+    t.string   "away_team_name"
+    t.integer  "under_percent"
+    t.integer  "over_percent"
+    t.integer  "home_team_ml_percent"
+    t.integer  "away_team_ml_percent"
+    t.integer  "home_team_ats_percent"
+    t.integer  "away_team_ats_percent"
+    t.float    "away_team_vegas_line"
+    t.float    "home_team_vegas_line"
+    t.float    "vegas_over_under"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "external_id"
   end
 
 end
