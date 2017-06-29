@@ -28,15 +28,9 @@ class Games::FetchMasseyData < Less::Interaction
 
   def fetch_and_save_massey_data(games)
     games.each do |game|
-      game = convert_to_hash(game)
       create_instance_variables(game)
       save_game(game_hash)
     end
-  end
-
-  def convert_to_hash(game)
-    hash = Hash[game.map.with_index.to_a]
-    Hash[hash.to_a.collect(&:reverse)]
   end
 
   def save_game(game_hash)
@@ -46,7 +40,7 @@ class Games::FetchMasseyData < Less::Interaction
   end
 
   def game_hash
-    {
+    hash = {
       home_team_massey_line:       @home_team_massey_line,
       away_team_massey_line:       @away_team_massey_line,
       away_team_name:              @away_team_name,
@@ -56,11 +50,14 @@ class Games::FetchMasseyData < Less::Interaction
       away_team_vegas_line:        @away_team_vegas_line_massey,
       external_id:                 @external_id,
       game_over:                   @game_over,
-      # home_team_final_score:       @home_team_final_score,
-      # away_team_final_score:       @away_team_final_score,
       game_date:                   @game_date,
       sport:                       sport
     }
+    if @game_over
+      hash[:home_team_final_score] = @home_team_final_score
+      hash[:away_team_final_score] = @away_team_final_score
+    end
+    hash
   end
 
   def format_date
@@ -76,21 +73,19 @@ class Games::FetchMasseyData < Less::Interaction
   end
 
   def create_instance_variables(game)
-    begin
-      @home_team_massey_line       = get_home_team_massey_line(game).to_f
-      @away_team_massey_line       = -get_home_team_massey_line(game).to_f
-      @away_team_name              = NameFormatter.new(game[2][0]).format_name
-      @home_team_name              = NameFormatter.new(game[3][0]).format_name
-      @massey_over_under           = game[14][0].to_f
-      @external_id                 = game[0][2].split("=")[1].to_i
-      @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
-      @away_team_vegas_line_massey = home_team_vegas_line_massey(game) * -1
-      @game_over                   = game_over?(game)
-      @game_date                   = format_massey_date(game)
-      # @home_team_final_score       = game[7].first if game_over?(game)
-      # @away_team_final_score       = game[6].first if game_over?(game)
-    rescue NoMethodError => e
-      puts e
+    @home_team_massey_line       = get_home_team_massey_line(game).to_f
+    @away_team_massey_line       = -get_home_team_massey_line(game).to_f
+    @away_team_name              = NameFormatter.new(game[2][0]).format_name
+    @home_team_name              = NameFormatter.new(game[3][0]).format_name
+    @massey_over_under           = game[14][0].to_f
+    @external_id                 = game[0][2].split("=")[1].to_i
+    @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
+    @away_team_vegas_line_massey = home_team_vegas_line_massey(game) * -1
+    @game_over                   = game_over?(game)
+    @game_date                   = format_massey_date(game)
+    if @game_over
+      @home_team_final_score       = game[7].first
+      @away_team_final_score       = game[6].first
     end
   end
 
