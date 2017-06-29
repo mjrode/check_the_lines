@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627031821) do
+ActiveRecord::Schema.define(version: 20170628000613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,11 +77,13 @@ ActiveRecord::Schema.define(version: 20170627031821) do
     t.float    "massey_over_under"
     t.float    "home_team_vegas_line"
     t.float    "away_team_vegas_line"
-    t.date     "date"
+    t.date     "game_date"
     t.integer  "external_id"
     t.string   "sport"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "processed",             default: false
+    t.boolean  "game_over",             default: false
   end
 
   create_table "wunder_games", force: :cascade do |t|
@@ -98,9 +100,11 @@ ActiveRecord::Schema.define(version: 20170627031821) do
     t.float    "away_team_vegas_line"
     t.float    "home_team_vegas_line"
     t.float    "vegas_over_under"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "external_id"
+    t.boolean  "processed",             default: false
+    t.time     "game_time"
   end
 
 end

@@ -22,7 +22,6 @@ class Games::FetchWunderData < Less::Interaction
       fetch_spread_data(game)
       game = WunderGame.find_or_initialize_by(external_id: @external_id)
       game.update(game_hash)
-      # WunderGame.update(game.id, game_hash)
     end
   end
 
@@ -47,6 +46,7 @@ class Games::FetchWunderData < Less::Interaction
     @home_team_ats_percent = game[1].children[9].text.strip.gsub("%","")
     @home_team_ml_percent  = game[1].children[15].text.strip.gsub("%","")
     @under_percent         = game[1].children[21].text.strip.gsub("%","")
+    @game_time             = game[0].children[1].text.strip
   end
 
   def game_hash
@@ -63,6 +63,11 @@ class Games::FetchWunderData < Less::Interaction
       away_team_vegas_line:   @away_team_vegas_line,
       vegas_over_under:       @vegas_over_under,
       sport:                  sport,
+      # Need to get date from HTML
+      # game[1].children[1].children[1].attributes["name"].value.split("-").last.split(",").first
+      # returns: " Tuesday April 11"
+      # could use that and the year passed in
+      game_time:              Time.parse(@game_time),
       date:                   Date.parse(date),
       external_id:            @external_id
     }

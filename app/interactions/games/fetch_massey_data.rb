@@ -55,7 +55,8 @@ class Games::FetchMasseyData < Less::Interaction
       home_team_vegas_line:        @home_team_vegas_line_massey,
       away_team_vegas_line:        @away_team_vegas_line_massey,
       external_id:                 @external_id,
-      date:                        Date.parse(date),
+      game_over:                   @game_over,
+      game_date:                   @game_date,
       sport:                       sport
     }
   end
@@ -81,5 +82,11 @@ class Games::FetchMasseyData < Less::Interaction
     @external_id                 = game[0][2].split("=")[1].to_i
     @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
     @away_team_vegas_line_massey = home_team_vegas_line_massey(game) * -1
+    @game_over                   = game[1].first.include?("FINAL") ? true : false
+    @game_date                   = format_massey_date(game)
+  end
+
+  def format_massey_date(game)
+    Date.parse(game[0].first.split(" ").last.gsub(".", "/") + "/" + date.split("/").first)
   end
 end
