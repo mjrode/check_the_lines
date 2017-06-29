@@ -10,11 +10,13 @@
 #  massey_over_under     :float
 #  home_team_vegas_line  :float
 #  away_team_vegas_line  :float
-#  date                  :date
+#  game_date             :date
 #  external_id           :integer
 #  sport                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  processed             :boolean          default(FALSE)
+#  game_over             :boolean          default(FALSE)
 #
 
 class MasseyGame < ActiveRecord::Base

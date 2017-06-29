@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
-gem 'pg'
+gem 'pg', "0.20.0"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -25,13 +25,13 @@ gem 'phantomjs'
 gem 'pry-rails'
 gem "http"
 gem 'bootstrap', '~> 4.0.0.alpha5'
-gem 'annotate'
 
 
 group :development, :test do
   gem 'byebug'
   gem 'annotate'
   gem 'letter_opener'
+  gem 'minitest-reporters'
 end
 
 group :test do

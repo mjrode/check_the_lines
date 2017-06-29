@@ -19,6 +19,8 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  external_id           :integer
+#  processed             :boolean          default(FALSE)
+#  game_time             :time
 #
 
 class WunderGame < ActiveRecord::Base
