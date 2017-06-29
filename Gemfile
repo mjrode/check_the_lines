@@ -31,7 +31,6 @@ group :development, :test do
   gem 'byebug'
   gem 'annotate'
   gem 'letter_opener'
-  gem 'minitest-reporters'
 end
 
 group :test do

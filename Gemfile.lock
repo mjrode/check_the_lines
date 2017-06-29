@@ -40,7 +40,6 @@ GEM
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
-    ansi (1.5.0)
     arel (6.0.4)
     ast (2.3.0)
     autoprefixer-rails (7.1.1.2)
@@ -166,11 +165,6 @@ GEM
     minitest (5.10.2)
     minitest-around (0.4.0)
       minitest (~> 5.0)
-    minitest-reporters (1.1.7)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
     mocha (1.2.1)
       metaclass (~> 0.0.1)
     multi_json (1.12.1)
@@ -321,7 +315,6 @@ DEPENDENCIES
   mechanize
   minitest
   minitest-around
-  minitest-reporters
   mocha
   nokogiri (= 1.6.7)
   pg (= 0.20.0)

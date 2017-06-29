@@ -5,8 +5,6 @@ require 'rails/test_help'
 require 'mocha/mini_test'
 require 'webmock/minitest'
 require 'minitest/unit'
-require "minitest/reporters"
-Minitest::Reporters.use!
 
 
 

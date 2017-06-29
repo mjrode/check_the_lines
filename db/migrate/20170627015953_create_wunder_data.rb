@@ -1,7 +1,7 @@
 class CreateWunderData < ActiveRecord::Migration
   def change
-    create_table :wunder_game do |t|
-      t.date :date
+    create_table :wunder_games do |t|
+      t.date :game_date
       t.string :sport
       t.string :home_team_name
       t.string :away_team_name
@@ -14,6 +14,7 @@ class CreateWunderData < ActiveRecord::Migration
       t.float :away_team_vegas_line
       t.float :home_team_vegas_line
       t.float :vegas_over_under
+      t.datetime :game_time
 
       t.timestamps null: false
     end
