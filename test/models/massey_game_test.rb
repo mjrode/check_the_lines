@@ -10,6 +10,8 @@
 #  massey_over_under     :float
 #  home_team_vegas_line  :float
 #  away_team_vegas_line  :float
+#  home_team_final_score :float
+#  away_team_final_score :float
 #  game_date             :date
 #  external_id           :integer
 #  sport                 :string

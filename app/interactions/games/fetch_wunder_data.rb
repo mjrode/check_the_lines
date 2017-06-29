@@ -35,6 +35,9 @@ class Games::FetchWunderData < Less::Interaction
     @home_team_vegas_line = @away_team_vegas_line * -1
     @vegas_over_under     = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
     @external_id                   = id.to_i
+    # TODO: Need to figure out how to get final score from here
+    # @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-2].attributes["rowspan"].text.to_i
+    @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
   end
 
   def create_instance_variables(game)
@@ -66,7 +69,9 @@ class Games::FetchWunderData < Less::Interaction
       sport:                  sport,
       game_time:              Time.parse(@game_time),
       game_date:              @game_date,
-      external_id:            @external_id
+      external_id:            @external_id,
+      away_team_final_score:  @away_team_final_score,
+      home_team_final_score:  @home_team_final_score
     }
   end
 

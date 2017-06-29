@@ -3,7 +3,7 @@
 # Table name: wunder_games
 #
 #  id                    :integer          not null, primary key
-#  date                  :date
+#  game_date             :date
 #  sport                 :string
 #  home_team_name        :string
 #  away_team_name        :string
@@ -16,11 +16,13 @@
 #  away_team_vegas_line  :float
 #  home_team_vegas_line  :float
 #  vegas_over_under      :float
+#  home_team_final_score :float
+#  away_team_final_score :float
+#  game_time             :datetime
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  external_id           :integer
 #  processed             :boolean          default(FALSE)
-#  game_time             :time
 #
 
 class WunderGame < ActiveRecord::Base
