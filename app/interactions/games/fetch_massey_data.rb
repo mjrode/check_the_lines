@@ -21,6 +21,8 @@ class Games::FetchMasseyData < Less::Interaction
       'mlb&sub=14342'
     when 'cf'
       'cf&sub=11604'
+    when 'cb'
+      'cb&sub=11590'
     else
       sport
     end
