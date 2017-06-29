@@ -8,6 +8,8 @@ class CreateMasseyGames < ActiveRecord::Migration
       t.float :massey_over_under
       t.float :home_team_vegas_line
       t.float :away_team_vegas_line
+      t.float :home_team_final_score
+      t.float :away_team_final_score
       t.date :date
       t.integer :external_id
       t.string :sport

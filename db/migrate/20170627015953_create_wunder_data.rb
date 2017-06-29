@@ -14,6 +14,8 @@ class CreateWunderData < ActiveRecord::Migration
       t.float :away_team_vegas_line
       t.float :home_team_vegas_line
       t.float :vegas_over_under
+      t.float :home_team_final_score
+      t.float :away_team_final_score
       t.datetime :game_time
 
       t.timestamps null: false
