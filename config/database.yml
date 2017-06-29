@@ -2,6 +2,8 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  username: postgres
+  host: localhost
 
 development:
   <<: *default
@@ -12,4 +14,5 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
   database: test_check_the_lines
