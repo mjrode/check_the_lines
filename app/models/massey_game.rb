@@ -27,4 +27,7 @@ class MasseyGame < ActiveRecord::Base
   validates :away_team_name, presence: true
   validates :home_team_name, presence: true
 
+  scope :unprocessed, -> { where(processed: false) }
+
+
 end
