@@ -84,8 +84,8 @@ class Games::FetchMasseyData < Less::Interaction
     @game_over                   = game_over?(game)
     @game_date                   = format_massey_date(game)
     if @game_over
-      @home_team_final_score       = game[7].first
-      @away_team_final_score       = game[6].first
+      @home_team_final_score       = game[7].first.to_i
+      @away_team_final_score       = game[6].first.to_i
     end
   end
 

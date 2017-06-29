@@ -25,6 +25,33 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
    assert game2.game_date.to_s == "2017-06-25"
  end
 
+ test 'Fetches and stores MLB data from current day Massey' do
+  VCR.use_cassette("massey_current_mlb") do
+    Games::FetchMasseyData.run(sport: "mlb", date: "2017/06/28")
+  end
+
+   game = MasseyGame.where(away_team_name: "Dodgers").first
+   assert game.home_team_massey_line == 0.5
+   assert game.away_team_massey_line == -0.5
+   assert game.home_team_vegas_line == 122.0
+   assert game.away_team_vegas_line == -122.0
+   assert game.game_date.to_s == "2017-06-28"
+   assert game.game_over == false
+   assert game.home_team_final_score == nil
+   assert game.away_team_final_score == nil
+
+   game2 = MasseyGame.where(away_team_name: "Mets").first
+   assert game2.home_team_massey_line == -0.5
+   assert game2.away_team_massey_line == 0.5
+   assert game2.home_team_vegas_line == -119
+   assert game2.away_team_vegas_line == 119
+   assert game2.game_date.to_s == "2017-06-28"
+   assert game2.game_over == true
+   assert game2.home_team_final_score == 0
+   assert game2.away_team_final_score == 8
+
+ end
+
  test "Fetches and sotes NBA data from Massey" do
    VCR.use_cassette("massey_nba") do
      Games::FetchMasseyData.run(sport: "nba", date: "2017/04/11")
@@ -71,6 +98,8 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
    assert game.away_team_vegas_line == -3.5
    assert game.game_date.to_s == "2016-11-03"
  end
+
+
 
  test "Skips and invalid Massey data" do
    VCR.use_cassette("invalid_massey_cf") do
