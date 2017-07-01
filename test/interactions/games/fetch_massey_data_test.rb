@@ -16,6 +16,8 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
    assert game.home_team_vegas_line == -125
    assert game.away_team_vegas_line == 125
    assert game.game_date.to_s == "2017-06-25"
+   assert game.home_team_final_score == 0
+   assert game.away_team_final_score == 7
 
    game2 = MasseyGame.where(home_team_name: "Giants").first
    assert game2.home_team_massey_line == 0.5

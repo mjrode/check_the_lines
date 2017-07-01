@@ -65,8 +65,8 @@ class Games::FetchPublicPercentage < Less::Interaction
   end
 
 	def set_nba_name
-		@away_team_name = Games::MapNbaGame.run(team_name: @away_team_name)
-		@home_team_name = Games::MapNbaGame.run(team_name: @home_team_name)
+		@away_team_name = Conversions::MapNbaGame.run(team_name: @away_team_name)
+		@home_team_name = Conversions::MapNbaGame.run(team_name: @home_team_name)
 	end
 
 end

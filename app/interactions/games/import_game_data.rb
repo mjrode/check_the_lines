@@ -5,8 +5,7 @@ class Games::ImportGameData < Less::Interaction
 
   private
 
-  def find_unprocessed_games
+  def
     MasseyGame.unprocessed
   end
-
 end

@@ -1,4 +1,4 @@
-class Games::MapNbaGame < Less::Interaction
+class Conversions::MapNbaGame < Less::Interaction
 	expects :team_name
 
 	def run

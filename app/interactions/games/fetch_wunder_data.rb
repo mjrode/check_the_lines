@@ -20,6 +20,7 @@ class Games::FetchWunderData < Less::Interaction
   def save_wunder_data(games)
     games.drop(3).each_slice(2) do |game|
       create_instance_variables(game)
+      return if @away_team_name.downcase == "moneyline"
       fetch_spread_data(game)
       game = WunderGame.find_or_initialize_by(external_id: @external_id)
       game.update(game_hash)
@@ -42,16 +43,22 @@ class Games::FetchWunderData < Less::Interaction
       @away_team_vegas_line  = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
       @home_team_vegas_line  = @away_team_vegas_line * -1
       @vegas_over_under      = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
-      @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
-      @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-4].text.strip.to_i
-
       @game_over             = game_over?(spread_data)
+      if @game_over
+        @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
+        @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-4].text.strip.to_i
+      else
+        @home_team_final_score = 0
+        @away_team_final_score = 0
+      end
+
     end
     @external_id = id.to_i
   end
 
   def create_instance_variables(game)
     @away_team_name        = game[0].children[5].text
+    return if @away_team_name.downcase == "moneyline"
     @away_team_ats_percent = game[0].children[9].text.strip.gsub("%","")
     @away_team_ml_percent  = game[0].children[15].text.strip.gsub("%","")
     @over_percent          = game[0].children[21].text.strip.gsub("%","")
