@@ -1,21 +1,16 @@
 class Games::FetchTodaysData < Less::Interaction
-	expects :flag, allow_nil: true
+
   def run
-    load
+		run_and_import_data
   end
 
   private
 
-  def load
- 		unless flag
-		  Games::FetchAllGameData.run(url: "http://www.masseyratings.com/pred.php?s=nba", sport: "nba")
-		  Games::FetchAllGameData.run(url: "http://www.masseyratings.com/pred.php?s=nfl", sport: "nfl")
-		  Games::FetchAllGameData.run(url: "http://www.masseyratings.com/pred.php?s=cf&sub=11604", sport: "ncaa_football")
-		  Games::FetchAllGameData.run(url: "http://www.masseyratings.com/pred.php?s=cb&sub=11590", sport: "ncaa_basketball")
+  def run_and_import_data
+		date = Date.today.strftime("%F").gsub("-","/")
+		SPORTS.each do |sport|
+			Games::FetchMasseyData.run(sport: sport, date: date)
+			Games::FetchWunderData.run(sport: sport, date: date)
 		end
-
-		Games::GameOver.run
-    Games::FetchFinalScore.run()
-		Games::CalculateAll.run()
   end
 end

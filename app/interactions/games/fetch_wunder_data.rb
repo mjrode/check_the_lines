@@ -7,6 +7,7 @@ class Games::FetchWunderData < Less::Interaction
   def run
     html = Games::FetchHtml.run(url: url)
     games = parse_html(html)
+    return "No data for #{date} #{sport}" if games.nil?
     save_wunder_data(games)
   end
 
@@ -30,14 +31,23 @@ class Games::FetchWunderData < Less::Interaction
     url = "https://www.wunderdog.com/consensus/viewScoreOdds/event_id/#{id}.html?width=610"
     spread_data = Games::FetchHtml.run(url: url)
     game = spread_data.xpath("//table")[2]
+    if game.nil?
+      game = spread_data.xpath("//table")[1]
+      @home_team_vegas_line = game.children[1].children[2].children[5].text.strip.split(" ").first.to_f
+      @away_team_vegas_line = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
+      @vegas_over_under     = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
+      @away_team_money_line = game.children[1].children[6].children[3].children[1].text.to_f
+      @home_team_money_line = game.children[1].children[6].children[5].children[1].text.to_f
+    else
+      @away_team_vegas_line  = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
+      @home_team_vegas_line  = @away_team_vegas_line * -1
+      @vegas_over_under      = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
+      @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
+      @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-4].text.strip.to_i
 
-    @away_team_vegas_line = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
-    @home_team_vegas_line = @away_team_vegas_line * -1
-    @vegas_over_under     = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
-    @external_id                   = id.to_i
-    # TODO: Need to figure out how to get final score from here
-    # @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-2].attributes["rowspan"].text.to_i
-    @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
+      @game_over             = game_over?(spread_data)
+    end
+    @external_id = id.to_i
   end
 
   def create_instance_variables(game)
@@ -71,16 +81,27 @@ class Games::FetchWunderData < Less::Interaction
       game_date:              @game_date,
       external_id:            @external_id,
       away_team_final_score:  @away_team_final_score,
+      game_over:              @game_over,
       home_team_final_score:  @home_team_final_score
     }
   end
 
   def parse_html(html)
-    html.xpath("//table")[3].css("tbody").first.css("tr")
+    begin
+      html.xpath("//table")[3].css("tbody").first.css("tr")
+    rescue
+      puts "No Wunder Data for #{date}, #{sport}"
+    end
   end
 
   def wunder_date(game)
     Date.parse(game[1].css("a")[1]["name"].split("-").last)
+  end
+
+  def game_over?(spread_data)
+    final = spread_data.xpath("//table")[1].css("tr")[1].css("td").last.children.first.text.downcase
+    final == "final" ? true : false
+    # Date.today > @game_date ? true : false
   end
 
   def format_date
