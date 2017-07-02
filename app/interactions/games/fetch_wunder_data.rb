@@ -97,6 +97,9 @@ class Games::FetchWunderData < Less::Interaction
     begin
       html.xpath("//table")[3].css("tbody").first.css("tr")
     rescue
+      # rescue to catch just single games, ex. Thursday night football
+      html.xpath("//table").first.css("tbody").first.css("tr")
+    rescue
       puts "No Wunder Data for #{date}, #{sport}"
     end
   end

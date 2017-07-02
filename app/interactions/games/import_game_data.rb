@@ -10,6 +10,7 @@ class Games::ImportGameData < Less::Interaction
     MasseyGame.unprocessed.each do |massey_game|
       wunder_game = WunderGame.where("sport = ? AND game_date = ?", massey_game.sport, massey_game.game_date)
       .where('home_team_name ILIKE ? or away_team_name ILIKE ?', "%#{massey_game.home_team_name}%", "%#{massey_game.away_team_name}%").first
+      next if wunder_game.nil?
       game = find_or_create_game(massey_game, wunder_game)
       save_or_update_game(game, massey_game, wunder_game)
       mark_masssey_and_wunder_processed(wunder_game, massey_game)
