@@ -31,11 +31,12 @@ class Games::FetchMasseyData < Less::Interaction
   def fetch_and_save_massey_data(games)
     games.each do |game|
       create_instance_variables(game)
-      save_game(game_hash)
+      return "Missing valid home team #{game.inspect}" unless home_and_away_valid?(game)
+      save_game
     end
   end
 
-  def save_game(game_hash)
+  def save_game
     return "Missing Massey data" if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
     game = MasseyGame.find_or_initialize_by(external_id: @external_id)
     game.update(game_hash)
@@ -60,6 +61,10 @@ class Games::FetchMasseyData < Less::Interaction
       hash[:away_team_final_score] = @away_team_final_score
     end
     hash
+  end
+
+  def home_and_away_valid?(game)
+    game[3][0].include?("@") ? true : false
   end
 
   def format_date
