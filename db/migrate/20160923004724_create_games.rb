@@ -10,6 +10,7 @@ class CreateGames < ActiveRecord::Migration
       t.float :home_team_vegas_line
       t.float :away_team_vegas_line
       t.float :vegas_over_under
+      t.boolean :best_bet
       t.boolean :processed, default: false
       t.float :massey_over_under
 
