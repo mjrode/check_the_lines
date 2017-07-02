@@ -5,6 +5,7 @@ class Games::FetchWunderData < Less::Interaction
   # https://www.wunderdog.com/public-consensus/nba.html?date=04%2F11%2F2017
   # Games::FetchWunderData.run(sport: "nba", date: "2017/04/11")
   def run
+    puts url
     html = Games::FetchHtml.run(url: url)
     games = parse_html(html)
     return "No data for #{date} #{sport}" if games.nil?
@@ -95,12 +96,10 @@ class Games::FetchWunderData < Less::Interaction
 
   def parse_html(html)
     begin
-      html.xpath("//table")[3].css("tbody").first.css("tr")
-    rescue
-      # rescue to catch just single games, ex. Thursday night football
+      html.xpath("//table")[3].css("tbody").first.css("tr") if multiple_games?(html)
       html.xpath("//table").first.css("tbody").first.css("tr")
-    rescue
-      puts "No Wunder Data for #{date}, #{sport}"
+    rescue NoMethodError => e
+      puts "No Wunder Data for #{date}, #{sport}: Error: #{e}"
     end
   end
 
@@ -117,5 +116,9 @@ class Games::FetchWunderData < Less::Interaction
   def format_date
     split_date = date.split("/")
     split_date[1] + "%2F" + split_date[2] + "%2F" + split_date[0]
+  end
+
+  def multiple_games?(html)
+    html.xpath("//table")[3] ? true : false
   end
 end
