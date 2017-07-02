@@ -9,6 +9,13 @@ class Games::Calculate < Less::Interaction
 
   def calculate_picks
     game.update(game_params)
+    game.update({
+      public_percentage_on_massey_team: get_public_percentage_on_massey_team,
+      public_percentage_massey_over_under: get_public_percentage_massey_over_under,
+      correct_over_under_prediction: correct_over_under_prediction?,
+      correct_prediction:  correct_line_prediction?
+      })
+    game.update(strength: game_strength)
   end
 
   # def invalid_data?
@@ -21,17 +28,12 @@ class Games::Calculate < Less::Interaction
       over_under_diff: over_under_diff,
       team_to_bet: find_team_to_bet,
       over_under_pick: pick_over_under,
-      public_percentage_on_massey_team: get_public_percentage_on_massey_team,
-      public_percentage_massey_over_under: get_public_percentage_massey_over_under,
-      correct_over_under_prediction: correct_over_under_prediction?,
-      correct_prediction:  correct_line_prediction?,
-			strength: game_strength
+      processed: true
     }
   end
 
 	def game_strength
-		return game.strength unless game.strength == Float::INFINITY
-		0
+		game.strength
 	end
 
   def line_diff

@@ -1,5 +1,5 @@
 class AddStrengthToGame < ActiveRecord::Migration
   def change
-    add_column :games, :strength, :decimal
+    add_column :games, :strength, :float
   end
 end

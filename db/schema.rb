@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20170701191046) do
     t.float    "home_team_vegas_line"
     t.float    "away_team_vegas_line"
     t.float    "vegas_over_under"
-    t.boolean  "processed"
+    t.boolean  "processed",                           default: false
     t.float    "massey_over_under"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.float    "line_diff"
     t.float    "over_under_diff"
     t.string   "team_to_bet"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170701191046) do
     t.boolean  "correct_prediction"
     t.boolean  "correct_over_under_prediction"
     t.integer  "public_percentage_massey_over_under"
-    t.decimal  "strength"
+    t.float    "strength"
   end
 
   create_table "massey_games", force: :cascade do |t|

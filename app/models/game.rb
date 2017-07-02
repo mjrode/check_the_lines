@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
     where('public_percentage_massey_over_under < ?', 35)
   }
 
-   scope :incorrect_best_bets, -> {
+  scope :incorrect_best_bets, -> {
 	  spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: false).count
   }
 
@@ -72,12 +72,10 @@ class Game < ActiveRecord::Base
   }
 
   def strength
-    return (line_diff * 100 / public_percentage_on_massey_team).round(2) unless public_percentage_on_massey_team.nil?
-    0
+    (line_diff * 100 / public_percentage_on_massey_team).round(2)
   end
 
   def over_under_strength
-    return (over_under_diff * 100 / public_percentage_on_massey_team).round(2) unless public_percentage_on_massey_team.nil?
-    0
+    (over_under_diff * 100 / public_percentage_on_massey_team).round(2)
   end
 end
