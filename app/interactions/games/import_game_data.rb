@@ -45,9 +45,12 @@ class Games::ImportGameData < Less::Interaction
       away_team_final_score: (wunder_game.away_team_final_score || massey_game.away_team_final_score),
       home_team_spread_percent: wunder_game.home_team_ats_percent,
       away_team_spread_percent: wunder_game.away_team_ats_percent,
+      massey_over_under: massey_game.massey_over_under,
       over_percent: wunder_game.over_percent,
       under_percent: wunder_game.under_percent,
-      game_over: massey_game.game_over
+      game_over: massey_game.game_over,
+      home_team_money_line_percent: wunder_game.home_team_ml_percent,
+      away_team_money_line_percent: wunder_game.away_team_ml_percent
     }
     game.update(game_hash)
   end
