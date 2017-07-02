@@ -96,7 +96,7 @@ class Games::FetchWunderData < Less::Interaction
 
   def parse_html(html)
     begin
-      html.xpath("//table")[3].css("tbody").first.css("tr") if multiple_games?(html)
+      return html.xpath("//table")[3].css("tbody").first.css("tr") if multiple_games?(html)
       html.xpath("//table").first.css("tbody").first.css("tr")
     rescue NoMethodError => e
       puts "No Wunder Data for #{date}, #{sport}: Error: #{e}"
