@@ -8,12 +8,12 @@ class Games::Calculate < Less::Interaction
   private
 
   def calculate_picks
-    game.update(game_params) unless invalid_data?
+    game.update(game_params)
   end
 
-  def invalid_data?
-    game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
-  end
+  # def invalid_data?
+  #   game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
+  # end
 
   def game_params
     {

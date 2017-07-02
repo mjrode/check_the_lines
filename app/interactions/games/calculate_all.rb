@@ -4,6 +4,6 @@ class Games::CalculateAll < Less::Interaction
 	end
 
 	def calculate_all
-    Game.all.each {|game| Games::Calculate.run(game: game)}
+    Game.unprocessed {|game| Games::Calculate.run(game: game)}
 	end
 end

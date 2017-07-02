@@ -39,6 +39,7 @@
 #
 
 class Game < ActiveRecord::Base
+  scope :unprocessed          -> {where(processed: false)}
   scope :unplayed,            -> { where("date > ?", Date.today-3) }
   scope :played,              -> { where("date < ?", Date.today) }
   scope :valid_spread,        -> {

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170701191046) do
     t.float    "home_team_vegas_line"
     t.float    "away_team_vegas_line"
     t.float    "vegas_over_under"
+    t.boolean  "processed"
     t.float    "massey_over_under"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -51,7 +52,8 @@ ActiveRecord::Schema.define(version: 20170701191046) do
     t.string   "over_under_pick"
     t.integer  "home_team_final_score"
     t.integer  "away_team_final_score"
-    t.integer  "week_id"
+    t.string   "home_team_money_percent"
+    t.string   "away_team_money_percent"
     t.string   "home_team_spread_percent"
     t.string   "away_team_spread_percent"
     t.string   "over_percent"
@@ -62,10 +64,6 @@ ActiveRecord::Schema.define(version: 20170701191046) do
     t.boolean  "correct_over_under_prediction"
     t.integer  "public_percentage_massey_over_under"
     t.decimal  "strength"
-    t.float    "home_team_vegas_line_massey"
-    t.float    "away_team_vegas_line_massey"
-    t.float    "home_team_vegas_line_wunder"
-    t.float    "away_team_vegas_line_wunder"
   end
 
   create_table "massey_games", force: :cascade do |t|
