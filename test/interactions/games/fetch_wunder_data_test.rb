@@ -1,6 +1,5 @@
 require 'test_helper'
 
-
 class Games::FetchWunderDataTest < ActiveSupport::TestCase
   def setup
   end
