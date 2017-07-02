@@ -29,32 +29,36 @@ class Games::FetchWunderData < Less::Interaction
   end
 
   def fetch_spread_data(game)
-    id = game[1].children.children[1].attributes["id"].text
-    url = "https://www.wunderdog.com/consensus/viewScoreOdds/event_id/#{id}.html?width=610"
-    spread_data = Games::FetchHtml.run(url: url)
-    game = spread_data.xpath("//table")[2]
-    if game.nil?
-      game = spread_data.xpath("//table")[1]
-      @home_team_vegas_line = game.children[1].children[2].children[5].text.strip.split(" ").first.to_f
-      @away_team_vegas_line = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
-      @vegas_over_under     = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
-      @away_team_money_line = game.children[1].children[6].children[3].children[1].text.to_f
-      @home_team_money_line = game.children[1].children[6].children[5].children[1].text.to_f
-    else
-      @away_team_vegas_line  = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
-      @home_team_vegas_line  = @away_team_vegas_line * -1
-      @vegas_over_under      = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
-      @game_over             = game_over?(spread_data)
-      if @game_over
-        @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
-        @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-4].text.strip.to_i
+    begin
+      id = game[1].children.children[1].attributes["id"].text
+      url = "https://www.wunderdog.com/consensus/viewScoreOdds/event_id/#{id}.html?width=610"
+      spread_data = Games::FetchHtml.run(url: url)
+      game = spread_data.xpath("//table")[2]
+      if game.nil?
+        game = spread_data.xpath("//table")[1]
+        @home_team_vegas_line = game.children[1].children[2].children[5].text.strip.split(" ").first.to_f
+        @away_team_vegas_line = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
+        @vegas_over_under     = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
+        @away_team_money_line = game.children[1].children[6].children[3].children[1].text.to_f
+        @home_team_money_line = game.children[1].children[6].children[5].children[1].text.to_f
       else
-        @home_team_final_score = 0
-        @away_team_final_score = 0
-      end
+        @away_team_vegas_line  = game.children[1].children[2].children[3].text.strip.split(" ").first.to_f
+        @home_team_vegas_line  = @away_team_vegas_line * -1
+        @vegas_over_under      = game.children[1].children[4].children[3].text.strip.split(" ").first.gsub("O","").to_f
+        @game_over             = game_over?(spread_data)
+        if @game_over
+          @home_team_final_score = spread_data.xpath("//table")[1].css("tr")[2].children[-2].text.strip.to_i
+          @away_team_final_score = spread_data.xpath("//table")[1].css("tr")[1].children[-4].text.strip.to_i
+        else
+          @home_team_final_score = 0
+          @away_team_final_score = 0
+        end
 
+      end
+      @external_id = id.to_i
+    rescue NoMethodError => e
+      puts "ERROR: #{sport}::#{date} - Missing #{e}"
     end
-    @external_id = id.to_i
   end
 
   def create_instance_variables(game)
@@ -110,7 +114,6 @@ class Games::FetchWunderData < Less::Interaction
   def game_over?(spread_data)
     final = spread_data.xpath("//table")[1].css("tr")[1].css("td").last.children.first.text.downcase
     final == "final" ? true : false
-    # Date.today > @game_date ? true : false
   end
 
   def format_date
