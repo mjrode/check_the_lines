@@ -10,4 +10,6 @@ end
 
  Games::FetchPastGameData.run(sport: "all", start_date: "2016/10/20", end_date: "2017/07/01")
 
+ Games::FetchPastGameData.run(sport: "cf", start_date: "2016/08/30", end_date: "2017/07/01")
+
  Games::ProcessGames.run
