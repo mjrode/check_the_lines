@@ -15,7 +15,7 @@ class Games::FetchWunderData < Less::Interaction
   private
 
   def url
-    "https://www.wunderdog.com/public-consensus/#{sport}.html?date=#{format_date}"
+    "https://www.wunderdog.com/public-consensus/#{sport_code}.html?date=#{format_date}"
   end
 
   def save_wunder_data(games)
@@ -25,6 +25,15 @@ class Games::FetchWunderData < Less::Interaction
       fetch_spread_data(game)
       game = WunderGame.find_or_initialize_by(external_id: @external_id)
       game.update(game_hash)
+    end
+  end
+
+  def sport_code
+    case sport
+    when 'cb'
+      'cbb'
+    else
+      sport
     end
   end
 
