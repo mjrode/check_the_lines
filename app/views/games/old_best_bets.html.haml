@@ -5,31 +5,42 @@
     = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black center"
     = submit_tag "Filter", :name => nil, class: "btn strength-button center"
 %ul.list-group
+%li.list-group-item
+  %h2.seconday-font.center
+    = link_to " MLB Spread Record", "#mlb"
+  %h1.secondary-font.center
+    Correct: #{@old_games.where(sport: "mlb").where(correct_prediction: true).count}
+    Incorrect: #{@old_games.where(sport: "mlb").where(correct_prediction: false).count}
+  %h2.seconday-font.center
+    = link_to " MLB O/U Record", "#mlb"
+  %h1.secondary-font.center
+    Correct: #{@over_under_games.where(sport: "mlb").where(correct_prediction: true).count}
+    Incorrect: #{@over_under_games.where(sport: "mlb").where(correct_prediction: false).count}
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NCAAF Record", "#ncaaf"
+      = link_to " NCAAF Spread Record", "#cb"
     %h1.secondary-font.center
-      Correct: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
-      Incorrect: #{@old_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
+      Correct: #{@old_games.where(sport: "cb").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "cb").where(correct_prediction: false).count}
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NFL Record", "#nfl"
+      = link_to " NFL Spead Record", "#nfl"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NBA Record", "#nba"
+      = link_to " NBA Spread Record", "#nba"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nba").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nba").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NCAAB Record", "#ncaab"
+      = link_to " NCAAB Spread Record", "#ncaab"
     %h1.secondary-font.center
-      Correct: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
-      Incorrect: #{@old_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
+      Correct: #{@old_games.where(sport: "cb").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "cb").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
@@ -49,15 +60,15 @@
     %h2.seconday-font.center
       = link_to " NCAAF Over/Under Record", "#ncaafou"
     %h1.secondary-font.center
-      Correct: #{@over_under_games.where(sport: "ncaa_football").where(correct_prediction: true).count}
-      Incorrect: #{@over_under_games.where(sport: "ncaa_football").where(correct_prediction: false).count}
+      Correct: #{@over_under_games.where(sport: "cf").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "cf").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
       = link_to " NCAAB Over/Under Record", "#ncaabou"
     %h1.secondary-font.center
-      Correct: #{@over_under_games.where(sport: "ncaa_basketball").where(correct_prediction: true).count}
-      Incorrect: #{@over_under_games.where(sport: "ncaa_basketball").where(correct_prediction: false).count}
+      Correct: #{@over_under_games.where(sport: "cb").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "cb").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
@@ -68,11 +79,11 @@
 
 %h1.clear.center.big-font.padding-top-5#ncaaf NCAA Football Record
 
--@old_games.where(sport: "ncaa_football").sort_by{|game| game.strength }.reverse.each do |game|
+-@old_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 %h1.clear.center.big-font#ncaab NCAA Basketball Record
--@old_games.where(sport: "ncaa_basketball").sort_by{|game| game.strength }.reverse.each do |game|
+-@old_games.where(sport: "cb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 %h1.clear.center.big-font#nfl NFL Record
@@ -87,4 +98,3 @@
   .modal-dialog.modal-lg
     .modal-content
       .jumbotron To filter by 'Strength' enter a number here to only show results of games that scored above that number
-

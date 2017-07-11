@@ -70,12 +70,12 @@ class Games::Calculate < Less::Interaction
 
   def get_public_percentage_on_massey_team
     return game.home_team_spread_percent if game.team_to_bet == game.home_team_name
-    return game.away_team_spread_percent if game.team_to_bet == game.away_team_name
+    game.away_team_spread_percent if game.team_to_bet == game.away_team_name
   end
 
   def get_public_percentage_massey_over_under
     return game.over_percent.to_i if game.over_under_pick == "Over"
-    return game.under_percent.to_i if game.over_under_pick =="Under"
+    game.under_percent.to_i if game.over_under_pick =="Under"
   end
 
   def correct_over_under_prediction?
