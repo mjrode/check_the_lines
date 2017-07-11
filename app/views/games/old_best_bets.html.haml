@@ -5,29 +5,27 @@
     = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black center"
     = submit_tag "Filter", :name => nil, class: "btn strength-button center"
 %ul.list-group
-%li.list-group-item
-  %h2.seconday-font.center
-    = link_to " MLB Spread Record", "#mlb"
-  %h1.secondary-font.center
-    Correct: #{@old_games.where(sport: "mlb").where(correct_prediction: true).count}
-    Incorrect: #{@old_games.where(sport: "mlb").where(correct_prediction: false).count}
-  %h2.seconday-font.center
-    = link_to " MLB O/U Record", "#mlb"
-  %h1.secondary-font.center
-    Correct: #{@over_under_games.where(sport: "mlb").where(correct_prediction: true).count}
-    Incorrect: #{@over_under_games.where(sport: "mlb").where(correct_prediction: false).count}
+  %li.list-group-item
+    %h2.seconday-font.center
+      = link_to " MLB Spread Record", "#mlb"
+    %h1.secondary-font.center
+      Correct: #{@old_games.where(sport: "mlb").where(correct_prediction: true).count}
+      Incorrect: #{@old_games.where(sport: "mlb").where(correct_prediction: false).count}
+
   %li.list-group-item
     %h2.seconday-font.center
       = link_to " NCAAF Spread Record", "#cb"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "cb").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "cb").where(correct_prediction: false).count}
+
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NFL Spead Record", "#nfl"
+      = link_to " NFL Spread Record", "#nfl"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "nfl").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "nfl").where(correct_prediction: false).count}
+
   %li.list-group-item
     %h2.seconday-font.center
       = link_to " NBA Spread Record", "#nba"
@@ -41,6 +39,13 @@
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "cb").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "cb").where(correct_prediction: false).count}
+
+  %li.list-group-item
+    %h2.seconday-font.center
+      = link_to " MLB Over/Under Record", "#mlb"
+    %h1.secondary-font.center
+      Correct: #{@over_under_games.where(sport: "mlb").where(correct_prediction: true).count}
+      Incorrect: #{@over_under_games.where(sport: "mlb").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
@@ -77,12 +82,11 @@
       Correct: #{@old_games.where(correct_prediction: true).count + @over_under_games.where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(correct_prediction: false).count + @over_under_games.where(correct_prediction: false).count}
 
-%h1.clear.center.big-font.padding-top-5#ncaaf NCAA Football Record
-
+%h1.clear.center.big-font.padding-top-5#cb NCAA Football Record
 -@old_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font#ncaab NCAA Basketball Record
+%h1.clear.center.big-font#cb NCAA Basketball Record
 -@old_games.where(sport: "cb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
@@ -92,6 +96,30 @@
 
 %h1.clear.center.big-font#nba NBA Record
 -@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font#mlb MLB Record
+-@old_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font.padding-top-5#cb NCAA OU Football Record
+-@over_under_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font#cb NCAA OU Basketball Record
+-@over_under_games.where(sport: "cb").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font#nfl NFL OU Record
+-@over_under_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font#nba NBA OU Record
+-@over_under_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.clear.center.big-font#mlb MLB OU Record
+-@over_under_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 .modal.fade.bd-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
