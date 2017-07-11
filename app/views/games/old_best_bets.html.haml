@@ -35,14 +35,14 @@
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NCAAB Spread Record", "#ncaab"
+      = link_to " NCAAB Spread Record", "#cbou"
     %h1.secondary-font.center
       Correct: #{@old_games.where(sport: "cb").where(correct_prediction: true).count}
       Incorrect: #{@old_games.where(sport: "cb").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " MLB Over/Under Record", "#mlb"
+      = link_to " MLB Over/Under Record", "#mlbou"
     %h1.secondary-font.center
       Correct: #{@over_under_games.where(sport: "mlb").where(correct_prediction: true).count}
       Incorrect: #{@over_under_games.where(sport: "mlb").where(correct_prediction: false).count}
@@ -63,14 +63,14 @@
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NCAAF Over/Under Record", "#ncaafou"
+      = link_to " NCAAF Over/Under Record", "#cfou"
     %h1.secondary-font.center
       Correct: #{@over_under_games.where(sport: "cf").where(correct_prediction: true).count}
       Incorrect: #{@over_under_games.where(sport: "cf").where(correct_prediction: false).count}
 
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " NCAAB Over/Under Record", "#ncaabou"
+      = link_to " NCAAB Over/Under Record", "#cbou"
     %h1.secondary-font.center
       Correct: #{@over_under_games.where(sport: "cb").where(correct_prediction: true).count}
       Incorrect: #{@over_under_games.where(sport: "cb").where(correct_prediction: false).count}
@@ -102,23 +102,23 @@
 -@old_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font.padding-top-5#cb NCAA OU Football Record
+%h1.clear.center.big-font.padding-top-5#cfou NCAA OU Football Record
 -@over_under_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font#cb NCAA OU Basketball Record
+%h1.clear.center.big-font#cbou NCAA OU Basketball Record
 -@over_under_games.where(sport: "cb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font#nfl NFL OU Record
+%h1.clear.center.big-font#nflou NFL OU Record
 -@over_under_games.where(sport: "nfl").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font#nba NBA OU Record
+%h1.clear.center.big-font#nbaou NBA OU Record
 -@over_under_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
-%h1.clear.center.big-font#mlb MLB OU Record
+%h1.clear.center.big-font#mlbou MLB OU Record
 -@over_under_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
