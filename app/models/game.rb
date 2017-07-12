@@ -41,6 +41,8 @@
 class Game < ActiveRecord::Base
   scope :unprocessed,          -> {where(processed: false)}
   scope :unplayed,            -> { where("date > ?", Date.today-3) }
+  # TODO: Clean up these scopes.
+  scope :game_over,           -> {where(game_over: true)}
   scope :played,              -> { where("date < ?", Date.today) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
@@ -62,6 +64,12 @@ class Game < ActiveRecord::Base
     where('line_diff > ?', 3).
     where('public_percentage_massey_over_under < ?', 35)
   }
+
+  scope :correct_spread_best_bets,       -> (sport) { where(sport: sport, best_bet: true, correct_prediction: true)}
+  scope :incorrect_spread_best_bets,     -> (sport) { where(sport: sport, best_bet: true, correct_prediction: false)}
+  scope :correct_over_under_best_bets,   -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: true)}
+  scope :incorrect_over_under_best_bets, -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: false)}
+
 
   scope :incorrect_best_bets, -> {
 	  spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: false).count

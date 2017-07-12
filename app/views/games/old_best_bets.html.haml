@@ -9,8 +9,8 @@
     %h2.seconday-font.center
       = link_to " MLB Spread Record", "#mlb"
     %h1.secondary-font.center
-      Correct: #{@old_games.where(sport: "mlb").where(correct_prediction: true).count}
-      Incorrect: #{@old_games.where(sport: "mlb").where(correct_prediction: false).count}
+      Correct: #{Game.correct_spread_best_bets("mlb").count}
+      Incorrect: #{Game.incorrect_spread_best_bets("mlb").count}
 
   %li.list-group-item
     %h2.seconday-font.center

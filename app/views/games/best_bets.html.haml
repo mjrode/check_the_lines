@@ -1,6 +1,11 @@
 %h1.center.big-font= "Picks for #{Date.today}"
 
 %h1.center.big-font
+  All Picks
+-Game.where(best_bet: true).sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
+%h1.center.big-font
   Spread Picks
 %h1.center.big-font
   NCAA Football Picks

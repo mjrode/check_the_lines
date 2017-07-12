@@ -13,7 +13,8 @@ class Games::Calculate < Less::Interaction
       public_percentage_on_massey_team: get_public_percentage_on_massey_team,
       public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
-      correct_prediction:  correct_line_prediction?
+      correct_prediction:  correct_line_prediction?,
+      best_bet: best_bet?
       })
     game.update(strength: game_strength)
   end
@@ -31,6 +32,13 @@ class Games::Calculate < Less::Interaction
       processed: true
     }
   end
+
+  def best_bet?(game_params)
+    line_diff = BEST_BET_SETTINGS[:line_diff]
+    public_percentage = BEST_BET_SETTINGS[:public_percentage]
+    (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false
+  end
+
 
 	def game_strength
 		game.strength
