@@ -44,8 +44,8 @@
     %h2.seconday-font.center
       = link_to " MLB Over/Under Record", "#mlbou"
     %h1.secondary-font.center
-      Correct: #{@over_under_games.where(sport: "mlb").where(correct_prediction: true).count}
-      Incorrect: #{@over_under_games.where(sport: "mlb").where(correct_prediction: false).count}
+      Correct: #{Game.correct_over_under_best_bets("mlb").count}
+      Incorrect: #{Game.incorrect_over_under_best_bets("mlb").count}
 
   %li.list-group-item
     %h2.seconday-font.center
@@ -99,7 +99,7 @@
   =render "bet_display", game: game
 
 %h1.clear.center.big-font#mlb MLB Record
--@old_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
+-Game.best_bets("mlb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 %h1.clear.center.big-font.padding-top-5#cfou NCAA OU Football Record
@@ -119,7 +119,7 @@
   =render "bet_display", game: game
 
 %h1.clear.center.big-font#mlbou MLB OU Record
--@over_under_games.where(sport: "mlb").sort_by{|game| game.strength }.reverse.each do |game|
+-Game.ou_best_bets("mlb").sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 .modal.fade.bd-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}

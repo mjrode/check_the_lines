@@ -9,7 +9,7 @@ class Games::CalculateAll < Less::Interaction
 		end
 
 		Game.game_over.each do |game|
-      game.update(best_bet: best_bet?(game))
+      game.update(best_bet: best_bet?(game), ou_best_bet: ou_best_bet?(game))
 		end
   end
 
@@ -19,5 +19,11 @@ class Games::CalculateAll < Less::Interaction
 		line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
 		public_percentage = BEST_BET_SETTINGS[:public_percentage]
 		(game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false
-	end
+  end
+
+  def ou_best_bet?(game)
+    line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
+    public_percentage = BEST_BET_SETTINGS[:public_percentage]
+    (game.over_under_diff >= line_diff && game.public_percentage_massey_over_under <= public_percentage) ? true : false
+  end
 end

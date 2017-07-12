@@ -69,6 +69,8 @@ class Game < ActiveRecord::Base
   scope :incorrect_spread_best_bets,     -> (sport) { where(sport: sport, best_bet: true, correct_prediction: false)}
   scope :correct_over_under_best_bets,   -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: true)}
   scope :incorrect_over_under_best_bets, -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: false)}
+  scope :best_bets, -> (sport) {where(best_bet: true, sport: sport)}
+  scope :ou_best_bets, -> (sport) {where(ou_best_bet: true, sport: sport)}
 
 
   scope :incorrect_best_bets, -> {
