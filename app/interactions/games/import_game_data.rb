@@ -50,7 +50,7 @@ class Games::ImportGameData < Less::Interaction
       massey_over_under: massey_game.massey_over_under,
       over_percent: wunder_game.over_percent,
       under_percent: wunder_game.under_percent,
-      game_over: massey_game.game_over,
+      game_over: massey_game.game_over || Date.today > (massey_game.game_date),
       home_team_money_percent: wunder_game.home_team_ml_percent,
       away_team_money_percent: wunder_game.away_team_ml_percent
     }
