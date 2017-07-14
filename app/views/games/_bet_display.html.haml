@@ -23,7 +23,7 @@
         %tr
           %td= game.away_team_final_score
           %td= game.home_team_final_score
-          -if game.correct_over_under_prediction
+          -if game.correct_prediction
             %td.success Correct
           -else
             %td Incorrect
