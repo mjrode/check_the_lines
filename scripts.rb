@@ -10,9 +10,11 @@ end
 
  Games::FetchPastGameData.run(sport: "all", start_date: "2016/12/10", end_date: "2017/07/01")
 
- Games::FetchPastGameData.run(sport: "cf", start_date: "2017/08/30", end_date: "2017/07/01")
+ Games::FetchPastGameData.run(sport: "mlb", start_date: "2017/07/09", end_date: "2017/07/17")
 
  Games::ProcessGames.run
+
+Games::FetchTodaysData.run
 
  # No Wunder Data for 2016/12/27, cb: Error: undefined method `css' for nil:NilClass
 
@@ -24,4 +26,3 @@ incorrect = Game.where(best_bet: true, correct_over_under_prediction: false).cou
 
 # Percentage correct
 correct / (correct + incorrect)
-

@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d22cb386-e881-40c8-aa35-92ca2a4ae3d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/interactions/games/calculate.rb" afterPath="$PROJECT_DIR$/app/interactions/games/calculate.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/interactions/games/calculate_all.rb" afterPath="$PROJECT_DIR$/app/interactions/games/calculate_all.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/interactions/games/import_game_data.rb" afterPath="$PROJECT_DIR$/app/interactions/games/import_game_data.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/games/best_bets.html.haml" afterPath="$PROJECT_DIR$/app/views/games/best_bets.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/games/old_best_bets.html.haml" afterPath="$PROJECT_DIR$/app/views/games/old_best_bets.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/_navbar.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/_navbar.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/home.html.haml" afterPath="$PROJECT_DIR$/app/views/pages/home.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts.rb" afterPath="$PROJECT_DIR$/scripts.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -26,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="scripts.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scripts.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="435">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -39,8 +33,8 @@
       <file leaf-file-name="process_games.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/interactions/games/process_games.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+            <state relative-caret-position="90">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="update_game_data.rake" pinned="false" current-in-tab="true">
+      <file leaf-file-name="update_game_data.rake" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tasks/update/update_game_data.rake">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="29" />
+              <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -157,7 +151,6 @@
         <option value="$PROJECT_DIR$/app/models/massey_game.rb" />
         <option value="$PROJECT_DIR$/app/interactions/games/fetch_html.rb" />
         <option value="$PROJECT_DIR$/config/initializers/my_constants.rb" />
-        <option value="$PROJECT_DIR$/scripts.rb" />
         <option value="$PROJECT_DIR$/app/models/game.rb" />
         <option value="$PROJECT_DIR$/app/views/games/best_bets.html.haml" />
         <option value="$PROJECT_DIR$/app/views/pages/home.html.haml" />
@@ -166,6 +159,7 @@
         <option value="$PROJECT_DIR$/app/interactions/games/import_game_data.rb" />
         <option value="$PROJECT_DIR$/app/interactions/games/calculate.rb" />
         <option value="$PROJECT_DIR$/app/interactions/games/calculate_all.rb" />
+        <option value="$PROJECT_DIR$/scripts.rb" />
       </list>
     </option>
   </component>
@@ -179,7 +173,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="y" value="25" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
   </component>
@@ -579,15 +573,15 @@
       <updated>1498776877237</updated>
       <workItem from="1498776878582" duration="1252000" />
       <workItem from="1499349942885" duration="2744000" />
-      <workItem from="1499711762093" duration="7155000" />
+      <workItem from="1499711762093" duration="7837000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12955000" />
+    <option name="totallyTimeSpent" value="13637000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
+    <frame x="0" y="25" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25679544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -901,18 +895,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/games/best_bets.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/interactions/games/fetch_massey_data.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="90" column="4" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
+        <state relative-caret-position="393">
+          <caret line="71" column="43" lean-forward="false" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -925,26 +911,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+    <entry file="file://$PROJECT_DIR$/app/interactions/games/fetch_massey_data.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="71" column="43" lean-forward="false" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+        <state relative-caret-position="449">
+          <caret line="90" column="4" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/games/best_bets.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/interactions/games/import_game_data.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="52" column="54" lean-forward="false" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/tasks/update/update_game_data.rake">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/interactions/games/process_games.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -965,18 +959,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/interactions/games/import_game_data.rb">
+    <entry file="file://$PROJECT_DIR$/app/interactions/games/process_games.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="52" column="54" lean-forward="false" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/update/update_game_data.rake">
+    <entry file="file://$PROJECT_DIR$/scripts.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="29" />
+        <state relative-caret-position="435">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>

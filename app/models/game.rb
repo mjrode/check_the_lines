@@ -43,6 +43,7 @@ class Game < ActiveRecord::Base
   scope :unplayed,            -> { where("date > ?", Date.today-3) }
   # TODO: Clean up these scopes.
   scope :game_over,           -> {where(game_over: true)}
+  scope :not_over,            -> {where(game_over: false)}
   scope :played,              -> { where("date < ?", Date.today) }
   scope :valid_spread,        -> {
     where.not(home_team_vegas_line: 0.0).
