@@ -23,6 +23,7 @@
 #  updated_at            :datetime         not null
 #  external_id           :integer
 #  processed             :boolean          default(FALSE)
+#  game_over             :boolean
 #
 
 class WunderGame < ActiveRecord::Base

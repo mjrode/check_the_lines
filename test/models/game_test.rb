@@ -12,6 +12,8 @@
 #  home_team_vegas_line                :float
 #  away_team_vegas_line                :float
 #  vegas_over_under                    :float
+#  best_bet                            :boolean
+#  processed                           :boolean          default(FALSE)
 #  massey_over_under                   :float
 #  created_at                          :datetime         not null
 #  updated_at                          :datetime         not null
@@ -21,7 +23,8 @@
 #  over_under_pick                     :string
 #  home_team_final_score               :integer
 #  away_team_final_score               :integer
-#  week_id                             :integer
+#  home_team_money_percent             :string
+#  away_team_money_percent             :string
 #  home_team_spread_percent            :string
 #  away_team_spread_percent            :string
 #  over_percent                        :string
@@ -31,11 +34,8 @@
 #  correct_prediction                  :boolean
 #  correct_over_under_prediction       :boolean
 #  public_percentage_massey_over_under :integer
-#  strength                            :decimal(, )
-#  home_team_vegas_line_massey         :float
-#  away_team_vegas_line_massey         :float
-#  home_team_vegas_line_wunder         :float
-#  away_team_vegas_line_wunder         :float
+#  strength                            :float
+#  ou_best_bet                         :boolean
 #
 
 require 'test_helper'
