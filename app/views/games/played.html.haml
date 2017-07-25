@@ -12,7 +12,7 @@
       %th Correct Prediction
       %th Strength
   %tbody
-    - @games.sort_by{|game| game.strength }.reverse.each do |game|
+    - @games.sort_by{|game| game.game_date }.reverse.each do |game|
       %tr
         %td= game.date
         %td= "#{game.away_team_name}: #{game.away_team_final_score}"
