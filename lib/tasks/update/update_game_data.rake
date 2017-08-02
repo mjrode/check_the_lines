@@ -5,5 +5,6 @@ namespace :update do
     Game.not_over.each {|game| Games::Calculate.run(game: game)}
     Games::FetchTodaysData.run
     Games::ProcessGames.run
+    Games::FetchFinalScore.run
   end
 end
