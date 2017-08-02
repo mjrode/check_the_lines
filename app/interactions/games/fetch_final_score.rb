@@ -1,5 +1,4 @@
 class Games::FetchFinalScore < Less::Interaction
-  expects :game
 
   def run
     game_hash = create_game_hash
