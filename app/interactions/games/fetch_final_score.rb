@@ -18,9 +18,9 @@ class Games::FetchFinalScore < Less::Interaction
 
   def fetch_game_data(game_hash)
     game_hash.each do |date, sport|
-      format_date(date)
-      Games::FetchMasseyData.run(sport: sport, date: date)
-      Games::FetchWunderData.run(sport: sport, date: date)
+      formatted_date = format_date(date)
+      Games::FetchMasseyData.run(sport: sport, date: formatted_date)
+      Games::FetchWunderData.run(sport: sport, date: formatted_date)
     end
   end
 
