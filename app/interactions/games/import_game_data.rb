@@ -14,7 +14,7 @@ class Games::ImportGameData < Less::Interaction
       next if wunder_game.nil?
       game = find_or_create_game(massey_game, wunder_game)
       save_or_update_game(game, massey_game, wunder_game)
-      mark_masssey_and_wunder_processed(wunder_game, massey_game)
+      mark_massey_and_wunder_processed(wunder_game, massey_game) if wunder_game.game_over
     end
   end
 
@@ -26,7 +26,7 @@ class Games::ImportGameData < Less::Interaction
     )
   end
 
-  def mark_masssey_and_wunder_processed(wunder_game, massey_game)
+  def mark_massey_and_wunder_processed(wunder_game, massey_game)
     wunder_game.update(processed: true)
     massey_game.update(processed: true)
   end
