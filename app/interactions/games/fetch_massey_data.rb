@@ -12,7 +12,7 @@ class Games::FetchMasseyData < Less::Interaction
   private
 
   def construct_url
-    "http://www.masseyratings.com/predjson.php?s=#{sport_code}&dt=#{format_date}"
+    "https://www.masseyratings.com/predjson.php?s=#{sport_code}&dt=#{format_date}"
   end
 
   def sport_code
