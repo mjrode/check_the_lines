@@ -32,6 +32,8 @@ class Games::FetchWunderData < Less::Interaction
     case sport
     when 'cb'
       'cbb'
+    when 'cf'
+      'cfb'
     else
       sport
     end
