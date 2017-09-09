@@ -4,6 +4,7 @@
   %table.table.table-striped
     %tr
       %th.center-text Day
+      %th.center-text Time
       %th.center-text Pick
       %th.center-text Strength
       %th.center-text Sport
@@ -12,6 +13,7 @@
     %tbody
       %tr
         %td= game.date
+        %td= game.time
         %td= team_to_bet_name_and_line(game)
         %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
         %td= game.sport
