@@ -16,3 +16,5 @@
 !/log/.keep
 /tmp
 .idea/*
+
+config/initializers/phantomjs_path.rb
