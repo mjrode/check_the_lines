@@ -39,6 +39,7 @@ class Games::ImportGameData < Less::Interaction
     {
       sport: massey_game.sport,
       date: massey_game.game_date,
+      time: massey_game.time,
       home_team_name: wunder_game.home_team_name,
       away_team_name: wunder_game.away_team_name,
       home_team_massey_line: massey_game.home_team_massey_line,

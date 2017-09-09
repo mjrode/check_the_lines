@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712220201) do
+ActiveRecord::Schema.define(version: 20170909231105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170712220201) do
     t.integer  "public_percentage_massey_over_under"
     t.float    "strength"
     t.boolean  "ou_best_bet"
+    t.string   "time"
   end
 
   create_table "massey_games", force: :cascade do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170712220201) do
     t.datetime "updated_at",                            null: false
     t.boolean  "processed",             default: false
     t.boolean  "game_over",             default: false
+    t.string   "time"
   end
 
   create_table "wunder_games", force: :cascade do |t|

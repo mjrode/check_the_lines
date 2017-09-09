@@ -54,7 +54,8 @@ class Games::FetchMasseyData < Less::Interaction
       external_id:                 @external_id,
       game_over:                   @game_over,
       game_date:                   @game_date,
-      sport:                       sport
+      sport:                       sport,
+      time:                        @time
     }
     if @game_over
       hash[:home_team_final_score] = @home_team_final_score
@@ -93,6 +94,8 @@ class Games::FetchMasseyData < Less::Interaction
     if @game_over
       @home_team_final_score       = game[7].first.to_i
       @away_team_final_score       = game[6].first.to_i
+    else
+      @time                        = game[1].first
     end
   end
 
