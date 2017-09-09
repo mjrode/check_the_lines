@@ -8,7 +8,7 @@ class Terminal::OutputGames < Less::Interaction
 	private
 
 	def pretty_print(sport)
-		Game.all.unplayed.valid_spread.spread_best_bets.each do |game|
+		Game.best_bets(sport).where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
 			print game.home_team_name
 		end
 	end
