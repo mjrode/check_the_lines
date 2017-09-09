@@ -18,10 +18,6 @@ class Games::Calculate < Less::Interaction
     game.update(strength: game_strength)
   end
 
-  # def invalid_data?
-  #   game.home_team_vegas_line.nil? || game.massey_over_under.nil? || game.vegas_over_under.nil?
-  # end
-
   def game_params
     {
       line_diff: line_diff,
