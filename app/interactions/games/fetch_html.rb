@@ -2,6 +2,7 @@ class Games::FetchHtml < Less::Interaction
   expects :url
 
   def run
+    Selenium::WebDriver::PhantomJS.path ='/Users/mike.rode/Malauzai/projects/phantomjs-2.1.1-macosx/bin/phantomjs' if Rails.env = 'development'
     begin
       fetch_page
     rescue
