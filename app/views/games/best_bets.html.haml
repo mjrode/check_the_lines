@@ -8,8 +8,8 @@
 -#%h1.center.big-font
 -#  Spread Picks
 %h1.center.big-font
-  MLB Picks Spread Picks
--Game.best_bets("mlb").where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
+  College Football Picks Spread Picks
+-Game.best_bets("cf").where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 -#
 -#%h1.center.big-font

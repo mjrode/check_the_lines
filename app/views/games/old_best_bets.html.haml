@@ -7,7 +7,7 @@
 %ul.list-group
   %li.list-group-item
     %h2.seconday-font.center
-      = link_to " MLB Spread Record", "#mlb"
+      = link_to " College Football Record", "#cfb"
     %h1.secondary-font.center
       Correct: #{Game.correct_spread_best_bets("mlb").where.not("strength > ?", 10000).count}
       Incorrect: #{Game.incorrect_spread_best_bets("mlb").where.not("strength > ?", 10000).count}
@@ -98,8 +98,8 @@
 -#-@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
 -#  =render "bet_display", game: game
 
-%h1.clear.center.big-font#mlb MLB Record
--Game.best_bets("mlb").where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
+%h1.clear.center.big-font#mlb College Football Record
+-Game.best_bets("cf").game_over.where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
   =render "bet_display", game: game
 
 -#%h1.clear.center.big-font.padding-top-5#cfou NCAA OU Football Record

@@ -7,12 +7,16 @@
       %th.center-text Pick
       %th.center-text Strength
       %th.center-text Sport
+      %th.center-text Line Diff
+      %th.center-text Public Percentage
     %tbody
       %tr
         %td= game.date
         %td= team_to_bet_name_and_line(game)
         %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
         %td= game.sport
+        %td= game.line_diff
+        %td= game.public_percentage_on_massey_team
   -if game.game_over
     %table.table.table-striped
       %tr
