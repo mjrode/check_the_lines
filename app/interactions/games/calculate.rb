@@ -79,6 +79,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def correct_over_under_prediction?
+    return nil unless game.game_over
     return true if correct_over_pick || correct_under_pick
     false
   end
