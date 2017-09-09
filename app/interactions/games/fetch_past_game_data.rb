@@ -27,7 +27,7 @@ class Games::FetchPastGameData < Less::Interaction
   end
 
   def date_range
-    ((Date.today - days_back.days)..Date.today).map{ |date| date.strftime("%F").gsub("-","/") } if days_back.present?
+    return ((Date.today - days_back.days)..Date.today).map{ |date| date.strftime("%F").gsub("-","/") } if days_back.present?
     (Date.parse(start_date)..Date.parse(end_date)).map{ |date| date.strftime("%F").gsub("-","/") }
   end
 end
