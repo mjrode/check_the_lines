@@ -7,9 +7,12 @@ class Games::ImportGameData < Less::Interaction
   private
 
   def process_massey_and_wunder_data
-    MasseyGame.unprocessed.each do |massey_game|
+    # Changing from unprocessed to game_over that way the %'s update throughout the day as the jobs run
+
+    MasseyGame.where("(game_over = false) or processed = false").each do |massey_game|
+      next if massey_game.game_date < Date.today && massey_game.processed == true
       wunder_game = WunderGame.where("sport = ? AND game_date = ?", massey_game.sport, massey_game.game_date)
-      .where('home_team_name ILIKE ? AND away_team_name ILIKE ?', "%#{massey_game.home_team_name}%", "%#{massey_game.away_team_name}%").first
+      .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{massey_game.home_team_name}%", "%#{massey_game.away_team_name}%").first
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if wunder_game.nil?
       next if wunder_game.nil?
       game = find_or_create_game(massey_game, wunder_game)

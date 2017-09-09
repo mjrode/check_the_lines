@@ -4,7 +4,8 @@ class Games::CalculateAll < Less::Interaction
 	end
 
 	def calculate_all
-    Game.unprocessed.each do |game|
+	  Game.where("(game_over = false) or processed = false").each do |game|
+	  	next if game.date < Date.today && game.processed == true
 			Games::Calculate.run(game: game)
 		end
 
