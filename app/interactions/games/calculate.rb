@@ -37,7 +37,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def over_under_diff
-    game.massey_over_under - game.vegas_over_under
+    game.massey_over_under - game.vegas_over_under rescue nil
   end
 
   def find_team_to_bet
