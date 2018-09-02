@@ -25,7 +25,7 @@ gem 'phantomjs'
 gem 'pry-rails'
 gem "http"
 gem 'bootstrap', '~> 4.0.0.alpha5'
-
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
