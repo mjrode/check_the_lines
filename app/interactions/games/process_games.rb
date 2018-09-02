@@ -4,7 +4,7 @@ class Games::ProcessGames < Less::Interaction
 	end
 
 	def process
-    Games::ImportGameData.run
+    Games::CreateGameRecord.run
     Games::CalculateAll.run
 	end
 end

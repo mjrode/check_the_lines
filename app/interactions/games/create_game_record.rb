@@ -1,4 +1,4 @@
-class Games::ImportGameData < Less::Interaction
+class Games::CreateGameRecord < Less::Interaction
 
   def run
     process_massey_and_wunder_data

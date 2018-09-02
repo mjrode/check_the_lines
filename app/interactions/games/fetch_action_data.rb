@@ -4,67 +4,60 @@ class Games::FetchActionData < Less::Interaction
   def run
     url = construct_url
     games = Common::FetchJSON.run(url: url)['games']
-    binding.pry
     fetch_and_save_action_data(games)
   end
 
   private
 
   def construct_url
-    "https://api.actionnetwork.com/web/v1/sharpreport/#{sport}"
+    "https://api.actionnetwork.com/web/v1/scoreboard/#{format_sport}&bookIds=15"
+  end
+  
+  def format_sport
+    case sport
+    when 'cf'
+      'ncaaf?division=FBS'
+    when 'cb'
+      'ncaab?division=D1'
+    else
+      sport + '?'
+    end
   end
 
   def fetch_and_save_action_data(games)
     games.each do |game|
-      create_instance_variables(game)
-      save_game
+     if game['odds']
+       game_hash = set_game_hash(game)
+       save_game(game_hash)
+     end
     end
   end
   
-  def create_instance_variables(game)
-    @away_team_name        = team_name(game, 'away')
-    @home_team_name        = team_name(game, 'home')
-    @away_team_ats_percent = ats_percent(game, 'away')
-    @home_team_ats_percent = ats_percent(game, 'home')
-    @away_team_ml_percent  = ml_percent(game, 'away')
-    @home_team_ml_percent  = ml_percent(game, 'home')
-    @over_percent          = total_percent(game, 'over')
-    @under_percent         = total_percent(game, 'over')
-    @game_time             = game['start_time']
-    @game_date             = Date.parse(@game_time)
-    @home_team_vegas_line  = vegas_line(game, 'home')
-    @away_team_vegas_line  = vegas_line(game, 'away')
-    @vegas_over_under      = odds_for_game(game)['total']
-    @external_id           = game['id']
-    @game_over             = game_over
-    @away_team_final_score = final_score(game, 'away') if game_over
-    @home_team_final_score = final_score(game 'home') if game_over
-  end
-
-  def game_hash
+  def set_game_hash(game)
     {
-      away_team_name:         @away_team_name,
-      away_team_ats_percent:  @away_team_ats_percent,
-      away_team_ml_percent:   @away_team_ml_percent,
-      over_percent:           @over_percent,
-      home_team_name:         @home_team_name,
-      home_team_ats_percent:  @home_team_ats_percent,
-      home_team_ml_percent:   @home_team_ml_percent,
-      under_percent:          @under_percent,
-      home_team_vegas_line:   @home_team_vegas_line,
-      away_team_vegas_line:   @away_team_vegas_line,
-      vegas_over_under:       @vegas_over_under,
+      away_team_name:         team_name(game, 'away'),
+      away_team_ats_percent:  ats_percent(game, 'away'),
+      away_team_ml_percent:   ml_percent(game, 'away'),
+      over_percent:           total_percent(game, 'over'),
+      home_team_name:         team_name(game, 'home'),
+      home_team_ats_percent:  ats_percent(game, 'home'),
+      home_team_ml_percent:   ml_percent(game, 'home'),
+      under_percent:          total_percent(game, 'under'),
+      home_team_vegas_line:   vegas_line(game, 'home'),
+      away_team_vegas_line:   vegas_line(game, 'away'),
+      vegas_over_under:       odds_for_game(game)['total'],
       sport:                  sport,
-      game_time:              @game_time,
-      game_date:              @game_date,
-      external_id:            @external_id,
-      away_team_final_score:  @away_team_final_score,
-      game_over:              @game_over,
-      home_team_final_score:  @home_team_final_score
+      game_time:              game['start_time'],
+      game_date:              Date.parse(game['start_time']),
+      external_id:            game['id'],
+      away_team_final_score:  final_score(game, 'away'),
+      game_over:              game_over(game),
+      home_team_final_score:  final_score(game, 'home'),
+      num_bets:               num_bets(game)
     }
   end
   
-  def save_game
+  def save_game(game_hash)
     game = WunderGame.find_or_initialize_by(external_id: @external_id)
     game.update(game_hash)
   end
@@ -75,7 +68,8 @@ class Games::FetchActionData < Less::Interaction
   
   def team_name(game, home_or_away)
     team_id = game["#{home_or_away}_team_id"]
-    game['teams'][team_id]['full_name']
+    team = game['teams'].select{|team| team['id'] == team_id}
+    team.first['full_name']
   end
   
   def odds_for_game(game)
@@ -95,10 +89,14 @@ class Games::FetchActionData < Less::Interaction
   end
 
   def vegas_line(game, home_or_away)
-    odds_for_game(game)["spread_#{home_or_away}_line"]
+    odds_for_game(game)["spread_#{home_or_away}"]
   end
   
   def final_score(game, home_or_away)
-    game['boxscore']["total_#{home_or_away}_points"]
+    game_over(game) ? game['boxscore']["total_#{home_or_away}_points"] : nil
+  end
+  
+  def num_bets(game)
+    odds_for_game(game)['num_bets']
   end
 end

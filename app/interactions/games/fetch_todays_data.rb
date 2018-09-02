@@ -10,7 +10,7 @@ class Games::FetchTodaysData < Less::Interaction
 		date = Date.today.strftime("%F").gsub("-","/")
 		SPORTS.each do |sport|
 			Games::FetchMasseyData.run(sport: sport, date: date)
-			Games::FetchWunderData.run(sport: sport, date: date)
+			Games::FetchActionData.run(sport: sport, date: date)
 		end
   end
 end

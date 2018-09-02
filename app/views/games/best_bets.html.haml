@@ -1,5 +1,10 @@
 %h1.center.big-font= "Picks for #{Date.today}"
 
+%h1.center.big-font
+  All Massey Games
+-Game.best_bets("cf").where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
+  =render "bet_display", game: game
+
 -#%h1.center.big-font
 -#  All Picks
 -#-Game.where(best_bet: true).sort_by{|game| game.strength }.reverse.each do |game|
@@ -7,10 +12,10 @@
 
 -#%h1.center.big-font
 -#  Spread Picks
-%h1.center.big-font
-  College Football Picks Spread Picks
--Game.best_bets("cf").where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
-  =render "bet_display", game: game
+-# %h1.center.big-font
+-#   College Football Picks Spread Picks
+-# -Game.best_bets("cf").where(game_over: false).where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
+-#   =render "bet_display", game: game
 -#
 -#%h1.center.big-font
 -#  NCAA Football Picks
