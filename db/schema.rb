@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909231105) do
+ActiveRecord::Schema.define(version: 20180908174142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 20170909231105) do
     t.float    "strength"
     t.boolean  "ou_best_bet"
     t.string   "time"
+    t.float    "home_contrarian"
+    t.float    "away_contrarian"
+    t.float    "home_steam"
+    t.float    "away_steam"
+    t.float    "home_overall_rating"
+    t.float    "away_overall_rating"
+    t.float    "home_rlm"
+    t.float    "away_rlm"
   end
 
   create_table "massey_games", force: :cascade do |t|
@@ -87,6 +95,9 @@ ActiveRecord::Schema.define(version: 20170909231105) do
     t.boolean  "processed",             default: false
     t.boolean  "game_over",             default: false
     t.string   "time"
+    t.float    "line_diff"
+    t.float    "over_under_diff"
+    t.string   "team_to_bet"
   end
 
   create_table "wunder_games", force: :cascade do |t|
@@ -111,6 +122,15 @@ ActiveRecord::Schema.define(version: 20170909231105) do
     t.integer  "external_id"
     t.boolean  "processed",             default: false
     t.boolean  "game_over"
+    t.integer  "num_bets"
+    t.float    "home_contrarian"
+    t.float    "away_contrarian"
+    t.float    "away_steam"
+    t.float    "home_steam"
+    t.float    "home_overall_rating"
+    t.float    "away_overall_rating"
+    t.float    "home_rlm"
+    t.float    "away_rlm"
   end
 
 end

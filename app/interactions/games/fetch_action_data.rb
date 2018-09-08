@@ -4,21 +4,25 @@ class Games::FetchActionData < Less::Interaction
   def run
     url = construct_url
     games = Common::FetchJSON.run(url: url)['games']
-    fetch_and_save_action_data(games)
+    binding.pry if sport == 'cf'
+    fetch_and_save_action_data(games) if games
   end
 
   private
 
   def construct_url
-    "https://api.actionnetwork.com/web/v1/scoreboard/#{format_sport}&bookIds=15"
+    "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
+    # "https://api.actionnetwork.com/web/v1/scoreboard/#{format_sport}&bookIds=15"
   end
   
   def format_sport
     case sport
     when 'cf'
-      'ncaaf?division=FBS'
+      'ncaaf?'
+      # 'ncaaf?division=FBS'
     when 'cb'
-      'ncaab?division=D1'
+      # 'ncaab?division=D1'
+      'ncaab?'
     else
       sport + '?'
     end
@@ -53,13 +57,26 @@ class Games::FetchActionData < Less::Interaction
       away_team_final_score:  final_score(game, 'away'),
       game_over:              game_over(game),
       home_team_final_score:  final_score(game, 'home'),
-      num_bets:               num_bets(game)
+      num_bets:               num_bets(game),
+      home_contrarian:        value_stats(game, 'home', 'Contrarian'),
+      away_contrarian:        value_stats(game, 'away', 'Contrarian'),
+      home_rlm:               value_stats(game, 'home', 'Rlm'),
+      away_rlm:               value_stats(game, 'away', 'Rlm'),
+      away_steam:             value_stats(game, 'away', 'Steam'),
+      home_steam:             value_stats(game, 'home', 'Steam'),
+      home_overall_rating:    value_stats(game, 'home', 'Overall'),
+      away_overall_rating:    value_stats(game, 'away', 'Overall'),
     }
   end
   
   def save_game(game_hash)
     game = WunderGame.where(external_id: game_hash[:external_id]).first_or_create
     game.update(game_hash)
+  end
+  
+  def value_stats(game, home_or_away, stat)
+    stat = game["value_stats"][0]["#{home_or_away}_value_breakdown"].select {|hash| hash.has_value?(stat)}
+    stat.first['value'] if stat.present?
   end
   
   def game_over(game)
