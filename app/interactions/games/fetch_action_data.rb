@@ -3,8 +3,7 @@ class Games::FetchActionData < Less::Interaction
 
   def run
     url = construct_url
-    games = Common::FetchJSON.run(url: url)['games']
-    binding.pry if sport == 'cf'
+    games = Common::FetchJSON.run(url: url, auth_token: auth_token)['games']
     fetch_and_save_action_data(games) if games
   end
 
@@ -65,7 +64,7 @@ class Games::FetchActionData < Less::Interaction
       away_steam:             value_stats(game, 'away', 'Steam'),
       home_steam:             value_stats(game, 'home', 'Steam'),
       home_overall_rating:    value_stats(game, 'home', 'Overall'),
-      away_overall_rating:    value_stats(game, 'away', 'Overall'),
+      away_overall_rating:    value_stats(game, 'away', 'Overall')
     }
   end
   
@@ -75,7 +74,10 @@ class Games::FetchActionData < Less::Interaction
   end
   
   def value_stats(game, home_or_away, stat)
-    stat = game["value_stats"][0]["#{home_or_away}_value_breakdown"].select {|hash| hash.has_value?(stat)}
+    # NFL games seeme to be locked until after they have been played
+    # return nil if game['value_stats'].nil? || game["value_stats"][0]['label'] == 'LOCKED'
+    home_or_away_stats = game["#{home_or_away}_sharpreport"] || game["value_stats"][0]["#{home_or_away}_value_breakdown"]
+    stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
     stat.first['value'] if stat.present?
   end
   
@@ -115,5 +117,9 @@ class Games::FetchActionData < Less::Interaction
   
   def num_bets(game)
     odds_for_game(game)['num_bets']
+  end
+  
+  def auth_token
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InU9MTk5NzU2dD0xNTM1OTE1OTQ4MTk0IiwidXNlcl9pZCI6MTk5NzU2LCJleHBlcnRfaWQiOm51bGwsImlzcyI6InNwb3J0c0FjdGlvbiIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTNfMikgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzY4LjAuMzQ0MC4xMDYgU2FmYXJpLzUzNy4zNiIsImlzUmVzZXRUb2tlbiI6ZmFsc2UsImlzU2Vzc2lvblRva2VuIjpmYWxzZSwic2NvcGUiOltdLCJleHAiOjE1Njc0NTE5NDgsImlhdCI6MTUzNTkxNTk0OH0.nAwy8Yvex3vsAx9lsj53sRJ-8mQR5sokit5ADJrFnRU'
   end
 end

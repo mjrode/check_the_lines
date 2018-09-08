@@ -69,7 +69,15 @@ class Games::CreateGameRecord < Less::Interaction
       under_percent: wunder_game.under_percent,
       game_over: massey_game.game_over || Date.today > (massey_game.game_date),
       home_team_money_percent: wunder_game.home_team_ml_percent,
-      away_team_money_percent: wunder_game.away_team_ml_percent
+      away_team_money_percent: wunder_game.away_team_ml_percent,
+      home_contrarian:        wunder_game.home_contrarian,
+      away_contrarian:        wunder_game.away_contrarian,
+      home_rlm:               wunder_game.home_rlm,
+      away_rlm:               wunder_game.away_rlm,
+      away_steam:             wunder_game.away_steam,
+      home_steam:             wunder_game.home_steam,
+      home_overall_rating:    wunder_game.home_overall_rating,
+      away_overall_rating:    wunder_game.away_overall_rating
     }
     game.update(game_hash)
   end

@@ -79,8 +79,6 @@ class Games::FetchMasseyData < Less::Interaction
 
   def home_team_vegas_line_massey(game)
     line = game[13].include?("ltred") ? game[13][0].to_f : game[12][0].to_f * -1
-    puts line
-    # binding.pry if line.abs == 0.0
     line.abs == 0.0 ? nil : line
   end
 
