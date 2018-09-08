@@ -13,8 +13,14 @@ class Games::CreateGameRecord < Less::Interaction
       next if massey_game.game_date < Date.today && massey_game.processed == true
       home_team_name = format_name(massey_game.home_team_name, massey_game.sport)
       away_team_name = format_name(massey_game.away_team_name, massey_game.sport)
-      wunder_game = WunderGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
-      .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
+      if massey_game.sport == 'mlb'
+        wunder_game = WunderGame.where("sport = ?", massey_game.sport).where(game_date: massey_game.game_date )
+        .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
+      else
+        wunder_game = WunderGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
+        .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
+      end
+        
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if wunder_game.nil?
       next if wunder_game.nil?
       game = find_or_create_game(massey_game, wunder_game)

@@ -1,16 +1,18 @@
-.card.card-block
-  %h4.card-title.center Past Picks
-  %p.card-text.center Enter Strength number to filter by game strength
-  = form_tag old_best_bets_games_path, :method => 'get' do
-    = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black center"
-    = submit_tag "Filter", :name => nil, class: "btn strength-button center"
+-# .card.card-block
+-#   %h4.card-title.center Past Picks
+-#   %p.card-text.center Enter Strength number to filter by game strength
+-#   = form_tag old_best_bets_games_path, :method => 'get' do
+-#     = number_field_tag :search, params[:search], placeholder: "Strength", class: "form-control center form-width-25 border-black center"
+-#     = submit_tag "Filter", :name => nil, class: "btn strength-button center"
 %ul.list-group
   %li.list-group-item
-    %h2.seconday-font.center
-      = link_to " College Football Record", "#cfb"
     %h1.secondary-font.center
-      Correct: #{Game.correct_spread_best_bets("cf").where.not("strength > ?", 10000).count}
-      Incorrect: #{Game.incorrect_spread_best_bets("cf").where.not("strength > ?", 10000).count}
+      Correct: #{Game.all_correct_spread_best_bets.where.not("strength > ?", 10000).count}
+      Incorrect: #{Game.all_incorrect_spread_best_bets.where.not("strength > ?", 10000).count}
+
+  %h1.clear.center.big-font.padding-top-5#all Best Bet History
+  -Game.all_best_bets.where(game_over: true).sort_by{|game| game.strength }.reverse.each do |game|
+    =render "bet_display", game: game
 
   -#%li.list-group-item
   -#  %h2.seconday-font.center
@@ -82,10 +84,7 @@
   -#    Correct: #{@old_games.where(correct_prediction: true).count + @over_under_games.where(correct_prediction: true).count}
   -#    Incorrect: #{@old_games.where(correct_prediction: false).count + @over_under_games.where(correct_prediction: false).count}
 
--#%h1.clear.center.big-font.padding-top-5#cb NCAA Football Record
--#-@old_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
--#  =render "bet_display", game: game
--#
+
 -#%h1.clear.center.big-font#cb NCAA Basketball Record
 -#-@old_games.where(sport: "cb").sort_by{|game| game.strength }.reverse.each do |game|
 -#  =render "bet_display", game: game
@@ -98,10 +97,10 @@
 -#-@old_games.where(sport: "nba").sort_by{|game| game.strength }.reverse.each do |game|
 -#  =render "bet_display", game: game
 
-%h1.clear.center.big-font#mlb College Football Record
--Game.best_bets("cf").game_over.where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
-  =render "bet_display", game: game
-
+-# %h1.clear.center.big-font#mlb College Football Record
+-# -Game.best_bets("cf").game_over.where.not("strength > ?", 10000).sort_by{|game| game.strength }.reverse.each do |game|
+-#   =render "bet_display", game: game
+-# 
 -#%h1.clear.center.big-font.padding-top-5#cfou NCAA OU Football Record
 -#-@over_under_games.where(sport: "cf").sort_by{|game| game.strength }.reverse.each do |game|
 -#  =render "bet_display", game: game
@@ -122,7 +121,7 @@
 -#-Game.ou_best_bets("mlb").sort_by{|game| game.strength }.reverse.each do |game|
 -#  =render "bet_display", game: game
 
-.modal.fade.bd-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg
-    .modal-content
-      .jumbotron To filter by 'Strength' enter a number here to only show results of games that scored above that number
+-# .modal.fade.bd-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
+-#   .modal-dialog.modal-lg
+-#     .modal-content
+-#       .jumbotron To filter by 'Strength' enter a number here to only show results of games that scored above that number

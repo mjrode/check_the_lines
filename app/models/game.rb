@@ -67,19 +67,22 @@ class Game < ActiveRecord::Base
   }
 
   scope :correct_spread_best_bets,       -> (sport) { where(sport: sport, best_bet: true, correct_prediction: true)}
+  scope :all_correct_spread_best_bets,   -> { where(best_bet: true, correct_prediction: true)}
+  scope :all_incorrect_spread_best_bets, -> { where(best_bet: true, correct_prediction: false)}
   scope :incorrect_spread_best_bets,     -> (sport) { where(sport: sport, best_bet: true, correct_prediction: false)}
   scope :correct_over_under_best_bets,   -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: true)}
   scope :incorrect_over_under_best_bets, -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: false)}
-  scope :best_bets, -> (sport) {where(best_bet: true, sport: sport)}
-  scope :ou_best_bets, -> (sport) {where(ou_best_bet: true, sport: sport)}
+  scope :best_bets,                      -> (sport) {where(best_bet: true, sport: sport)}
+  scope :all_best_bets,                  -> { where(best_bet: true)}
+  scope :ou_best_bets,                   -> (sport) {where(ou_best_bet: true, sport: sport)}
 
 
   scope :incorrect_best_bets, -> {
-	  spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: false).count
+	  spread_best_bets.where(game_over: true).where(correct_prediction: false).count
   }
 
  scope :correct_best_bets, -> {
-	  spread_best_bets.where(game_over: true).where(sport: "ncaa_football").where(correct_prediction: true).count
+	  spread_best_bets.where(game_over: true).where(correct_prediction: true).count
   }
 
   def strength
