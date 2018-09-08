@@ -8,7 +8,7 @@ class Conversions::MapNcaafTeam < Less::Interaction
 	private
 
 	def get_pregame_name
-    teams[:"#{team_name.downcase}"] || team_name
+    teams["#{team_name.downcase}"] || team_name
 	end
 
 	def teams

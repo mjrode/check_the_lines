@@ -33,4 +33,5 @@ class WunderGame < ActiveRecord::Base
   validates :away_team_ats_percent, presence: true
   validates :away_team_name, presence: true
   validates :home_team_name, presence: true
+  # validates :external_id, uniqueness: true
 end

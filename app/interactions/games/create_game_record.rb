@@ -11,13 +11,26 @@ class Games::CreateGameRecord < Less::Interaction
 
     MasseyGame.where("(game_over = false) or processed = false").each do |massey_game|
       next if massey_game.game_date < Date.today && massey_game.processed == true
-      wunder_game = WunderGame.where("sport = ? AND game_date = ?", massey_game.sport, massey_game.game_date)
-      .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{massey_game.home_team_name}%", "%#{massey_game.away_team_name}%").first
+      home_team_name = format_name(massey_game.home_team_name, massey_game.sport)
+      away_team_name = format_name(massey_game.away_team_name, massey_game.sport)
+      wunder_game = WunderGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
+      .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if wunder_game.nil?
       next if wunder_game.nil?
       game = find_or_create_game(massey_game, wunder_game)
       save_or_update_game(game, massey_game, wunder_game)
       mark_massey_and_wunder_processed(wunder_game, massey_game) if wunder_game.game_over
+    end
+  end
+  
+  def format_name(name, sport)
+    case sport
+    when 'cf'
+      Conversions::MapNcaafTeam.run(team_name: name)
+    when 'nfl'
+      Conversions::MapNflTeam.run(team_name: name)
+    else
+      name
     end
   end
 

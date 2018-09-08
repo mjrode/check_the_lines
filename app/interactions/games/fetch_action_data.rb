@@ -58,7 +58,7 @@ class Games::FetchActionData < Less::Interaction
   end
   
   def save_game(game_hash)
-    game = WunderGame.find_or_initialize_by(external_id: @external_id)
+    game = WunderGame.where(external_id: game_hash[:external_id]).first_or_create
     game.update(game_hash)
   end
   
