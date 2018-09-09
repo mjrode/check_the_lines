@@ -83,7 +83,11 @@ class Games::CreateGameRecord < Less::Interaction
       away_steam:             wunder_game.away_steam,
       home_steam:             wunder_game.home_steam,
       home_overall_rating:    wunder_game.home_overall_rating,
-      away_overall_rating:    wunder_game.away_overall_rating
+      away_overall_rating:    wunder_game.away_overall_rating,
+      home_team_logo:         wunder_game.home_team_logo,
+      away_team_logo:         wunder_game.away_team_logo,
+      home_team_abbr:         wunder_game.home_team_abbr,
+      away_team_abbr:         wunder_game.away_team_abbr
     }
     game.update(game_hash)
   end

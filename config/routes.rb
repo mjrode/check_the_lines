@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       get 'refresh'
     end
   end
+  
+  get 'ncaaf', to: 'sports#ncaaf'
+  get 'nfl', to: 'sports#nfl'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,108 @@
+%h1.center-text= sport.upcase
+
+%table.table
+  %thead
+    %tr
+      %th.center-text{:scope => "col"} Teams
+      %th
+      %th.center-text{:scope => "col"} Pick
+      %th.center-text{:scope => "col"} Strength
+      %th.center-text{:scope => "col"} Line
+      %th.center-text{:scope => "col"} Line Difference
+      %th.center-text{:scope => "col"} Best Bet
+      %th.center-text{:scope => "col"} RLM
+      %th.center-text{:scope => "col"} Public Money %
+    %tbody
+    - Game.where(sport: sport, game_over: false).each do |game|
+      - next if game.home_team_abbr.nil?
+      
+      %tr.top-border
+        -# Name 
+        %th.center-text{:scope => "row"}= game.away_team_abbr
+        
+        -# Logo
+        %td.logo= image_tag(game.away_team_logo)
+        
+        -# Team to bet
+        - if game.away_team_name == game.team_to_bet
+          %td.center-text= fa_icon 'check-circle 2x'
+        - else 
+          %td
+          
+        -# Bet strength
+        - if game.away_team_name == game.team_to_bet
+          %td.center-text= game.strength  
+        - else
+          %td
+          
+        -# Line
+        %td.center-text= game.home_team_vegas_line
+        
+        -# Line diff
+        %td.center-text= game.line_diff
+        
+        -# Best bet
+        - if  game.best_bet && game.team_to_bet == game.home_team_name
+          %td.center-text= fa_icon "check 2x"
+        - else
+          %td
+          
+        -# RLM
+        - if game.home_rlm && game.home_rlm.to_i > 0
+          %td.center-text= fa_icon 'balance-scale 2x'
+        -else
+          %td
+          
+        -# Public percentage
+        - if game.home_team_spread_percent.to_f > 50
+          %td.center-text.container
+            .skills.html.round{:style => "--width: #{game.home_team_spread_percent}%;"}= "#{game.home_team_spread_percent}%" 
+        - else
+          %td
+          
+      %tr.bottom-border
+        -# Name
+        %th.center-text{:scope => "row"}= game.home_team_abbr
+        
+        -# Logo
+        %td.logo= image_tag(game.home_team_logo) 
+        
+        -# Team to bet
+        - if game.home_team_name == game.team_to_bet
+          %td.center-text= fa_icon 'check-circle 2x'
+        - else
+          %td
+        
+        -# Bet strength
+        - if game.home_team_name == game.team_to_bet
+          %td.center-text= game.strength
+        - else
+          %td
+          
+        -# Line
+        %td.center-text= game.away_team_vegas_line
+        
+        -# Line diff
+        %td.center-text= game.line_diff
+        
+        -# Best bet
+        - if  game.best_bet && game.team_to_bet == game.away_team_name
+          %td.center-text= fa_icon "check 2x"
+        - else
+          %td
+        
+        -# RLM
+        - if game.away_rlm && game.away_rlm.to_i > 0
+          %td.center-text= fa_icon 'balance-scale 2x'
+        -else
+          %td
+
+        -#  Public percentage 
+        - if game.away_team_spread_percent.to_f > 50
+          %td.center-text.container
+            .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
+        - else
+          %td
+          
+      %tr.table-dark
+        %td.two-em

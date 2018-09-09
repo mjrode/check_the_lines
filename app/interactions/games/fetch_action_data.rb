@@ -64,7 +64,11 @@ class Games::FetchActionData < Less::Interaction
       away_steam:             value_stats(game, 'away', 'Steam'),
       home_steam:             value_stats(game, 'home', 'Steam'),
       home_overall_rating:    value_stats(game, 'home', 'Overall'),
-      away_overall_rating:    value_stats(game, 'away', 'Overall')
+      away_overall_rating:    value_stats(game, 'away', 'Overall'),
+      home_team_logo:         team_logo(game, 'home'),
+      away_team_logo:         team_logo(game, 'away'),
+      home_team_abbr:         team_abbr(game, 'home'),
+      away_team_abbr:         team_abbr(game, 'away')
     }
   end
   
@@ -74,8 +78,6 @@ class Games::FetchActionData < Less::Interaction
   end
   
   def value_stats(game, home_or_away, stat)
-    # NFL games seeme to be locked until after they have been played
-    # return nil if game['value_stats'].nil? || game["value_stats"][0]['label'] == 'LOCKED'
     home_or_away_stats = game["#{home_or_away}_sharpreport"] || game["value_stats"][0]["#{home_or_away}_value_breakdown"]
     stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
     stat.first['value'] if stat.present?
@@ -90,6 +92,19 @@ class Games::FetchActionData < Less::Interaction
     team = game['teams'].select{|team| team['id'] == team_id}
     team.first['full_name']
   end
+  
+  def team_logo(game, home_or_away)
+    team_id = game["#{home_or_away}_team_id"]
+    team = game['teams'].select{|team| team['id'] == team_id}
+    team.first['logo']
+  end
+  
+  def team_abbr(game, home_or_away)
+    team_id = game["#{home_or_away}_team_id"]
+    team = game['teams'].select{|team| team['id'] == team_id}
+    team.first['abbr']
+  end
+
   
   def odds_for_game(game)
     game['odds'].select{|odds| odds['type'] == 'game'}.first

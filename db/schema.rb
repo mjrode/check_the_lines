@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180908174142) do
+ActiveRecord::Schema.define(version: 20180908231736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 20180908174142) do
     t.float    "away_overall_rating"
     t.float    "home_rlm"
     t.float    "away_rlm"
+    t.text     "home_team_logo"
+    t.text     "away_team_logo"
+    t.text     "home_team_abbr"
+    t.text     "away_team_abbr"
   end
 
   create_table "massey_games", force: :cascade do |t|
@@ -131,6 +135,10 @@ ActiveRecord::Schema.define(version: 20180908174142) do
     t.float    "away_overall_rating"
     t.float    "home_rlm"
     t.float    "away_rlm"
+    t.text     "home_team_logo"
+    t.text     "away_team_logo"
+    t.text     "home_team_abbr"
+    t.text     "away_team_abbr"
   end
 
 end
