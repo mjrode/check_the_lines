@@ -2,7 +2,8 @@
   .nav.navbar-nav
     %a.nav-item.navbar-brand
       =link_to "Home", root_path
-    -#%nav-item.nav-link.float-xs-right
-    -#  =link_to "Past Record", old_best_bets_games_path
-    -#%nav-item.nav-link.float-xs-right
-    -#  =link_to "Best Bets", best_bets_games_path
+    %a.nav-item.navbar-brand
+      =link_to "NFL", nfl_path
+    -# %nav-item.nav-link.float-xs-right
+    %nav-item.nav-link.float-xs-right
+      =link_to "NCAAF", ncaaf_path
