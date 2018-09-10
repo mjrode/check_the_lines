@@ -19,13 +19,14 @@ class Games::Calculate < Less::Interaction
   end
 
   def game_params
-    {
+    params = {
       line_diff: line_diff,
       over_under_diff: over_under_diff,
       team_to_bet: find_team_to_bet,
       over_under_pick: pick_over_under,
-      processed: true
     }
+    params[:processed] = true if game.game_over
+    params
   end
 
 	def game_strength
