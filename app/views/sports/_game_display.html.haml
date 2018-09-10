@@ -36,27 +36,27 @@
           %td
           
         -# Line
-        %td.center-text= game.home_team_vegas_line
+        %td.center-text= game.away_team_vegas_line
         
         -# Line diff
         %td.center-text= game.line_diff
         
         -# Best bet
-        - if  game.best_bet && game.team_to_bet == game.home_team_name
+        - if  game.best_bet && game.team_to_bet == game.away_team_name
           %td.center-text= fa_icon "check 2x"
         - else
           %td
           
         -# RLM
-        - if game.home_rlm && game.home_rlm.to_i > 0
+        - if game.away_rlm && game.away_rlm.to_i > 0
           %td.center-text= fa_icon 'balance-scale 2x'
         -else
           %td
           
         -# Public percentage
-        - if game.home_team_spread_percent.to_f > 50
+        - if game.away_team_spread_percent.to_f > 50
           %td.center-text.container
-            .skills.html.round{:style => "--width: #{game.home_team_spread_percent}%;"}= "#{game.home_team_spread_percent}%" 
+            .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%" 
         - else
           %td
           
@@ -80,27 +80,27 @@
           %td
           
         -# Line
-        %td.center-text= game.away_team_vegas_line
+        %td.center-text= game.home_team_vegas_line
         
         -# Line diff
         %td.center-text= game.line_diff
         
         -# Best bet
-        - if  game.best_bet && game.team_to_bet == game.away_team_name
+        - if  game.best_bet && game.team_to_bet == game.home_team_name
           %td.center-text= fa_icon "check 2x"
         - else
           %td
         
         -# RLM
-        - if game.away_rlm && game.away_rlm.to_i > 0
+        - if game.home_rlm && game.home_rlm.to_i > 0
           %td.center-text= fa_icon 'balance-scale 2x'
         -else
           %td
 
         -#  Public percentage 
-        - if game.away_team_spread_percent.to_f > 50
+        - if game.home_team_spread_percent.to_f > 50
           %td.center-text.container
-            .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
+            .skills.html.round{:style => "--width: #{game.home_team_spread_percent}%;"}= "#{game.home_team_spread_percent}%"
         - else
           %td
           
