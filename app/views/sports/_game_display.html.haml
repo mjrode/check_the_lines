@@ -1,5 +1,7 @@
-%h1.center-text= sport.upcase
-
+- if sport == 'nfl'
+  = image_tag 'https://cdn.freebiesupply.com/logos/large/2x/nfl-1-logo-png-transparent.png', class: 'logo-width center'
+- elsif sport == 'cf'
+  = image_tag 'http://www.sportsusamedia.com/wp-content/uploads/2016/09/ncaa-football-logo.jpg', class: 'logo-width-ncaaf center padding-1'
 %table.table
   %thead
     %tr
@@ -40,7 +42,7 @@
         %td.center-text= game.away_team_vegas_line
         
         -# Line diff
-        %td.center-text= game.line_diff
+        %td.center-text{"data-toggle" => "tooltip", :href => "#", :title => "Hooray!"}= game.line_diff
 
         -# Contrarian Pick
         - if game.away_team_spread_percent.to_f < 30
