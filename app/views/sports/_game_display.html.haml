@@ -9,6 +9,7 @@
       %th.center-text{:scope => "col"} Strength
       %th.center-text{:scope => "col"} Line
       %th.center-text{:scope => "col"} Line Difference
+      %th.center-text{:scope => "col"} Contrarian
       %th.center-text{:scope => "col"} Best Bet
       %th.center-text{:scope => "col"} RLM
       %th.center-text{:scope => "col"} Public Money %
@@ -25,7 +26,7 @@
         
         -# Team to bet
         - if game.away_team_name == game.team_to_bet
-          %td.center-text= fa_icon 'check-circle 2x'
+          %td.center-text= fa_icon 'check 2x'
         - else 
           %td
           
@@ -40,10 +41,16 @@
         
         -# Line diff
         %td.center-text= game.line_diff
-        
+
+        -# Contrarian Pick
+        - if game.away_team_spread_percent.to_f < 30
+          %td.center-text= fa_icon 'eye-slash 2x' 
+        - else
+          %td 
+
         -# Best bet
         - if  game.best_bet && game.team_to_bet == game.away_team_name
-          %td.center-text= fa_icon "check 2x"
+          %td.center-text= fa_icon "lock 2x"
         - else
           %td
           
@@ -69,7 +76,7 @@
         
         -# Team to bet
         - if game.home_team_name == game.team_to_bet
-          %td.center-text= fa_icon 'check-circle 2x'
+          %td.center-text= fa_icon 'check 2x'
         - else
           %td
         
@@ -85,9 +92,15 @@
         -# Line diff
         %td.center-text= game.line_diff
         
+        -# Contrarian Pick
+        - if game.home_team_spread_percent.to_f < 30
+          %td.center-text= fa_icon 'eye-slash 2x'
+        - else
+          %td 
+        
         -# Best bet
         - if  game.best_bet && game.team_to_bet == game.home_team_name
-          %td.center-text= fa_icon "check 2x"
+          %td.center-text= fa_icon "lock 2x"
         - else
           %td
         
