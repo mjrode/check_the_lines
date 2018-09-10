@@ -1,5 +1,6 @@
 class Games::FetchActionData < Less::Interaction
   expects :sport
+  expects :week, allow_nil: true
 
   def run
     url = construct_url
@@ -10,8 +11,10 @@ class Games::FetchActionData < Less::Interaction
   private
 
   def construct_url
-    "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
-    # "https://api.actionnetwork.com/web/v1/scoreboard/#{format_sport}&bookIds=15"
+    url = "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
+    url = url + "&week=#{week}" if week
+    puts url
+    url
   end
   
   def format_sport
@@ -38,7 +41,7 @@ class Games::FetchActionData < Less::Interaction
   
   def set_game_hash(game)
     {
-      away_team_name:         team_name(game, 'away'),
+      away_team_name:        team_name(game, 'away')      ,
       away_team_ats_percent:  ats_percent(game, 'away'),
       away_team_ml_percent:   ml_percent(game, 'away'),
       over_percent:           total_percent(game, 'over'),
