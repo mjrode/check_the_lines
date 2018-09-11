@@ -41,7 +41,7 @@ class Games::FetchActionData < Less::Interaction
   
   def set_game_hash(game)
     {
-      away_team_name:        team_name(game, 'away')      ,
+      away_team_name:         team_name(game, 'away')      ,
       away_team_ats_percent:  ats_percent(game, 'away'),
       away_team_ml_percent:   ml_percent(game, 'away'),
       over_percent:           total_percent(game, 'over'),

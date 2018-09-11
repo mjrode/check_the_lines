@@ -45,7 +45,7 @@
         %td.center-text{"data-toggle" => "tooltip", :href => "#", :title => "Hooray!"}= game.line_diff
 
         -# Contrarian Pick
-        - if game.away_team_spread_percent.to_f < 30
+        - if game.away_team_spread_percent.to_f < 35
           %td.center-text= fa_icon 'eye-slash 2x' 
         - else
           %td 
@@ -95,7 +95,7 @@
         %td.center-text= game.line_diff
         
         -# Contrarian Pick
-        - if game.home_team_spread_percent.to_f < 30
+        - if game.home_team_spread_percent.to_f < 35
           %td.center-text= fa_icon 'eye-slash 2x'
         - else
           %td 

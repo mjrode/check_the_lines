@@ -40,11 +40,7 @@ class Games::CalculateMassey < Less::Interaction
   end
 
   def pick_over_under
-    if over_covered
-      "Over"
-    else
-      "Under"
-    end
+    over_covered ? "Over" : "Under"
   end
 
   def over_covered
