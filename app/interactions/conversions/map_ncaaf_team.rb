@@ -25,6 +25,7 @@ class Conversions::MapNcaafTeam < Less::Interaction
      "purdue"=>"purdue boilermakers",
      "wisconsin"=>"wisconsin badgers",
      "connecticut"=>"connecticut huskies",
+     "smu"=>"Southern Methodist Mustangs",
      "syracuse"=>"syracuse orange",
      "utah st."=>"utah state aggies",
      "wake forest"=>"wake forest demon deacons",

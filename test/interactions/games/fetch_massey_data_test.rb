@@ -1,13 +1,13 @@
 require 'test_helper'
 
 
-class Games::FetchMasseyDataTest < ActiveSupport::TestCase
+class Fetch::MasseyTest < ActiveSupport::TestCase
   def setup
   end
 
   test 'Fetches and stores MLB data from Massey' do
    VCR.use_cassette("massey_mlb") do
-     Games::FetchMasseyData.run(sport: "mlb", date: "2017/06/25")
+     Fetch::Massey.run(sport: "mlb", date: "2017/06/25")
    end
 
    game = MasseyGame.where(away_team_name: "Brewers").first
@@ -29,7 +29,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
   test 'Fetches and stores MLB data from current day Massey' do
     VCR.use_cassette("massey_current_mlb") do
-      Games::FetchMasseyData.run(sport: "mlb", date: "2017/06/28")
+      Fetch::Massey.run(sport: "mlb", date: "2017/06/28")
     end
 
    game = MasseyGame.where(away_team_name: "Dodgers").first
@@ -56,7 +56,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
   test "Fetches and sotes NBA data from Massey" do
     VCR.use_cassette("massey_nba") do
-      Games::FetchMasseyData.run(sport: "nba", date: "2017/04/11")
+      Fetch::Massey.run(sport: "nba", date: "2017/04/11")
     end
 
    game = MasseyGame.where(away_team_name: "Charlotte").first
@@ -70,7 +70,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
   test "Fetches and stores CF data from Massey" do
     VCR.use_cassette("massey_cf") do
-      Games::FetchMasseyData.run(sport: "cf", date: "2016/12/20")
+      Fetch::Massey.run(sport: "cf", date: "2016/12/20")
     end
 
    game = MasseyGame.where(away_team_name: "Navy").first
@@ -83,7 +83,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
  test "Fetches and stores NFL data from Massey" do
     VCR.use_cassette("massey_nfl") do
-      Games::FetchMasseyData.run(sport: "nfl", date: "2016/11/06")
+      Fetch::Massey.run(sport: "nfl", date: "2016/11/06")
     end
 
    game = MasseyGame.where(home_team_name: "NY Giants").first
@@ -103,7 +103,7 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
   test "Fetches and stores College Basketball data from Massey" do
     VCR.use_cassette("massey_cb") do
-      Games::FetchMasseyData.run(sport: "cb", date: "2017/03/15")
+      Fetch::Massey.run(sport: "cb", date: "2017/03/15")
     end
 
     game = MasseyGame.where(home_team_name: "Rice").first
@@ -133,14 +133,14 @@ class Games::FetchMasseyDataTest < ActiveSupport::TestCase
 
   test "Skips Massey data where there are no games" do
     VCR.use_cassette("invalid_massey_cf") do
-      Games::FetchMasseyData.run(sport: "cf", date: "2016/11/13")
+      Fetch::Massey.run(sport: "cf", date: "2016/11/13")
     end
     assert MasseyGame.count == 0
   end
 
    test "Skip invalid massey data" do
      VCR.use_cassette("invalid_massey_nfl") do
-       Games::FetchMasseyData.run(sport: "nfl", date: "2015/12/13")
+       Fetch::Massey.run(sport: "nfl", date: "2015/12/13")
      end
      assert MasseyGame.count == 0
    end

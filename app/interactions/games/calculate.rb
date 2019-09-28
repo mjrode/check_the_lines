@@ -11,6 +11,7 @@ class Games::Calculate < Less::Interaction
     game.update(game_params)
     game.update({
       public_percentage_on_massey_team: get_public_percentage_on_massey_team,
+      massey_favors_home_or_away: massey_favors_home_or_away,
       public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
       correct_prediction:  correct_line_prediction?,
@@ -35,6 +36,11 @@ class Games::Calculate < Less::Interaction
 
   def line_diff
     (game.home_team_massey_line - game.home_team_vegas_line).abs
+  end
+
+  def massey_favors_home_or_away
+    return "away" if game.team_to_bet == game.away_team_name
+    "home"
   end
 
   def over_under_diff

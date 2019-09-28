@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class Games::FetchActionDataTest < ActiveSupport::TestCase
+class Fetch::ActionTest < ActiveSupport::TestCase
   def setup
   end
 
   test 'Fetches and stores MLB data from Action for games played' do
     VCR.use_cassette("action_data") do
-      Games::FetchActionData.run(sport: "ncaaf")
+      Fetch::Action.run(sport: "ncaaf")
 
       binding.pry
       game = ActionGame.where(away_team_name: "Washington Nationals").first

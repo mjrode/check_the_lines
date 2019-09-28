@@ -14,14 +14,14 @@ class Games::FetchPastGameData < Less::Interaction
     if sport == "all"
       SPORTS.each do |a_sport|
         date_range.each do |date|
-          Games::FetchMasseyData.run(sport: a_sport, date: date)
-          Games::FetchActionData.run(sport: a_sport, date: date)
+          Fetch::Massey.run(sport: a_sport, date: date)
+          Fetch::Action.run(sport: a_sport, date: date)
         end
       end
     else
       date_range.each do |date|
-        Games::FetchMasseyData.run(sport: sport, date: date)
-        Games::FetchActionData.run(sport: sport, date: date)
+        Fetch::Massey.run(sport: sport, date: date)
+        Fetch::Action.run(sport: sport, date: date)
       end
     end
   end

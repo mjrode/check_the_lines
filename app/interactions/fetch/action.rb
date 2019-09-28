@@ -1,4 +1,4 @@
-class Games::FetchActionData < Less::Interaction
+class Fetch::Action < Less::Interaction
   expects :sport
   expects :week, allow_nil: true
 
@@ -12,7 +12,7 @@ class Games::FetchActionData < Less::Interaction
 
   def construct_url
     url = "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
-    url = url + "&week=#{week}" if week
+    url += "&week=#{week}" if week
     puts 'Actionsports URL:' + url
     url
   end
@@ -32,16 +32,16 @@ class Games::FetchActionData < Less::Interaction
 
   def fetch_and_save_action_data(games)
     games.each do |game|
-     if game['odds']
-       game_hash = set_game_hash(game)
-       save_game(game_hash)
-     end
+      if game['odds']
+        game_hash = set_game_hash(game)
+        save_game(game_hash)
+      end
     end
   end
 
   def set_game_hash(game)
     {
-      away_team_name:         team_name(game, 'away')      ,
+      away_team_name:         team_name(game, 'away'),
       away_team_ats_percent:  ats_percent(game, 'away'),
       away_team_ml_percent:   ml_percent(game, 'away'),
       over_percent:           total_percent(game, 'over'),

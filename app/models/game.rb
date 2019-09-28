@@ -86,7 +86,8 @@ class Game < ActiveRecord::Base
   }
 
   def strength
-    (line_diff * 100 / public_percentage_on_massey_team).round(2) rescue "Wrong"
+    score = (line_diff * 100 / (public_percentage_on_massey_team * 5)).round(1) rescue "Wrong"
+    # score + 1 if self.
   end
 
   def over_under_strength

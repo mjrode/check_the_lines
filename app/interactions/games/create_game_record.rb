@@ -17,6 +17,7 @@ class Games::CreateGameRecord < Less::Interaction
         action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: massey_game.game_date )
         .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
       else
+        binding.pry if home_team_name.include?('south florida')
         action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
         .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
       end

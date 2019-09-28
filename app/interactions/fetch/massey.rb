@@ -1,4 +1,4 @@
-class Games::FetchMasseyData < Less::Interaction
+class Fetch::Massey < Less::Interaction
   expects :sport
 	expects :date
 
