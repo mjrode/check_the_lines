@@ -1,6 +1,6 @@
-class CreateWunderData < ActiveRecord::Migration
+class CreateActionData < ActiveRecord::Migration
   def change
-    create_table :wunder_games do |t|
+    create_table :action_games do |t|
       t.date :game_date
       t.string :sport
       t.string :home_team_name

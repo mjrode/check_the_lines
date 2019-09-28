@@ -1,5 +1,5 @@
-class AddGameOverToWunderGames < ActiveRecord::Migration
+class AddGameOverToActionGames < ActiveRecord::Migration
   def change
-    add_column :wunder_games, :game_over, :boolean
+    add_column :action_games, :game_over, :boolean
   end
 end

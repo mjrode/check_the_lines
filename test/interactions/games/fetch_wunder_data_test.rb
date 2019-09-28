@@ -1,15 +1,15 @@
 require 'test_helper'
 
-class Games::FetchWunderDataTest < ActiveSupport::TestCase
+class Games::FetchActionDataTest < ActiveSupport::TestCase
   def setup
   end
 
-  test 'Fetches and stores MLB data from Wunder for games played' do
-    VCR.use_cassette("wunder_mlb_played") do
-      Games::FetchWunderData.run(sport: "mlb", date: "2017/06/07")
+  test 'Fetches and stores MLB data from Action for games played' do
+    VCR.use_cassette("action_mlb_played") do
+      Games::FetchActionData.run(sport: "mlb", date: "2017/06/07")
     end
 
-    game = WunderGame.where(away_team_name: "Washington Nationals").first
+    game = ActionGame.where(away_team_name: "Washington Nationals").first
     assert game.under_percent == 52
     assert game.over_percent == 48
     assert game.home_team_ml_percent == 62
@@ -24,7 +24,7 @@ class Games::FetchWunderDataTest < ActiveSupport::TestCase
     assert game.away_team_final_score == 1
     assert game.game_over == true
 
-    game2 = WunderGame.where(home_team_name: "Colorado Rockies").first
+    game2 = ActionGame.where(home_team_name: "Colorado Rockies").first
 
     assert game2.game_date.to_s == "2017-06-07"
     assert game2.under_percent == 46
@@ -41,12 +41,12 @@ class Games::FetchWunderDataTest < ActiveSupport::TestCase
     assert game2.vegas_over_under == 11
   end
 
-  test 'Fetches and stores MLB data from Wunder for games not played' do
-    VCR.use_cassette("wunder_mlb") do
-      Games::FetchWunderData.run(sport: "mlb", date: "2017/07/01")
+  test 'Fetches and stores MLB data from Action for games not played' do
+    VCR.use_cassette("action_mlb") do
+      Games::FetchActionData.run(sport: "mlb", date: "2017/07/01")
     end
 
-    game = WunderGame.where(away_team_name: "Chicago Cubs").first
+    game = ActionGame.where(away_team_name: "Chicago Cubs").first
     assert game.under_percent ==  49
     assert game.over_percent ==   51
     assert game.home_team_ml_percent == 31
@@ -60,7 +60,7 @@ class Games::FetchWunderDataTest < ActiveSupport::TestCase
     assert game.home_team_final_score == 0
     assert game.away_team_final_score == 0
 
-    game2 = WunderGame.where(home_team_name: "Chicago White Sox").first
+    game2 = ActionGame.where(home_team_name: "Chicago White Sox").first
 
     assert game2.game_date.to_s == "2017-07-01"
     assert game2.under_percent == 48

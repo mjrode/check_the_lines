@@ -13,8 +13,8 @@ class Games::CalculateMassey < Less::Interaction
 
   def game_params
     {
-        line_diff: line_diff,
-        team_to_bet: find_team_to_bet
+      line_diff: line_diff,
+      team_to_bet: find_team_to_bet
     }
   end
 

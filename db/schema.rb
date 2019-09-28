@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20180908231736) do
     t.string   "team_to_bet"
   end
 
-  create_table "wunder_games", force: :cascade do |t|
+  create_table "action_games", force: :cascade do |t|
     t.date     "game_date"
     t.string   "sport"
     t.string   "home_team_name"

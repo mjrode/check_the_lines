@@ -18,7 +18,8 @@ gem 'draper'
 gem 'mechanize'
 gem 'nokogiri', "1.6.7"
 gem 'watir'
-gem "selenium-webdriver", "~> 2.38.0"
+gem "selenium-webdriver"
+gem 'chromedriver-helper'
 gem 'httparty'
 gem 'capybara'
 gem 'phantomjs'

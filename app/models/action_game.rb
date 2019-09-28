@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: wunder_games
+# Table name: action_games
 #
 #  id                    :integer          not null, primary key
 #  game_date             :date
@@ -26,7 +26,7 @@
 #  game_over             :boolean
 #
 
-class WunderGame < ActiveRecord::Base
+class ActionGame < ActiveRecord::Base
   validates :home_team_ml_percent, presence: true
   validates :away_team_ml_percent, presence: true
   validates :home_team_ats_percent, presence: true

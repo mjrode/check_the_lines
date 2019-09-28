@@ -14,5 +14,4 @@ class Common::FetchJSON < Less::Interaction
     response = auth_token ? authorized.get(url) : HTTP.get(url)
     JSON.parse(response)
   end
-  
 end

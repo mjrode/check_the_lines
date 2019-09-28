@@ -12,7 +12,7 @@ class Games::FetchHtml < Less::Interaction
   private
 
   def fetch_page
-    browser = Watir::Browser.new :phantomjs
+    browser = Watir::Browser.new :chrome
     browser.goto url
     doc = Nokogiri::HTML(browser.html)
     browser.close

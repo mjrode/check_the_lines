@@ -1,4 +1,4 @@
-WunderGame.all.each do |game|
+ActionGame.all.each do |game|
   game.update(processed: false)
 end
 
@@ -16,7 +16,7 @@ end
 
 Games::FetchTodaysData.run
 
- # No Wunder Data for 2016/12/27, cb: Error: undefined method `css' for nil:NilClass
+ # No Action Data for 2016/12/27, cb: Error: undefined method `css' for nil:NilClass
 
 # Total games correct count
 correct = Game.where(best_bet: true, correct_over_under_prediction: true).count + Game.where(best_bet: true, correct_prediction: true).count

@@ -1,5 +1,5 @@
-class AddAttToWunderGames < ActiveRecord::Migration
+class AddAttToActionGames < ActiveRecord::Migration
   def change
-    add_column :wunder_games, :external_id, :integer
+    add_column :action_games, :external_id, :integer
   end
 end

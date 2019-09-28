@@ -13,10 +13,10 @@ class Games::FetchActionData < Less::Interaction
   def construct_url
     url = "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
     url = url + "&week=#{week}" if week
-    puts url
+    puts 'Actionsports URL:' + url
     url
   end
-  
+
   def format_sport
     case sport
     when 'cf'
@@ -38,7 +38,7 @@ class Games::FetchActionData < Less::Interaction
      end
     end
   end
-  
+
   def set_game_hash(game)
     {
       away_team_name:         team_name(game, 'away')      ,
@@ -74,53 +74,53 @@ class Games::FetchActionData < Less::Interaction
       away_team_abbr:         team_abbr(game, 'away')
     }
   end
-  
+
   def save_game(game_hash)
-    game = WunderGame.where(external_id: game_hash[:external_id]).first_or_create
+    game = ActionGame.where(external_id: game_hash[:external_id]).first_or_create
     game.update(game_hash)
   end
-  
+
   def value_stats(game, home_or_away, stat)
     home_or_away_stats = game["#{home_or_away}_sharpreport"] || game["value_stats"][0]["#{home_or_away}_value_breakdown"]
     stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
     stat.first['value'] if stat.present?
   end
-  
+
   def game_over(game)
     game['status'] == 'complete'
   end
-  
+
   def team_name(game, home_or_away)
     team_id = game["#{home_or_away}_team_id"]
     team = game['teams'].select{|team| team['id'] == team_id}
     team.first['full_name']
   end
-  
+
   def team_logo(game, home_or_away)
     team_id = game["#{home_or_away}_team_id"]
     team = game['teams'].select{|team| team['id'] == team_id}
     team.first['logo']
   end
-  
+
   def team_abbr(game, home_or_away)
     team_id = game["#{home_or_away}_team_id"]
     team = game['teams'].select{|team| team['id'] == team_id}
     team.first['abbr']
   end
 
-  
+
   def odds_for_game(game)
     game['odds'].select{|odds| odds['type'] == 'game'}.first
   end
-  
+
   def ats_percent(game, home_or_away)
     odds_for_game(game)["spread_#{home_or_away}_public"]
   end
-  
+
   def ml_percent(game, home_or_away)
     odds_for_game(game)["ml_#{home_or_away}_public"]
   end
-  
+
   def total_percent(game, over_or_under)
     odds_for_game(game)["total_#{over_or_under}_public"]
   end
@@ -128,16 +128,16 @@ class Games::FetchActionData < Less::Interaction
   def vegas_line(game, home_or_away)
     odds_for_game(game)["spread_#{home_or_away}"]
   end
-  
+
   def final_score(game, home_or_away)
     game_over(game) ? game['boxscore']["total_#{home_or_away}_points"] : nil
   end
-  
+
   def num_bets(game)
     odds_for_game(game)['num_bets']
   end
-  
+
   def auth_token
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InU9NzM1ODI2dD0xNTY5NjgzNzI0OTUwIiwidXNlcl9pZCI6NzM1ODI2LCJpc3MiOiJzcG9ydHNBY3Rpb24iLCJhZ2VudCI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzExXzYpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS83Ni4wLjM4MDkuMTMyIFNhZmFyaS81MzcuMzYiLCJpc1Jlc2V0VG9rZW4iOmZhbHNlLCJpc1Nlc3Npb25Ub2tlbiI6ZmFsc2UsInNjb3BlIjpbXSwiZXhwIjoxNjAxMjE5NzI0LCJpYXQiOjE1Njk2ODM3MjR9.KrzLmkZ0Q7enzNqc5kwIXaJoAScRJAIBIjIrLaIw8z4'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InU9NzM1ODI2dD0xNTY5NzAwNTkyODcxIiwidXNlcl9pZCI6NzM1ODI2LCJleHBlcnRfaWQiOm51bGwsImlzcyI6InNwb3J0c0FjdGlvbiIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTRfNSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzc3LjAuMzg2NS45MCBTYWZhcmkvNTM3LjM2IiwiaXNSZXNldFRva2VuIjpmYWxzZSwiaXNTZXNzaW9uVG9rZW4iOmZhbHNlLCJzY29wZSI6W10sImV4cCI6MTYwMTIzNjU5MiwiaWF0IjoxNTY5NzAwNTkyfQ.9L1a7DQzvaPue4bPCxeTFb2I9ueh7l0wowO4zzO5bHc'
   end
 end
