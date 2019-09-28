@@ -18,3 +18,4 @@
 .idea/*
 
 config/initializers/phantomjs_path.rb
+/config/master.key

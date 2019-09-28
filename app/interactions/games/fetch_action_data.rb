@@ -4,7 +4,7 @@ class Games::FetchActionData < Less::Interaction
 
   def run
     url = construct_url
-    games = Common::FetchJSON.run(url: url, auth_token: auth_token)['games']
+    games = Common::FetchJSON.run(url: url, auth_token: Rails.application.credentials.action_sports_token)['games']
     fetch_and_save_action_data(games) if games
   end
 
@@ -135,9 +135,5 @@ class Games::FetchActionData < Less::Interaction
 
   def num_bets(game)
     odds_for_game(game)['num_bets']
-  end
-
-  def auth_token
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InU9NzM1ODI2dD0xNTY5NzAwNTkyODcxIiwidXNlcl9pZCI6NzM1ODI2LCJleHBlcnRfaWQiOm51bGwsImlzcyI6InNwb3J0c0FjdGlvbiIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTRfNSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzc3LjAuMzg2NS45MCBTYWZhcmkvNTM3LjM2IiwiaXNSZXNldFRva2VuIjpmYWxzZSwiaXNTZXNzaW9uVG9rZW4iOmZhbHNlLCJzY29wZSI6W10sImV4cCI6MTYwMTIzNjU5MiwiaWF0IjoxNTY5NzAwNTkyfQ.9L1a7DQzvaPue4bPCxeTFb2I9ueh7l0wowO4zzO5bHc'
   end
 end

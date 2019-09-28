@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
-gem 'pg', "0.20.0"
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'rails', '6.0.0'
+gem 'pg'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jbuilder'
+gem 'sdoc'
 gem 'less_interactions', '~> 0.2.0'
 gem 'kaminari'
 gem 'honeybadger'
@@ -16,7 +16,7 @@ gem 'haml-rails'
 gem 'delayed_job_active_record'
 gem 'draper'
 gem 'mechanize'
-gem 'nokogiri', "1.6.7"
+gem 'nokogiri'
 gem 'watir'
 gem "selenium-webdriver"
 gem 'chromedriver-helper'
@@ -25,7 +25,7 @@ gem 'capybara'
 gem 'phantomjs'
 gem 'pry-rails'
 gem "http"
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap'
 gem 'rails_12factor', group: :production
 gem "font-awesome-rails"
 
@@ -46,6 +46,6 @@ group :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
   gem 'spring'
 end
