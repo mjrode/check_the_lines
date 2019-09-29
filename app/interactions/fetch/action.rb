@@ -1,11 +1,13 @@
 class Fetch::Action < Less::Interaction
   expects :sport
   expects :week, allow_nil: true
+  expects :get_league_info, allow_nil: true
 
   def run
     url = construct_url
-    games = Common::FetchJSON.run(url: url, auth_token: Rails.application.credentials.action_sports_token)['games']
-    fetch_and_save_action_data(games) if games
+    response = Common::FetchJSON.run(url: url, auth_token: Rails.application.credentials.action_sports_token)
+    return league_info(response) if get_league_info
+    fetch_and_save_action_data(response['games']) if response['games']
   end
 
   private
@@ -28,6 +30,10 @@ class Fetch::Action < Less::Interaction
     else
       sport + '?'
     end
+  end
+
+  def league_info(response)
+    response['league']
   end
 
   def fetch_and_save_action_data(games)
@@ -81,7 +87,8 @@ class Fetch::Action < Less::Interaction
   end
 
   def value_stats(game, home_or_away, stat)
-    home_or_away_stats = game["#{home_or_away}_sharpreport"] || game["value_stats"][0]["#{home_or_away}_value_breakdown"]
+    home_or_away_stats = game["#{home_or_away}_sharpreport"] || (game["value_stats"][0]["#{home_or_away}_value_breakdown"] if  game["value_stats"])
+    return nil unless home_or_away_stats
     stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
     stat.first['value'] if stat.present?
   end
