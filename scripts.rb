@@ -12,9 +12,9 @@ end
 
  Games::FetchPastGameData.run(sport: "mlb", start_date: "2017/07/17", end_date: "2017/07/24")
 
- Games::ProcessGames.run
+ Jobs::ProcessAndUpdateGames.run
 
-Games::FetchTodaysData.run
+Jobs::FetchTodaysData.run
 
  # No Action Data for 2016/12/27, cb: Error: undefined method `css' for nil:NilClass
 

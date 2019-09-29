@@ -17,7 +17,7 @@ class NameFormatter
   end
 
   def format_state
-    @team_name = @team_name + '.' if @team_name.include?('St')
+    @team_name = @team_name.gsub('St', 'State') if @team_name.include?('St')
   end
 
   def format_direction
@@ -63,5 +63,9 @@ class NameFormatter
 
   def format_texas_state
     @team_name = "Texas State" if @team_name == "Texas St."
+  end
+
+  def format_smu
+    @team_name = "Southern Methodist Mustangs" if @team_name == "SMU"
   end
 end

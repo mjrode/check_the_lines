@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   def admin; end
 
   def fetch_data
-    Games::FetchTodaysData.run
+    Jobs::FetchTodaysData.run
     redirect_to best_bets_games_path
   end
 end

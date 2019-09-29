@@ -9,7 +9,16 @@ class Games::CreateGameRecord < Less::Interaction
   def process_massey_and_action_data
     # Changing from unprocessed to game_over that way the %'s update throughout the day as the jobs run
 
-    MasseyGame.where("(game_over = false) or processed = false").each do |massey_game|
+    process_all_games = true
+
+    games_to_process =
+      if process_all_games
+        MasseyGame.all
+      else
+        MasseyGame.where("(game_over = false) or processed = false")
+      end
+
+    games_to_process.each do |massey_game|
       next if massey_game.game_date < Date.today && massey_game.processed == true
       home_team_name = format_name(massey_game.home_team_name, massey_game.sport)
       away_team_name = format_name(massey_game.away_team_name, massey_game.sport)
@@ -17,7 +26,6 @@ class Games::CreateGameRecord < Less::Interaction
         action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: massey_game.game_date )
         .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
       else
-        binding.pry if home_team_name.include?('south florida')
         action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
         .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
       end
@@ -33,7 +41,7 @@ class Games::CreateGameRecord < Less::Interaction
   def format_name(name, sport)
     case sport
     when 'cf'
-      Conversions::MapNcaafTeam.run(team_name: name)
+      name
     when 'nfl'
       Conversions::MapNflTeam.run(team_name: name)
     else
@@ -53,6 +61,7 @@ class Games::CreateGameRecord < Less::Interaction
     action_game.update(processed: true)
     massey_game.update(processed: true)
   end
+
 
   def save_or_update_game(game, massey_game, action_game)
     game_hash =

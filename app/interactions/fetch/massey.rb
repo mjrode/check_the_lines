@@ -85,8 +85,8 @@ class Fetch::Massey < Less::Interaction
   def create_instance_variables(game)
     @home_team_massey_line       = get_home_team_massey_line(game).to_f
     @away_team_massey_line       = -get_home_team_massey_line(game).to_f
-    @away_team_name              = NameFormatter.new(game[2][0]).format_name
-    @home_team_name              = NameFormatter.new(game[3][0]).format_name
+    @away_team_name              = format_massey_name(game[2][0])
+    @home_team_name              = format_massey_name(game[3][0])
     @massey_over_under           = game[14][0].to_f
     @external_id                 = game[0][2].split("=")[1].to_i
     @home_team_vegas_line_massey = home_team_vegas_line_massey(game)
@@ -99,6 +99,11 @@ class Fetch::Massey < Less::Interaction
     else
       @time                        = game[1].first
     end
+  end
+
+  def format_massey_name(name)
+    formatted_name = NameFormatter.new(name).format_name
+    Conversions::MapNcaafTeam.run(team_name: formatted_name)
   end
 
   def format_massey_date(game)

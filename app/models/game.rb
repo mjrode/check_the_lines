@@ -86,8 +86,13 @@ class Game < ActiveRecord::Base
   }
 
   def strength
-    score = (line_diff * 100 / (public_percentage_on_massey_team * 5)).round(1) rescue "Wrong"
-    # score + 1 if self.
+    rlm = send("#{massey_favors_home_or_away}_rlm").to_i
+    strength = (line_diff * 100 / (public_percentage_on_massey_team * 5)).round(1) rescue "Wrong"
+    if rlm.to_i > 0
+      puts "Adding #{send("#{massey_favors_home_or_away}_rlm") / 5} points to #{team_to_bet}"
+      strength + send("#{massey_favors_home_or_away}_rlm") / 5
+    end
+    strength
   end
 
   def over_under_strength

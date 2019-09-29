@@ -1,8 +1,8 @@
 class Jobs::ProcessCurrentData < Less::Interaction
 
   def run
-    Games::FetchTodaysData.run  
-    Games::ProcessGames.run
+    Jobs::FetchTodaysData.run
+    Jobs::ProcessAndUpdateGames.run
   end
 
 end

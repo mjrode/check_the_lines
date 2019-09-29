@@ -15,6 +15,9 @@ class Games::Calculate < Less::Interaction
       public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
       correct_prediction:  correct_line_prediction?,
+      best_bet: best_bet?,
+       ou_best_bet: ou_best_bet?
+
       })
     game.update(strength: game_strength)
   end
@@ -41,6 +44,18 @@ class Games::Calculate < Less::Interaction
   def massey_favors_home_or_away
     return "away" if game.team_to_bet == game.away_team_name
     "home"
+  end
+
+  def best_bet?
+    line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
+    public_percentage = BEST_BET_SETTINGS[:public_percentage]
+    (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false rescue false
+  end
+
+  def ou_best_bet?
+    line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
+    public_percentage = BEST_BET_SETTINGS[:public_percentage]
+    (game.over_under_diff >= line_diff && game.public_percentage_massey_over_under <= public_percentage) ? true : false rescue false
   end
 
   def over_under_diff

@@ -2,16 +2,138 @@ class Conversions::MapNcaafTeam < Less::Interaction
 	expects :team_name
 
 	def run
-		get_pregame_name
+		format_name
 	end
 
 	private
 
-	def get_pregame_name
-    teams["#{team_name.downcase}"] || team_name
-	end
+  def format_name
+    downcase_team_names = {}
+    team_name_mapping.each do |k,v|
+      downcase_team_names[k.downcase] = v.downcase
+    end
+    if downcase_team_names["#{team_name.downcase}"]
+      downcase_team_names["#{team_name.downcase}"]
+    else
+      puts "Unable to find mapping for #{team_name}"
+      team_name
+    end
 
-	def teams
+  end
+
+  def team_name_mapping
+    {"Navy"=>"Navy Midshipmen",
+    "Memphis"=>"Memphis Tigers",
+    "Duke"=>"Duke Blue Devils",
+    "Virginia Tech"=>"Virginia Tech Hokies",
+    "Arizona State"=>"Arizona State Sun Devils",
+    "California"=>"California Bears",
+    "Penn State"=>"Penn State Nittany Lions",
+    "Maryland"=>"Maryland Terrapins",
+    "San Jose State"=>"San Jose State Spartans",
+    "Air Force"=>"Air Force Falcons",
+    "Rutgers"=>"Rutgers Scarlet Knights",
+    "Michigan"=>"Michigan Wolverines",
+    "N. Illinois"=>"Northern Illinois Huskies",
+    "Vanderbilt"=>"Vanderbilt Commodores",
+    "Stateanford"=>"Stanford Cardinal",
+    "Oregon State"=>"Oregon State Beavers",
+    "Iowa State"=>"Iowa State Cyclones",
+    "Baylor"=>"Baylor Bears",
+    "Louisiana"=>"Louisiana-Lafayette Ragin' Cajuns",
+    "Ga Southern"=>"Georgia Southern Eagles",
+    "Kentucky"=>"Kentucky Wildcats",
+    "South Carolina"=>"South Carolina Gamecocks",
+    "Texas Tech"=>"Texas Tech Red Raiders",
+    "Oklahoma"=>"Oklahoma Sooners",
+    "Ohio State"=>"Ohio State Buckeyes",
+    "Nebraska"=>"Nebraska Cornhuskers",
+    "Kansas"=>"Kansas Jayhawks",
+    "TCU"=>"TCU Horned Frogs",
+    "Northwestern"=>"Northwestern Wildcats",
+    "Wisconsin"=>"Wisconsin Badgers",
+    "FL Atlantic"=>"Florida Atlantic Owls",
+    "Charlotte"=>"Charlotte 49ers",
+    "SMU"=>"Southern Methodist Mustangs",
+    "South Florida"=>"South Florida Bulls",
+    "Coastal Car"=>"Coastal Carolina Chanticleers",
+    "Appalachian State"=>"Appalachian State Mountaineers",
+    "Central Michigan"=>"Central Michigan Chippewas",
+    "W. Michigan"=>"Western Michigan Broncos",
+    "Delaware"=>"Delaware Fightin Blue Hens",
+    "Pittsburgh"=>"Pittsburgh Panthers",
+    "Holy Cross"=>"Holy Cross Crusaders",
+    "Syracuse"=>"Syracuse Orange",
+    "Indiana"=>"Indiana Hoosiers",
+    "Michigan State"=>"Michigan State Spartans",
+    "Akron"=>"Akron Zips",
+    "Massachusetts"=>"Massachusetts Minutemen",
+    "Houston"=>"Houston Cougars",
+    "North Texas"=>"North Texas Mean Green",
+    "Buffalo"=>"Buffalo Bulls",
+    "Miami (Ohio)"=>"Miami (OH) RedHawks",
+    "Colorado State"=>"Colorado State Rams",
+    "Utah State"=>"Utah State Aggies",
+    "Minnesota"=>"Minnesota Golden Gophers",
+    "Purdue"=>"Purdue Boilermakers",
+    "South Alabama"=>"South Alabama Jaguars",
+    "ULM"=>"Louisiana-Monroe Warhawks",
+    "UAB"=>"UAB Blazers",
+    "WKU"=>"Western Kentucky Hilltoppers",
+    "Kansas State"=> "Kansas State Wildcats",
+    "Oklahoma State"=>"Oklahoma State Cowboys",
+    "Wake Forest"=>"Wake Forest Demon Deacons",
+    "Boston College"=>"Boston College Eagles",
+    "Fresno State"=>"Fresno State Bulldogs",
+    "New Mexico State"=>"New Mexico State Aggies",
+    "MTSU"=>"Middle Tennessee Blue Raiders",
+    "Iowa"=>"Iowa Hawkeyes",
+    "Louisiana Tech"=>"Louisiana Tech Bulldogs",
+    "Rice"=>"Rice Owls",
+    "NC Stateate"=>"North Carolina State Wolfpack",
+    "Florida State"=>"Florida State Seminoles",
+    "Cincinnati"=>"Cincinnati Bearcats",
+    "Marshall"=>"Marshall Thundering Herd",
+    "New Mexico"=>"New Mexico Lobos",
+    "Liberty"=>"Liberty Flames",
+    "Connecticut"=>"Connecticut Huskies",
+    "UCF"=>"UCF Knights",
+    "Virginia"=>"Virginia Cavaliers",
+    "Notre Dame"=>"Notre Dame Fighting Irish",
+    "UNLV"=>"UNLV Rebels",
+    "Wyoming"=>"Wyoming Cowboys",
+    "Clemson"=>"Clemson Tigers",
+    "North Carolina"=>"North Carolina Tar Heels",
+    "Mississippi"=>"Mississippi State Bulldogs",
+    "Alabama"=>"Alabama Crimson Tide",
+    "UCLA"=>"UCLA Bruins",
+    "Arizona"=> "Arizona Wildcats",
+    "Arkansas State"=>"Arkansas State Red Wolves",
+    "Troy"=>"Troy Trojans",
+    "Mississippi State"=>"Mississippi State Bulldogs",
+    "Auburn"=>"Auburn Tigers",
+    "East Carolina"=>"East Carolina Pirates",
+    "Old Dominion"=>"Old Dominion Monarchs",
+    "UTEP"=>"UTEP Miners",
+    "Southern Miss."=>"Southern Miss Golden Eagles",
+    "Georgia Tech"=>"Georgia Tech Yellow Jackets",
+    "Temple"=>"Temple Owls",
+    "Towson"=>"Towson Tigers",
+    "Florida"=>"Florida Gators",
+    "USC"=>"USC Trojans",
+    "Washington"=>"Washington Huskies",
+    "BYU"=>"BYU Cougars",
+    "Toledo"=>"Toledo Rockets",
+    "Hawaii"=>"Hawaii Warriors",
+    "Nevada"=>"Nevada Wolf Pack",
+    "Nicholls State"=>"Nicholls State Colonels",
+    "Texas State"=>"Texas State Bobcats",
+    "Washington State"=>"Washington State Cougars",
+    "Utah"=> "Utah Utes",
+    "Texas A&M"=>"Texas A&M Aggies",
+    "Arkansas"=>"Arkansas Razorbacks"}
+  end
+	def old_team_mapping
     {
      "utah"=>"utah utes",
      "e. michigan"=>"eastern michigan eagles",
