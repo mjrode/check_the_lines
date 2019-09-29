@@ -136,7 +136,10 @@
           %td
 
         -# Correct Pick
-        - if (game.game_over && game.correct_prediction)
-          %td.center-text= fa_icon "check 2x"
+        - if game.game_over
+          - if game.correct_prediction
+            %td.center-text= fa_icon "check 2x"
+          - else
+            %td.center-text= fa_icon "times 2x"
         - else
-          %td.center-text= fa_icon "times 2x"
+          %td.center-text
