@@ -8,7 +8,6 @@ class Fetch::ActionTest < ActiveSupport::TestCase
     VCR.use_cassette("action_data") do
       Fetch::Action.run(sport: "ncaaf")
 
-      binding.pry
       game = ActionGame.where(away_team_name: "Washington Nationals").first
       assert game.under_percent == 52
       assert game.over_percent == 48
