@@ -12,6 +12,7 @@ class Fetch::Massey < Less::Interaction
   private
 
   def construct_url
+    puts "Fetching massey date for #{sport}, on date: #{format_date}"
     "https://www.masseyratings.com/predjson.php?s=#{sport_code}&dt=#{format_date}"
   end
 
@@ -69,7 +70,7 @@ class Fetch::Massey < Less::Interaction
   end
 
   def format_date
-    return "#{date.year}#{date.month}#{date.day}" if date.instance_of?(Date)
+    return date.strftime("%F").gsub("-","") if date.instance_of?(Date)
     date.gsub('/', '')
   end
 
