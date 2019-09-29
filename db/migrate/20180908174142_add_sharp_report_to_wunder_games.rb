@@ -1,4 +1,4 @@
-class AddSharpReportToActionGames < ActiveRecord::Migration
+class AddSharpReportToActionGames < ActiveRecord::Migration[6.0]
   def change
     add_column :action_games, :home_contrarian, :float
     add_column :action_games, :away_contrarian, :float

@@ -1,4 +1,4 @@
-class AddPublicBettingToGames < ActiveRecord::Migration
+class AddPublicBettingToGames < ActiveRecord::Migration[6.0]
   def change
     add_column :games, :home_team_money_percent, :string
     add_column :games, :away_team_money_percent, :string

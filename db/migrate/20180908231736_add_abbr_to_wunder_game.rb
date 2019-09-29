@@ -1,4 +1,4 @@
-class AddAbbrToActionGame < ActiveRecord::Migration
+class AddAbbrToActionGame < ActiveRecord::Migration[6.0]
   def change
     add_column :action_games, :home_team_abbr, :text
     add_column :action_games, :away_team_abbr, :text

@@ -1,4 +1,4 @@
-class CreateActionData < ActiveRecord::Migration
+class CreateActionData < ActiveRecord::Migration[6.0]
   def change
     create_table :action_games do |t|
       t.date :game_date

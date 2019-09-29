@@ -1,4 +1,4 @@
-class CreateMasseyGames < ActiveRecord::Migration
+class CreateMasseyGames < ActiveRecord::Migration[6.0]
   def change
     create_table :massey_games do |t|
       t.float :home_team_massey_line
