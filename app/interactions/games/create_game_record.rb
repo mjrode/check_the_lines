@@ -1,4 +1,5 @@
 class Games::CreateGameRecord < Less::Interaction
+  expects :process_all_games, allow_nil: true
 
   def run
     process_massey_and_action_data
@@ -8,8 +9,6 @@ class Games::CreateGameRecord < Less::Interaction
 
   def process_massey_and_action_data
     # Changing from unprocessed to game_over that way the %'s update throughout the day as the jobs run
-
-    process_all_games = true
 
     games_to_process =
       if process_all_games
