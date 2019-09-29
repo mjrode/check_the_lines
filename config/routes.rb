@@ -14,11 +14,17 @@ Rails.application.routes.draw do
       get 'best_bets'
       get 'old_best_bets'
       get 'old_over_under_best_bets'
-      get 'refresh'
     end
   end
-  
+ resources :sports do
+   collection do
+     get 'ncaaf'
+     get 'refresh'
+   end
+ end
+
   get 'ncaaf', to: 'sports#ncaaf'
+  post 'ncaaf', to: 'sports#ncaaf'
   get 'nfl', to: 'sports#nfl'
 
   # The priority is based upon order of creation: first created -> highest priority.

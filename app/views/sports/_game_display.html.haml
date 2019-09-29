@@ -1,3 +1,8 @@
+= bootstrap_form_tag url: '/ncaaf', method: 'get' do |f|
+  = f.date_select :start_date, input_html: { class: "daterange" }, as: :string
+  = f.select(:game_filter, [['Current', 'not_over'], ["Upcoming", 'upcoming'], ["Today's Games", 'today'], ["Historical", 'game_over'], ['Past Winning Best Bets', :all_correct_spread_best_bets]], selected: @selected_game_filter)
+  = f.submit 'Filter'
+
 - if sport == 'nfl'
   = image_tag 'https://cdn.freebiesupply.com/logos/large/2x/nfl-1-logo-png-transparent.png', class: 'logo-width center'
 - elsif sport == 'cf'
@@ -15,8 +20,9 @@
       %th.center-text{:scope => "col"} Best Bet
       %th.center-text{:scope => "col"} RLM
       %th.center-text{:scope => "col"} Public Money %
+      %th.center-text{:scope => "col"} Correct Pick?
     %tbody
-    - Game.where(sport: sport, game_over: false).order(:time).each do |game|
+    - @games.order(:time).each do |game|
       - next if game.home_team_abbr.nil?
 
       %tr.top-border
@@ -71,6 +77,9 @@
             .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
         - else
           %td
+        -# Correct Pick
+        %td
+
 
       %tr.bottom-border
         -# Name
@@ -127,6 +136,11 @@
         - else
           %td
 
+        -# Correct Pick
+        - if  game.game_over && game.correct_prediction
+          %td.center-text= fa_icon "check 2x"
+        - else
+          %td.center-text= fa_icon "times 2x"
 
       %tr.table-dark
         %td.two-em

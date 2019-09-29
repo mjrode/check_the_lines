@@ -26,6 +26,11 @@ gem 'phantomjs'
 gem 'pry-rails'
 gem "http"
 gem 'bootstrap'
+gem 'bootstrap-daterangepicker-rails', git: 'https://github.com/jordanbrock/bootstrap-daterangepicker-rails.git', branch: 'master'
+gem 'bootstrap-sass'
+gem "bootstrap_form"
+gem 'momentjs-rails'
+gem 'simple_form'
 gem 'rails_12factor', group: :production
 gem "font-awesome-rails"
 
@@ -43,6 +48,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'mocha'
+
 end
 
 group :development do

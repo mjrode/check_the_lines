@@ -1,9 +1,27 @@
-%nav.navbar.navbar-light.bg-faded
-  .nav.navbar-nav
-    %a.nav-item.navbar-brand
-      =link_to "Home", root_path
-    %a.nav-item.navbar-brand
-      =link_to "NFL", nfl_path
-    -# %nav-item.nav-link.float-xs-right
-    %nav-item.nav-link.float-xs-right
-      =link_to "NCAAF", ncaaf_path
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  =link_to "Home",  root_path, class: 'navbar-brand'
+
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.active
+        =link_to ncaaf_path, class: 'nav-link' do
+          Games
+          %span.sr-only (current)
+      %li.nav-item
+      =link_to refresh_sports_path, class: 'nav-link' do
+        Refresh
+        %span.sr-only (current)
+
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Other
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          %a.dropdown-item{:href => "#"} Refresh Data
+          %a.dropdown-item{:href => "#"} NCAA
+          .dropdown-divider
+          %a.dropdown-item{:href => "#"} Something else here
+    -# %form.form-inline.my-2.my-lg-0
+    -#   %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+    -#   %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search

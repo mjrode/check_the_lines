@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rails-ujs
+//= require moment
+//= require daterangepicker
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require moment/fr.js
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
