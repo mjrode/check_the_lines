@@ -51,7 +51,7 @@ class Games::Calculate < Less::Interaction
     # public_percentage = BEST_BET_SETTINGS[:public_percentage]
     # (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false rescue false
     puts "Game: #{game.home_team_name} with strength #{game.strength}"
-    next unless game
+    return nil unless game
     game.strength > 6
   end
 
