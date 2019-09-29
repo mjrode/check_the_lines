@@ -1,12 +1,11 @@
+
 = bootstrap_form_tag url: '/ncaaf', method: 'get' do |f|
-  = f.date_select :start_date, input_html: { class: "daterange" }, as: :string
-  = f.select(:game_filter, [['Current', 'not_over'], ["Upcoming", 'upcoming'], ["Today's Games", 'today'], ["Historical", 'game_over'], ['Past Winning Best Bets', :all_correct_spread_best_bets]], selected: @game_filter)
+  -# = f.date_select :start_date, input_html: { class: "daterange" }, as: :string
+  = f.select(:game_filter, [['Live', 'not_over'], ["Upcoming", 'not_over'], ["Historical", 'game_over'], ['Past Winning Best Bets', :all_correct_spread_best_bets]], selected: @game_filter)
+  = f.select(:sport_filter, [['All', 'all'],['NFL', 'nfl'], ["NCAAF", 'ncaaf']], selected: @sport_filter)
   = f.submit 'Filter'
 
-- if sport == 'nfl'
-  = image_tag 'https://cdn.freebiesupply.com/logos/large/2x/nfl-1-logo-png-transparent.png', class: 'logo-width center'
-- elsif sport == 'cf'
-  = image_tag 'http://www.sportsusamedia.com/wp-content/uploads/2016/09/ncaa-football-logo.jpg', class: 'logo-width-ncaaf center padding-1'
+  = render "game_table_header"
 %table.table
   %thead
     %tr
@@ -141,6 +140,3 @@
           %td.center-text= fa_icon "check 2x"
         - else
           %td.center-text= fa_icon "times 2x"
-
-      %tr.table-dark
-        %td.two-em

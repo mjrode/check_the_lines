@@ -1,9 +1,10 @@
+
 .center.jumbotron.margin-bottom
   %h2= "#{game.away_team_name} @ #{game.home_team_name}"
   -# %h4= "#{game.time}"
   %table.table.table-striped
     %tr
-      %th.center-text Pick  
+      %th.center-text Pick
       %th.center-text Day
       %th.center-text Time
       %th.center-text Is Best Bet?
@@ -12,14 +13,14 @@
       %td= game.date
       %td= game.time
       %td= game.best_bet.to_s.capitalize
-      
+
 
     %tr
       %th.center-text Strength
       %th.center-text Sport
       %th.center-text Line Diff
       %th.center-text= "Public Percentage on #{game.team_to_bet}"
-    %tr  
+    %tr
       %td= "#{(game.line_diff * 100 / game.public_percentage_on_massey_team).round(2)}"
       %td= game.sport
       %td= game.line_diff
@@ -29,25 +30,25 @@
       %th.center-text= "#{game.home_team_name} Contrarian"
       %th.center-text= "#{game.home_team_name} Reverse Line Movement"
       %th.center-text= "#{game.home_team_name} Steam"
-      
+
     %tr
       %td= game.home_overall_rating
       %td= game.home_contrarian
       %td= game.home_rlm
       %td= game.home_steam
-      
+
     %tr
       %th.center-text= "#{game.away_team_name} Overall Rating"
       %th.center-text= "#{game.away_team_name} Contrarian"
       %th.center-text= "#{game.away_team_name} Reverse Line Movement"
       %th.center-text= "#{game.away_team_name} Steam"
-      
+
     %tr
       %td= game.away_overall_rating
       %td= game.away_contrarian
       %td= game.away_rlm
       %td= game.away_steam
-          
+
   -if game.game_over
     %table.table.table-striped
       %tr

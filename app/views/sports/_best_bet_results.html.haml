@@ -1,18 +1,20 @@
-%table.table
-  %thead
-    %tr
-      %th.center-text{:scope => "col"} Total Best Bets
-      %th.center-text{:scope => "col"} Correct Best Bets
-      %th.center-text{:scope => "col"} Winning %
-    %tbody
-      %tr.top-border
-        - @games = Game.all
-        -# Name
-        %th.center-text{:scope => "row"}
-          = @games.best_bets('cf').count
-        %th.center-text{:scope => "row"}
-          = @games.correct_spread_best_bets('cf').count
-        %th.center-text{:scope => "row"}
-          =  (@games.correct_spread_best_bets('cf').count.to_f/ @games.best_bets('cf').count.to_f).round(2)
-      %tr.table-dark
-        %td.two-em
+
+%div.container
+  %div.col-md-6.offset-md-3
+    %h1.center-text Best Bet Results
+    %table.table
+      %thead
+        %tr
+          %th.center-text{:scope => "col"} Total Best Bets
+          %th.center-text{:scope => "col"} Correct Best Bets
+          %th.center-text{:scope => "col"} Winning %
+        %tbody
+          %tr.top-border
+            - @best_bet_games = Game.all
+            -# Name
+            %th.center-text{:scope => "row"}
+              = @best_bet_games.best_bets('cf').count
+            %th.center-text{:scope => "row"}
+              = @best_bet_games.correct_spread_best_bets('cf').count
+            %th.center-text{:scope => "row"}
+              =  (@best_bet_games.correct_spread_best_bets('cf').count.to_f/ @best_bet_games.best_bets('cf').count.to_f).round(2)

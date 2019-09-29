@@ -7,7 +7,8 @@ class Jobs::FetchTodaysData < Less::Interaction
   private
 
   def run_and_import_data
-		date = Date.today.strftime("%F").gsub("-","/")
+    date = Date.today.strftime("%F").gsub("-","/")
+    puts "Sports #{SPORTS}"
     SPORTS.each do |sport|
       puts "running: Fetch::Massey.run(sport: '#{sport}', date: '#{date}')"
 			Fetch::Massey.run(sport: sport, date: date)

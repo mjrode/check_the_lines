@@ -40,8 +40,6 @@
 
 class Game < ActiveRecord::Base
   scope :unprocessed,          -> {where(processed: false)}
-  scope :unplayed,            -> { where("date > ?", Date.today-3) }
-  # TODO: Clean up these scopes.
   scope :game_over,           -> {where(game_over: true)}
   scope :not_over,            -> {where(game_over: false)}
   scope :played,              -> { where("date < ?", Date.today) }
@@ -76,7 +74,6 @@ class Game < ActiveRecord::Base
   scope :all_best_bets,                  -> { where(best_bet: true)}
   scope :ou_best_bets,                   -> (sport) {where(ou_best_bet: true, sport: sport)}
 
-
   scope :incorrect_best_bets, -> {
 	  spread_best_bets.where(game_over: true).where(correct_prediction: false).count
   }
@@ -86,15 +83,11 @@ class Game < ActiveRecord::Base
   }
 
   def strength
+    return nil unless massey_favors_home_or_away
     rlm = send("#{massey_favors_home_or_away}_rlm").to_i
     strength = (line_diff / 3 + (5 / public_percentage_on_massey_team))
-    puts "Starting strength #{strength}"
-    if rlm.to_i > 0
-      puts "Adding #{send("#{massey_favors_home_or_away}_rlm") / 4} points to #{team_to_bet}"
-      strength = strength + send("#{massey_favors_home_or_away}_rlm") / 4
-    end
-    puts "Final strength for #{team_to_bet} is #{strength}"
-    strength
+    strength += (rlm / 4) if rlm.to_i > 0
+    strength.round(2)
   end
 
   def over_under_strength

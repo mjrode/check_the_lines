@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_233916) do
+ActiveRecord::Schema.define(version: 2019_09_29_215124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2019_09_28_233916) do
     t.text "home_team_abbr"
     t.text "away_team_abbr"
     t.string "massey_favors_home_or_away"
+    t.boolean "in_progress"
   end
 
   create_table "massey_games", id: :serial, force: :cascade do |t|

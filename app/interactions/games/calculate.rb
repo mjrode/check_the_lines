@@ -16,8 +16,8 @@ class Games::Calculate < Less::Interaction
       correct_over_under_prediction: correct_over_under_prediction?,
       correct_prediction:  correct_line_prediction?,
       best_bet: best_bet?,
-       ou_best_bet: ou_best_bet?
-
+      ou_best_bet: ou_best_bet?,
+      in_progress: in_progress?
       })
     game.update(strength: game_strength)
   end
@@ -47,10 +47,11 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-    line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
-    public_percentage = BEST_BET_SETTINGS[:public_percentage]
+    # line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
+    # public_percentage = BEST_BET_SETTINGS[:public_percentage]
     # (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false rescue false
     puts "Game: #{game.home_team_name} with strength #{game.strength}"
+    binding.pry unless game
     game.strength > 6
   end
 
@@ -82,6 +83,10 @@ class Games::Calculate < Less::Interaction
     else
       "Under"
     end
+  end
+
+  def in_progress?
+    !(game.time.include?('P.M.') || game.time.include?('A.M.'))
   end
 
   def over_covered
