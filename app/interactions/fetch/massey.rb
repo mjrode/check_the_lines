@@ -98,8 +98,11 @@ class Fetch::Massey < Less::Interaction
       @home_team_final_score       = game[7].first.to_i
       @away_team_final_score       = game[6].first.to_i
     else
-      @time                        = game[1].first
+      @time                        = set_game_time(game)
     end
+  end
+  def set_game_time(game)
+    game_over?(game) ? 'Final' : game[1].first
   end
 
   def format_massey_name(name)
@@ -113,6 +116,6 @@ class Fetch::Massey < Less::Interaction
   end
 
   def game_over?(game)
-    game[1].first.downcase.include?("final") ? true : false
+    game_over = game[1].first.downcase.include?("final") ? true : false
   end
 end

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
  end
 
   get 'ncaaf', to: 'sports#ncaaf'
+  get 'best_bets', to: 'sports#best_bets'
   post 'ncaaf', to: 'sports#ncaaf'
   get 'nfl', to: 'sports#nfl'
 

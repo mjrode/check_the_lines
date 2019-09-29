@@ -33,9 +33,9 @@ class Games::Calculate < Less::Interaction
     params
   end
 
-	def game_strength
-		game.strength
-	end
+  def game_strength
+    game.strength
+  end
 
   def line_diff
     (game.home_team_massey_line - game.home_team_vegas_line).abs
@@ -49,7 +49,9 @@ class Games::Calculate < Less::Interaction
   def best_bet?
     line_diff = game.sport == "mlb" ? BEST_BET_SETTINGS[:baseball_line_diff] : BEST_BET_SETTINGS[:line_diff]
     public_percentage = BEST_BET_SETTINGS[:public_percentage]
-    (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false rescue false
+    # (game.line_diff >= line_diff && game.public_percentage_on_massey_team <= public_percentage) ? true : false rescue false
+    puts "Game: #{game.home_team_name} with strength #{game.strength}"
+    game.strength > 6
   end
 
   def ou_best_bet?

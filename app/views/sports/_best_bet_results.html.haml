@@ -1,0 +1,18 @@
+%table.table
+  %thead
+    %tr
+      %th.center-text{:scope => "col"} Total Best Bets
+      %th.center-text{:scope => "col"} Correct Best Bets
+      %th.center-text{:scope => "col"} Winning %
+    %tbody
+      %tr.top-border
+        - @games = Game.all
+        -# Name
+        %th.center-text{:scope => "row"}
+          = @games.best_bets('cf').count
+        %th.center-text{:scope => "row"}
+          = @games.correct_spread_best_bets('cf').count
+        %th.center-text{:scope => "row"}
+          =  (@games.correct_spread_best_bets('cf').count.to_f/ @games.best_bets('cf').count.to_f).round(2)
+      %tr.table-dark
+        %td.two-em

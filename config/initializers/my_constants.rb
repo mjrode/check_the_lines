@@ -2,7 +2,7 @@
 SPORTS = %w[cf]
 
 BEST_BET_SETTINGS = {
-  public_percentage: 45, line_diff: 3, baseball_line_diff: 1
+  public_percentage: 35, line_diff: 3, baseball_line_diff: 1
 }
 ACTION_BOOKS = [
   {

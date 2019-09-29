@@ -67,7 +67,7 @@ class Game < ActiveRecord::Base
   }
 
   scope :correct_spread_best_bets,       -> (sport) { where(sport: sport, best_bet: true, correct_prediction: true)}
-  scope :all_correct_spread_best_bets,   -> { where(best_bet: true, correct_prediction: true)}
+  scope :all_correct_spread_best_bets,   -> { where(best_bet: true, correct_prediction: true, game_over: true)}
   scope :all_incorrect_spread_best_bets, -> { where(best_bet: true, correct_prediction: false)}
   scope :incorrect_spread_best_bets,     -> (sport) { where(sport: sport, best_bet: true, correct_prediction: false)}
   scope :correct_over_under_best_bets,   -> (sport) { where(sport: sport, best_bet: true, correct_over_under_prediction: true)}
@@ -87,11 +87,13 @@ class Game < ActiveRecord::Base
 
   def strength
     rlm = send("#{massey_favors_home_or_away}_rlm").to_i
-    strength = (line_diff * 100 / (public_percentage_on_massey_team * 5)).round(1) rescue "Wrong"
+    strength = (line_diff / 3 + (5 / public_percentage_on_massey_team))
+    puts "Starting strength #{strength}"
     if rlm.to_i > 0
-      puts "Adding #{send("#{massey_favors_home_or_away}_rlm") / 5} points to #{team_to_bet}"
-      strength + send("#{massey_favors_home_or_away}_rlm") / 5
+      puts "Adding #{send("#{massey_favors_home_or_away}_rlm") / 4} points to #{team_to_bet}"
+      strength = strength + send("#{massey_favors_home_or_away}_rlm") / 4
     end
+    puts "Final strength for #{team_to_bet} is #{strength}"
     strength
   end
 
