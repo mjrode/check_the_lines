@@ -107,7 +107,8 @@ class Fetch::Massey < Less::Interaction
 
   def format_massey_name(name)
     formatted_name = NameFormatter.new(name).format_name
-    Conversions::MapNcaafTeam.run(team_name: formatted_name)
+    Conversions::MapNcaafTeam.run(team_name: formatted_name) if sport == 'cf'
+    Conversions::MapNflTeam.run(team_name: formatted_name) if sport == 'nfl'
   end
 
   def format_massey_date(game)
