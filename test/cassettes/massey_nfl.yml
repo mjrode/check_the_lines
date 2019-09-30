@@ -1,0 +1,148 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.masseyratings.com/predjson.php?dt=20190930&s=nfl
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.masseyratings.com
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 30 Sep 2019 23:15:48 GMT
+      Server:
+      - Apache/2.4.29 (Ubuntu)
+      Cache-Control:
+      - public, max-age=15, s-maxage=10
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: '{"CI":[{"title":"Date","key":"click on date to get detailed game analysis","style":"fdate","sort":393},{"stack":1,"style":"detail"},{"title":"Team","style":"fteam
+        tan","sort":9},{"stack":1},{"title":"Standing","key":"sort by standing to
+        show quality matchups on top","style":"frankrec burly","sort":260},{"stack":1},{"title":"Scr","key":"actual
+        score","style":"fscore greybg","sort":260},{"stack":1},{"title":"Pred","key":"predicted
+        score","style":"fpred","sort":260},{"stack":1},{"title":"Pwin","key":"win
+        probability","style":"fpred","decimals":0,"append":" %","sort":260},{"stack":1,"decimals":0,"append":"
+        %"},{"usediv":1,"title":"Margin","key":"favorite''s median margin of victory","style":"fscore","decimals":1,"sort":260},{"stack":1,"title":"B.Line","key":"Book
+        line","style":"","decimals":1},{"title":"Total","key":"median of total points
+        scored","style":"fscore","decimals":1,"sort":4},{"stack":1,"title":"B.O\/U","key":"Book
+        over\/under","style":"","decimals":1}],"RI":[{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL gstatus1"},{"style":"rcNFL
+        gstatus2"}],"DI":[[["Thu 09.26","","game.php?gid=930336194","738693-4-202000-101"],["<a
+        href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Philadelphia
+        Eagles 34 Green Bay Packers 27 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Philadelphia
+        Eagles 34 Green Bay Packers 27 box score&gsc.page=1\">FINAL<\/a>","red"],["Philadelphia","","team.php?s=308077&t=16156"],["@
+        Green Bay","","team.php?s=308077&t=15469"],["# 17 (2-2)","","",67],["# 8 (3-1)"],[34,"cWin","",34],[27,"white"],[20,"white","",23],[23,"cWin"],[41.8471,"white","",57.2864],[57.2864,"cWin"],[3.5,"ltred","",2.5],[-2.5,"ltgreen","",2.5],[44.5,"ltgreen"],[46.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336195","738696-4-130000-265"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Tennessee
+        Titans 24 Atlanta Falcons 10 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Tennessee
+        Titans 24 Atlanta Falcons 10 box score&gsc.page=1\">FINAL<\/a>","red"],["Tennessee","","team.php?s=308077&t=16578"],["@
+        Atlanta","","team.php?s=308077&t=14859"],["# 15 (2-2)","","",41],["# 25 (1-3)"],[24,"cWin","",24],[10,"white"],[20,"cWin","",20],[20,"white"],[49.9693,"cWin","",49.9693],[49.149,"white"],[-0.5,"ltgreen","",0.5],[-3,"ltred","",0.5],[44.5,"ltgreen"],[46,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336196","738696-4-130000-253"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Cleveland
+        Browns 40 Baltimore Ravens 25 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Cleveland
+        Browns 40 Baltimore Ravens 25 box score&gsc.page=1\">FINAL<\/a>","red"],["Cleveland","","team.php?s=308077&t=15170"],["@
+        Baltimore","","team.php?s=308077&t=14899"],["# 19 (2-2)","","",36],["# 16
+        (2-2)"],[40,"cWin","",40],[25,"white"],[17,"white","",24],[24,"cWin"],[25.708199999999998,"white","",73.56899999999999],[73.56899999999999,"cWin"],[7,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[41.5,"ltgreen"],[45,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336197","738696-4-130000-263"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=New
+        England Patriots 16 Buffalo Bills 10 box score&sa=Search&ref=#gsc.tab=0&gsc.q=New
+        England Patriots 16 Buffalo Bills 10 box score&gsc.page=1\">FINAL<\/a>","red"],["New
+        England","","team.php?s=308077&t=15960"],["@ Buffalo","","team.php?s=308077&t=15020"],["#
+        1 (4-0)","","",108],["# 21 (3-1)"],[16,"cWin","",16],[10,"white"],[24,"cWin","",24],[13,"white"],[81.6951,"cWin","",81.6951],[17.7351,"white"],[-11.5,"ltgreen","",11.5],[7,"ltred","",11.5],[38.5,"ltgreen"],[41.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336198","738696-4-130000-261"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Kansas
+        City Chiefs 34 Detroit Lions 30 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Kansas
+        City Chiefs 34 Detroit Lions 30 box score&gsc.page=1\">FINAL<\/a>","red"],["Kansas
+        City","","team.php?s=308077&t=15645"],["@ Detroit","","team.php?s=308077&t=15284"],["#
+        2 (4-0)","","",158],["# 10 (2-1-1)"],[34,"cWin","",34],[30,"white"],[29,"cWin","",29],[24,"white"],[67.52850000000001,"cWin","",67.52850000000001],[31.672800000000002,"white"],[-5.5,"ltgreen","",5.5],[7,"ltred","",5.5],[54.5,"ltgreen"],[54.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336199","738696-4-130000-251"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Carolina
+        Panthers 16 Houston Texans 10 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Carolina
+        Panthers 16 Houston Texans 10 box score&gsc.page=1\">FINAL<\/a>","red"],["Carolina","","team.php?s=308077&t=15077"],["@
+        Houston","","team.php?s=308077&t=15555"],["# 13 (2-2)","","",62],["# 11 (2-2)"],[16,"cWin","",16],[10,"white"],[20,"white","",23],[23,"cWin"],[35.5298,"white","",63.637],[63.637,"cWin"],[4.5,"ltred","",3.5],[-3.5,"ltgreen","",3.5],[45.5,"ltgreen"],[47.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336200","738696-4-130000-259"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Oakland
+        Raiders 31 Indianapolis Colts 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Oakland
+        Raiders 31 Indianapolis Colts 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Oakland","","team.php?s=308077&t=16061"],["@
+        Indianapolis","","team.php?s=308077&t=15586"],["# 26 (2-2)","","",18],["#
+        22 (2-2)"],[31,"cWin","",31],[24,"white"],[14,"white","",26],[26,"cWin"],[14.4583,"white","",85.03399999999999],[85.03399999999999,"cWin"],[6.5,"ltred","",11.5],[-11.5,"ltgreen","",11.5],[42.5,"ltgreen"],[45.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336201","738696-4-130000-257"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Los
+        Angeles Chargers 30 Miami Dolphins 10 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Los
+        Angeles Chargers 30 Miami Dolphins 10 box score&gsc.page=1\">FINAL<\/a>","red"],["LA
+        Chargers","","team.php?s=308077&t=16361"],["@ Miami","","team.php?s=308077&t=15859"],["#
+        12 (2-2)","","",27],["# 32 (0-4)"],[30,"cWin","",30],[10,"white"],[30,"cWin","",30],[20,"white"],[79.5616,"cWin","",79.5616],[19.834699999999998,"white"],[-9.5,"ltgreen","",9.5],[14.5,"ltred","",9.5],[48.5,"ltgreen"],[44,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336202","738696-4-130000-255"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Washington
+        Redskins 3 New York Giants 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Washington
+        Redskins 3 New York Giants 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Washington","","team.php?s=308077&t=16721"],["@
+        NY Giants","","team.php?s=308077&t=16005"],["# 30 (0-4)","","",30],["# 24
+        (2-2)"],[3,"white","",24],[24,"cWin"],[24,"white","",26],[26,"cWin"],[46.2634,"white","",52.844800000000006],[52.844800000000006,"cWin"],[3,"ltred","",1.5],[-1.5,"ltgreen","",1.5],[49.5,"ltgreen"],[48.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336203","738696-4-160500-269"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Seattle
+        Seahawks 27 Arizona Cardinals 10 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Seattle
+        Seahawks 27 Arizona Cardinals 10 box score&gsc.page=1\">FINAL<\/a>","red"],["Seattle","","team.php?s=308077&t=16417"],["@
+        Arizona","","team.php?s=308077&t=14830"],["# 6 (3-1)","","",46],["# 29 (0-3-1)"],[27,"cWin","",27],[10,"white"],[27,"cWin","",27],[20,"white"],[75.3403,"cWin","",75.3403],[23.9848,"white"],[-7.5,"ltgreen","",7.5],[5.5,"ltred","",7.5],[46.5,"ltgreen"],[48.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336204","738696-4-160500-267"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Tampa
+        Bay Buccaneers 55 Los Angeles Rams 40 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Tampa
+        Bay Buccaneers 55 Los Angeles Rams 40 box score&gsc.page=1\">FINAL<\/a>","red"],["Tampa
+        Bay","","team.php?s=308077&t=16563"],["@ LA Rams","","team.php?s=308077&t=16337"],["#
+        18 (2-2)","","",54],["# 4 (3-1)"],[55,"cWin","",55],[40,"white"],[20,"white","",30],[30,"cWin"],[15.649799999999999,"white","",83.8074],[83.8074,"cWin"],[9,"ltred","",10.5],[-10.5,"ltgreen","",10.5],[50.5,"ltgreen"],[48.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336205","738696-4-162500-271"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Minnesota
+        Vikings 6 Chicago Bears 16 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Minnesota
+        Vikings 6 Chicago Bears 16 box score&gsc.page=1\">FINAL<\/a>","red"],["Minnesota","","team.php?s=308077&t=15893"],["@
+        Chicago","","team.php?s=308077&t=15124"],["# 14 (2-2)","","",93],["# 5 (3-1)"],[6,"white","",16],[16,"cWin"],[17,"white","",20],[20,"cWin"],[41.349599999999995,"white","",57.7477],[57.7477,"cWin"],[1,"ltred","",2.5],[-2.5,"ltgreen","",2.5],[36.5,"ltgreen"],[38,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336206","738696-4-162500-273"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Jacksonville
+        Jaguars 26 Denver Broncos 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Jacksonville
+        Jaguars 26 Denver Broncos 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Jacksonville","","team.php?s=308077&t=15610"],["@
+        Denver","","team.php?s=308077&t=15271"],["# 20 (2-2)","","",33],["# 28 (0-4)"],[26,"cWin","",26],[24,"white"],[17,"cWin","",17],[14,"white"],[58.6469,"cWin","",58.6469],[40.373,"white"],[-3.5,"ltgreen","",3.5],[-2.5,"ltred","",3.5],[30.5,"ltgreen"],[37,"ltred"]],[["Sun
+        09.29","","game.php?gid=930336207","738696-4-202000-275"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Dallas
+        Cowboys 10 New Orleans Saints 12 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Dallas
+        Cowboys 10 New Orleans Saints 12 box score&gsc.page=1\">FINAL<\/a>","red"],["Dallas","","team.php?s=308077&t=15237"],["@
+        New Orleans","","team.php?s=308077&t=15995"],["# 9 (3-1)","","",146],["# 3
+        (3-1)"],[10,"white","",12],[12,"cWin"],[21,"white","",24],[24,"cWin"],[37.5571,"white","",61.59440000000001],[61.59440000000001,"cWin"],[-2.5,"ltred","",3.5],[-3.5,"ltgreen","",3.5],[46.5,"ltgreen"],[47.5,"ltred"]],[["Sun
+        09.29","","game.php?gid=931595125","737696-4-235900-999"],["Final","red"],["Tennessee","","team.php?s=308077&t=16578"],["@
+        Atlanta","","team.php?s=308077&t=14859"],["# 15 (3-2)","","",41],["# 25 (1-4)"],[24,"cWin","",24],[10,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595126","737696-4-235900-999"],["Final","red"],["Cleveland","","team.php?s=308077&t=15170"],["@
+        Baltimore","","team.php?s=308077&t=14899"],["# 19 (3-2)","","",46],["# 16
+        (2-3)"],[40,"cWin","",40],[25,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595127","737696-4-235900-999"],["Final","red"],["New
+        England","","team.php?s=308077&t=15960"],["@ Buffalo","","team.php?s=308077&t=15020"],["#
+        1 (5-0)","","",175],["# 21 (3-2)"],[16,"cWin","",16],[10,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595128","737696-4-235900-999"],["Final","red"],["Kansas
+        City","","team.php?s=308077&t=15645"],["@ Detroit","","team.php?s=308077&t=15284"],["#
+        2 (5-0)","","",179],["# 10 (2-2-1)"],[34,"cWin","",34],[30,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595129","737696-4-235900-999"],["Final","red"],["Carolina","","team.php?s=308077&t=15077"],["@
+        Houston","","team.php?s=308077&t=15555"],["# 13 (3-2)","","",67],["# 11 (2-3)"],[16,"cWin","",16],[10,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595130","737696-4-235900-999"],["Final","red"],["Oakland","","team.php?s=308077&t=16061"],["@
+        Indianapolis","","team.php?s=308077&t=15586"],["# 26 (3-2)","","",33],["#
+        22 (2-3)"],[31,"cWin","",31],[24,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595131","737696-4-235900-999"],["Final","red"],["LA
+        Chargers","","team.php?s=308077&t=16361"],["@ Miami","","team.php?s=308077&t=15859"],["#
+        12 (3-2)","","",41],["# 32 (0-5)"],[30,"cWin","",30],[10,"white"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Sun
+        09.29","","game.php?gid=931595132","737696-4-235900-999"],["Final","red"],["Washington","","team.php?s=308077&t=16721"],["@
+        NY Giants","","team.php?s=308077&t=16005"],["# 30 (0-5)","","",30],["# 24
+        (3-2)"],[3,"white","",24],[24,"cWin"],[0,"cWin","",0],[0,"white"],[0,"cWin","",0],[0,"white"],[-0,"ltgreen","",0],["---","ltred","",0],[0,"ltgreen"],["---","ltred"]],[["Mon
+        09.30","","game.php?gid=930336208","737697-3-201500-277"],["08:15.PM.ET",""],["Cincinnati","","team.php?s=308077&t=15150"],["@
+        Pittsburgh","","team.php?s=308077&t=16188"],["# 27 (0-3)","","",26],["# 23
+        (0-3)"],[0,"white","",0],[0,"white"],[21,"white","",27],[27,"cWin"],[27.313900000000004,"white","",71.93169999999999],[71.93169999999999,"cWin"],[3.5,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[48.5,"ltgreen"],[45,"ltred"]]],"leagues":["NFL"],"basedate":20190930,"dtprev":"20190923","dtnext":"20191001","timestamp":1569885318000}
+
+        '
+    http_version: 
+  recorded_at: Mon, 30 Sep 2019 23:15:49 GMT
+recorded_with: VCR 5.0.0

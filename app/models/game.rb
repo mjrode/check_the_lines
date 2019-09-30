@@ -1,43 +1,3 @@
-# == Schema Information
-#
-# Table name: games
-#
-#  id                                  :integer          not null, primary key
-#  sport                               :string
-#  home_team_name                      :string
-#  away_team_name                      :string
-#  date                                :date
-#  home_team_massey_line               :float
-#  away_team_massey_line               :float
-#  home_team_vegas_line                :float
-#  away_team_vegas_line                :float
-#  vegas_over_under                    :float
-#  best_bet                            :boolean
-#  processed                           :boolean          default(FALSE)
-#  massey_over_under                   :float
-#  created_at                          :datetime         not null
-#  updated_at                          :datetime         not null
-#  line_diff                           :float
-#  over_under_diff                     :float
-#  team_to_bet                         :string
-#  over_under_pick                     :string
-#  home_team_final_score               :integer
-#  away_team_final_score               :integer
-#  home_team_money_percent             :string
-#  away_team_money_percent             :string
-#  home_team_spread_percent            :string
-#  away_team_spread_percent            :string
-#  over_percent                        :string
-#  under_percent                       :string
-#  public_percentage_on_massey_team    :integer
-#  game_over                           :boolean
-#  correct_prediction                  :boolean
-#  correct_over_under_prediction       :boolean
-#  public_percentage_massey_over_under :integer
-#  strength                            :float
-#  ou_best_bet                         :boolean
-#
-
 class Game < ActiveRecord::Base
   scope :unprocessed,          -> {where(processed: false)}
   scope :game_over,           -> {where(game_over: true)}
@@ -63,8 +23,17 @@ class Game < ActiveRecord::Base
     where('line_diff > ?', 3).
     where('public_percentage_massey_over_under < ?', 35)
   }
+  scope :low_public_percentage_and_correct,    -> {
+    where('public_percentage_on_massey_team < ?', 35)
+    where(correct_prediction: true, game_over: true)
+  }
+  scope :low_public_percentage,    -> {
+    where('public_percentage_on_massey_team < ?', 35)
+    where(game_over: true)
+  }
 
   scope :correct_spread_best_bets,       -> (sport) { where(sport: sport, best_bet: true, correct_prediction: true)}
+  scope :all_correct_picks,              -> { where(correct_prediction: true, game_over: true)}
   scope :all_correct_spread_best_bets,   -> { where(best_bet: true, correct_prediction: true, game_over: true)}
   scope :all_incorrect_spread_best_bets, -> { where(best_bet: true, correct_prediction: false)}
   scope :incorrect_spread_best_bets,     -> (sport) { where(sport: sport, best_bet: true, correct_prediction: false)}
@@ -85,14 +54,26 @@ class Game < ActiveRecord::Base
   def strength
     return nil unless massey_favors_home_or_away
     rlm = send("#{massey_favors_home_or_away}_rlm").to_i
-    strength = line_diff / 4
+    rlm_strength = (rlm / 2) if rlm.to_i > 0
+    strength = line_diff / 2
     strength += strength_from_public_percentage
     strength += (rlm / 4) if rlm.to_i > 0
+
+    if strength > 4
+      puts "Strength from rlm of #{rlm} is #{rlm_strength}" if rlm_strength
+
+      puts "Strength from line diff of #{line_diff} is #{strength}"
+
+      puts "Strength from public % of #{public_percentage_on_massey_team} is #{strength_from_public_percentage.round(2)}"
+
+      puts "Correct pick #{correct_prediction}"
+      puts "Final Strength: #{strength.round(2)} \n\n"
+    end
     strength.round(2)
   end
 
   def strength_from_public_percentage
-    public_percentage_on_massey_team > BEST_BET_SETTINGS[:public_percentage] ? 0 : (1.to_f / (public_percentage_on_massey_team.to_f / 60))
+    public_percentage_on_massey_team > BEST_BET_SETTINGS[:public_percentage] ? 0 : (1.to_f / (public_percentage_on_massey_team.to_f / 120))
   end
 
   def over_under_strength

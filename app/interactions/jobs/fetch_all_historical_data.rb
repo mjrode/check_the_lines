@@ -1,8 +1,8 @@
 class Jobs::FetchAllHistoricalData < Less::Interaction
 
   def run
-    run_and_import_data
     calculate_and_update_data
+    run_and_import_data
   end
 
   private

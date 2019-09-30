@@ -24,9 +24,32 @@ describe 'Fetch::Massey' do
       assert_equal game.game_date.to_s, '2019-08-31'
       assert_equal game.external_id, 930073771
       assert_equal game.sport, "ncaaf"
-      assert_equal game.processed, false
       assert_equal game.game_over, true
       assert_equal game.time, 'Final'
+    end
+  end
+
+
+  describe "Fetching NFL data" do
+    it "fetches and stores current data" do
+      VCR.use_cassette("massey_nfl") do
+        Fetch::Massey.run(sport: "nfl", date: '2019/09/30')
+      end
+
+      game = MasseyGame.where(external_id: 930336208).first
+      assert_equal game.home_team_massey_line, -6.5
+      assert_equal game.away_team_massey_line, 6.5
+      assert_equal game.away_team_name, "Cincinnati Bengals"
+      assert_equal game.home_team_name, "Pittsburgh Steelers"
+      assert_equal game.massey_over_under, 48.5
+      assert_equal game.home_team_vegas_line, -3.5
+      assert_equal game.away_team_vegas_line, 3.5
+      assert_equal game.game_date.to_s, '2019-09-30'
+      assert_equal game.external_id, 930336208
+      assert_equal game.sport, "nfl"
+      assert_equal game.processed, false
+      assert_equal game.game_over, false
+      assert_equal game.time, "08:15.PM.ET"
     end
   end
 

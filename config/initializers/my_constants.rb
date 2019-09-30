@@ -1,8 +1,8 @@
 # SPORTS = %w[nfl cb cf mlb nba]
-SPORTS = %w[cf nfl]
+SPORTS = %w[ncaaf nfl]
 
 BEST_BET_SETTINGS = {
-  public_percentage: 35, line_diff: 3, baseball_line_diff: 1
+  public_percentage: 30, line_diff: 3, baseball_line_diff: 1
 }
 ACTION_BOOKS = [
   {

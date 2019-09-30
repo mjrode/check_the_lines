@@ -6,8 +6,8 @@ class Fetch::Action < Less::Interaction
   def run
     url = construct_url
     response = Common::FetchJSON.run(url: url, auth_token: Rails.application.credentials.action_sports_token)
-    @week = week || response['league']['current_week']
     return league_info(response) if get_league_info
+    @week = week || response['league']['current_week']
     fetch_and_save_action_data(response['games']) if response['games']
   end
 
