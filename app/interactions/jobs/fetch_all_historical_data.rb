@@ -11,7 +11,7 @@ class Jobs::FetchAllHistoricalData < Less::Interaction
 
     SPORTS.each do |sport|
       res = Fetch::Action.run(sport: sport, get_league_info: true)
-        # fetch_historical_action_data(res, sport)
+        fetch_historical_action_data(res, sport)
         fetch_historical_massey_data(res, sport)
       end
   end
