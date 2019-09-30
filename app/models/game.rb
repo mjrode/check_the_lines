@@ -85,9 +85,14 @@ class Game < ActiveRecord::Base
   def strength
     return nil unless massey_favors_home_or_away
     rlm = send("#{massey_favors_home_or_away}_rlm").to_i
-    strength = (line_diff / 3 + (5 / public_percentage_on_massey_team))
+    strength = line_diff / 4
+    strength += strength_from_public_percentage
     strength += (rlm / 4) if rlm.to_i > 0
     strength.round(2)
+  end
+
+  def strength_from_public_percentage
+    public_percentage_on_massey_team > BEST_BET_SETTINGS[:public_percentage] ? 0 : (1.to_f / (public_percentage_on_massey_team.to_f / 60))
   end
 
   def over_under_strength

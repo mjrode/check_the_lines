@@ -5,7 +5,7 @@
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      %li.nav-item.active
+      %li.nav-item
         =link_to ncaaf_path, class: 'nav-link' do
           Games
           %span.sr-only (current)
@@ -13,15 +13,20 @@
       =link_to best_bets_path, class: 'nav-link' do
         Best Bets
         %span.sr-only (current)
+      -# %li.nav-item
+      -# =link_to refresh_sports_path, class: 'nav-link' do
+        Refresh
+        -# %span.sr-only (current)
 
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          Other
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          =link_to refresh_sports_path, class: 'dropdown-item' do
-            Refresh
-          =link_to ncaaf_sports_path, class: 'dropdown-item' do
-            Games
-          .dropdown-divider
-          =link_to best_bets_path, class: 'dropdown-item' do
-            Best Bets
+
+      -# %li.nav-item.dropdown
+      -#   %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      -#     Other
+      -#   .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+      -#     =link_to refresh_sports_path, class: 'dropdown-item' do
+      -#       Refresh
+      -#     =link_to ncaaf_sports_path, class: 'dropdown-item' do
+      -#       Games
+      -#     .dropdown-divider
+      -#     =link_to best_bets_path, class: 'dropdown-item' do
+      -#       Best Bets

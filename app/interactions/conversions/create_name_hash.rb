@@ -585,3 +585,32 @@
 
 # binding.pry
 # puts "hi"
+
+# massey = ["Green Bay", "Philadelphia", "Atlanta", "Tennessee", "Baltimore", "Cleveland", "Buffalo", "New England", "Detroit", "Kansas City", "Houston", "Carolina", "Indianapolis", "Oakland", "Miami", "LA Chargers", "NY Giants", "Washington", "Arizona", "Seattle", "LA Rams", "Tampa Bay", "Chicago", "Minnesota", "Denver", "Jacksonville", "New Orleans", "Dallas", "Atlanta", "Tennessee", "Baltimore", "Cleveland", "Buffalo", "New England", "Detroit", "Kansas City", "Houston", "Carolina", "Indianapolis", "Oakland", "Miami", "LA Chargers", "NY Giants", "Washington", "Pittsburgh", "Cincinnati"]
+
+# action = ["Philadelphia Eagles", "Green Bay Packers", "Cleveland Browns", "Baltimore Ravens", "Houston Texans", "Carolina Panthers", "Kansas City Chiefs", "Detroit Lions", "Buffalo Bills", "New England Patriots", "Indianapolis Colts", "Oakland Raiders", "Miami Dolphins", "Los Angeles Chargers", "Tennessee Titans", "Atlanta Falcons", "New York Giants", "Washington Redskins", "Tampa Bay Buccaneers", "Los Angeles Rams", "Arizona Cardinals", "Seattle Seahawks", "Chicago Bears", "Minnesota Vikings", "Jacksonville Jaguars", "Denver Broncos", "Dallas Cowboys", "New Orleans Saints", "Cincinnati Bengals", "Pittsburgh Steelers"]
+
+
+# name_map = {}
+# massey.each do |name|
+#   action_name =
+#     action.select do |action_name|
+#       action_name.downcase.include?(name.downcase)
+#     end
+#   puts action_name
+
+#   name_map[name] = action_name
+# end
+
+# new_name_map = {}
+# name_map.each do |k, v|
+#   value =
+#     if v.empty?
+#       ''
+#     elsif v.size == 1
+#       v.first
+#     else
+#       v
+#     end
+#   new_name_map[k] = value
+# end

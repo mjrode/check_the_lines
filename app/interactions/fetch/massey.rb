@@ -32,7 +32,7 @@ class Fetch::Massey < Less::Interaction
   def fetch_and_save_massey_data(games)
     games.each do |game|
       create_instance_variables(game)
-      # return "Missing valid home team #{game.inspect}" unless home_and_away_valid?(game)
+      return "Missing valid home team #{game.inspect}" unless home_and_away_valid?(game)
       save_game
     end
   end
@@ -101,14 +101,22 @@ class Fetch::Massey < Less::Interaction
       @time                        = set_game_time(game)
     end
   end
+
   def set_game_time(game)
     game_over?(game) ? 'Final' : game[1].first
   end
 
   def format_massey_name(name)
-    formatted_name = NameFormatter.new(name).format_name
-    Conversions::MapNcaafTeam.run(team_name: formatted_name) if sport == 'cf'
-    Conversions::MapNflTeam.run(team_name: formatted_name) if sport == 'nfl'
+    formatted_name =
+      if sport == 'cf'
+        Conversions::MapNcaafTeam.run(team_name: NameFormatter.new(name).format_name)
+      elsif sport == 'nfl'
+        Conversions::MapNflTeam.run(team_name: name)
+      else
+        puts "ERROR: Formatting for #{name} skipped"
+        name
+      end
+    formatted_name
   end
 
   def format_massey_date(game)
