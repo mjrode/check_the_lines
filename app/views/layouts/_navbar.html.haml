@@ -10,18 +10,18 @@
           Games
           %span.sr-only (current)
       %li.nav-item
-      =link_to refresh_sports_path, class: 'nav-link' do
-        Refresh
+      =link_to best_bets_path, class: 'nav-link' do
+        Best Bets
         %span.sr-only (current)
 
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           Other
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          %a.dropdown-item{:href => "#"} Refresh Data
-          %a.dropdown-item{:href => "#"} NCAA
+          =link_to refresh_sports_path, class: 'dropdown-item' do
+            Refresh
+          =link_to ncaaf_sports_path, class: 'dropdown-item' do
+            Games
           .dropdown-divider
-          %a.dropdown-item{:href => "#"} Something else here
-    -# %form.form-inline.my-2.my-lg-0
-    -#   %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-    -#   %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+          =link_to best_bets_path, class: 'dropdown-item' do
+            Best Bets

@@ -1,11 +1,7 @@
 
-= bootstrap_form_tag url: '/ncaaf', method: 'get' do |f|
-  -# = f.date_select :start_date, input_html: { class: "daterange" }, as: :string
-  = f.select(:game_filter, [['Live', 'not_over'], ["Upcoming", 'not_over'], ["Historical", 'game_over'], ['Past Winning Best Bets', :all_correct_spread_best_bets]], selected: @game_filter)
-  = f.select(:sport_filter, [['All', 'all'],['NFL', 'nfl'], ["NCAAF", 'ncaaf']], selected: @sport_filter)
-  = f.submit 'Filter'
 
-  = render "game_table_header"
+= render "game_table_header"
+= render "filter_form"
 %table.table
   %thead
     %tr

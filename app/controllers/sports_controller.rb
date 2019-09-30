@@ -1,11 +1,8 @@
 class SportsController < ApplicationController
-  # before_action :fetch_and_update_game_data
+  before_action :set_filter_params, :select_games_for_display
+
   def ncaaf
     puts "Params -- #{params}"
-    @game_filter = params['game_filter']
-    @sport_filter = params['sport_filter']
-    @games = select_games_for_display
-
   end
 
   def refresh
@@ -22,15 +19,20 @@ class SportsController < ApplicationController
   end
 
   def select_games_for_display
-    games = Game.all
-    return games unless @sport_filter || @game_filter
-    games = games.send(@game_filter) if @game_filter
-    games = games.where(sport: format_sport_for_search(@sport_filter)) if @sport_filter && @sport_filter != 'all'
-    games
+    @games = Game.all
+    return @games unless @sport_filter || @game_filter
+    @games = @games.send(@game_filter) if @game_filter
+    @games = @games.where(sport: format_sport_for_search(@sport_filter)) if @sport_filter && @sport_filter != 'all'
+    @games
   end
 
   def format_sport_for_search(sport)
     sport_search_map = {'ncaaf': 'cf'}
     sport_search_map[sport.to_sym] || sport
+  end
+
+  def set_filter_params
+    @game_filter = params['game_filter']
+    @sport_filter = params['sport_filter']
   end
 end

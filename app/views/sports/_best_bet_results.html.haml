@@ -1,20 +1,41 @@
-
 %div.container
-  %div.col-md-6.offset-md-3
-    %h1.center-text Best Bet Results
-    %table.table
-      %thead
-        %tr
-          %th.center-text{:scope => "col"} Total Best Bets
-          %th.center-text{:scope => "col"} Correct Best Bets
-          %th.center-text{:scope => "col"} Winning %
-        %tbody
-          %tr.top-border
-            - @best_bet_games = Game.all
-            -# Name
-            %th.center-text{:scope => "row"}
-              = @best_bet_games.best_bets('cf').count
-            %th.center-text{:scope => "row"}
-              = @best_bet_games.correct_spread_best_bets('cf').count
-            %th.center-text{:scope => "row"}
-              =  (@best_bet_games.correct_spread_best_bets('cf').count.to_f/ @best_bet_games.best_bets('cf').count.to_f).round(2)
+  %div.jumbotron.mt-5
+    %div.col-6.mx-auto
+      %div.row
+        %h1.text-center.mx-auto Best Bet Results
+        %table.table.mt-3
+          %thead
+            %tr
+              %th.center-text{:scope => "col"} Correct Best Bets
+              %th.center-text{:scope => "col"} Total Best Bets
+              %th.center-text{:scope => "col"} Winning %
+            %tbody
+              %tr.top-border
+                - @best_bet_games = Game.all
+                %th.center-text{:scope => "row"}
+                  = @best_bet_games.correct_spread_best_bets('cf').count
+                %th.center-text{:scope => "row"}
+                  = @best_bet_games.best_bets('cf').count
+                %th.center-text{:scope => "row"}
+                  =  (@best_bet_games.correct_spread_best_bets('cf').count.to_f/ @best_bet_games.best_bets('cf').count.to_f).round(2)
+  %div.col-10.mx-auto
+    %h3 What is CheckTheLines?
+    %p.lead CheckTheLines is a side-project that pulls in different information from across the web to try to predict the correct side for NCAA and NFL football games.
+    %h3.mt-4 What is a <em>Best Bet</em>?
+    %p.lead A bet is classified as a <em>Best Bet</em> based on the calculated strength of the bet
+    %h3.mt-4 How is the bet strength calculated?
+    %p
+    %div
+      %p.list-group.list-group-flush
+        %div.col-4.mx-auto.mt-3.float-left
+          %p.lead.list-group-item.active.rounded-list Public Percentage
+          %p.lead.m-4 Picks that have a smaller percentage of public money are scored higher since it is proved betting against the public is profitable.
+        %div.col-4.mx-auto.mt-3.float-right
+          %p.lead.list-group-item.active.rounded-list Line Discrepancy
+          %p.lead.m-4 Using data from <a href="https://masseyratings.com">MasseyRatings</a> the expected line is compared to the betting line. The larger the discrepancy the stronger the score.
+        %div.col-4.mx-auto.mt-3
+          %p.lead.list-group-item.active.rounded-list Reverse Line Movement
+          %p.lead.m-4 Reverse Line Move indicators are triggered when the betting line moves in the opposite direction of the public betting percentages, which is an excellent indicator of sharp money. The Action Network highlights the RLMs with the most value.
+
+    %h3.mt-4 Open Source
+    %p.lead This is an open source project which is hosted on <a href="https://github.com/mjrode/check_the_lines">GitHub</a>
