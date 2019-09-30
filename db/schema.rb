@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_180209) do
+ActiveRecord::Schema.define(version: 2019_09_30_195334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2019_09_30_180209) do
     t.float "vegas_over_under"
     t.float "home_team_final_score"
     t.float "away_team_final_score"
-    t.datetime "game_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "external_id"

@@ -6,7 +6,7 @@ class Fetch::Action < Less::Interaction
   def run
     url = construct_url
     response = Common::FetchJSON.run(url: url, auth_token: Rails.application.credentials.action_sports_token)
-    @week = response['league']['current_week']
+    @week = week || response['league']['current_week']
     return league_info(response) if get_league_info
     fetch_and_save_action_data(response['games']) if response['games']
   end
@@ -60,7 +60,7 @@ class Fetch::Action < Less::Interaction
       away_team_vegas_line:   vegas_line(game, 'away'),
       vegas_over_under:       odds_for_game(game)['total'],
       sport:                  sport,
-      game_time:              game['start_time'],
+      start_time:             game['start_time'],
       game_date:              Date.parse(game['start_time']),
       external_id:            game['id'],
       away_team_final_score:  final_score(game, 'away'),
@@ -90,9 +90,9 @@ class Fetch::Action < Less::Interaction
 
   def value_stats(game, home_or_away, stat)
     home_or_away_stats = game["#{home_or_away}_sharpreport"] || (game["value_stats"][0]["#{home_or_away}_value_breakdown"] if  game["value_stats"])
-    return nil unless home_or_away_stats
+    return 0 unless home_or_away_stats
     stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
-    stat.first['value'] if stat.present?
+    stat.present? ? stat.first['value'] : 0
   end
 
   def game_over(game)
