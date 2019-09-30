@@ -17,33 +17,22 @@ class Games::CreateGameRecord < Less::Interaction
         MasseyGame.where("(game_over = false) or processed = false")
       end
     games_to_process.each do |massey_game|
-      next if massey_game.game_date < Date.today && massey_game.processed == true && !process_all_games
-      home_team_name = format_name(massey_game.home_team_name, massey_game.sport)
-      away_team_name = format_name(massey_game.away_team_name, massey_game.sport)
-      if massey_game.sport == 'mlb'
-        action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: massey_game.game_date )
-        .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
-      else
-        action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) )
-        .where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
+      if massey_game.game_date < Date.today && massey_game.processed == true && !process_all_games
+        puts "Skipping #{massey_game.home_team_name} because it is too far in the past"
+        next
       end
+
+      home_team_name = massey_game.home_team_name
+      away_team_name = massey_game.away_team_name
+
+        action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
 
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
       next if action_game.nil?
       game = find_or_create_game(massey_game, action_game)
+      puts "Game --------- #{game.home_team_name}"
       save_or_update_game(game, massey_game, action_game)
       mark_massey_and_action_processed(action_game, massey_game) if action_game.game_over
-    end
-  end
-
-  def format_name(name, sport)
-    case sport
-    when 'cf'
-      name
-    when 'nfl'
-      Conversions::MapNflTeam.run(team_name: name)
-    else
-      name
     end
   end
 
@@ -86,8 +75,7 @@ class Games::CreateGameRecord < Less::Interaction
       massey_over_under: massey_game.massey_over_under,
       over_percent: action_game.over_percent,
       under_percent: action_game.under_percent,
-      game_over: massey_game.game_over,
-      # game_over: massey_game.game_over || Date.today > (massey_game.game_date),
+      game_over: action_game.game_over || Date.today > (massey_game.game_date + 1.day),
       home_team_money_percent: action_game.home_team_ml_percent,
       away_team_money_percent: action_game.away_team_ml_percent,
       home_contrarian:        action_game.home_contrarian,
