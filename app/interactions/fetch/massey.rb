@@ -5,8 +5,9 @@ class Fetch::Massey < Less::Interaction
   def run
     url = construct_url
     games = Common::FetchJSON.run(url: url)["DI"]
+    @missing_name_mapping = []
     return "No games found" if games.blank?
-    fetch_and_save_massey_data(games)
+    format_and_save_massey_data(games)
   end
 
   private
@@ -29,16 +30,19 @@ class Fetch::Massey < Less::Interaction
     end
   end
 
-  def fetch_and_save_massey_data(games)
+  def format_and_save_massey_data(games)
     games.each do |game|
       create_instance_variables(game)
-      return "Missing valid home team #{game.inspect}" unless home_and_away_valid?(game)
       save_game
     end
   end
 
   def save_game
-    return "Missing Massey data" if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
+    if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
+      puts "Missing Massey data for #{game_hash[:home_team_name]} VS. #{game_hash[:away_team_name]}"
+      return "Missing Massey data"
+    end
+
     game = MasseyGame.where(external_id: game_hash[:external_id]).first_or_create
     game.update(game_hash)
   end
@@ -65,10 +69,6 @@ class Fetch::Massey < Less::Interaction
     hash
   end
 
-  def home_and_away_valid?(game)
-    game[3][0].include?("@") ? true : false
-  end
-
   def format_date
     return date.strftime("%F").gsub("-","") if date.instance_of?(Date)
     date.gsub('/', '')
@@ -84,6 +84,7 @@ class Fetch::Massey < Less::Interaction
   end
 
   def create_instance_variables(game)
+
     @home_team_massey_line       = get_home_team_massey_line(game).to_f
     @away_team_massey_line       = -get_home_team_massey_line(game).to_f
     @away_team_name              = format_massey_name(game[2][0])
@@ -97,6 +98,7 @@ class Fetch::Massey < Less::Interaction
     if @game_over
       @home_team_final_score       = game[7].first.to_i
       @away_team_final_score       = game[6].first.to_i
+      @time                        = set_game_time(game)
     else
       @time                        = set_game_time(game)
     end
@@ -109,14 +111,18 @@ class Fetch::Massey < Less::Interaction
   def format_massey_name(name)
     formatted_name =
       if sport == 'cf'
-        Conversions::MapNcaafTeam.run(team_name: NameFormatter.new(name).format_name)
+        Conversions::MapNcaafTeam.run(team_name:strip_at(name), missing_name_map: @missing_name_mapping)
       elsif sport == 'nfl'
-        Conversions::MapNflTeam.run(team_name: name.gsub('@','').strip)
+        Conversions::MapNflTeam.run(team_name: strip_at(name))
       else
         puts "ERROR: Formatting for #{name} skipped"
         name
       end
     formatted_name
+  end
+
+  def strip_at(string)
+     string.gsub('@','').strip
   end
 
   def format_massey_date(game)

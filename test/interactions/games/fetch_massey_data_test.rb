@@ -1,31 +1,47 @@
 require 'test_helper'
 
 
-class Fetch::MasseyTest < ActiveSupport::TestCase
+describe 'Fetch::Massey' do
   def setup
   end
 
-  test "Fetches and stores CF data from Massey" do
-    VCR.use_cassette("massey_cf") do
-      Fetch::Massey.run(sport: "cf", date: "2016/12/20")
+  describe "Fetching CFB data" do
+    it "fetches and stores historical data" do
+      VCR.use_cassette("massey_cf") do
+        Fetch::Massey.run(sport: "cf", date: '2019/08/31')
+      end
+
+      game = MasseyGame.where(away_team_name: "Alabama Crimson Tide").first
+      assert_equal game.home_team_massey_line, 21.5
+      assert_equal game.away_team_massey_line, -21.5
+      assert_equal game.away_team_name, "Alabama Crimson Tide"
+      assert_equal game.home_team_name, "Duke Blue Devils"
+      assert_equal game.massey_over_under, 59.5
+      assert_equal game.home_team_vegas_line, 33.5
+      assert_equal game.away_team_vegas_line, -33.5
+      assert_equal game.home_team_final_score, 3.0
+      assert_equal game.away_team_final_score, 42.0
+      assert_equal game.game_date.to_s, '2019-08-31'
+      assert_equal game.external_id, 930073771
+      assert_equal game.sport, "cf"
+      assert_equal game.processed, false
+      assert_equal game.game_over, true
+      assert_equal game.time, 'Final'
+      # assert_equal game.week, nil
+
     end
+  end
 
-   game = MasseyGame.where(away_team_name: "Navy").first
-   assert game.home_team_massey_line == 2.5
-   assert game.away_team_massey_line == -2.5
-   assert game.home_team_vegas_line == -8.0
-   assert game.away_team_vegas_line == 8.0
-   assert game.game_date.to_s == "2016-12-23"
- end
-
-  test "Skips Massey data where there are no games" do
+  it "Skips Massey data where there are no games" do
+    MasseyGame.destroy_all
     VCR.use_cassette("invalid_massey_cf") do
       Fetch::Massey.run(sport: "cf", date: "2016/11/13")
     end
     assert MasseyGame.count == 0
   end
 
-   test "Skip invalid massey data" do
+   it "Skip invalid massey data" do
+     MasseyGame.destroy_all
      VCR.use_cassette("invalid_massey_nfl") do
        Fetch::Massey.run(sport: "nfl", date: "2015/12/13")
      end

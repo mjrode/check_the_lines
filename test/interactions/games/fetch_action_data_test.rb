@@ -41,7 +41,8 @@ describe 'Fetch::Action' do
 
   it 'fetches and stores historical data' do
     VCR.use_cassette("action_data_cfb_historical") do
-      res = Fetch::Action.run(sport: "ncaaf", week: '1')
+      Fetch::Action.run(sport: "ncaaf", week: '1')
+
       game = ActionGame.where(external_id: 68576).first
       assert_equal game.sport, 'ncaaf'
       assert_equal game.start_time, '2019-08-31T19:30:00.000Z'

@@ -1,0 +1,474 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.masseyratings.com/predjson.php?dt=20190831&s=cf&sub=11604
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.masseyratings.com
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 30 Sep 2019 20:16:18 GMT
+      Server:
+      - Apache/2.4.29 (Ubuntu)
+      Cache-Control:
+      - public, max-age=15, s-maxage=10
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: '{"CI":[{"title":"Date","key":"click on date to get detailed game analysis","style":"fdate","sort":393},{"stack":1,"style":"detail"},{"title":"Team","style":"fteam
+        tan","sort":9},{"stack":1},{"title":"Standing","key":"sort by standing to
+        show quality matchups on top","style":"frankrec burly","sort":260},{"stack":1},{"title":"Scr","key":"actual
+        score","style":"fscore greybg","sort":260},{"stack":1},{"title":"Pred","key":"predicted
+        score","style":"fpred","sort":260},{"stack":1},{"title":"Pwin","key":"win
+        probability","style":"fpred","decimals":0,"append":" %","sort":260},{"stack":1,"decimals":0,"append":"
+        %"},{"usediv":1,"title":"Margin","key":"favorite''s median margin of victory","style":"fscore","decimals":1,"sort":260},{"stack":1,"title":"B.Line","key":"Book
+        line","style":"","decimals":1},{"title":"Total","key":"median of total points
+        scored","style":"fscore","decimals":1,"sort":4},{"stack":1,"title":"B.O\/U","key":"Book
+        over\/under","style":"","decimals":1}],"RI":[{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS gstatus1"},{"style":"rcCF:FBS
+        gstatus1"}],"DI":[[["Thu 08.29","","game.php?gid=930347979","738665-4-221500-143"],["<a
+        href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Utah Utes 30 Brigham Young University Cougars 12 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Utah Utes 30 Brigham Young University Cougars 12 box score&gsc.page=1\">FINAL<\/a>","red"],["Utah","","team.php?s=308075&t=8315"],["@
+        BYU","","team.php?s=308075&t=891"],["# 18 (4-1)","","",44],["# 70 (2-3)"],[30,"cWin","",30],[12,"white"],[24,"cWin","",24],[20,"white"],[59.7674,"cWin","",59.7674],[40.232600000000005,"white"],[-3.5,"ltgreen","",3.5],[5,"ltred","",3.5],[44.5,"ltgreen"],[49,"ltred"]],[["Thu
+        08.29","","game.php?gid=930074784","738665-4-190000-221"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Wagner
+        Seahawks 21 University of Connecticut Huskies 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Wagner
+        Seahawks 21 University of Connecticut Huskies 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Wagner","","team.php?s=308075&t=8500"],["@
+        Connecticut","","team.php?s=308075&t=1872"],[" (1-4)","","",6],["# 126 (1-3)"],[21,"white","",24],[24,"cWin"],[27,"white","",45],[45,"cWin"],[12.5359,"white","",87.4641],[87.4641,"cWin"],[24,"ltred","",17.5],[-17.5,"ltgreen","",17.5],[72.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930076564","738665-4-210000-235"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=South
+        Dakota State Jackrabbits 21 University of Minnesota Golden Gophers 28 box
+        score&sa=Search&ref=#gsc.tab=0&gsc.q=South Dakota State Jackrabbits 21 University
+        of Minnesota Golden Gophers 28 box score&gsc.page=1\">FINAL<\/a>","red"],["S
+        Dakota St","","team.php?s=308075&t=7268"],["@ Minnesota","","team.php?s=308075&t=4858"],["
+        (3-1)","","",22],["# 23 (4-0)"],[21,"white","",28],[28,"cWin"],[24,"white","",34],[34,"cWin"],[23.4249,"white","",76.57509999999999],[76.57509999999999,"cWin"],[14,"ltred","",10.5],[-10.5,"ltgreen","",10.5],[60.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930076879","738665-4-220000-237"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Northern
+        Colorado Bears 18 San Jose State Spartans 35 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Northern
+        Colorado Bears 18 San Jose State Spartans 35 box score&gsc.page=1\">FINAL<\/a>","red"],["N
+        Colorado","","team.php?s=308075&t=5625"],["@ San Jose St","","team.php?s=308075&t=7024"],["
+        (1-4)","","",7],["# 106 (2-2)"],[18,"white","",35],[35,"cWin"],[20,"white","",38],[38,"cWin"],[13.3169,"white","",86.6831],[86.6831,"cWin"],[17.5,"ltred","",17.5],[-17.5,"ltgreen","",17.5],[60.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930073795","738665-4-200000-233"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Alabama
+        State Hornets 19 University of Alabama at Birmingham Blazers 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Alabama
+        State Hornets 19 University of Alabama at Birmingham Blazers 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Alabama
+        St","","team.php?s=308075&t=103"],["@ UAB","","team.php?s=308075&t=87"],["
+        (2-2)","","",1],["# 103 (3-1)"],[19,"white","",24],[24,"cWin"],[0,"white","",45],[45,"cWin"],[0.0252,"white","",99.9748],[99.9748,"cWin"],[39,"ltred","",44.5],[-44.5,"ltgreen","",44.5],[48.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930073816","738665-4-190000-219"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Albany
+        NY Great Danes 21 Central Michigan Chippewas 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Albany
+        NY Great Danes 21 Central Michigan Chippewas 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Albany
+        NY","","team.php?s=308075&t=123"],["@ C Michigan","","team.php?s=308075&t=1404"],["
+        (3-2)","","",8],["# 119 (2-3)"],[21,"white","",38],[38,"cWin"],[14,"white","",28],[28,"cWin"],[18.2472,"white","",81.75280000000001],[81.75280000000001,"cWin"],[13.5,"ltred","",13.5],[-13.5,"ltgreen","",13.5],[45.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930075218","738665-4-200000-137"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Florida
+        International Golden Panthers 14 Tulane Green Wave 42 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Florida
+        International Golden Panthers 14 Tulane Green Wave 42 box score&gsc.page=1\">FINAL<\/a>","red"],["Florida
+        Intl","","team.php?s=308075&t=2652"],["@ Tulane","","team.php?s=308075&t=8092"],["#
+        115 (1-3)","","",21],["# 46 (3-1)"],[14,"white","",42],[42,"cWin"],[24,"white","",29],[29,"cWin"],[37.3077,"white","",62.6923],[62.6923,"cWin"],[3,"ltred","",4.5],[-4.5,"ltgreen","",4.5],[55.5,"ltgreen"],[57.5,"ltred"]],[["Thu
+        08.29","","game.php?gid=930074582","738665-4-190000-133"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of California, Los Angeles Bruins 14 Cincinnati Bearcats 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of California, Los Angeles Bruins 14 Cincinnati Bearcats 24 box score&gsc.page=1\">FINAL<\/a>","red"],["UCLA","","team.php?s=308075&t=8141"],["@
+        Cincinnati","","team.php?s=308075&t=1529"],["# 67 (1-4)","","",32],["# 30
+        (3-1)"],[14,"white","",24],[24,"cWin"],[24,"white","",31],[31,"cWin"],[33.4702,"white","",66.5298],[66.5298,"cWin"],[2.5,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[57.5,"ltgreen"],[55.5,"ltred"]],[["Thu
+        08.29","","game.php?gid=930074475","738665-4-193000-231"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Central Arkansas Bears 35 Western Kentucky University Hilltoppers 28 box
+        score&sa=Search&ref=#gsc.tab=0&gsc.q=University of Central Arkansas Bears
+        35 Western Kentucky University Hilltoppers 28 box score&gsc.page=1\">FINAL<\/a>","red"],["Cent
+        Arkansas","","team.php?s=308075&t=1351"],["@ WKU","","team.php?s=308075&t=8761"],["
+        (3-1)","","",10],["# 113 (2-2)"],[35,"cWin","",35],[28,"white"],[21,"white","",31],[31,"cWin"],[24.8268,"white","",75.1732],[75.1732,"cWin"],[10,"ltred","",9.5],[-9.5,"ltgreen","",9.5],[50.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930078363","738665-4-203000-139"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Texas
+        State University Bobcats 7 Texas A&M Aggies 41 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Texas
+        State University Bobcats 7 Texas A&M Aggies 41 box score&gsc.page=1\">FINAL<\/a>","red"],["Texas
+        St","","team.php?s=308075&t=7911"],["@ Texas A&M","","team.php?s=308075&t=7848"],["#
+        108 (2-3)","","",3],["# 31 (3-2)"],[7,"white","",41],[41,"cWin"],[7,"white","",45],[45,"cWin"],[0.5287,"white","",99.4713],[99.4713,"cWin"],[34,"ltred","",37.5],[-37.5,"ltgreen","",37.5],[55.5,"ltgreen"],[56.5,"ltred"]],[["Thu
+        08.29","","game.php?gid=930074236","738665-4-190000-225"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Morgan
+        State Golden Bears 3 Bowling Green State University Falcons 46 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Morgan
+        State Golden Bears 3 Bowling Green State University Falcons 46 box score&gsc.page=1\">FINAL<\/a>","red"],["Morgan
+        St","","team.php?s=308075&t=5114"],["@ Bowling Green","","team.php?s=308075&t=821"],["
+        (0-4)","","",4],["# 127 (1-3)"],[3,"white","",46],[46,"cWin"],[14,"white","",39],[39,"cWin"],[5.9413,"white","",94.0587],[94.0587,"cWin"],[24,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[54.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930347969","738665-4-190000-223"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Robert
+        Morris Colonials 10 SUNY Buffalo Bulls 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Robert
+        Morris Colonials 10 SUNY Buffalo Bulls 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Robert
+        Morris","","team.php?s=308075&t=6588"],["@ Buffalo","","team.php?s=308075&t=979"],["
+        (1-4)","","",1],["# 97 (2-3)"],[10,"white","",38],[38,"cWin"],[7,"white","",52],[52,"cWin"],[0.08099999999999999,"white","",99.919],[99.919,"cWin"],[41,"ltred","",45.5],[-45.5,"ltgreen","",45.5],[64.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930073917","738665-4-220000-141"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Kent
+        State University Golden Flashes 7 Arizona State Sun Devils 30 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Kent
+        State University Golden Flashes 7 Arizona State Sun Devils 30 box score&gsc.page=1\">FINAL<\/a>","red"],["Kent","","team.php?s=308075&t=3771"],["@
+        Arizona St","","team.php?s=308075&t=304"],["# 116 (2-2)","","",7],["# 34 (4-1)"],[7,"white","",30],[30,"cWin"],[17,"white","",41],[41,"cWin"],[6.2143999999999995,"white","",93.7856],[93.7856,"cWin"],[24,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[59.5,"ltgreen"],[61.5,"ltred"]],[["Thu
+        08.29","","game.php?gid=930074529","738665-4-193000-229"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Gardner
+        Webb Runnin'' Bulldogs 28 UNC Charlotte 49ers 49 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Gardner
+        Webb Runnin'' Bulldogs 28 UNC Charlotte 49ers 49 box score&gsc.page=1\">FINAL<\/a>","red"],["Gardner
+        Webb","","team.php?s=308075&t=2825"],["@ Charlotte","","team.php?s=308075&t=8156"],["
+        (1-3)","","",2],["# 118 (2-3)"],[28,"white","",49],[49,"cWin"],[10,"white","",42],[42,"cWin"],[1.6147000000000002,"white","",98.3853],[98.3853,"cWin"],[31.5,"ltred","",32.5],[-32.5,"ltgreen","",32.5],[51.5,"ltgreen"],[0,"ltred"]],[["Thu
+        08.29","","game.php?gid=930347972","738665-4-200000-135"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Georgia
+        Tech Yellow Jackets\/Ramblin'' Wreck 14 Clemson Tigers 52 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Georgia
+        Tech Yellow Jackets\/Ramblin'' Wreck 14 Clemson Tigers 52 box score&gsc.page=1\">FINAL<\/a>","red"],["Georgia
+        Tech","","team.php?s=308075&t=2911"],["@ Clemson","","team.php?s=308075&t=1603"],["#
+        99 (1-3)","","",13],["# 2 (5-0)"],[14,"white","",52],[52,"cWin"],[10,"white","",45],[45,"cWin"],[1.1462999999999999,"white","",98.8537],[98.8537,"cWin"],[36.5,"ltred","",34.5],[-34.5,"ltgreen","",34.5],[56.5,"ltgreen"],[60,"ltred"]],[["Thu
+        08.29","","game.php?gid=930347974","738665-4-193000-227"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Florida
+        A&M Rattlers 0 University of Central Florida Knights 62 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Florida
+        A&M Rattlers 0 University of Central Florida Knights 62 box score&gsc.page=1\">FINAL<\/a>","red"],["Florida
+        A&M","","team.php?s=308075&t=2633"],["@ UCF","","team.php?s=308075&t=1380"],["
+        (3-1)","","",3],["# 16 (4-1)"],[0,"white","",62],[62,"cWin"],[6,"white","",55],[55,"cWin"],[0.0223,"white","",99.9777],[99.9777,"cWin"],[43.5,"ltred","",48.5],[-48.5,"ltgreen","",48.5],[59.5,"ltgreen"],[0,"ltred"]],[["Fri
+        08.30","","game.php?gid=930076344","738666-4-191500-153"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Massachusetts Minutemen 21 Rutgers Scarlet Knights 48 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Massachusetts Minutemen 21 Rutgers Scarlet Knights 48 box score&gsc.page=1\">FINAL<\/a>","red"],["Massachusetts","","team.php?s=308075&t=4548"],["@
+        Rutgers","","team.php?s=308075&t=6696"],["# 129 (1-4)","","",12],["# 109 (1-3)"],[21,"white","",48],[48,"cWin"],[28,"white","",35],[35,"cWin"],[30.0473,"white","",69.95270000000001],[69.95270000000001,"cWin"],[17,"ltred","",7.5],[-7.5,"ltgreen","",7.5],[62.5,"ltgreen"],[54,"ltred"]],[["Fri
+        08.30","","game.php?gid=930074710","738666-4-220000-155"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Colorado Buffalos 52 Colorado State University Rams 31 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Colorado Buffalos 52 Colorado State University Rams 31 box score&gsc.page=1\">FINAL<\/a>","red"],["Colorado","","team.php?s=308075&t=1715"],["Colorado
+        St","","team.php?s=308075&t=1753"],["# 48 (3-1)","","",19],["# 114 (1-4)"],[52,"cWin","",52],[31,"white"],[31,"cWin","",31],[24,"white"],[69.0693,"cWin","",69.0693],[30.9307,"white"],[-7.5,"ltgreen","",7.5],[11,"ltred","",7.5],[58.5,"ltgreen"],[55,"ltred"]],[["Fri
+        08.30","","game.php?gid=930078688","738666-4-200000-147"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Utah
+        State Aggies 35 Wake Forest Demon Deacons 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Utah
+        State Aggies 35 Wake Forest Demon Deacons 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Utah
+        St","","team.php?s=308075&t=8325"],["@ Wake Forest","","team.php?s=308075&t=8508"],["#
+        38 (3-1)","","",50],["# 27 (5-0)"],[35,"white","",38],[38,"cWin"],[35,"white","",36],[36,"cWin"],[48.302499999999995,"white","",51.6975],[51.6975,"cWin"],[4.5,"ltred","",1.5],[-1.5,"ltgreen","",1.5],[72.5,"ltgreen"],[61.5,"ltred"]],[["Fri
+        08.30","","game.php?gid=930073963","738666-4-180000-145"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Rice
+        Owls 7 United States Military Academy Black Knights 14 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Rice
+        Owls 7 United States Military Academy Black Knights 14 box score&gsc.page=1\">FINAL<\/a>","red"],["Rice","","team.php?s=308075&t=6535"],["@
+        Army","","team.php?s=308075&t=356"],["# 121 (0-5)","","",3],["# 49 (3-1)"],[7,"white","",14],[14,"cWin"],[7,"white","",37],[37,"cWin"],[2.2757,"white","",97.7243],[97.7243,"cWin"],[22.5,"ltred","",30.5],[-30.5,"ltgreen","",30.5],[47.5,"ltgreen"],[46.5,"ltred"]],[["Fri
+        08.30","","game.php?gid=930076482","738666-4-190000-151"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Tulsa
+        Golden Hurricane 7 Michigan State University Spartans 28 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Tulsa
+        Golden Hurricane 7 Michigan State University Spartans 28 box score&gsc.page=1\">FINAL<\/a>","red"],["Tulsa","","team.php?s=308075&t=8099"],["@
+        Michigan St","","team.php?s=308075&t=4757"],["# 76 (2-2)","","",12],["# 20
+        (4-1)"],[7,"white","",28],[28,"cWin"],[3,"white","",24],[24,"cWin"],[6.2419,"white","",93.7581],[93.7581,"cWin"],[22.5,"ltred","",21.5],[-21.5,"ltgreen","",21.5],[34.5,"ltgreen"],[47.5,"ltred"]],[["Fri
+        08.30","","game.php?gid=930078090","738666-4-190000-149"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Wisconsin Badgers 49 South Florida Bulls 0 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Wisconsin Badgers 49 South Florida Bulls 0 box score&gsc.page=1\">FINAL<\/a>","red"],["Wisconsin","","team.php?s=308075&t=9031"],["@
+        South Florida","","team.php?s=308075&t=7278"],["# 12 (4-0)","","",22],["#
+        107 (1-3)"],[49,"cWin","",49],[0,"white"],[35,"cWin","",35],[17,"white"],[87.5103,"cWin","",87.5103],[12.4897,"white"],[-18.5,"ltgreen","",18.5],[10,"ltred","",18.5],[55.5,"ltgreen"],[58,"ltred"]],[["Fri
+        08.30","","game.php?gid=930076966","738666-4-213000-157"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Purdue
+        Boilermakers 31 University of Nevada Wolf Pack 34 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Purdue
+        Boilermakers 31 University of Nevada Wolf Pack 34 box score&gsc.page=1\">FINAL<\/a>","red"],["Purdue","","team.php?s=308075&t=6393"],["@
+        Nevada","","team.php?s=308075&t=5316"],["# 72 (1-3)","","",17],["# 82 (3-2)"],[31,"white","",34],[34,"cWin"],[35,"cWin","",35],[27,"white"],[72.8834,"cWin","",72.8834],[27.116600000000002,"white"],[-8.5,"ltgreen","",8.5],[11,"ltred","",8.5],[59.5,"ltgreen"],[57.5,"ltred"]],[["Fri
+        08.30","","game.php?gid=930077340","738666-4-223000-159"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Oklahoma
+        State Cowboys 52 Oregon State Beavers 36 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Oklahoma
+        State Cowboys 52 Oregon State Beavers 36 box score&gsc.page=1\">FINAL<\/a>","red"],["Oklahoma
+        St","","team.php?s=308075&t=5912"],["@ Oregon St","","team.php?s=308075&t=5970"],["#
+        17 (4-1)","","",21],["# 90 (1-3)"],[52,"cWin","",52],[36,"white"],[48,"cWin","",48],[31,"white"],[86.06099999999999,"cWin","",86.06099999999999],[13.938999999999998,"white"],[-16.5,"ltgreen","",16.5],[13.5,"ltred","",16.5],[77.5,"ltgreen"],[74.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075279","738667-4-223000-213"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Fresno
+        State Bulldogs 23 University of Southern California Trojans 31 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Fresno
+        State Bulldogs 23 University of Southern California Trojans 31 box score&gsc.page=1\">FINAL<\/a>","red"],["Fresno
+        St","","team.php?s=308075&t=2776"],["@ USC","","team.php?s=308075&t=8251"],["#
+        47 (2-2)","","",41],["# 29 (3-2)"],[23,"white","",31],[31,"cWin"],[24,"cWin","",24],[20,"white"],[61.8814,"cWin","",61.8814],[38.1186,"white"],[-4.5,"ltgreen","",4.5],[-14,"ltred","",4.5],[44.5,"ltgreen"],[49.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075411","738667-4-200000-291"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Grambling
+        Tigers 9 Louisiana Monroe Warhawks 31 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Grambling
+        Tigers 9 Louisiana Monroe Warhawks 31 box score&gsc.page=1\">FINAL<\/a>","red"],["Grambling","","team.php?s=308075&t=2988"],["@
+        ULM","","team.php?s=308075&t=4200"],[" (0-4)","","",2],["# 94 (2-2)"],[9,"white","",31],[31,"cWin"],[10,"white","",41],[41,"cWin"],[2.0327,"white","",97.9673],[97.9673,"cWin"],[28.5,"ltred","",31.5],[-31.5,"ltgreen","",31.5],[55.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075721","738667-4-190000-281"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Illinois
+        State Redbirds 10 Northern Illinois Huskies 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Illinois
+        State Redbirds 10 Northern Illinois Huskies 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Illinois
+        St","","team.php?s=308075&t=3449"],["@ N Illinois","","team.php?s=308075&t=5634"],["
+        (3-1)","","",13],["# 101 (1-3)"],[10,"white","",24],[24,"cWin"],[17,"white","",24],[24,"cWin"],[34.3994,"white","",65.6006],[65.6006,"cWin"],[6.5,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[42.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077163","738667-4-160000-185"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Northwestern
+        Wildcats 7 Stanford Cardinal 17 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Northwestern
+        Wildcats 7 Stanford Cardinal 17 box score&gsc.page=1\">FINAL<\/a>","red"],["Northwestern","","team.php?s=308075&t=5704"],["@
+        Stanford","","team.php?s=308075&t=7582"],["# 58 (1-3)","","",32],["# 42 (2-3)"],[7,"white","",17],[17,"cWin"],[21,"white","",24],[24,"cWin"],[44.6142,"white","",55.385799999999996],[55.385799999999996,"cWin"],[6.5,"ltred","",2.5],[-2.5,"ltgreen","",2.5],[49.5,"ltgreen"],[46.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073759","738667-4-120000-167"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Akron
+        Zips 3 University of Illinois Illini 42 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Akron
+        Zips 3 University of Illinois Illini 42 box score&gsc.page=1\">FINAL<\/a>","red"],["Akron","","team.php?s=308075&t=66"],["@
+        Illinois","","team.php?s=308075&t=3425"],["# 130 (0-5)","","",10],["# 102
+        (2-2)"],[3,"white","",42],[42,"cWin"],[21,"white","",34],[34,"cWin"],[20.855,"white","",79.145],[79.145,"cWin"],[17.5,"ltred","",12.5],[-12.5,"ltgreen","",12.5],[57.5,"ltgreen"],[60.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075742","738667-4-180000-269"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Incarnate
+        Word Cardinals 7 Texas San Antonio Roadrunners 35 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Incarnate
+        Word Cardinals 7 Texas San Antonio Roadrunners 35 box score&gsc.page=1\">FINAL<\/a>","red"],["Incarnate
+        Word","","team.php?s=308075&t=3473"],["@ UT San Antonio","","team.php?s=308075&t=7900"],["
+        (2-2)","","",11],["# 122 (1-3)"],[7,"white","",35],[35,"cWin"],[24,"white","",31],[31,"cWin"],[32.868399999999994,"white","",67.1316],[67.1316,"cWin"],[7.5,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[58.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077741","738667-4-210000-295"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Weber
+        State Wildcats 0 San Diego State Aztecs 6 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Weber
+        State Wildcats 0 San Diego State Aztecs 6 box score&gsc.page=1\">FINAL<\/a>","red"],["Weber
+        St","","team.php?s=308075&t=8636"],["@ San Diego St","","team.php?s=308075&t=7002"],["
+        (2-2)","","",15],["# 61 (3-1)"],[0,"white","",6],[6,"cWin"],[14,"white","",21],[21,"cWin"],[29.191200000000002,"white","",70.8088],[70.8088,"cWin"],[12,"ltred","",7.5],[-7.5,"ltgreen","",7.5],[35.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930347996","738667-4-190000-299"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Boise
+        State University Broncos 36 Florida State University Seminoles 31 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Boise
+        State University Broncos 36 Florida State University Seminoles 31 box score&gsc.page=1\">FINAL<\/a>","red"],["Boise
+        St","","team.php?s=308075&t=771"],["@ Florida St","","team.php?s=308075&t=2666"],["#
+        22 (4-0)","","",43],["# 60 (3-2)"],[36,"cWin","",36],[31,"white"],[30,"cWin","",30],[26,"white"],[60.57789999999999,"cWin","",60.57789999999999],[39.4221,"white"],[-3.5,"ltgreen","",3.5],[-6.5,"ltred","",3.5],[56.5,"ltgreen"],[55,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074090","738667-4-190000-285"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Stephen
+        F Austin Lumberjacks 17 Baylor Bears 56 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Stephen
+        F Austin Lumberjacks 17 Baylor Bears 56 box score&gsc.page=1\">FINAL<\/a>","red"],["SF
+        Austin","","team.php?s=308075&t=7600"],["@ Baylor","","team.php?s=308075&t=557"],["
+        (1-4)","","",2],["# 43 (4-0)"],[17,"white","",56],[56,"cWin"],[7,"white","",45],[45,"cWin"],[0.4334,"white","",99.56660000000001],[99.56660000000001,"cWin"],[42,"ltred","",38.5],[-38.5,"ltgreen","",38.5],[54.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075377","738667-4-193000-201"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Georgia Bulldogs 30 Vanderbilt Commodores 6 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Georgia Bulldogs 30 Vanderbilt Commodores 6 box score&gsc.page=1\">FINAL<\/a>","red"],["Georgia","","team.php?s=308075&t=2881"],["@
+        Vanderbilt","","team.php?s=308075&t=8367"],["# 4 (4-0)","","",53],["# 79 (1-3)"],[30,"cWin","",30],[6,"white"],[36,"cWin","",36],[21,"white"],[83.48870000000001,"cWin","",83.48870000000001],[16.511300000000002,"white"],[-15.5,"ltgreen","",15.5],[22.5,"ltred","",15.5],[57.5,"ltgreen"],[56.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075835","738667-4-140000-245"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=James
+        Madison University Dukes 13 West Virginia University Mountaineers 20 box score&sa=Search&ref=#gsc.tab=0&gsc.q=James
+        Madison University Dukes 13 West Virginia University Mountaineers 20 box score&gsc.page=1\">FINAL<\/a>","red"],["James
+        Madison","","team.php?s=308075&t=3611"],["@ West Virginia","","team.php?s=308075&t=8716"],["
+        (4-1)","","",8],["# 35 (3-1)"],[13,"white","",20],[20,"cWin"],[17,"white","",41],[41,"cWin"],[7.1576,"white","",92.8424],[92.8424,"cWin"],[7,"ltred","",23.5],[-23.5,"ltgreen","",23.5],[58.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076201","738667-4-200000-209"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Louisiana
+        Tech Bulldogs 14 University of Texas Longhorns 45 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Louisiana
+        Tech Bulldogs 14 University of Texas Longhorns 45 box score&gsc.page=1\">FINAL<\/a>","red"],["Louisiana
+        Tech","","team.php?s=308075&t=4218"],["@ Texas","","team.php?s=308075&t=7840"],["#
+        85 (4-1)","","",13],["# 13 (3-1)"],[14,"white","",45],[45,"cWin"],[10,"white","",35],[35,"cWin"],[5.6613,"white","",94.3387],[94.3387,"cWin"],[19.5,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[47.5,"ltgreen"],[56,"ltred"]],[["Sat
+        08.31","","game.php?gid=930347999","738667-4-180000-189"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Syracuse
+        Orange 24 Liberty Flames 0 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Syracuse
+        Orange 24 Liberty Flames 0 box score&gsc.page=1\">FINAL<\/a>","red"],["Syracuse","","team.php?s=308075&t=7729"],["@
+        Liberty","","team.php?s=308075&t=4076"],["# 44 (3-2)","","",6],["# 105 (3-2)"],[24,"cWin","",24],[0,"white"],[47,"cWin","",47],[21,"white"],[95.1661,"cWin","",95.1661],[4.8339,"white"],[-26.5,"ltgreen","",26.5],[19.5,"ltred","",26.5],[69.5,"ltgreen"],[69.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930348001","738667-4-120000-239"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Howard
+        Bison 0 University of Maryland Terrapins 79 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Howard
+        Bison 0 University of Maryland Terrapins 79 box score&gsc.page=1\">FINAL<\/a>","red"],["Howard","","team.php?s=308075&t=3359"],["@
+        Maryland","","team.php?s=308075&t=4474"],[" (1-4)","","",2],["# 51 (2-2)"],[0,"white","",79],[79,"cWin"],[10,"white","",52],[52,"cWin"],[0.2268,"white","",99.77319999999999],[99.77319999999999,"cWin"],[30,"ltred","",41.5],[-41.5,"ltgreen","",41.5],[63.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073952","738667-4-200000-289"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Arkansas-Pine
+        Bluff Golden Lions 7 Texas Christian University Horned Frogs 39 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Arkansas-Pine
+        Bluff Golden Lions 7 Texas Christian University Horned Frogs 39 box score&gsc.page=1\">FINAL<\/a>","red"],["Ark
+        Pine Bluff","","team.php?s=308075&t=343"],["@ TCU","","team.php?s=308075&t=7878"],["
+        (3-2)","","",2],["# 25 (3-1)"],[7,"white","",39],[39,"cWin"],[0,"white","",54],[54,"cWin"],[0.0007999999999999999,"white","",99.9992],[99.9992,"cWin"],[52.5,"ltred","",54.5],[-54.5,"ltgreen","",54.5],[55.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074215","738667-4-160000-187"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Virginia
+        Tech Hokies\/Gobblers 28 Boston College Eagles 35 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Virginia
+        Tech Hokies\/Gobblers 28 Boston College Eagles 35 box score&gsc.page=1\">FINAL<\/a>","red"],["Virginia
+        Tech","","team.php?s=308075&t=8459"],["@ Boston College","","team.php?s=308075&t=783"],["#
+        84 (2-2)","","",18],["# 75 (3-2)"],[28,"white","",35],[35,"cWin"],[27,"white","",34],[34,"cWin"],[31.3768,"white","",68.6232],[68.6232,"cWin"],[-4,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[60.5,"ltgreen"],[56.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075645","738667-4-200000-293"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Houston
+        Baptist Huskies 34 University of Texas at El Paso Miners 36 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Houston
+        Baptist Huskies 34 University of Texas at El Paso Miners 36 box score&gsc.page=1\">FINAL<\/a>","red"],["Houston
+        Bap","","team.php?s=308075&t=3354"],["@ UTEP","","team.php?s=308075&t=7933"],["
+        (4-1)","","",6],["# 128 (1-3)"],[34,"white","",36],[36,"cWin"],[21,"white","",40],[40,"cWin"],[11.916,"white","",88.08399999999999],[88.08399999999999,"cWin"],[17.5,"ltred","",18.5],[-18.5,"ltgreen","",18.5],[61.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076402","738667-4-120000-175"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Mississippi Rebels 10 Memphis Tigers 15 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Mississippi Rebels 10 Memphis Tigers 15 box score&gsc.page=1\">FINAL<\/a>","red"],["Mississippi","","team.php?s=308075&t=4920"],["@
+        Memphis","","team.php?s=308075&t=4636"],["# 73 (2-3)","","",31],["# 37 (4-0)"],[10,"white","",15],[15,"cWin"],[38,"white","",40],[40,"cWin"],[46.3306,"white","",53.6694],[53.6694,"cWin"],[3.5,"ltred","",2.5],[-2.5,"ltgreen","",2.5],[78.5,"ltgreen"],[64,"ltred"]],[["Sat
+        08.31","","game.php?gid=930348005","738667-4-120000-165"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=East
+        Carolina University Pirates 6 North Carolina State Wolfpack 34 box score&sa=Search&ref=#gsc.tab=0&gsc.q=East
+        Carolina University Pirates 6 North Carolina State Wolfpack 34 box score&gsc.page=1\">FINAL<\/a>","red"],["East
+        Carolina","","team.php?s=308075&t=2292"],["@ NC State","","team.php?s=308075&t=5511"],["#
+        112 (3-2)","","",5],["# 74 (3-2)"],[6,"white","",34],[34,"cWin"],[17,"white","",42],[42,"cWin"],[5.5292,"white","",94.4708],[94.4708,"cWin"],[17.5,"ltred","",25.5],[-25.5,"ltgreen","",25.5],[58.5,"ltgreen"],[51.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073725","738667-4-193000-287"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Abilene
+        Christian Wildcats 31 North Texas MeanGreen\/Eagles 51 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Abilene
+        Christian Wildcats 31 North Texas MeanGreen\/Eagles 51 box score&gsc.page=1\">FINAL<\/a>","red"],["Abilene
+        Chr","","team.php?s=308075&t=18"],["@ North Texas","","team.php?s=308075&t=5584"],["
+        (2-3)","","",6],["# 95 (2-3)"],[31,"white","",51],[51,"cWin"],[17,"white","",38],[38,"cWin"],[9.7203,"white","",90.27969999999999],[90.27969999999999,"cWin"],[22.5,"ltred","",20.5],[-20.5,"ltgreen","",20.5],[56.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075686","738667-4-153000-255"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Idaho Vandals 7 Penn State Nittany Lions 79 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Idaho Vandals 7 Penn State Nittany Lions 79 box score&gsc.page=1\">FINAL<\/a>","red"],["Idaho","","team.php?s=308075&t=3415"],["@
+        Penn St","","team.php?s=308075&t=6114"],[" (2-3)","","",5],["# 8 (4-0)"],[7,"white","",79],[79,"cWin"],[6,"white","",42],[42,"cWin"],[0.7235,"white","",99.2765],[99.2765,"cWin"],[43.5,"ltred","",36.5],[-36.5,"ltgreen","",36.5],[56.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075941","738667-4-120000-171"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Toledo
+        Rockets 24 University of Kentucky Wildcats 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Toledo
+        Rockets 24 University of Kentucky Wildcats 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Toledo","","team.php?s=308075&t=7978"],["@
+        Kentucky","","team.php?s=308075&t=3781"],["# 78 (3-1)","","",10],["# 57 (2-3)"],[24,"white","",38],[38,"cWin"],[17,"white","",38],[38,"cWin"],[10.0522,"white","",89.9478],[89.9478,"cWin"],[9,"ltred","",20.5],[-20.5,"ltgreen","",20.5],[58.5,"ltgreen"],[61,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076470","738667-4-193000-195"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Middle
+        Tennessee State University Blue Raiders 21 University of Michigan Wolverines
+        40 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Middle Tennessee State University
+        Blue Raiders 21 University of Michigan Wolverines 40 box score&gsc.page=1\">FINAL<\/a>","red"],["MTSU","","team.php?s=308075&t=4785"],["@
+        Michigan","","team.php?s=308075&t=4741"],["# 104 (1-3)","","",14],["# 19 (3-1)"],[21,"white","",40],[40,"cWin"],[17,"white","",38],[38,"cWin"],[9.239799999999999,"white","",90.7602],[90.7602,"cWin"],[36,"ltred","",21.5],[-21.5,"ltgreen","",21.5],[55.5,"ltgreen"],[56.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077055","738667-4-190000-275"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Norfolk
+        State Spartans 21 Old Dominion Monarchs 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Norfolk
+        State Spartans 21 Old Dominion Monarchs 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Norfolk
+        St","","team.php?s=308075&t=5475"],["@ Old Dominion","","team.php?s=308075&t=5925"],["
+        (1-4)","","",2],["# 125 (1-3)"],[21,"white","",24],[24,"cWin"],[10,"white","",41],[41,"cWin"],[2.2967,"white","",97.7033],[97.7033,"cWin"],[25.5,"ltred","",30.5],[-30.5,"ltgreen","",30.5],[55.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077479","738667-4-193000-203"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Virginia Cavaliers\/Wahoos 30 Pittsburgh Panthers 14 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Virginia Cavaliers\/Wahoos 30 Pittsburgh Panthers 14 box score&gsc.page=1\">FINAL<\/a>","red"],["Virginia","","team.php?s=308075&t=8432"],["@
+        Pittsburgh","","team.php?s=308075&t=6236"],["# 39 (4-1)","","",39],["# 41
+        (3-2)"],[30,"cWin","",30],[14,"white"],[19,"white","",23],[23,"cWin"],[39.9255,"white","",60.0745],[60.0745,"cWin"],[-2.5,"ltred","",3.5],[-3.5,"ltgreen","",3.5],[42.5,"ltgreen"],[46.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930348007","738667-4-120000-161"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Florida
+        Atlantic Owls 21 Ohio State University Buckeyes 45 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Florida
+        Atlantic Owls 21 Ohio State University Buckeyes 45 box score&gsc.page=1\">FINAL<\/a>","red"],["FL
+        Atlantic","","team.php?s=308075&t=2638"],["@ Ohio St","","team.php?s=308075&t=5850"],["#
+        77 (3-2)","","",30],["# 3 (5-0)"],[21,"white","",45],[45,"cWin"],[21,"white","",45],[45,"cWin"],[5.8961,"white","",94.1039],[94.1039,"cWin"],[27.5,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[69.5,"ltgreen"],[66.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073747","738667-4-153000-259"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Colgate
+        Raiders 7 United States Air Force Academy Falcons 48 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Colgate
+        Raiders 7 United States Air Force Academy Falcons 48 box score&gsc.page=1\">FINAL<\/a>","red"],["Colgate","","team.php?s=308075&t=1675"],["@
+        Air Force","","team.php?s=308075&t=55"],[" (0-5)","","",12],["# 54 (3-1)"],[7,"white","",48],[48,"cWin"],[14,"white","",28],[28,"cWin"],[17.0773,"white","",82.9227],[82.9227,"cWin"],[20.5,"ltred","",14.5],[-14.5,"ltgreen","",14.5],[45.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074298","738667-4-150000-249"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Bucknell
+        Bison 12 Temple Owls 56 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Bucknell
+        Bison 12 Temple Owls 56 box score&gsc.page=1\">FINAL<\/a>","red"],["Bucknell","","team.php?s=308075&t=964"],["@
+        Temple","","team.php?s=308075&t=7788"],[" (0-4)","","",1],["# 69 (3-1)"],[12,"white","",56],[56,"cWin"],[3,"white","",45],[45,"cWin"],[0.1149,"white","",99.88510000000001],[99.88510000000001,"cWin"],[40,"ltred","",42.5],[-42.5,"ltgreen","",42.5],[51.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075152","738667-4-150000-251"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Eastern
+        Washington Eagles 14 University of Washington Huskies 47 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Eastern
+        Washington Eagles 14 University of Washington Huskies 47 box score&gsc.page=1\">FINAL<\/a>","red"],["E
+        Washington","","team.php?s=308075&t=2383"],["@ Washington","","team.php?s=308075&t=8551"],["
+        (2-3)","","",19],["# 10 (4-1)"],[14,"white","",47],[47,"cWin"],[14,"white","",35],[35,"cWin"],[10.612,"white","",89.388],[89.388,"cWin"],[22.5,"ltred","",20.5],[-20.5,"ltgreen","",20.5],[51.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076298","738667-4-183000-271"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Virginia
+        Military Institute Keydets 17 Marshall Thundering Herd 56 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Virginia
+        Military Institute Keydets 17 Marshall Thundering Herd 56 box score&gsc.page=1\">FINAL<\/a>","red"],["VMI","","team.php?s=308075&t=8450"],["@
+        Marshall","","team.php?s=308075&t=4436"],[" (2-3)","","",1],["# 86 (2-2)"],[17,"white","",56],[56,"cWin"],[7,"white","",45],[45,"cWin"],[0.5277,"white","",99.4723],[99.4723,"cWin"],[39.5,"ltred","",38.5],[-38.5,"ltgreen","",38.5],[58.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077078","738667-4-153000-181"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of South Carolina Gamecocks 20 University of North Carolina Tarheels 24 box
+        score&sa=Search&ref=#gsc.tab=0&gsc.q=University of South Carolina Gamecocks
+        20 University of North Carolina Tarheels 24 box score&gsc.page=1\">FINAL<\/a>","red"],["South
+        Carolina","","team.php?s=308075&t=7242"],["North Carolina","","team.php?s=308075&t=5492"],["#
+        53 (2-3)","","",23],["# 56 (2-3)"],[20,"white","",24],[24,"cWin"],[34,"cWin","",34],[24,"white"],[75.2388,"cWin","",75.2388],[24.7612,"white"],[-9.5,"ltgreen","",9.5],[11.5,"ltred","",9.5],[61.5,"ltgreen"],[61,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077285","738667-4-140000-247"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Rhode
+        Island Rams 20 Ohio University Bobcats 41 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Rhode
+        Island Rams 20 Ohio University Bobcats 41 box score&gsc.page=1\">FINAL<\/a>","red"],["Rhode
+        Island","","team.php?s=308075&t=6516"],["@ Ohio","","team.php?s=308075&t=5825"],["
+        (0-4)","","",5],["# 93 (1-3)"],[20,"white","",41],[41,"cWin"],[20,"white","",43],[43,"cWin"],[7.3892,"white","",92.6108],[92.6108,"cWin"],[26,"ltred","",23.5],[-23.5,"ltgreen","",23.5],[64.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930348015","738667-4-160000-263"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Portland
+        State Vikings 13 University of Arkansas Razorbacks 20 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Portland
+        State Vikings 13 University of Arkansas Razorbacks 20 box score&gsc.page=1\">FINAL<\/a>","red"],["Portland
+        St","","team.php?s=308075&t=6302"],["@ Arkansas","","team.php?s=308075&t=316"],["
+        (2-3)","","",5],["# 98 (2-3)"],[13,"white","",20],[20,"cWin"],[20,"white","",42],[42,"cWin"],[8.3101,"white","",91.68990000000001],[91.68990000000001,"cWin"],[30.5,"ltred","",21.5],[-21.5,"ltgreen","",21.5],[59.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076671","738667-4-190000-277"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Monmouth
+        NJ Hawks 13 Western Michigan Broncos 48 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Monmouth
+        NJ Hawks 13 Western Michigan Broncos 48 box score&gsc.page=1\">FINAL<\/a>","red"],["Monmouth
+        NJ","","team.php?s=308075&t=5023"],["@ W Michigan","","team.php?s=308075&t=8767"],["
+        (2-2)","","",5],["# 92 (3-2)"],[13,"white","",48],[48,"cWin"],[26,"white","",47],[47,"cWin"],[8.7671,"white","",91.2329],[91.2329,"cWin"],[26.5,"ltred","",21.5],[-21.5,"ltgreen","",21.5],[72.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930348020","738667-4-120000-243"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Northern
+        Iowa Panthers 26 Iowa State Cyclones 29 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Northern
+        Iowa Panthers 26 Iowa State Cyclones 29 box score&gsc.page=1\">FINAL<\/a>","red"],["Northern
+        Iowa","","team.php?s=308075&t=5641"],["@ Iowa St","","team.php?s=308075&t=3554"],["
+        (2-2)","","",8],["# 45 (2-2)"],[26,"white","",29],[29,"cWin"],[7,"white","",28],[28,"cWin"],[8.676499999999999,"white","",91.3235],[91.3235,"cWin"],[20.5,"ltred","",20.5],[-20.5,"ltgreen","",20.5],[41.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073838","738667-4-190000-283"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Alcorn
+        State Braves 10 Southern Mississippi Golden Eagles 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Alcorn
+        State Braves 10 Southern Mississippi Golden Eagles 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Alcorn
+        St","","team.php?s=308075&t=157"],["@ Southern Miss","","team.php?s=308075&t=7365"],["
+        (3-2)","","",4],["# 80 (3-2)"],[10,"white","",38],[38,"cWin"],[10,"white","",36],[36,"cWin"],[4.9409,"white","",95.0591],[95.0591,"cWin"],[24,"ltred","",26.5],[-26.5,"ltgreen","",26.5],[50.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074647","738667-4-153000-179"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Eastern
+        Michigan Eagles 30 Coastal Carolina Chanticleers 23 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Eastern
+        Michigan Eagles 30 Coastal Carolina Chanticleers 23 box score&gsc.page=1\">FINAL<\/a>","red"],["E
+        Michigan","","team.php?s=308075&t=2353"],["@ Coastal Car","","team.php?s=308075&t=1637"],["#
+        87 (3-1)","","",16],["# 96 (3-2)"],[30,"cWin","",30],[23,"white"],[28,"cWin","",28],[21,"white"],[66.9432,"cWin","",66.9432],[33.056799999999996,"white"],[-6.5,"ltgreen","",6.5],[4,"ltred","",6.5],[53.5,"ltgreen"],[55,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075787","738667-4-120000-241"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Indiana
+        State Sycamores 17 University of Kansas Jayhawks 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Indiana
+        State Sycamores 17 University of Kansas Jayhawks 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Indiana
+        St","","team.php?s=308075&t=3509"],["@ Kansas","","team.php?s=308075&t=3717"],["
+        (2-2)","","",10],["# 81 (2-3)"],[17,"white","",24],[24,"cWin"],[21,"white","",35],[35,"cWin"],[19.0904,"white","",80.9096],[80.9096,"cWin"],[9.5,"ltred","",13.5],[-13.5,"ltgreen","",13.5],[57.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077007","738667-4-180000-267"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Sam
+        Houston State Bearkats 31 University of New Mexico Lobos 39 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Sam
+        Houston State Bearkats 31 University of New Mexico Lobos 39 box score&gsc.page=1\">FINAL<\/a>","red"],["Sam
+        Houston St","","team.php?s=308075&t=6981"],["@ New Mexico","","team.php?s=308075&t=5371"],["
+        (3-2)","","",9],["# 111 (2-2)"],[31,"white","",39],[39,"cWin"],[24,"white","",36],[36,"cWin"],[21.0622,"white","",78.9378],[78.9378,"cWin"],[6,"ltred","",12.5],[-12.5,"ltgreen","",12.5],[62.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073885","738667-4-153000-257"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=East
+        Tennessee State University Buccaneers 7 Appalachian State Mountaineers 42
+        box score&sa=Search&ref=#gsc.tab=0&gsc.q=East Tennessee State University Buccaneers
+        7 Appalachian State Mountaineers 42 box score&gsc.page=1\">FINAL<\/a>","red"],["ETSU","","team.php?s=308075&t=2321"],["@
+        Appalachian St","","team.php?s=308075&t=275"],[" (2-3)","","",3],["# 36 (4-0)"],[7,"white","",42],[42,"cWin"],[6,"white","",41],[41,"cWin"],[0.9153,"white","",99.0847],[99.0847,"cWin"],[6.5,"ltred","",34.5],[-34.5,"ltgreen","",34.5],[47.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073929","738667-4-190000-193"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Southern
+        Methodist University Mustangs 37 Arkansas State Red Wolves 30 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Southern
+        Methodist University Mustangs 37 Arkansas State Red Wolves 30 box score&gsc.page=1\">FINAL<\/a>","red"],["SMU","","team.php?s=308075&t=7358"],["@
+        Arkansas St","","team.php?s=308075&t=333"],["# 24 (5-0)","","",38],["# 64
+        (3-2)"],[37,"cWin","",37],[30,"white"],[28,"white","",34],[34,"cWin"],[34.7638,"white","",65.2362],[65.2362,"cWin"],[1,"ltred","",6.5],[-6.5,"ltgreen","",6.5],[61.5,"ltgreen"],[58,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074078","738667-4-120000-169"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Indiana
+        University Hoosiers 34 Ball State Cardinals 24 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Indiana
+        University Hoosiers 34 Ball State Cardinals 24 box score&gsc.page=1\">FINAL<\/a>","red"],["Indiana","","team.php?s=308075&t=3484"],["Ball
+        St","","team.php?s=308075&t=501"],["# 68 (3-2)","","",8],["# 120 (1-3)"],[34,"cWin","",34],[24,"white"],[41,"cWin","",41],[21,"white"],[88.7614,"cWin","",88.7614],[11.2386,"white"],[-19.5,"ltgreen","",19.5],[17.5,"ltred","",19.5],[59.5,"ltgreen"],[61.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075611","738667-4-153000-253"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Holy
+        Cross Crusaders 7 United States Naval Academy Midshipmen 45 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Holy
+        Cross Crusaders 7 United States Naval Academy Midshipmen 45 box score&gsc.page=1\">FINAL<\/a>","red"],["Holy
+        Cross","","team.php?s=308075&t=3304"],["@ Navy","","team.php?s=308075&t=5253"],["
+        (1-3)","","",4],["# 71 (2-1)"],[7,"white","",45],[45,"cWin"],[14,"white","",40],[40,"cWin"],[5.1394,"white","",94.86059999999999],[94.86059999999999,"cWin"],[21.5,"ltred","",26.5],[-26.5,"ltgreen","",26.5],[54.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075799","738667-4-193000-197"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Miami
+        OH RedHawks 14 University of Iowa Hawkeyes 38 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Miami
+        OH RedHawks 14 University of Iowa Hawkeyes 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Miami
+        OH","","team.php?s=308075&t=4725"],["@ Iowa","","team.php?s=308075&t=3540"],["#
+        83 (2-3)","","",17],["# 14 (4-0)"],[14,"white","",38],[38,"cWin"],[14,"white","",35],[35,"cWin"],[8.659600000000001,"white","",91.3404],[91.3404,"cWin"],[25.5,"ltred","",21.5],[-21.5,"ltgreen","",21.5],[50.5,"ltgreen"],[47,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076695","738667-4-160000-261"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Montana
+        State Bobcats 10 Texas Tech Red Raiders 45 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Montana
+        State Bobcats 10 Texas Tech Red Raiders 45 box score&gsc.page=1\">FINAL<\/a>","red"],["Montana
+        St","","team.php?s=308075&t=5042"],["@ Texas Tech","","team.php?s=308075&t=7918"],["
+        (4-1)","","",6],["# 59 (2-2)"],[10,"white","",45],[45,"cWin"],[20,"white","",42],[42,"cWin"],[8.084,"white","",91.916],[91.916,"cWin"],[28.5,"ltred","",22.5],[-22.5,"ltgreen","",22.5],[59.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074387","738667-4-180000-265"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Campbell
+        Camels 14 Troy University Trojans 43 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Campbell
+        Camels 14 Troy University Trojans 43 box score&gsc.page=1\">FINAL<\/a>","red"],["Campbell","","team.php?s=308075&t=1186"],["@
+        Troy","","team.php?s=308075&t=8068"],[" (3-1)","","",1],["# 89 (2-2)"],[14,"white","",43],[43,"cWin"],[3,"white","",41],[41,"cWin"],[0.29810000000000003,"white","",99.7019],[99.7019,"cWin"],[36.5,"ltred","",38.5],[-38.5,"ltgreen","",38.5],[46.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075334","738667-4-193000-199"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Georgia
+        Southern Eagles 3 Louisiana State University Tigers 55 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Georgia
+        Southern Eagles 3 Louisiana State University Tigers 55 box score&gsc.page=1\">FINAL<\/a>","red"],["Ga
+        Southern","","team.php?s=308075&t=2899"],["@ LSU","","team.php?s=308075&t=4206"],["#
+        88 (1-3)","","",14],["# 7 (4-0)"],[3,"white","",55],[55,"cWin"],[10,"white","",38],[38,"cWin"],[4.0416,"white","",95.9584],[95.9584,"cWin"],[27.5,"ltred","",27.5],[-27.5,"ltgreen","",27.5],[52.5,"ltgreen"],[50.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075389","738667-4-153000-177"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Georgia
+        State Panthers 38 University of Tennessee Volunteers 30 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Georgia
+        State Panthers 38 University of Tennessee Volunteers 30 box score&gsc.page=1\">FINAL<\/a>","red"],["Georgia
+        St","","team.php?s=308075&t=2907"],["@ Tennessee","","team.php?s=308075&t=7801"],["#
+        110 (2-2)","","",4],["# 100 (1-3)"],[38,"cWin","",38],[30,"white"],[14,"white","",39],[39,"cWin"],[5.8776,"white","",94.1224],[94.1224,"cWin"],[24,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[54.5,"ltgreen"],[58,"ltred"]],[["Sat
+        08.31","","game.php?gid=930075900","738667-4-190000-279"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Nicholls
+        State Colonels 14 Kansas State Wildcats 49 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Nicholls
+        State Colonels 14 Kansas State Wildcats 49 box score&gsc.page=1\">FINAL<\/a>","red"],["Nicholls
+        St","","team.php?s=308075&t=5455"],["@ Kansas St","","team.php?s=308075&t=3731"],["
+        (2-2)","","",7],["# 32 (3-1)"],[14,"white","",49],[49,"cWin"],[10,"white","",35],[35,"cWin"],[5.6525,"white","",94.3475],[94.3475,"cWin"],[20.5,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[47.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076933","738667-4-120000-163"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=South
+        Alabama Jaguars 21 University of Nebraska Cornhuskers 35 box score&sa=Search&ref=#gsc.tab=0&gsc.q=South
+        Alabama Jaguars 21 University of Nebraska Cornhuskers 35 box score&gsc.page=1\">FINAL<\/a>","red"],["South
+        Alabama","","team.php?s=308075&t=7237"],["@ Nebraska","","team.php?s=308075&t=5279"],["#
+        124 (1-4)","","",5],["# 55 (3-2)"],[21,"white","",35],[35,"cWin"],[19,"white","",45],[45,"cWin"],[5.2836,"white","",94.71640000000001],[94.71640000000001,"cWin"],[35,"ltred","",25.5],[-25.5,"ltgreen","",25.5],[63.5,"ltgreen"],[64.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930078078","738667-4-220000-297"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Southern
+        Utah Thunderbirds 23 Nevada Las Vegas Runnin'' Rebels 56 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Southern
+        Utah Thunderbirds 23 Nevada Las Vegas Runnin'' Rebels 56 box score&gsc.page=1\">FINAL<\/a>","red"],["Southern
+        Utah","","team.php?s=308075&t=7399"],["@ UNLV","","team.php?s=308075&t=5323"],["
+        (1-4)","","",6],["# 117 (1-3)"],[23,"white","",56],[56,"cWin"],[24,"white","",42],[42,"cWin"],[12.4696,"white","",87.5304],[87.5304,"cWin"],[24,"ltred","",17.5],[-17.5,"ltgreen","",17.5],[69.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073771","738667-4-153000-183"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Alabama Crimson Tide 42 Duke University Blue Devils 3 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Alabama Crimson Tide 42 Duke University Blue Devils 3 box score&gsc.page=1\">FINAL<\/a>","red"],["Alabama","","team.php?s=308075&t=74"],["Duke","","team.php?s=308075&t=2265"],["#
+        1 (5-0)","","",122],["# 26 (3-1)"],[42,"cWin","",42],[3,"white"],[41,"cWin","",41],[20,"white"],[90.7114,"cWin","",90.7114],[9.288599999999999,"white"],[-21.5,"ltgreen","",21.5],[33.5,"ltred","",21.5],[59.5,"ltgreen"],[56.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076189","738667-4-120000-173"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Louisiana at Lafayette Ragin'' Cajuns 28 Mississippi State Bulldogs 38
+        box score&sa=Search&ref=#gsc.tab=0&gsc.q=University of Louisiana at Lafayette
+        Ragin'' Cajuns 28 Mississippi State Bulldogs 38 box score&gsc.page=1\">FINAL<\/a>","red"],["Louisiana","","team.php?s=308075&t=4194"],["Mississippi
+        St","","team.php?s=308075&t=4936"],["# 52 (4-1)","","",12],["# 28 (3-2)"],[28,"white","",38],[38,"cWin"],[13,"white","",38],[38,"cWin"],[5.6827000000000005,"white","",94.3173],[94.3173,"cWin"],[18.5,"ltred","",24.5],[-24.5,"ltgreen","",24.5],[54.5,"ltgreen"],[60.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930077019","738667-4-220000-211"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=New
+        Mexico State Aggies 7 Washington State Cougars 58 box score&sa=Search&ref=#gsc.tab=0&gsc.q=New
+        Mexico State Aggies 7 Washington State Cougars 58 box score&gsc.page=1\">FINAL<\/a>","red"],["New
+        Mexico St","","team.php?s=308075&t=5387"],["@ Washington St","","team.php?s=308075&t=8588"],["#
+        123 (0-5)","","",3],["# 40 (3-2)"],[7,"white","",58],[58,"cWin"],[17,"white","",48],[48,"cWin"],[2.1437,"white","",97.85629999999999],[97.85629999999999,"cWin"],[33.5,"ltred","",31.5],[-31.5,"ltgreen","",31.5],[66.5,"ltgreen"],[65,"ltred"]],[["Sat
+        08.31","","game.php?gid=930073996","738667-4-193000-207"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Oregon Ducks 21 Auburn Tigers 27 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Oregon Ducks 21 Auburn Tigers 27 box score&gsc.page=1\">FINAL<\/a>","red"],["Oregon","","team.php?s=308075&t=5961"],["Auburn","","team.php?s=308075&t=402"],["#
+        15 (3-1)","","",128],["# 6 (5-0)"],[21,"white","",27],[27,"cWin"],[21,"white","",31],[31,"cWin"],[24.1939,"white","",75.8061],[75.8061,"cWin"],[4,"ltred","",10.5],[-10.5,"ltgreen","",10.5],[55.5,"ltgreen"],[54.5,"ltred"]],[["Sat
+        08.31","","game.php?gid=930074343","738667-4-183000-273"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of California, Davis Aggies 13 University of California, Berkeley Golden Bears
+        27 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University of California, Davis
+        Aggies 13 University of California, Berkeley Golden Bears 27 box score&gsc.page=1\">FINAL<\/a>","red"],["UC
+        Davis","","team.php?s=308075&t=8200"],["@ California","","team.php?s=308075&t=1098"],["
+        (2-3)","","",18],["# 33 (4-1)"],[13,"white","",27],[27,"cWin"],[20,"white","",31],[31,"cWin"],[22.9522,"white","",77.0478],[77.0478,"cWin"],[14.5,"ltred","",10.5],[-10.5,"ltgreen","",10.5],[50.5,"ltgreen"],[0,"ltred"]],[["Sat
+        08.31","","game.php?gid=930076609","738667-4-193000-205"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=University
+        of Missouri Tigers 31 University of Wyoming Cowboys 37 box score&sa=Search&ref=#gsc.tab=0&gsc.q=University
+        of Missouri Tigers 31 University of Wyoming Cowboys 37 box score&gsc.page=1\">FINAL<\/a>","red"],["Missouri","","team.php?s=308075&t=4948"],["@
+        Wyoming","","team.php?s=308075&t=9162"],["# 21 (3-1)","","",26],["# 63 (4-1)"],[31,"white","",37],[37,"cWin"],[28,"cWin","",28],[14,"white"],[83.0565,"cWin","",83.0565],[16.9435,"white"],[-14.5,"ltgreen","",14.5],[15.5,"ltred","",14.5],[47.5,"ltgreen"],[53,"ltred"]],[["Sun
+        09.01","","game.php?gid=930075633","738668-4-193000-215"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Houston
+        Cougars 31 University of Oklahoma Sooners 49 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Houston
+        Cougars 31 University of Oklahoma Sooners 49 box score&gsc.page=1\">FINAL<\/a>","red"],["Houston","","team.php?s=308075&t=3347"],["@
+        Oklahoma","","team.php?s=308075&t=5886"],["# 65 (2-3)","","",32],["# 5 (4-0)"],[31,"white","",49],[49,"cWin"],[35,"white","",56],[56,"cWin"],[8.316600000000001,"white","",91.6834],[91.6834,"cWin"],[22,"ltred","",20.5],[-20.5,"ltgreen","",20.5],[92.5,"ltgreen"],[80.5,"ltred"]],[["Mon
+        09.02","","game.php?gid=930076213","738669-4-200000-217"],["<a href=\"http:\/\/www.google.com\/cse?cx=partner-pub-0379030414683754:9954400133&ie=UTF-8&q=Notre
+        Dame Irish 35 Louisville Cardinals 17 box score&sa=Search&ref=#gsc.tab=0&gsc.q=Notre
+        Dame Irish 35 Louisville Cardinals 17 box score&gsc.page=1\">FINAL<\/a>","red"],["Notre
+        Dame","","team.php?s=308075&t=5749"],["@ Louisville","","team.php?s=308075&t=4224"],["#
+        9 (3-1)","","",17],["# 91 (2-2)"],[35,"cWin","",35],[17,"white"],[41,"cWin","",41],[17,"white"],[93.54,"cWin","",93.54],[6.460000000000001,"white"],[-24.5,"ltgreen","",24.5],[18.5,"ltred","",24.5],[57.5,"ltgreen"],[55,"ltred"]]],"leagues":["CF:FBS"],"basedate":20190831,"dtprev":"20190826","dtnext":"20190903","timestamp":1569868146000}
+
+        '
+    http_version: 
+  recorded_at: Mon, 30 Sep 2019 20:16:18 GMT
+recorded_with: VCR 5.0.0
