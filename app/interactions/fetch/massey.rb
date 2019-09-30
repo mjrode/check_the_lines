@@ -21,7 +21,7 @@ class Fetch::Massey < Less::Interaction
     case sport
     when 'mlb'
       'mlb&sub=14342'
-    when 'cf'
+    when 'ncaaf'
       'cf&sub=11604'
     when 'cb'
       'cb&sub=11590'
@@ -110,7 +110,7 @@ class Fetch::Massey < Less::Interaction
 
   def format_massey_name(name)
     formatted_name =
-      if sport == 'cf'
+      if sport == 'ncaaf'
         Conversions::MapNcaafTeam.run(team_name:strip_at(name), missing_name_map: @missing_name_mapping)
       elsif sport == 'nfl'
         Conversions::MapNflTeam.run(team_name: strip_at(name))

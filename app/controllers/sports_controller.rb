@@ -31,7 +31,7 @@ class SportsController < ApplicationController
   end
 
   def format_sport_for_search(sport)
-    sport_search_map = {'ncaaf': 'cf'}
+    sport_search_map = {'ncaaf': 'ncaaf'}
     sport_search_map[sport.to_sym] || sport
   end
 

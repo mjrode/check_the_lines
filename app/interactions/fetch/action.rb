@@ -22,7 +22,7 @@ class Fetch::Action < Less::Interaction
 
   def format_sport
     case sport
-    when 'cf'
+    when 'ncaaf'
       'ncaaf?'
       # 'ncaaf?division=FBS'
     when 'cb'

@@ -16,12 +16,8 @@ class Games::CreateGameRecord < Less::Interaction
       else
         MasseyGame.where("(game_over = false) or processed = false")
       end
-    games_to_process.each do |massey_game|
-      if massey_game.game_date < Date.today && massey_game.processed == true && !process_all_games
-        puts "Skipping #{massey_game.home_team_name} because it is too far in the past"
-        next
-      end
 
+    games_to_process.each do |massey_game|
       home_team_name = massey_game.home_team_name
       away_team_name = massey_game.away_team_name
 
@@ -30,7 +26,6 @@ class Games::CreateGameRecord < Less::Interaction
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
       next if action_game.nil?
       game = find_or_create_game(massey_game, action_game)
-      puts "Game --------- #{game.home_team_name}"
       save_or_update_game(game, massey_game, action_game)
       mark_massey_and_action_processed(action_game, massey_game) if action_game.game_over
     end
@@ -50,14 +45,13 @@ class Games::CreateGameRecord < Less::Interaction
   end
 
   def set_game_time(massey_game)
-    time = massey_game.game_over ? 'Final' : massey_game.time
-    puts "Time for #{massey_game.home_team_name} #{time}"
-    time
+    massey_game.game_over ? 'Final' : massey_game.time
   end
 
   def save_or_update_game(game, massey_game, action_game)
     game_hash =
     {
+      external_id: action_game.external_id,
       sport: massey_game.sport,
       date: massey_game.game_date,
       time: set_game_time(massey_game),

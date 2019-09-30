@@ -13,11 +13,11 @@
               %tr.top-border
                 - @best_bet_games = Game.all
                 %th.center-text{:scope => "row"}
-                  = @best_bet_games.correct_spread_best_bets('cf').count
+                  = @best_bet_games.correct_spread_best_bets('ncaaf').count
                 %th.center-text{:scope => "row"}
-                  = @best_bet_games.best_bets('cf').count
+                  = @best_bet_games.best_bets('ncaaf').count
                 %th.center-text{:scope => "row"}
-                  =  (@best_bet_games.correct_spread_best_bets('cf').count.to_f/ @best_bet_games.best_bets('cf').count.to_f).round(2)
+                  =  (@best_bet_games.correct_spread_best_bets('ncaaf').count.to_f/ @best_bet_games.best_bets('ncaaf').count.to_f).round(2)
   %div.col-10.mx-auto
     %h3 What is CheckTheLines?
     %p.lead CheckTheLines is a side-project that pulls in different information from across the web to try to predict the correct side for NCAA and NFL football games.

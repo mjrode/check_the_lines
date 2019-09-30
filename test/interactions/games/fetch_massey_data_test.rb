@@ -8,7 +8,7 @@ describe 'Fetch::Massey' do
   describe "Fetching CFB data" do
     it "fetches and stores historical data" do
       VCR.use_cassette("massey_cf") do
-        Fetch::Massey.run(sport: "cf", date: '2019/08/31')
+        Fetch::Massey.run(sport: "ncaaf", date: '2019/08/31')
       end
 
       game = MasseyGame.where(away_team_name: "Alabama Crimson Tide").first
@@ -23,19 +23,17 @@ describe 'Fetch::Massey' do
       assert_equal game.away_team_final_score, 42.0
       assert_equal game.game_date.to_s, '2019-08-31'
       assert_equal game.external_id, 930073771
-      assert_equal game.sport, "cf"
+      assert_equal game.sport, "ncaaf"
       assert_equal game.processed, false
       assert_equal game.game_over, true
       assert_equal game.time, 'Final'
-      # assert_equal game.week, nil
-
     end
   end
 
   it "Skips Massey data where there are no games" do
     MasseyGame.destroy_all
     VCR.use_cassette("invalid_massey_cf") do
-      Fetch::Massey.run(sport: "cf", date: "2016/11/13")
+      Fetch::Massey.run(sport: "ncaaf", date: "2016/11/13")
     end
     assert MasseyGame.count == 0
   end
