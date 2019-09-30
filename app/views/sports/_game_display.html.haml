@@ -68,7 +68,7 @@
 
         -# Public percentage
         - if game.away_team_spread_percent.to_f > 50
-          %td.center-text.container
+          %td.center-text.container.public
             .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
         - else
           %td
@@ -126,7 +126,7 @@
 
         -#  Public percentage
         - if game.home_team_spread_percent.to_f > 50
-          %td.center-text.container
+          %td.center-text.container.public
             .skills.html.round{:style => "--width: #{game.home_team_spread_percent}%;"}= "#{game.home_team_spread_percent}%"
         - else
           %td
