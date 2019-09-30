@@ -47,8 +47,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-    return nil unless game
-    game.strength > 6
+    game.strength.to_i > 6
   end
 
   def ou_best_bet?
