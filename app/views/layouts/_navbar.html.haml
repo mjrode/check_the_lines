@@ -1,18 +1,24 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   =link_to "Home",  root_path, class: 'navbar-brand'
-
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item
-        =link_to ncaaf_path, class: 'nav-link' do
-          Games
-          %span.sr-only (current)
-      %li.nav-item
-      =link_to best_bets_path, class: 'nav-link' do
-        Best Bets
-        %span.sr-only (current)
+  %nav.nav-item
+    =link_to ncaaf_path, class: 'nav-link' do
+      %span.sr-only (current)
+  %nav.nav-item
+  =link_to best_bets_path, class: 'nav-link' do
+    Best Bets
+    %span.sr-only (current)
+  -# %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    -# %span.navbar-toggler-icon
+  -# #navbarSupportedContent.collapse.navbar-collapse
+  -#   %ul.navbar-nav.mr-auto
+  -#     %li.nav-item
+  -#       =link_to ncaaf_path, class: 'nav-link' do
+  -#         Games
+  -#         %span.sr-only (current)
+  -#     %li.nav-item
+  -#     =link_to best_bets_path, class: 'nav-link' do
+  -#       Best Bets
+  -#       %span.sr-only (current)
       -# %li.nav-item
       -# =link_to refresh_sports_path, class: 'nav-link' do
         Refresh
