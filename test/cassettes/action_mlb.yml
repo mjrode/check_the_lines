@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.actionnetwork.com/web/v1/sharpreport/mlb?bookIds=15
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InU9NzM1ODI2dD0xNTY5NzAwNTkyODcxIiwidXNlcl9pZCI6NzM1ODI2LCJleHBlcnRfaWQiOm51bGwsImlzcyI6InNwb3J0c0FjdGlvbiIsImFnZW50IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTRfNSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzc3LjAuMzg2NS45MCBTYWZhcmkvNTM3LjM2IiwiaXNSZXNldFRva2VuIjpmYWxzZSwiaXNTZXNzaW9uVG9rZW4iOmZhbHNlLCJzY29wZSI6W10sImV4cCI6MTYwMTIzNjU5MiwiaWF0IjoxNTY5NzAwNTkyfQ.9L1a7DQzvaPue4bPCxeTFb2I9ueh7l0wowO4zzO5bHc
+      Connection:
+      - close
+      Host:
+      - api.actionnetwork.com
+      User-Agent:
+      - http.rb/4.1.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 30 Sep 2019 17:54:14 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '8887'
+      Connection:
+      - close
+      Vary:
+      - origin,accept-encoding
+      Access-Control-Expose-Headers:
+      - WWW-Authenticate,Server-Authorization
+      Cache-Control:
+      - no-cache
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: UTF-8
+      string: '{"games":[{"id":74719,"status":"scheduled","status_display":null,"start_time":"2019-10-02T00:08:00.000Z","away_team_id":208,"home_team_id":216,"winning_team_id":null,"league_name":"mlb","type":"post","season":2019,"attendance":0,"coverage":"full","is_free":false,"trending":false,"away_rotation_number":911,"home_rotation_number":912,"teams":[{"id":208,"full_name":"Milwaukee
+        Brewers","display_name":"Brewers","short_name":"Brewers","location":"Milwaukee","abbr":"MIL","logo":"https://static.sprtactn.co/teamlogos/mlb/100/mil.png","primary_color":"B6922E","secondary_color":"0A2351","conference_type":"NL","division_type":"CENTRAL","standings":{"win":0,"loss":0,"ties":null,"overtime_losses":null,"draw":null}},{"id":216,"full_name":"Washington
+        Nationals","display_name":"Nationals","short_name":"Nationals","location":"Washington","abbr":"WSH","logo":"https://static.sprtactn.co/teamlogos/mlb/100/wsh.png","primary_color":"AB0003","secondary_color":"11225B","conference_type":"NL","division_type":"EAST","standings":{"win":0,"loss":0,"ties":null,"overtime_losses":null,"draw":null}}],"boxscore":{"stats":{"away":{"hits":0,"runs":0,"errors":0},"home":{"hits":0,"runs":0,"errors":0}},"period":null,"pitching":{"away":{"probable_id":54572,"starting_id":null},"home":{"probable_id":4086,"starting_id":null},"win_id":null,"loss_id":null,"save_id":null},"linescore":[{"id":1,"abbr":"1","display_name":"1st","full_name":"1st
+        Inning","away_points":null,"home_points":null},{"id":2,"abbr":"2","display_name":"2nd","full_name":"2nd
+        Inning","away_points":null,"home_points":null},{"id":3,"abbr":"3","display_name":"3rd","full_name":"3rd
+        Inning","away_points":null,"home_points":null},{"id":4,"abbr":"4","display_name":"4th","full_name":"4th
+        Inning","away_points":null,"home_points":null},{"id":5,"abbr":"5","display_name":"5th","full_name":"5th
+        Inning","away_points":null,"home_points":null},{"id":6,"abbr":"6","display_name":"6th","full_name":"6th
+        Inning","away_points":null,"home_points":null},{"id":7,"abbr":"7","display_name":"7th","full_name":"7th
+        Inning","away_points":null,"home_points":null},{"id":8,"abbr":"8","display_name":"8th","full_name":"8th
+        Inning","away_points":null,"home_points":null},{"id":9,"abbr":"9","display_name":"9th","full_name":"9th
+        Inning","away_points":null,"home_points":null}],"situation":{"outs":0,"balls":0,"runners":{"first":null,"third":null,"second":null},"strikes":0,"batter_id":null,"pitcher_id":null,"inning_half":null,"batter_order":null},"total_away_points":0,"total_home_points":0,"total_away_firstfive_points":0,"total_home_firstfive_points":0},"series":{"summary":"","participants":[{"record":0,"team_id":216},{"record":0,"team_id":208}]},"odds":[{"ml_away":165,"ml_home":-180,"spread_away":1.5,"spread_home":-1.5,"spread_away_line":-135,"spread_home_line":115,"over":-120,"under":100,"draw":null,"total":7.5,"away_total":3.5,"away_over":110,"away_under":-145,"home_total":4.5,"home_over":null,"home_under":-130,"ml_home_public":73,"ml_away_public":27,"spread_home_public":76,"spread_away_public":24,"total_under_public":47,"total_over_public":53,"ml_home_money":86,"ml_away_money":14,"spread_home_money":81,"spread_away_money":19,"total_over_money":82,"total_under_money":18,"num_bets":1740,"book_id":15,"type":"game","inserted":"2019-09-30T17:50:39.525179+00:00"},{"ml_away":157,"ml_home":-175,"spread_away":0.5,"spread_home":-0.5,"spread_away_line":-105,"spread_home_line":-115,"over":-105,"under":-115,"draw":null,"total":4,"away_total":null,"away_over":null,"away_under":null,"home_total":null,"home_over":null,"home_under":null,"ml_home_public":null,"ml_away_public":null,"spread_home_public":null,"spread_away_public":null,"total_under_public":null,"total_over_public":null,"ml_home_money":null,"ml_away_money":null,"spread_home_money":null,"spread_away_money":null,"total_over_money":null,"total_under_money":null,"num_bets":null,"book_id":15,"type":"firstfiveinnings","inserted":"2019-09-30T15:07:44.394306+00:00"},{"ml_away":158,"ml_home":-173,"spread_away":1.5,"spread_home":-1.5,"spread_away_line":-135,"spread_home_line":115,"over":-120,"under":100,"draw":null,"total":7.5,"away_total":3.5,"away_over":110,"away_under":-145,"home_total":4.5,"home_over":null,"home_under":-130,"ml_home_public":72,"ml_away_public":28,"spread_home_public":93,"spread_away_public":7,"total_under_public":13,"total_over_public":87,"ml_home_money":92,"ml_away_money":8,"spread_home_money":97,"spread_away_money":3,"total_over_money":38,"total_under_money":62,"num_bets":852,"book_id":30,"type":"game","inserted":"2019-09-30T11:50:51.640943+00:00"},{"ml_away":142,"ml_home":-161,"spread_away":0.5,"spread_home":-0.5,"spread_away_line":-105,"spread_home_line":-115,"over":104,"under":-119,"draw":null,"total":4.5,"away_total":null,"away_over":null,"away_under":null,"home_total":null,"home_over":null,"home_under":null,"ml_home_public":null,"ml_away_public":null,"spread_home_public":null,"spread_away_public":null,"total_under_public":null,"total_over_public":null,"ml_home_money":null,"ml_away_money":null,"spread_home_money":null,"spread_away_money":null,"total_over_money":null,"total_under_money":null,"num_bets":null,"book_id":30,"type":"firstfiveinnings","inserted":"2019-09-30T12:10:01.683617+00:00"}],"players":[{"id":4086,"jersey":"31","full_name":"Max
+        Scherzer","abbr":"M. Scherzer","primary_position":"SP","position":"P","handedness":{"bat":"R","throw":"R"},"image":"http://assets.actionnetwork.com/200x200/5c4e070dbc224535acc69fa20aceb1f2.png"},{"id":54572,"jersey":"53","full_name":"Brandon
+        Woodruff","abbr":"B. Woodruff","primary_position":"SP","position":"P","handedness":{"bat":"L","throw":"R"},"image":"http://assets.actionnetwork.com/200x200/62b363debaeb41b09629d99c142dffd1.png"}],"player_stats":{"away":[{"player_id":54572,"pitching":{"bf":493,"bk":1,"k9":10.575,"wp":1,"era":3.625,"kbb":4.77,"lob":160,"oba":0.24,"gofo":1.02,"ip_1":365,"ip_2":121.2,"outs":{"fo":46,"go":104,"lo":33,"po":23,"fidp":0,"gidp":12,"lidp":0,"klook":48,"kswing":95,"ktotal":143,"sacfly":2,"sachit":2},"runs":{"total":49,"earned":49,"unearned":0},"whip":1.1425,"games":{"svo":0,"win":11,"hold":0,"loss":3,"play":22,"save":0,"start":22,"finish":0,"qstart":10,"shutout":0,"complete":0,"team_win":18,"team_loss":4,"blown_save":0},"steal":{"caught":3,"stolen":8,"pickoff":1},"onbase":{"d":15,"h":109,"s":81,"t":1,"bb":30,"fc":10,"hr":12,"tb":162,"hbp":5,"ibb":0,"roe":1},"outcome":{"ball":626,"foul":444,"iball":0,"klook":312,"kswing":256,"ktotal":568,"dirtball":21},"pitch_count":1979}}],"home":[{"player_id":4086,"pitching":{"bf":693,"bk":0,"k9":12.69,"wp":0,"era":2.925,"kbb":7.36,"lob":239,"oba":0.222,"gofo":0.866,"ip_1":517,"ip_2":172.1,"outs":{"fo":77,"go":123,"lo":36,"po":29,"fidp":1,"gidp":7,"lidp":0,"klook":46,"kswing":197,"ktotal":243,"sacfly":2,"sachit":0},"runs":{"total":59,"earned":56,"unearned":3},"whip":1.0271,"games":{"svo":0,"win":11,"hold":0,"loss":7,"play":27,"save":0,"start":27,"finish":0,"qstart":17,"shutout":0,"complete":0,"team_win":14,"team_loss":13,"blown_save":0},"steal":{"caught":1,"stolen":8,"pickoff":1},"onbase":{"d":43,"h":144,"s":83,"t":0,"bb":31,"fc":11,"hr":18,"tb":241,"hbp":7,"ibb":2,"roe":2},"outcome":{"ball":804,"foul":551,"iball":0,"klook":460,"kswing":491,"ktotal":951,"dirtball":47},"pitch_count":2770}}]},"broadcast":{"network":"TBS"}}],"league":{"id":8,"sport":"baseball","name":"mlb","description":"Major
+        League Baseball","logo":"https://static.sprtactn.co/leagues/500/mlb.png","current_season":"2019","current_season_type":"post","pre_season_start":"2019-02-20T06:00:00.000Z","pre_season_end":"2019-03-28T04:59:59.000Z","reg_season_start":"2019-03-27T05:00:00.000Z","reg_season_end":"2019-09-30T04:59:59.000Z","post_season_start":"2019-09-30T05:00:00.000Z","post_season_end":"2019-11-03T04:59:59.000Z","blacklist_dates":["2019-02-19T08:00:00.000Z","2019-02-20T08:00:00.000Z","2019-03-27T07:00:00.000Z","2019-07-08T07:00:00.000Z","2019-07-10T07:00:00.000Z","2019-09-30T07:00:00.000Z","2019-10-03T07:00:00.000Z","2019-10-04T07:00:00.000Z","2019-10-05T07:00:00.000Z","2019-10-06T07:00:00.000Z","2019-10-07T07:00:00.000Z","2019-10-08T07:00:00.000Z","2019-10-09T07:00:00.000Z","2019-10-10T07:00:00.000Z","2019-10-11T07:00:00.000Z","2019-10-12T07:00:00.000Z","2019-10-13T07:00:00.000Z","2019-10-14T07:00:00.000Z","2019-10-15T07:00:00.000Z","2019-10-16T07:00:00.000Z","2019-10-17T07:00:00.000Z","2019-10-18T07:00:00.000Z","2019-10-19T07:00:00.000Z","2019-10-20T07:00:00.000Z","2019-10-21T07:00:00.000Z","2019-10-22T07:00:00.000Z","2019-10-23T07:00:00.000Z","2019-10-24T07:00:00.000Z","2019-10-25T07:00:00.000Z","2019-10-26T07:00:00.000Z","2019-10-27T07:00:00.000Z","2019-10-28T07:00:00.000Z","2019-10-29T07:00:00.000Z","2019-10-30T07:00:00.000Z","2019-10-31T07:00:00.000Z","2019-11-01T07:00:00.000Z","2019-11-02T07:00:00.000Z"],"calendar_info":{},"current_week":-1,"updated_at":"2019-09-30T07:00:15.965Z","is_active":true}}'
+    http_version: 
+  recorded_at: Mon, 30 Sep 2019 17:54:14 GMT
+recorded_with: VCR 5.0.0

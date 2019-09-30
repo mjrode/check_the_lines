@@ -8,12 +8,9 @@ class Conversions::MapNcaafTeam < Less::Interaction
 	private
 
   def format_name
-    downcase_team_names = {}
-    team_name_mapping.each do |k,v|
-      downcase_team_names[k.downcase] = v.downcase
-    end
-    if downcase_team_names["#{team_name.downcase}"]
-      downcase_team_names["#{team_name.downcase}"]
+    if team_name_mapping[team_name]
+      puts "Formatted Massey NCAAF name #{team_name_mapping["#{team_name}"]}"
+      team_name_mapping["#{team_name}"]
     else
       puts "Unable to find mapping for #{team_name}"
       team_name
@@ -24,7 +21,12 @@ class Conversions::MapNcaafTeam < Less::Interaction
   def team_name_mapping
     {"Navy"=>"Navy Midshipmen",
     "Memphis"=>"Memphis Tigers",
+    "North Carolina A&T"=>"North Carolina A&T Aggies",
+    "San Diego State"=>"San Diego State Aztecs",
+    "Illinois"=>"Illinois Fighting Illini",
     "Duke"=>"Duke Blue Devils",
+    "Colorado"=>"Colorado Buffaloes",
+    "Oregon"=>"Oregon Ducks",
     "Virginia Tech"=>"Virginia Tech Hokies",
     "Arizona State"=>"Arizona State Sun Devils",
     "California"=>"California Bears",
@@ -107,6 +109,7 @@ class Conversions::MapNcaafTeam < Less::Interaction
     "Mississippi"=>"Mississippi State Bulldogs",
     "Alabama"=>"Alabama Crimson Tide",
     "UCLA"=>"UCLA Bruins",
+    "Kent"=>"Kent State Golden Flashes",
     "Arizona"=> "Arizona Wildcats",
     "Arkansas State"=>"Arkansas State Red Wolves",
     "Troy"=>"Troy Trojans",
@@ -117,10 +120,13 @@ class Conversions::MapNcaafTeam < Less::Interaction
     "UTEP"=>"UTEP Miners",
     "Southern Miss."=>"Southern Miss Golden Eagles",
     "Georgia Tech"=>"Georgia Tech Yellow Jackets",
+    "Georgia"=>"Georgia Bulldogs",
     "Temple"=>"Temple Owls",
     "Towson"=>"Towson Tigers",
     "Florida"=>"Florida Gators",
     "USC"=>"USC Trojans",
+    "Miami"=>"Miami (FL) Hurricanes",
+    "Boise State"=>"Boise State Broncos",
     "Washington"=>"Washington Huskies",
     "BYU"=>"BYU Cougars",
     "Toledo"=>"Toledo Rockets",
@@ -131,8 +137,11 @@ class Conversions::MapNcaafTeam < Less::Interaction
     "Washington State"=>"Washington State Cougars",
     "Utah"=> "Utah Utes",
     "Texas A&M"=>"Texas A&M Aggies",
+    "Tulane"=>"Tulane Green Wave",
+    "E. Michigan"=>"Eastern Michigan Eagles",
     "Arkansas"=>"Arkansas Razorbacks"}
   end
+
 	def old_team_mapping
     {
      "utah"=>"utah utes",
@@ -226,7 +235,6 @@ class Conversions::MapNcaafTeam < Less::Interaction
      "houston"=>"houston cougars",
      "akron"=>"akron zips",
      "villanova"=>"villanova wildcats",
-     "san diego st."=>"san diego state aztecs",
      "navy"=>"navy midshipmen",
      "mercer"=>"mercer bears",
      "florida atlantic"=>"florida atlantic owls",
@@ -236,7 +244,6 @@ class Conversions::MapNcaafTeam < Less::Interaction
      "coastal car"=>"coastal carolina chanticleers",
      "fordham"=>"fordham rams",
      "byu"=>"byu cougars",
-     "north carolina a&t"=>"north carolina a&t aggies",
      "incarnate word"=>"incarnate word cardinals",
      "marshall"=>"marshall thundering herd",
      "washington st."=>"washington state cougars",

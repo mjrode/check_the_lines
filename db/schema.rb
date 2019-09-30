@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_215124) do
+ActiveRecord::Schema.define(version: 2019_09_30_180209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_215124) do
     t.text "home_team_abbr"
     t.text "away_team_abbr"
     t.datetime "start_time"
+    t.string "week"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_215124) do
     t.text "away_team_abbr"
     t.string "massey_favors_home_or_away"
     t.boolean "in_progress"
+    t.string "week"
   end
 
   create_table "massey_games", id: :serial, force: :cascade do |t|
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_215124) do
     t.float "line_diff"
     t.float "over_under_diff"
     t.string "team_to_bet"
+    t.string "week"
   end
 
 end

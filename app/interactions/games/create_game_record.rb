@@ -25,7 +25,7 @@ class Games::CreateGameRecord < Less::Interaction
       home_team_name = massey_game.home_team_name
       away_team_name = massey_game.away_team_name
 
-        action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where('home_team_name ILIKE ? OR away_team_name ILIKE ?', "%#{home_team_name}%", "%#{away_team_name}%").first
+      action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where(home_team_name: home_team_name, away_team_name: away_team_name).first
 
       puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
       next if action_game.nil?

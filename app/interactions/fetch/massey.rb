@@ -111,7 +111,7 @@ class Fetch::Massey < Less::Interaction
       if sport == 'cf'
         Conversions::MapNcaafTeam.run(team_name: NameFormatter.new(name).format_name)
       elsif sport == 'nfl'
-        Conversions::MapNflTeam.run(team_name: name)
+        Conversions::MapNflTeam.run(team_name: name.gsub('@','').strip)
       else
         puts "ERROR: Formatting for #{name} skipped"
         name
@@ -125,6 +125,6 @@ class Fetch::Massey < Less::Interaction
   end
 
   def game_over?(game)
-    game_over = game[1].first.downcase.include?("final") ? true : false
+    game[1].first.downcase.include?("final") ? true : false
   end
 end

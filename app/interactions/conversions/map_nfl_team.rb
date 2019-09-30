@@ -8,7 +8,9 @@ class Conversions::MapNflTeam < Less::Interaction
 	private
 
 	def get_pregame_name
-    teams["#{team_name}"] || team_name
+    formatted_team_name = teams["#{team_name}"] || team_name
+    puts "Formatted team name #{formatted_team_name}"
+    formatted_team_name
   end
 
   def teams

@@ -1,5 +1,5 @@
 class Games::CalculateAll < Less::Interaction
-  expects :process_all_games, allow_nil: true
+    expects :process_all_games, allow_nil: true
 
   def run
     calculate_all
