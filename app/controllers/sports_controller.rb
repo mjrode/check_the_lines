@@ -18,7 +18,7 @@ class SportsController < ApplicationController
   def fetch_and_update_game_data
     puts "Fetching game data after controller action #{action_name}"
     Jobs::ProcessCurrentData.run(process_all_games: true)
-    # Jobs::ProcessAndUpdateGames.run(process_all_games: true)
+    Jobs::ProcessAndUpdateGames.run(process_all_games: true)
   end
 
   def select_games_for_display

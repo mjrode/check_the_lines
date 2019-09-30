@@ -2,14 +2,14 @@ class Jobs::FetchAllHistoricalData < Less::Interaction
 
   def run
     run_and_import_data
-    calulate_and_update_data
+    calculate_and_update_data
   end
 
   private
 
   def run_and_import_data
     SPORTS.each do |sport|
-      Fetch::Action.run(sport: sport, get_league_info: true)
+      res = Fetch::Action.run(sport: sport, get_league_info: true)
       fetch_historical_action_data(res, sport)
       fetch_historical_massey_data(res, sport)
     end
@@ -22,13 +22,14 @@ class Jobs::FetchAllHistoricalData < Less::Interaction
 private
   def fetch_historical_massey_data(res, sport)
     array_of_start_date_of_weeks(res).each do |date|
+      puts "Fetching historical data for Massey, sport: #{sport}, date: #{date}"
       Fetch::Massey.run(sport: sport, date: Date.parse(date))
     end
   end
 
   def fetch_historical_action_data(res, sport)
     array_of_past_weeks(res).each do |week|
-      puts "Getting historical data for #{sport} week #{week}"
+      puts "Getting historical action data for #{sport} week #{week}"
       Fetch::Action.run(sport: sport, week: week)
     end
   end
