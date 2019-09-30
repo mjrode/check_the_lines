@@ -19,6 +19,14 @@
 @import 'daterangepicker';
 @import 'rails_bootstrap_forms';
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+    background: #eee;
+  }
+}
 .padding-top-5{
 	padding-top: 6em;
 }
