@@ -23,7 +23,7 @@
   select:focus,
   textarea:focus,
   input:focus {
-    font-size: 16px;
+    font-size: 1.2em;
     background: #eee;
   }
 }
@@ -35,7 +35,9 @@
 
 	margin-bottom: 0.5em;
 }
-
+.form_text_size {
+  font-size: 16px;
+}
 .padding-1{
   padding: 1em;
 }
