@@ -1,5 +1,5 @@
 %div.container.m-6.mb-3
-  %div.ml-auto
+  %div.ml-auto.form-text-size
     = bootstrap_form_tag url: '/ncaaf', method: 'get' do |f|
       = f.select(:game_filter, [["Live and Upcoming Games", 'not_over'], ["Historical Games", 'game_over'], ['Historical Best Bets', :all_best_bets]], selected: @game_filter)
       = f.select(:sport_filter, [['All', 'all'],['NFL', 'nfl'], ["NCAAF", 'ncaaf']], selected: @sport_filter)
