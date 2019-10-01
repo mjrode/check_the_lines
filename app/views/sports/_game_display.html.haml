@@ -31,15 +31,6 @@
             <br>
             = game.home_team_abbr
         %tr
-        - if game.game_over
-          %td.center-text= game.date
-          %th.center-text Date
-          %td.center-text= game.date
-        - else
-          %td.center-text= game.time
-          %th.center-text Game Time
-          %td.center-text= game.time
-        %tr
           %th.center-text{:scope => "row"}= game.away_team_vegas_line
           %th.center-text{:scope => "row"} Line
           %th.center-text{:scope => "row"}= game.home_team_vegas_line
