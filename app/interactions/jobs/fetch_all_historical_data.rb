@@ -1,8 +1,9 @@
 class Jobs::FetchAllHistoricalData < Less::Interaction
+  expects :future, allow_nil: true
 
   def run
-    calculate_and_update_data
     run_and_import_data
+    calculate_and_update_data
   end
 
   private
@@ -36,11 +37,13 @@ private
 
   def array_of_past_weeks(res)
     current_week = res['current_week']
+    return [ "#{current_week + 1}" ] if future
     res['calendar_info']['reg'].map{|week| week['week']}.select{|week| week <= current_week}
   end
 
   def array_of_start_date_of_weeks(res)
-    week_index = res['current_week'] - 1
-    res['calendar_info']['reg'][0..week_index].map{|week| week['startDate']}
+    current_week = res['current_week']
+    return Array.wrap(res['calendar_info']['reg'][current_week + 1]['startDate']) if future
+    res['calendar_info']['reg'][0..week_index - 1].map{|week| week['startDate']}
   end
 end

@@ -16,11 +16,18 @@ Rails.application.routes.draw do
       get 'old_over_under_best_bets'
     end
   end
+
  resources :sports do
    collection do
      get 'ncaaf'
      get 'refresh'
    end
+ end
+
+ resources :admin do
+  collection do
+    post 'fetch_data'
+  end
  end
 
   get 'ncaaf', to: 'sports#ncaaf'

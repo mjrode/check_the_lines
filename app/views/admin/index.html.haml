@@ -1,0 +1,6 @@
+%div.container.m-6.mb-3.small-width.mt-4
+  %div.ml-auto.form-text-size
+    = bootstrap_form_tag url: '/admin/fetch_data', method: 'post' do |f|
+      = f.select(:sport_filter, [['All', 'all'],['NFL', 'nfl'], ["NCAAF", 'ncaaf']], selected: @sport_filter)
+      = f.date_select :date, order: [:day, :month, :year]
+      = f.submit 'Import'
