@@ -31,7 +31,7 @@ describe 'Fetch::Massey' do
 
 
   describe "Fetching NFL data" do
-    it "fetches and stores current data" do
+    it "fetches and stores current data xxx" do
       VCR.use_cassette("massey_nfl") do
         Fetch::Massey.run(sport: "nfl", date: '2019/09/30')
       end

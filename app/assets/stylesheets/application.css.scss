@@ -213,6 +213,9 @@ img{
   border-top: black solid;
 }
 
+.bet-border{
+  border-top: #b7b6b6 solid;
+}
 .correct-pick{
   background-color: green;
   border-radius: 12em;
@@ -229,4 +232,11 @@ img{
 
 .medium-width{
   max-width: 900px;
+}
+
+.small-width{
+  max-width: 500px;
+}
+.full-width{
+  width: 100%;
 }

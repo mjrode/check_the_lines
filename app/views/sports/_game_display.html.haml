@@ -4,13 +4,13 @@
 = render "filter_form"
 - @games.order(:time).each do |game|
   - next if game.home_team_abbr.nil?
-  %table.table.d-block.d-lg-none.mx-auto
+  %table.table.mx-auto.small-width.top-border
     %div.max
       %thead
       %tr
-        %th.center-text{:scope => "col"} Away
+        %th.h2.center-text{:scope => "col"} Away
         %th.center-text{:scope => "col"}
-        %th.center-text{:scope => "col"} Home
+        %th.h2.center-text{:scope => "col"} Home
       %tbody
 
         %tr.top-border
@@ -31,30 +31,15 @@
           %th.center-text{:scope => "row"}= game.home_team_vegas_line
 
         %tr
-          %td.center-text= game.time
-          %th.center-text Game Time
-          %td.center-text= game.time
+          - if game.game_over
+            %td.center-text= game.date
+            %th.center-text Date
+            %td.center-text= game.date
+          - else
+            %td.center-text= game.time
+            %th.center-text Game Time
+            %td.center-text= game.time
 
-        %tr
-          - if game.away_team_name == game.team_to_bet
-            %td.center-text= fa_icon 'check 2x'
-          - else
-            %td
-          %th.center-text Pick
-          - if game.home_team_name == game.team_to_bet
-            %td.center-text= fa_icon 'check 2x'
-          - else
-            %td
-        %tr
-          - if game.away_team_name == game.team_to_bet
-            %td.center-text= game.strength
-          - else
-            %td
-          %th.center-text Strength
-          - if game.home_team_name == game.team_to_bet
-            %td.center-text= game.strength
-          - else
-            %td
         %tr
           %td.center-text= game.away_team_massey_line
           %th.center-text Predicted Line
@@ -67,16 +52,6 @@
           %th.center-text Contrarian
           - if game.home_team_spread_percent.to_f < 35
             %td.center-text= fa_icon 'eye-slash 2x'
-          - else
-            %td
-        %tr
-          - if game.best_bet && game.team_to_bet == game.away_team_name
-            %td.center-text= fa_icon "lock 2x"
-          - else
-            %td
-          %th.center-text Best Bet
-          - if game.best_bet && game.team_to_bet == game.home_team_name
-            %td.center-text= fa_icon "lock 2x"
           - else
             %td
         %tr
@@ -102,141 +77,38 @@
           - else
             %td
 
+        %tr
+          %th.center-text{:scope => "row"}= game.away_team_final_score
+          %th.center-text{:scope => "row"} Final Score
+          %th.center-text{:scope => "row"}= game.home_team_final_score
 
-%table.table.d-none.d-md-block
-  %thead
-    %tr
-      %th.center-text{:scope => "col"} Team/Line
-      %th
-      %th.center-text{:scope => "col"} Time
-      %th.center-text{:scope => "col"} Pick
-      %th.center-text{:scope => "col"} Strength
-      %th.center-text{:scope => "col"} Predicted Line
-      %th.center-text{:scope => "col"} Contrarian
-      %th.center-text{:scope => "col"} Best Bet
-      %th.center-text{:scope => "col"} RLM
-      %th.center-text{:scope => "col"} Public Money %
-      %th.center-text{:scope => "col"} Correct Pick?
-    %tbody
-    - @games.order(:time).each do |game|
-      - next if game.home_team_abbr.nil?
-
-      %tr.top-border
-        -# Name
-        %th.center-text{:scope => "row"}= game.away_team_name + " #{game.away_team_vegas_line}"
-
-        -# Logo
-        %td.logo.center-text
-          = image_tag(game.away_team_logo, :class => [game.away_team_logo.include?('alternate') && 'alt-image'])
-
-        -# Time
-        %td.center-text= game.time
-
-        -# Team to bet
-        - if game.away_team_name == game.team_to_bet
-          %td.center-text= fa_icon 'check 2x'
-        - else
-          %td
-
-
-        -# Bet strength
-        - if game.away_team_name == game.team_to_bet
-          %td.center-text= game.strength
-        - else
-          %td
-
-        -# Expected Score
-        %td.center-text
-          #{game.away_team_massey_line}
-
-        -# Contrarian Pick
-        - if game.away_team_spread_percent.to_f < 35
-          %td.center-text= fa_icon 'eye-slash 2x'
-        - else
-          %td
-
-        -# Best bet
-        - if  game.best_bet && game.team_to_bet == game.away_team_name
-          %td.center-text= fa_icon "lock 2x"
-        - else
-          %td
-
-        -# RLM
-        - if game.away_rlm && game.away_rlm.to_i > 0
-          %td.center-text= fa_icon 'balance-scale 2x'
-        -else
-          %td
-
-        -# Public percentage
-        - if game.away_team_spread_percent.to_f > 50
-          %td.center-text.container.public
-            .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
-        - else
-          %td
-        -# Correct Pick
-        %td
-
-
-      %tr.bottom-border
-        -# Name
-        %th.center-text{:scope => "row"}= game.home_team_name  + " #{game.home_team_vegas_line}"
-
-        -# Logo
-        %td.logo.center-text
-          = image_tag(game.home_team_logo, :class => [game.home_team_logo.include?('alternate') && 'alt-image'])
-
-        -# Time
-        %td.center-text= game.time
-
-        -# Team to bet
-        - if game.home_team_name == game.team_to_bet
-          %td.center-text= fa_icon 'check 2x'
-        - else
-          %td
-
-        -# Bet strength
-        - if game.home_team_name == game.team_to_bet
-          %td.center-text= game.strength
-        - else
-          %td
-
-        -# Expected Score
-        %td.center-text
-          #{game.home_team_massey_line}
-          %br/
-          %br/
-          Line Diff: #{game.line_diff}
-
-        -# Contrarian Pick
-        - if game.home_team_spread_percent.to_f < 35
-          %td.center-text= fa_icon 'eye-slash 2x'
-        - else
-          %td
-
-        -# Best bet
-        - if  game.best_bet && game.team_to_bet == game.home_team_name
-          %td.center-text= fa_icon "lock 2x"
-        - else
-          %td
-
-        -# RLM
-        - if game.home_rlm && game.home_rlm.to_i > 0
-          %td.center-text= fa_icon 'balance-scale 2x'
-        -else
-          %td
-
-        -#  Public percentage
-        - if game.home_team_spread_percent.to_f > 50
-          %td.center-text.container.public
-            .skills.html.round{:style => "--width: #{game.home_team_spread_percent}%;"}= "#{game.home_team_spread_percent}%"
-        - else
-          %td
-
-        -# Correct Pick
-        - if game.game_over
-          - if game.correct_prediction
-            %td.center-text= fa_icon "check 2x"
+        %tr.bet-border{:colspan => "3"}
+          %th.center-text.pl-4.h4{:colspan => "2"} Pick:
+          - if game.team_to_bet == game.away_team_name
+            %td.logo.center-text
+              = image_tag(game.away_team_logo, :class => [game.away_team_logo.include?('alternate') && 'alt-image'])
+              <br>
+              = game.away_team_abbr
           - else
-            %td.center-text= fa_icon "times 2x"
-        - else
-          %td.center-text
+            %td.logo.center-text
+              = image_tag(game.home_team_logo, :class => [game.home_team_logo.include?('alternate') && 'alt-image'])
+              <br>
+              = game.home_team_abbr
+        - if game.game_over
+          %tr
+            %th.center-text.pl-4.h4{:colspan => "2"} Correct Pick?
+            - if game.correct_prediction
+              %td.center-text.pr-4{:colspan => "1"}= fa_icon "check 2x"
+            - else
+              %td.h5.center-text No
+        %tr
+          %th.center-text.pl-4.h4{:colspan => "2"} Best Bet?
+          - if game.best_bet
+            %td.center-text.pr-4{:colspan => "1"}= fa_icon "lock 2x"
+          - else
+            %td.h5.center-text No
+
+
+        %tr
+          %th.center-text.pl-4.h4{:colspan => "2"} Bet Strength:
+          %td.center-text= game.strength
