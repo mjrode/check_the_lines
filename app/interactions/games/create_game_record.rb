@@ -35,7 +35,9 @@ class Games::CreateGameRecord < Less::Interaction
     Game.find_or_initialize_by(
       sport: massey_game.sport,
       date: massey_game.game_date,
-      home_team_name: action_game.home_team_name
+      external_id: action_game.external_id,
+      home_team_name: action_game.home_team_name,
+      away_team_name: action_game.away_team_name,
     )
   end
 
