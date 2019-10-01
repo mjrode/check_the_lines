@@ -47,7 +47,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-    game.strength.to_i > 5
+   game.strength.to_i > 3 &&  game.line_diff >= 2 && game.public_percentage_on_massey_team < BEST_BET_SETTINGS[:public_percentage]
   end
 
   def ou_best_bet?
