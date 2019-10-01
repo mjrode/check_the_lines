@@ -2,7 +2,7 @@
 
 = render "game_table_header"
 = render "filter_form"
-- @games.order(:time).each do |game|
+- @games.order(date: :desc).each do |game|
   - next if game.home_team_abbr.nil?
   %table.table.mx-auto.small-width.top-border
     %div.max
