@@ -189,6 +189,24 @@
   height: 2em;
 }
 
+.game-date {
+  font-size: .8em;
+  font-weight: 100;
+  padding: 0 !important;
+  padding-top: 1.5rem !important;
+}
+.outer {
+    background-color: #efefef;
+    margin: 20px;
+    padding: 10px 10px 0px 10px;
+}
+
+.inner {
+    width: 80%;
+    margin: 0px auto;
+}
+
+
 .skills {
     text-align: right; /* Right-align text */
     padding: 5px; /* Add some padding */
@@ -222,9 +240,11 @@ img{
 }
 
 .logo-width{
-  width: 6%;
+  width: 50%;
 }
-
+.top-bottom-pad-5{
+  padding: 5% 0;
+}
 
 .logo-width-ncaaf{
   width: 10%;
