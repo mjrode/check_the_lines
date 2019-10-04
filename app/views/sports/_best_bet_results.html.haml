@@ -16,11 +16,11 @@
               %tr.top-border
                 - @best_bet_games = Game.all
                 %th.center-text{:scope => "row"}
-                  = @best_bet_games.correct_spread_best_bets('ncaaf').count
+                  = @best_bet_games.all_correct_spread_best_bets.count
                 %th.center-text{:scope => "row"}
                   = @best_bet_games.best_bets('ncaaf').count
                 %th.center-text{:scope => "row"}
-                  =  (@best_bet_games.correct_spread_best_bets('ncaaf').count.to_f/ @best_bet_games.best_bets('ncaaf').count.to_f).round(2)
+                  =  (@best_bet_games.all_correct_spread_best_bets.count.to_f/ @best_bet_games.all_best_bets.count.to_f).round(2)
   %div.row.list-group.list-flush.mx-auto
     %div.col.mx-auto.mt-3
       %h1.list-group-item.active.rounded.p-4 What is CheckTheLines?

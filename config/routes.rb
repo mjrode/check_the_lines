@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'pages/admin'
 
-	get 'pages/fetch_data'
+  get 'pages/fetch_data'
 
   resources :games do
     collection do
