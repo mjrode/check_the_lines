@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_012656) do
+ActiveRecord::Schema.define(version: 2019_10_04_015711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,11 @@ ActiveRecord::Schema.define(version: 2019_10_04_012656) do
     t.boolean "in_progress"
     t.string "week"
     t.integer "external_id"
+    t.float "average_home_predicted_line"
+    t.float "median_home_predicted_line"
+    t.float "standard_deviation_of_pred"
+    t.float "probability_home_wins"
+    t.float "probability_home_covers"
   end
 
   create_table "massey_games", id: :serial, force: :cascade do |t|

@@ -22,12 +22,13 @@ class Games::CreateGameRecord < Less::Interaction
       away_team_name = massey_game.away_team_name
 
       action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where(home_team_name: home_team_name, away_team_name: away_team_name).first
+      puts "Could not find an action match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
 
-      puts "Could not find a match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
+      pred_game = PredGame.where("sport = ?", massey_game.sport).where(date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where(home_team: home_team_name, away_team: away_team_name).first
+      puts "Could not find a prediction match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
       next if action_game.nil?
       game = find_or_create_game(massey_game, action_game)
-      save_or_update_game(game, massey_game, action_game)
-      mark_massey_and_action_processed(action_game, massey_game) if action_game.game_over
+      save_or_update_game(game, massey_game, action_game, pred_game)
     end
   end
 
@@ -41,16 +42,11 @@ class Games::CreateGameRecord < Less::Interaction
     )
   end
 
-  def mark_massey_and_action_processed(action_game, massey_game)
-    action_game.update(processed: true)
-    massey_game.update(processed: true)
-  end
-
   def set_game_time(massey_game)
     massey_game.game_over ? 'Final' : massey_game.time
   end
 
-  def save_or_update_game(game, massey_game, action_game)
+  def save_or_update_game(game, massey_game, action_game, pred_game)
     game_hash =
     {
       external_id: action_game.external_id,
@@ -85,7 +81,12 @@ class Games::CreateGameRecord < Less::Interaction
       home_team_logo:         action_game.home_team_logo,
       away_team_logo:         action_game.away_team_logo,
       home_team_abbr:         action_game.home_team_abbr,
-      away_team_abbr:         action_game.away_team_abbr
+      away_team_abbr:         action_game.away_team_abbr,
+      average_home_predicted_line: pred_game.average_home_predicted_line,
+      median_home_predicted_line: pred_game.median_home_predicted_line,
+      standard_deviation_of_pred: pred_game.standard_deviation_of_pred,
+      probability_home_wins: pred_game.probability_home_wins,
+      probability_home_covers: pred_game.probability_home_covers
     }
     game.update(game_hash)
   end
