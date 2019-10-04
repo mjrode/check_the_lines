@@ -88,11 +88,11 @@ class Fetch::Action < Less::Interaction
     game.update(game_hash)
   end
 
-  def value_stats(game, home_or_away, stat)
+  def value_stats(game, home_or_away, action_stat)
     home_or_away_stats = game["#{home_or_away}_sharpreport"] || (game["value_stats"][0]["#{home_or_away}_value_breakdown"] if  game["value_stats"])
     return 0 unless home_or_away_stats
-    stat = home_or_away_stats.select {|hash| hash.has_value?(stat)}
-    stat.present? ? stat.first['value'] : 0
+    action_stat = home_or_away_stats.select {|hash| hash.has_value?(action_stat)}
+    action_stat.present? ? action_stat.first['value'] : 0
   end
 
   def game_over(game)
