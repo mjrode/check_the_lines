@@ -12,7 +12,9 @@ class Fetch::Pred < Less::Interaction
 
   def construct_url
     puts "Fetching pred data for #{sport}"
-    "http://www.thepredictiontracker.com/pred#{sport_code}.html"
+    url = "http://www.thepredictiontracker.com/pred#{sport_code}.html"
+    puts "URL for request #{url}"
+    url
   end
 
   def sport_code
