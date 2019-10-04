@@ -10,7 +10,8 @@ class Common::FetchHtml < Less::Interaction
 
   def fetch_page
     uri = URI.parse(url)
-    puts "URI for request #{uri}"
     Nokogiri::HTML(uri.open)
+  rescue => e
+    puts e
   end
 end
