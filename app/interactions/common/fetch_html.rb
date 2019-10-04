@@ -1,22 +1,15 @@
-class Games::FetchHtml < Less::Interaction
+class Common::FetchHtml < Less::Interaction
+  require 'open-uri'
   expects :url
 
   def run
-    begin
-      fetch_page
-    rescue
-      fetch_page
-    end
+    fetch_page
   end
 
   private
 
   def fetch_page
-    browser = Watir::Browser.new :chrome
-    browser.goto url
-    doc = Nokogiri::HTML(browser.html)
-    browser.close
-    doc
+    uri = URI.parse(url)
+    Nokogiri::HTML(uri.open)
   end
-
 end

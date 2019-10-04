@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_220725) do
+ActiveRecord::Schema.define(version: 2019_10_04_012656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,19 @@ ActiveRecord::Schema.define(version: 2019_09_30_220725) do
     t.float "over_under_diff"
     t.string "team_to_bet"
     t.string "week"
+  end
+
+  create_table "pred_games", force: :cascade do |t|
+    t.string "external_id"
+    t.string "home_team"
+    t.string "away_team"
+    t.float "average_home_predicted_line"
+    t.float "median_home_predicted_line"
+    t.float "standard_deviation_of_pred"
+    t.float "probability_home_wins"
+    t.float "probability_home_covers"
+    t.date "date"
+    t.string "sport"
   end
 
 end

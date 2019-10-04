@@ -1,23 +1,21 @@
 class Conversions::MapNcaafTeam < Less::Interaction
-	expects :team_name
-  expects :missing_name_map, allow_nil: true
+expects :team_name
+expects :missing_name_map, allow_nil: true
 
-	def run
-		format_name
-	end
+  def run
+    format_name
+  end
 
-	private
+  private
 
   def format_name
     if team_name_mapping[team_name]
-      # puts "Formatted Massey NCAAF name #{team_name_mapping["#{team_name}"]}"
       team_name_mapping["#{team_name}"]
     else
       puts "Unable to find mapping for #{team_name}"
       missing_name_map << team_name
       team_name
     end
-
   end
 
   def team_name_mapping
@@ -182,8 +180,6 @@ class Conversions::MapNcaafTeam < Less::Interaction
     "Missouri"=>"Missouri Tigers",
     "Louisville"=>"Louisville Cardinals",
     "Arkansas"=>"Arkansas Razorbacks"
-
-  }
+    }
   end
-
 end
