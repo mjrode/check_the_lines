@@ -84,6 +84,10 @@ class Games::CreateGameRecord < Less::Interaction
         away_team_abbr:         action_game.away_team_abbr,
       }
     game_hash = merge_pred_game_stats(game_hash, pred_game) if pred_game
+    puts "Home RLM -----------"
+    puts action_game.home_rlm
+    puts "Away RLM -----------"
+    puts action_game.away_rlm
     game.update(game_hash)
   end
 
