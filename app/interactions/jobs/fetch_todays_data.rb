@@ -2,7 +2,7 @@ class Jobs::FetchTodaysData < Less::Interaction
   expects :date, allow_nil: true
 
   def run
-		run_and_import_data
+    run_and_import_data
   end
 
   private

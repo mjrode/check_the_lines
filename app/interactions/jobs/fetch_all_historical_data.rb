@@ -43,6 +43,7 @@ private
 
   def array_of_start_date_of_weeks(res)
     current_week = res['current_week']
+    week_index = res['current_week'] - 1
     return Array.wrap(res['calendar_info']['reg'][current_week + 1]['startDate']) if future
     res['calendar_info']['reg'][0..week_index - 1].map{|week| week['startDate']}
   end
