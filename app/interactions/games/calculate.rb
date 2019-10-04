@@ -15,11 +15,11 @@ class Games::Calculate < Less::Interaction
       public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
       correct_prediction:  correct_line_prediction?,
-      best_bet: best_bet?,
       ou_best_bet: ou_best_bet?,
-      in_progress: in_progress?
+      in_progress: in_progress?,
       })
-    game.update(strength: game_strength)
+      game.update(strength: game_strength)
+      game.update(best_bet: best_bet?)
   end
 
   def game_params
@@ -47,7 +47,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-   game.strength.to_i > $best_bet_strength
+  game.strength.to_i > $best_bet_strength
   end
 
   def ou_best_bet?
