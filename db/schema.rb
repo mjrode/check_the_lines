@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_015711) do
+ActiveRecord::Schema.define(version: 2019_10_13_002618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "action_games", id: :serial, force: :cascade do |t|
+  create_table "action_games", force: :cascade do |t|
     t.date "game_date"
     t.string "sport"
     t.string "home_team_name"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.float "vegas_over_under"
     t.float "home_team_final_score"
     t.float "away_team_final_score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "start_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "external_id"
     t.boolean "processed", default: false
     t.boolean "game_over"
@@ -49,11 +50,10 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.text "away_team_logo"
     t.text "home_team_abbr"
     t.text "away_team_abbr"
-    t.datetime "start_time"
     t.string "week"
   end
 
-  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
+  create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -63,16 +63,16 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.datetime "failed_at"
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "games", id: :serial, force: :cascade do |t|
+  create_table "games", force: :cascade do |t|
     t.string "sport"
     t.string "home_team_name"
     t.string "away_team_name"
-    t.date "date"
+    t.datetime "date"
     t.float "home_team_massey_line"
     t.float "away_team_massey_line"
     t.float "home_team_vegas_line"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.boolean "best_bet"
     t.boolean "processed", default: false
     t.float "massey_over_under"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.float "line_diff"
     t.float "over_under_diff"
     t.string "team_to_bet"
@@ -124,9 +124,10 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.float "standard_deviation_of_pred"
     t.float "probability_home_wins"
     t.float "probability_home_covers"
+    t.datetime "start_time"
   end
 
-  create_table "massey_games", id: :serial, force: :cascade do |t|
+  create_table "massey_games", force: :cascade do |t|
     t.float "home_team_massey_line"
     t.float "away_team_massey_line"
     t.string "away_team_name"
@@ -139,8 +140,8 @@ ActiveRecord::Schema.define(version: 2019_10_04_015711) do
     t.date "game_date"
     t.integer "external_id"
     t.string "sport"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.boolean "processed", default: false
     t.boolean "game_over", default: false
     t.string "time"

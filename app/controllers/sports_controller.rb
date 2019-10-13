@@ -27,7 +27,7 @@ class SportsController < ApplicationController
     return @games = @games.not_over unless @sport_filter || @game_filter
     @games = @games.send(@game_filter) if @game_filter
     @games = @games.where(sport: format_sport_for_search(@sport_filter)) if @sport_filter && @sport_filter != 'all'
-    @games
+    @games.order('date ASC')
   end
 
   def format_sport_for_search(sport)

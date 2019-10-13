@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  validates :external_id, uniqueness: true
+
   scope :unprocessed,          -> {where(processed: false)}
   scope :game_over,           -> {where(game_over: true)}
   scope :not_over,            -> {where(game_over: false)}

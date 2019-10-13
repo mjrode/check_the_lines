@@ -264,6 +264,8 @@ Metrics/MethodLength:
 #   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#bang-not-not'
 #   Enabled: false
 
+Style/NumericLiteralPrefix:
+  Enabled: false
 Style/NumericLiterals:
   Enabled: false
 #   Description: >-

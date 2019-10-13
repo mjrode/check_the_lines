@@ -27,6 +27,7 @@ gem 'momentjs-rails'
 gem 'simple_form'
 gem 'rails_12factor', group: :production
 gem "font-awesome-rails"
+gem 'sprockets', '~>3.0'
 
 
 group :development, :test do
@@ -36,13 +37,11 @@ group :development, :test do
 end
 
 group :test do
-  gem 'minitest'
-  gem 'minitest-around'
+  gem 'minitest-rails'
   gem 'rubocop'
   gem 'vcr'
   gem 'webmock'
   gem 'mocha'
-
 end
 
 group :development do

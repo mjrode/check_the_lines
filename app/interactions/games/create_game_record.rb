@@ -8,55 +8,45 @@ class Games::CreateGameRecord < Less::Interaction
   private
 
   def process_massey_and_action_data
-    # Changing from unprocessed to game_over that way the %'s update throughout the day as the jobs run
+    games_to_process = process_all_games ? ActionGame.all : ActionGame.where(game_over: false)
 
-    games_to_process =
-      if process_all_games
-        MasseyGame.all
-      else
-        MasseyGame.where("(game_over = false) or processed = false")
-      end
+    games_to_process.each do |action_game|
+      home_team_name = action_game.home_team_name
+      away_team_name = action_game.away_team_name
 
-    games_to_process.each do |massey_game|
-      home_team_name = massey_game.home_team_name
-      away_team_name = massey_game.away_team_name
-
-      action_game = ActionGame.where("sport = ?", massey_game.sport).where(game_date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where(home_team_name: home_team_name, away_team_name: away_team_name).first
+      massey_game = MasseyGame.where("sport = ?", action_game.sport).where(game_date: (action_game.game_date - 5.days)..(action_game.game_date + 5.days)).where(home_team_name: home_team_name, away_team_name: away_team_name).first
       # puts "Could not find an action match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
 
-      pred_game = PredGame.where("sport = ?", massey_game.sport).where(date: (massey_game.game_date - 5.days)..(massey_game.game_date + 5.days) ).where(home_team: home_team_name, away_team: away_team_name).first
+      pred_game = PredGame.where("sport = ?", action_game.sport).where(date: (action_game.game_date - 5.days)..(action_game.game_date + 5.days) ).where(home_team: home_team_name, away_team: away_team_name).first
       # puts "Could not find a prediction match for massey game #{massey_game.away_team_name} vs #{massey_game.home_team_name}" if action_game.nil?
-      next if action_game.nil?
-      game = find_or_create_game(massey_game, action_game)
+
+      game = find_or_create_game(action_game)
       save_or_update_game(game, massey_game, action_game, pred_game)
     end
   end
 
-  def find_or_create_game(massey_game, action_game)
+  def find_or_create_game(action_game)
     Game.find_or_initialize_by(
-      sport: massey_game.sport,
-      date: massey_game.game_date,
+      sport: action_game.sport,
       external_id: action_game.external_id,
       home_team_name: action_game.home_team_name,
       away_team_name: action_game.away_team_name,
     )
   end
 
-  def set_game_time(massey_game)
-    massey_game.game_over ? 'Final' : massey_game.time
+  def set_game_time(action_game)
+    action_game.game_over ? 'Final' : action_game.start_time.to_time.strftime("%I:%M %p")
   end
 
   def save_or_update_game(game, massey_game, action_game, pred_game)
     game_hash =
       {
         external_id: action_game.external_id,
-        sport: massey_game.sport,
-        date: massey_game.game_date,
-        time: set_game_time(massey_game),
+        sport: action_game.sport,
+        date: action_game.start_time,
+        time: set_game_time(action_game),
         home_team_name: action_game.home_team_name,
         away_team_name: action_game.away_team_name,
-        home_team_massey_line: massey_game.home_team_massey_line,
-        away_team_massey_line: massey_game.away_team_massey_line,
         home_team_vegas_line: (action_game.home_team_vegas_line || massey_game.home_team_vegas_line),
         away_team_vegas_line:   (action_game.away_team_vegas_line || massey_game.away_team_vegas_line),
         vegas_over_under: action_game.vegas_over_under,
@@ -64,7 +54,6 @@ class Games::CreateGameRecord < Less::Interaction
         away_team_final_score: (action_game.away_team_final_score || massey_game.away_team_final_score),
         home_team_spread_percent: action_game.home_team_ats_percent,
         away_team_spread_percent: action_game.away_team_ats_percent,
-        massey_over_under: massey_game.massey_over_under,
         over_percent: action_game.over_percent,
         under_percent: action_game.under_percent,
         game_over: action_game.game_over || Date.today > (massey_game.game_date + 1.day),
@@ -84,11 +73,20 @@ class Games::CreateGameRecord < Less::Interaction
         away_team_abbr:         action_game.away_team_abbr,
       }
     game_hash = merge_pred_game_stats(game_hash, pred_game) if pred_game
-    puts "Home RLM -----------"
-    puts action_game.home_rlm
-    puts "Away RLM -----------"
-    puts action_game.away_rlm
-    game.update(game_hash)
+    game_hash = merge_massey_game_stats(game_hash, massey_game) if massey_game
+
+    saved = game.update(game_hash)
+    puts "Unable to save game #{game.home_team_name} vs #{game.away_team_name}" unless saved
+  end
+
+  def merge_massey_game_stats(game_hash, massey_game)
+    massey_game_hash =
+      {
+        home_team_massey_line: massey_game.home_team_massey_line,
+        away_team_massey_line: massey_game.away_team_massey_line,
+        massey_over_under: massey_game.massey_over_under,
+      }
+    game_hash.merge(massey_game_hash)
   end
 
   def merge_pred_game_stats(game_hash, pred_game)

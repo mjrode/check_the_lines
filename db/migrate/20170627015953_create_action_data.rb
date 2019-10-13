@@ -16,6 +16,7 @@ class CreateActionData < ActiveRecord::Migration[6.0]
       t.float :vegas_over_under
       t.float :home_team_final_score
       t.float :away_team_final_score
+      t.datetime :start_time
       t.datetime :game_time
 
       t.timestamps null: false
