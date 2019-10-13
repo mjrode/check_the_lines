@@ -13,7 +13,7 @@ class Fetch::Massey < Less::Interaction
   private
 
   def construct_url
-    puts "Fetching massey date for #{sport}, on date: #{format_date}"
+    puts "Fetching massey date for #{sport}, on date: #{format_date}" unless Rails.env.test?
     "https://www.masseyratings.com/predjson.php?s=#{sport_code}&dt=#{
       format_date
     }"
@@ -42,9 +42,6 @@ class Fetch::Massey < Less::Interaction
   def save_game
     if game_hash[:home_team_massey_line] == 0.0 ||
        game_hash[:home_team_massey_line] == -0.0
-      puts "Missing Massey data for #{game_hash[:home_team_name]} VS. #{
-             game_hash[:away_team_name]
-           }"
       return
     end
 

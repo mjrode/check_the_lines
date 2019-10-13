@@ -2,9 +2,9 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/rails"
+require "minitest/reporters"
+Minitest::Reporters.use!
 
-# Consider setting MT_NO_EXPECTATIONS to not add expectations to Object.
-# ENV["MT_NO_EXPECTATIONS"] = true
 VCR.configure do |config|
   config.cassette_library_dir = "test/cassettes"
   config.hook_into :webmock

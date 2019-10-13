@@ -16,7 +16,7 @@ class Fetch::Action < Less::Interaction
   def construct_url
     url = "https://api.actionnetwork.com/web/v1/sharpreport/#{format_sport}bookIds=15"
     url += "&week=#{week}" if week
-    puts 'Actionsports URL:' + url
+    puts 'Actionsports URL:' + url unless Rails.env.test?
     url
   end
 

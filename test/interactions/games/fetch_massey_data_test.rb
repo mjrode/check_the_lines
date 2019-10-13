@@ -88,7 +88,7 @@ describe 'Fetch::Massey' do
       assert_equal game.sport, 'nfl'
       assert_equal game.processed, false
       assert_equal game.game_over, false
-      assert_equal game.time, '08:15.PM.ET'
+      assert_equal game.time, 'Final'
     end
   end
 

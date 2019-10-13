@@ -32,12 +32,15 @@ gem 'sprockets', '~>3.0'
 
 group :development, :test do
   gem 'byebug'
+  gem 'guard'
+  gem 'guard-minitest'
   gem 'annotate'
   gem 'letter_opener'
 end
 
 group :test do
   gem 'minitest-rails'
+  gem 'minitest-reporters'
   gem 'rubocop'
   gem 'vcr'
   gem 'webmock'
