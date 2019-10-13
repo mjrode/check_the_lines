@@ -22,16 +22,16 @@ start_time = Time.now
 (bet_min..bet_max).each do |best_bet|
 
   system('clear')
-  $best_bet_strength = best_bet
+  BEST_BET_STRENGTH = best_bet
 
   (min..max).each do |pub_per|
 
     (min..max).each do |rlm_st|
 
       (min..max).each do |line_str|
-        $rlm_strength = rlm_st
-        $public_percentage_strength = pub_per - 1
-        $line_strength =  line_str -1
+        RLM_STRENGTH = rlm_st
+        PUBLIC_PERCENTAGE_STRENGTH = pub_per - 1
+        LINE_STRENGTH =  line_str -1
         iteration_count += 1
 
         cycles_left = iterations - iteration_count
@@ -49,14 +49,14 @@ start_time = Time.now
 
         win_percent =  (Game.correct_spread_best_bets.count.to_f/ Game.best_bets.count.to_f).round(2)
         best_bet_count = Game.best_bets.count.to_f
-        puts "BEST BET CUTOFF: #{$best_bet_strength} $public_percentage_strength: #{$public_percentage_strength}, $rlm_strength: #{$rlm_strength}, $line_strength: #{$line_strength} best bet count #{best_bet_count}"
-        results << "BEST BET CUTOFF: #{$best_bet_strength} $public_percentage_strength: #{$public_percentage_strength}, $rlm_strength: #{$rlm_strength}, $line_strength: #{$line_strength}, best bet count #{best_bet_count}"
+        puts "BEST BET CUTOFF: #{BEST_BET_STRENGTH} PUBLIC_PERCENTAGE_STRENGTH: #{PUBLIC_PERCENTAGE_STRENGTH}, RLM_STRENGTH: #{RLM_STRENGTH}, LINE_STRENGTH: #{LINE_STRENGTH} best bet count #{best_bet_count}"
+        results << "BEST BET CUTOFF: #{BEST_BET_STRENGTH} PUBLIC_PERCENTAGE_STRENGTH: #{PUBLIC_PERCENTAGE_STRENGTH}, RLM_STRENGTH: #{RLM_STRENGTH}, LINE_STRENGTH: #{LINE_STRENGTH}, best bet count #{best_bet_count}"
         correct_best_bet_count = Game.correct_spread_best_bets.count.to_f
 
         results <<  "\n\nWin percentage #{win_percent}% Correct Best Bets #{correct_best_bet_count} Total Best Bet Count #{best_bet_count}\n\n"
 
         if win_percent > @best_settings[:win_percent]
-          @best_settings = {win_percent: win_percent, rlm_strength: $rlm_strength, line_strength: $line_strength, pub_percentage_strength: $public_percentage_strength, best_bet: best_bet, bet_count: best_bet_count}
+          @best_settings = {win_percent: win_percent, rlm_strength: RLM_STRENGTH, line_strength: LINE_STRENGTH, pub_percentage_strength: PUBLIC_PERCENTAGE_STRENGTH, best_bet: best_bet, bet_count: best_bet_count}
         end
         bet_count_change = best_bet_count
         puts "Best bet count ----- #{best_bet_count}"

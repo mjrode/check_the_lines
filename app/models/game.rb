@@ -14,16 +14,16 @@ class Game < ActiveRecord::Base
   def strength
     return nil unless massey_favors_home_or_away
     rlm = send("#{massey_favors_home_or_away}_rlm").to_i
-    rlm_strength = rlm * $rlm_strength
-    line_strength = line_diff * $line_strength
+    rlm_strength = rlm * RLM_STRENGTH
+    line_strength = line_diff * LINE_STRENGTH
     public_percentage_strength =
-      (1 / public_percentage_on_massey_team) * $public_percentage_strength
+      (1 / public_percentage_on_massey_team) * PUBLIC_PERCENTAGE_STRENGTH
 
     strength = line_strength
     strength += public_percentage_strength
     strength += rlm_strength
 
-    if strength > $best_bet_strength
+    if strength > BEST_BET_STRENGTH
       ::RESULTS <<
         "Home Team: #{home_team_name} Away #{away_team_name} Home Final #{
           home_team_final_score

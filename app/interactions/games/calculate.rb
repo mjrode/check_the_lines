@@ -42,41 +42,56 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-    strength.to_i > $best_bet_strength
+    strength.to_i > BEST_BET_STRENGTH
   end
 
   def strength
-    pub_percent_on_massey = get_public_percentage_on_massey_team
-    return nil if massey_favors_home_or_away.nil? || line_diff.nil? || pub_percent_on_massey.nil?
-    rlm = game.send("#{massey_favors_home_or_away}_rlm").to_i
-    rlm_strength = rlm * $rlm_strength
-    line_strength = line_diff * $line_strength
-    public_percentage_strength =
-      (1 / pub_percent_on_massey.to_f) * $public_percentage_strength
+    return nil if massey_favors_home_or_away.nil? || line_diff.nil? || get_public_percentage_on_massey_team.nil?
 
-    strength = line_strength
-    strength += public_percentage_strength
-    strength += rlm_strength
+    strength_params = set_strength_params
+    strength = strength_params[:line_strength]
+    strength += strength_params[:public_percentage_strength]
+    strength += strength_params[:rlm_strength]
 
-    if strength > $best_bet_strength
-      ::RESULTS <<
-        "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{
-          game.home_team_final_score
-        } Away Final #{game.away_team_final_score}  Home vegas  #{
-          game.home_team_vegas_line
-        } Away Vegas #{game.away_team_vegas_line}"
+    print_strength_results(strength_params, strength) if strength > BEST_BET_STRENGTH
 
-      ::RESULTS << "Strength from rlm of #{rlm} is #{rlm_strength}" if rlm_strength
-      ::RESULTS << "Strength from line diff of #{line_diff} is #{line_strength}"
-      ::RESULTS <<
-        "Strength from public % of #{pub_percent_on_massey} is #{
-          public_percentage_strength
-        }"
-
-      ::RESULTS << "Correct pick #{correct_line_prediction?}"
-      ::RESULTS << "Final Strength: #{strength.round(2)} \n\n"
-    end
     strength.round(2)
+  end
+
+  def set_strength_params
+    pub_percent_on_massey = get_public_percentage_on_massey_team
+    rlm = game.send("#{massey_favors_home_or_away}_rlm").to_i
+    rlm_strength = rlm * RLM_STRENGTH
+    line_strength = line_diff * LINE_STRENGTH
+    public_percentage_strength =
+      (1 / pub_percent_on_massey.to_f) * PUBLIC_PERCENTAGE_STRENGTH
+
+    {
+      rlm: rlm,
+      rlm_strength: rlm_strength,
+      line_strength: line_strength,
+      public_percentage_strength: public_percentage_strength,
+      pub_percent_on_massey: pub_percent_on_massey.to_f
+    }
+  end
+
+  def print_strength_results(strength_params, strength)
+    ::RESULTS <<
+      "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{
+        game.home_team_final_score
+      } Away Final #{game.away_team_final_score}  Home vegas  #{
+        game.home_team_vegas_line
+      } Away Vegas #{game.away_team_vegas_line}"
+
+    ::RESULTS << "Strength from rlm of #{strength_params[:rlm]} is #{strength_params[:rlm_strength]}" if strength_params[:rlm_strength]
+    ::RESULTS << "Strength from line diff of #{line_diff} is #{strength_params[:line_strength]}"
+    ::RESULTS <<
+      "Strength from public % of #{strength_params[:pub_percent_on_massey]} is #{
+        strength_params[:public_percentage_strength]
+      }"
+
+    ::RESULTS << "Correct pick #{correct_line_prediction?}"
+    ::RESULTS << "Final Strength: #{strength.round(2)} \n\n"
   end
 
   def over_under_diff

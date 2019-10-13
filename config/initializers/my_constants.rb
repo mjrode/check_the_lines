@@ -1,10 +1,10 @@
 # SPORTS = %w[nfl cb cf mlb nba]
 SPORTS = %w[ncaaf nfl]
 RESULTS = []
-$best_bet_strength = 10
-$public_percentage_strength = 0
-$line_strength = 0
-$rlm_strength = 3
+BEST_BET_STRENGTH = 10
+PUBLIC_PERCENTAGE_STRENGTH = 0
+LINE_STRENGTH = 0
+RLM_STRENGTH = 3
 BEST_BET_SETTINGS = {
   public_percentage: 35, line_diff: 3, baseball_line_diff: 1
 }
