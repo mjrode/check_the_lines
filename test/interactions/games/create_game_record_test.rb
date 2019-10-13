@@ -108,7 +108,7 @@ describe 'Games::CreateGameRecord' do
       assert_equal game.external_id, 68006
     end
 
-    it 'updates exisiting game records xxx' do
+    it 'updates exisiting game records ' do
       VCR.use_cassette("massey_nfl") do
         Fetch::Massey.run(sport: "nfl", date: '2019/09/30')
       end
