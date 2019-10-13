@@ -11,14 +11,9 @@ class GamesController < ApplicationController
     @games = Game.all.order('date ASC')
     return @games = @games.not_over unless @sport_filter || @game_filter
     @games = @games.send(@game_filter) if @game_filter
-    @games = @games.where(sport: format_sport_for_search(@sport_filter)) if @sport_filter && @sport_filter != 'all'
+    @games = @games.where(sport: @sport_filter) if @sport_filter && @sport_filter != 'all'
 
-    @games.order('date ASC')
-  end
-
-  def format_sport_for_search(sport)
-    sport_search_map = { 'ncaaf': 'ncaaf' }
-    sport_search_map[sport.to_sym] || sport
+    @games.order('date DESC')
   end
 
   def set_filter_params
