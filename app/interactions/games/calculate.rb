@@ -82,9 +82,7 @@ class Games::Calculate < Less::Interaction
     overall_rating_strength = overall_rating * OVERALL_RATING_STRENGTH
     rlm_strength = rlm * RLM_STRENGTH
     line_strength = [LINE_STRENGTH * send("#{home_or_away}_line_diff").to_i, 0].max
-    puts "LINE_STRENGTH #{LINE_STRENGTH}"
-    puts "Line Strength ---- #{line_strength} for #{send("#{home_or_away}_line_diff")}"
-    public_percentage_strength = (1 / pub_percent.to_f) * PUBLIC_PERCENTAGE_STRENGTH
+    public_percentage_strength = 5 * PUBLIC_PERCENTAGE_STRENGTH if pub_percent <= 35
     steam_strength = STEAM_STRENGTH * steam
     contrarian_strength = CONTRARIAN_STRENGTH * contrarian
 
@@ -98,7 +96,7 @@ class Games::Calculate < Less::Interaction
       overall_rating: overall_rating,
       overall_rating_strength: overall_rating_strength,
       line_strength: line_strength,
-      public_percentage_strength: public_percentage_strength,
+      public_percentage_strength: public_percentage_strength.to_i,
       pub_percent: pub_percent.to_f,
       home_away: home_or_away
     }
