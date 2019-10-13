@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   private
 
   def select_games_for_display
-    @games = Game.all.order('date ASC')
+    @games = Game.all.order('date DESC')
     return @games = @games.not_over unless @sport_filter || @game_filter
     @games = @games.send(@game_filter) if @game_filter
     @games = @games.where(sport: @sport_filter) if @sport_filter && @sport_filter != 'all'
