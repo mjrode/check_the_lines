@@ -459,11 +459,11 @@ Layout/AlignHash:
 #   Enabled: true
 #   EnforcedStyle: indented
 
-# Layout/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
 #   Description: >-
 #                  Checks indentation of method calls with the dot operator
 #                  that span more than one line.
-#   Enabled: true
 #   EnforcedStyle: indented
 
 # Layout/InitialIndentation:

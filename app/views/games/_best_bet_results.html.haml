@@ -1,6 +1,6 @@
 %div.container.medium-width
   %div.row.m-4.lead
-    = link_to best_bets_path, class: 'mx-auto' do
+    = link_to best_bets_games_path, class: 'mx-auto' do
       View past best bet data here
   %h1.list-group-item.active.text-center.rounded.mx-auto Best Bet Results
   %div.mt-5.row
@@ -16,11 +16,11 @@
               %tr.top-border
                 - @best_bet_games = Game.all
                 %th.center-text{:scope => "row"}
-                  = @best_bet_games.all_correct_spread_best_bets.count
+                  = @best_bet_games.correct_spread_best_bets.count
                 %th.center-text{:scope => "row"}
-                  = @best_bet_games.best_bets('ncaaf').count
+                  = @best_bet_games.best_bets.count
                 %th.center-text{:scope => "row"}
-                  =  (@best_bet_games.all_correct_spread_best_bets.count.to_f/ @best_bet_games.all_best_bets.count.to_f).round(2)
+                  =  (@best_bet_games.correct_spread_best_bets.count.to_f/ @best_bet_games.best_bets.count.to_f).round(2)
   %div.row.list-group.list-flush.mx-auto
     %div.col.mx-auto.mt-3
       %h1.list-group-item.active.rounded.p-4 What is CheckTheLines?
