@@ -47,11 +47,11 @@ start_time = Time.now
         results << "=========================RESULTS==================================="
 
 
-        win_percent =  (Game.all_correct_spread_best_bets.count.to_f/ Game.all_best_bets.count.to_f).round(2)
-        best_bet_count = Game.all_best_bets.count.to_f
+        win_percent =  (Game.correct_spread_best_bets.count.to_f/ Game.best_bets.count.to_f).round(2)
+        best_bet_count = Game.best_bets.count.to_f
         puts "BEST BET CUTOFF: #{$best_bet_strength} $public_percentage_strength: #{$public_percentage_strength}, $rlm_strength: #{$rlm_strength}, $line_strength: #{$line_strength} best bet count #{best_bet_count}"
         results << "BEST BET CUTOFF: #{$best_bet_strength} $public_percentage_strength: #{$public_percentage_strength}, $rlm_strength: #{$rlm_strength}, $line_strength: #{$line_strength}, best bet count #{best_bet_count}"
-        correct_best_bet_count = Game.all_correct_spread_best_bets.count.to_f
+        correct_best_bet_count = Game.correct_spread_best_bets.count.to_f
 
         results <<  "\n\nWin percentage #{win_percent}% Correct Best Bets #{correct_best_bet_count} Total Best Bet Count #{best_bet_count}\n\n"
 
