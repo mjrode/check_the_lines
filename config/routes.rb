@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :admin do
-    collection { post 'fetch_data' }
+    collection { get 'refresh' }
   end
 
   root 'games#home'

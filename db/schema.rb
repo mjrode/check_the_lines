@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_062052) do
+ActiveRecord::Schema.define(version: 2019_10_13_072007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_062052) do
     t.datetime "start_time"
     t.float "away_team_strength"
     t.float "away_team_line_diff"
+    t.float "best_bet_strength"
   end
 
   create_table "massey_games", force: :cascade do |t|

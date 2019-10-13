@@ -11,7 +11,7 @@ class CreateMasseyGames < ActiveRecord::Migration[6.0]
       t.float :home_team_final_score
       t.float :away_team_final_score
       t.date :date
-      t.integer :external_id
+      t.integer :external_id, unique: true
       t.string :sport
 
       t.timestamps null: false

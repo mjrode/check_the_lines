@@ -5,18 +5,7 @@ class GamesController < ApplicationController
     puts "Params -- #{params}"
   end
 
-  def refresh
-    fetch_and_update_game_data
-    redirect_to action: 'best_bets'
-  end
-
   private
-
-  def fetch_and_update_game_data
-    puts "Fetching game data after controller action #{action_name}"
-    Jobs::FetchAndProcessCurrentData.run(process_all_games: true)
-    Jobs::ProcessAndUpdateGames.run(process_all_games: true)
-  end
 
   def select_games_for_display
     @games = Game.all.order('date ASC')

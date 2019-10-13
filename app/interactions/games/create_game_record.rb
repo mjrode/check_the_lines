@@ -50,13 +50,13 @@ class Games::CreateGameRecord < Less::Interaction
         home_team_vegas_line: (action_game.home_team_vegas_line || massey_game.home_team_vegas_line),
         away_team_vegas_line:   (action_game.away_team_vegas_line || massey_game.away_team_vegas_line),
         vegas_over_under: action_game.vegas_over_under,
-        home_team_final_score: (action_game.home_team_final_score || massey_game.home_team_final_score),
-        away_team_final_score: (action_game.away_team_final_score || massey_game.away_team_final_score),
+        home_team_final_score: (action_game.home_team_final_score || massey_game&.home_team_final_score),
+        away_team_final_score: (action_game.away_team_final_score || massey_game&.away_team_final_score),
         home_team_spread_percent: action_game.home_team_ats_percent,
         away_team_spread_percent: action_game.away_team_ats_percent,
         over_percent: action_game.over_percent,
         under_percent: action_game.under_percent,
-        game_over: action_game.game_over || Date.today > (massey_game.game_date + 1.day),
+        game_over: action_game.game_over || Date.today > ((massey_game&.game_date || Date.parse('01-01-3000')) + 1.day),
         home_team_money_percent: action_game.home_team_ml_percent,
         away_team_money_percent: action_game.away_team_ml_percent,
         home_contrarian:        action_game.home_contrarian,
@@ -76,7 +76,7 @@ class Games::CreateGameRecord < Less::Interaction
     game_hash = merge_massey_game_stats(game_hash, massey_game) if massey_game
 
     saved = game.update(game_hash)
-    puts "Unable to save game #{game.home_team_name} vs #{game.away_team_name}" unless saved
+    puts "WARNING----------------\n\n\n\n\n Unable to save game #{game.home_team_name} vs #{game.away_team_name}" unless saved
   end
 
   def merge_massey_game_stats(game_hash, massey_game)

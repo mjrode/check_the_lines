@@ -27,7 +27,8 @@ class Games::Calculate < Less::Interaction
       away_team_strength: away_team_strength,
       best_bet: best_bet?,
       team_to_bet: strength_team_to_bet,
-      correct_prediction: correct_line_prediction?
+      correct_prediction: correct_line_prediction?,
+      best_bet_strength: best_bet_strength
     }
   end
 
@@ -80,7 +81,9 @@ class Games::Calculate < Less::Interaction
 
     overall_rating_strength = overall_rating * OVERALL_RATING_STRENGTH
     rlm_strength = rlm * RLM_STRENGTH
-    line_strength = LINE_STRENGTH * send("#{home_or_away}_line_diff").to_i
+    line_strength = [LINE_STRENGTH * send("#{home_or_away}_line_diff").to_i, 0].max
+    puts "LINE_STRENGTH #{LINE_STRENGTH}"
+    puts "Line Strength ---- #{line_strength} for #{send("#{home_or_away}_line_diff")}"
     public_percentage_strength = (1 / pub_percent.to_f) * PUBLIC_PERCENTAGE_STRENGTH
     steam_strength = STEAM_STRENGTH * steam
     contrarian_strength = CONTRARIAN_STRENGTH * contrarian
@@ -218,5 +221,9 @@ class Games::Calculate < Less::Interaction
 
   def strength_team_to_bet
     home_team_strength > away_team_strength ? game.home_team_name : game.away_team_name
+  end
+
+  def best_bet_strength
+    [home_team_strength, away_team_strength].max
   end
 end

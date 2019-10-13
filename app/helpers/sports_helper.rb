@@ -11,7 +11,7 @@ module SportsHelper
   end
 
   def format_game_title(sport)
-    title_map = {'not_over': 'Live and Upcoming Games', 'game_over': 'Historical Games', 'all_best_bets': 'Historical Best Bets' }
+    title_map = {'not_over': 'Live and Upcoming Games', 'game_over': 'Historical Games', 'best_bets': 'Historical Best Bets' }
     title_map[sport&.to_sym] || 'Live'
   end
 end

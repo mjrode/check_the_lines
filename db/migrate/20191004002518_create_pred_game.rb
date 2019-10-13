@@ -1,7 +1,7 @@
 class CreatePredGame < ActiveRecord::Migration[6.0]
   def change
     create_table :pred_games do |t|
-      t.string :external_id
+      t.string :external_id, unique: true
       t.string :home_team
       t.string :away_team
       t.float :average_home_predicted_line

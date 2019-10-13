@@ -81,7 +81,8 @@ describe 'Games::Calculate' do
       assert_equal game.away_team_abbr, 'BAMA'
       assert_equal game.massey_favors_home_or_away, 'home'
       assert_equal game.in_progress, true
-      assert_nil game.week, nil
+      assert_equal game.best_bet_strength, 164.0
+      assert_nil game.week
       assert_nil game.ou_best_bet
 
       game = Game.where(external_id: 68_493).first
@@ -135,6 +136,7 @@ describe 'Games::Calculate' do
       assert_equal game.massey_favors_home_or_away, 'home'
       assert_equal game.in_progress, true
       assert_equal game.external_id, 68_493
+      assert_equal game.best_bet_strength, 73.0
       assert_nil game.week
       assert_nil game.average_home_predicted_line
       assert_nil game.median_home_predicted_line
