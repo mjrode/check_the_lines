@@ -1,6 +1,6 @@
 class Fetch::Massey < Less::Interaction
   expects :sport
-	expects :date
+  expects :date
 
   def run
     url = construct_url
@@ -38,9 +38,9 @@ class Fetch::Massey < Less::Interaction
   end
 
   def save_game
-    if (game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0)
+    if game_hash[:home_team_massey_line] == 0.0 || game_hash[:home_team_massey_line] == -0.0
       puts "Missing Massey data for #{game_hash[:home_team_name]} VS. #{game_hash[:away_team_name]}"
-      return "Missing Massey data"
+      return
     end
 
     game = MasseyGame.where(external_id: game_hash[:external_id]).first_or_create

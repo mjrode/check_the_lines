@@ -1,9 +1,6 @@
 require 'test_helper'
 
 describe 'Fetch::Action' do
-  def setup
-  end
-
   describe 'Fetching CFB data' do
     it 'fetches and stores current data' do
       VCR.use_cassette("action_data_cfb") do
