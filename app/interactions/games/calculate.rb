@@ -13,69 +13,95 @@ class Games::Calculate < Less::Interaction
 
   def set_game_hash
     {
-      line_diff: line_diff,
+      home_team_line_diff: home_line_diff,
+      away_team_line_diff: away_line_diff,
       over_under_diff: over_under_diff,
-      team_to_bet: find_team_to_bet,
       over_under_pick: pick_over_under,
       public_percentage_on_massey_team: get_public_percentage_on_massey_team,
       massey_favors_home_or_away: massey_favors_home_or_away,
       public_percentage_massey_over_under:
         get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
-      correct_prediction: correct_line_prediction?,
-      # TODO: Need to find a way to set this
-      # ou_best_bet: ou_best_bet?,
       in_progress: in_progress?,
-      strength: strength,
-      best_bet: best_bet?
+      home_team_strength: home_team_strength,
+      away_team_strength: away_team_strength,
+      best_bet: best_bet?,
+      team_to_bet: strength_team_to_bet,
+      correct_prediction: correct_line_prediction?
     }
   end
 
-  def line_diff
+  def home_line_diff
     return nil if game.home_team_massey_line.nil? || game.home_team_vegas_line.nil?
-    (game.home_team_massey_line - game.home_team_vegas_line).abs
+    game.home_team_massey_line - game.home_team_vegas_line
+  end
+
+  def away_line_diff
+    return nil if game.away_team_massey_line.nil? || game.away_team_vegas_line.nil?
+    game.away_team_massey_line - game.away_team_vegas_line
   end
 
   def massey_favors_home_or_away
-    return 'away' if find_team_to_bet == game.away_team_name
+    return 'away' if massey_team_to_bet == game.away_team_name
     'home'
   end
 
   def best_bet?
-    strength.to_i > BEST_BET_STRENGTH
+    home_team_strength.to_i > BEST_BET_STRENGTH || away_team_strength.to_i > BEST_BET_STRENGTH
   end
 
-  def strength
-    return nil if massey_favors_home_or_away.nil? || line_diff.nil? || get_public_percentage_on_massey_team.nil?
+  def home_team_strength
+    @home_team_strength ||= strength('home')
+  end
 
-    strength_params = set_strength_params
+  def away_team_strength
+    @away_team_strength ||= strength('away')
+  end
+
+  def strength(home_or_away)
+    strength_params = set_strength_params(home_or_away)
     strength = strength_params[:line_strength]
     strength += strength_params[:public_percentage_strength]
     strength += strength_params[:rlm_strength]
-
-    print_strength_results(strength_params, strength) if strength > BEST_BET_STRENGTH
+    strength += strength_params[:contrarian_strength]
+    strength += strength_params[:steam_strength]
+    strength += strength_params[:overall_rating_strength]
+    print_strength_results(strength_params, strength, home_or_away) if strength > BEST_BET_STRENGTH
 
     strength.round(2)
   end
 
-  def set_strength_params
-    pub_percent_on_massey = get_public_percentage_on_massey_team
-    rlm = game.send("#{massey_favors_home_or_away}_rlm").to_i
+  def set_strength_params(home_or_away)
+    pub_percent = game.send("#{home_or_away}_team_spread_percent").to_i
+    rlm = game.send("#{home_or_away}_rlm").to_i
+    steam = game.send("#{home_or_away}_steam").to_i
+    overall_rating = game.send("#{home_or_away}_overall_rating").to_i
+    contrarian = game.send("#{home_or_away}_contrarian").to_i
+
+    overall_rating_strength = overall_rating * OVERALL_RATING_STRENGTH
     rlm_strength = rlm * RLM_STRENGTH
-    line_strength = line_diff * LINE_STRENGTH
-    public_percentage_strength =
-      (1 / pub_percent_on_massey.to_f) * PUBLIC_PERCENTAGE_STRENGTH
+    line_strength = LINE_STRENGTH * send("#{home_or_away}_line_diff").to_i
+    public_percentage_strength = (1 / pub_percent.to_f) * PUBLIC_PERCENTAGE_STRENGTH
+    steam_strength = STEAM_STRENGTH * steam
+    contrarian_strength = CONTRARIAN_STRENGTH * contrarian
 
     {
       rlm: rlm,
       rlm_strength: rlm_strength,
+      steam: steam,
+      steam_strength: steam_strength,
+      contrarian: contrarian,
+      contrarian_strength: contrarian_strength,
+      overall_rating: overall_rating,
+      overall_rating_strength: overall_rating_strength,
       line_strength: line_strength,
       public_percentage_strength: public_percentage_strength,
-      pub_percent_on_massey: pub_percent_on_massey.to_f
+      pub_percent: pub_percent.to_f,
+      home_away: home_or_away
     }
   end
 
-  def print_strength_results(strength_params, strength)
+  def print_strength_results(strength_params, strength, home_or_away)
     ::RESULTS <<
       "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{
         game.home_team_final_score
@@ -84,13 +110,15 @@ class Games::Calculate < Less::Interaction
       } Away Vegas #{game.away_team_vegas_line}"
 
     ::RESULTS << "Strength from rlm of #{strength_params[:rlm]} is #{strength_params[:rlm_strength]}" if strength_params[:rlm_strength]
-    ::RESULTS << "Strength from line diff of #{line_diff} is #{strength_params[:line_strength]}"
+    ::RESULTS << "Strength from steam of #{strength_params[:steam]} is #{strength_params[:rlm_strength]}" if strength_params[:steam_strength]
+    ::RESULTS << "Strength from contrarian of #{strength_params[:contrarian]} is #{strength_params[:contrarian_strength]}" if strength_params[:contrarian_strength]
+    ::RESULTS << "Strength from overall_rating of #{strength_params[:overall_rating]} is #{strength_params[:overall_rating_strength]}" if strength_params[:overall_rating_strength]
+    ::RESULTS << "Strength from line diff of #{send("#{home_or_away}_line_diff")} is #{strength_params[:line_strength]}"
     ::RESULTS <<
-      "Strength from public % of #{strength_params[:pub_percent_on_massey]} is #{
+      "Strength from public % of #{strength_params[:pub_percent]} is #{
         strength_params[:public_percentage_strength]
       }"
 
-    ::RESULTS << "Correct pick #{correct_line_prediction?}"
     ::RESULTS << "Final Strength: #{strength.round(2)} \n\n"
   end
 
@@ -99,11 +127,11 @@ class Games::Calculate < Less::Interaction
     game.massey_over_under - game.vegas_over_under
   end
 
-  def find_team_to_bet
-    home_team_won ? game.away_team_name : game.home_team_name
+  def massey_team_to_bet
+    massey_selected_away_team? ? game.away_team_name : game.home_team_name
   end
 
-  def home_team_won
+  def massey_selected_away_team?
     return nil if game.home_team_massey_line.nil? || game.home_team_vegas_line.nil?
     (game.home_team_massey_line - game.home_team_vegas_line).positive?
   end
@@ -122,8 +150,8 @@ class Games::Calculate < Less::Interaction
   end
 
   def get_public_percentage_on_massey_team
-    return game.home_team_spread_percent if find_team_to_bet == game.home_team_name
-    game.away_team_spread_percent if find_team_to_bet == game.away_team_name
+    return game.home_team_spread_percent if massey_team_to_bet == game.home_team_name
+    game.away_team_spread_percent if massey_team_to_bet == game.away_team_name
   end
 
   def get_public_percentage_massey_over_under
@@ -185,7 +213,10 @@ class Games::Calculate < Less::Interaction
   end
 
   def team_to_bet_home_or_away?
-    return 'away' if find_team_to_bet == game.away_team_name
-    'home'
+    strength_team_to_bet == game.away_team_name ? 'away' : 'home'
+  end
+
+  def strength_team_to_bet
+    home_team_strength > away_team_strength ? game.home_team_name : game.away_team_name
   end
 end

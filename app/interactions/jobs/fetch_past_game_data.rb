@@ -1,4 +1,4 @@
-class Games::FetchPastGameData < Less::Interaction
+class Jobs::FetchPastGameData < Less::Interaction
   expects :sport
   expects :days_back, allow_nil: true
   expects :start_date, allow_nil: true

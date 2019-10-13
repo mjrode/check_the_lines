@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_002618) do
+ActiveRecord::Schema.define(version: 2019_10_13_062052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_002618) do
     t.float "massey_over_under"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "line_diff"
+    t.float "home_team_line_diff"
     t.float "over_under_diff"
     t.string "team_to_bet"
     t.string "over_under_pick"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_002618) do
     t.boolean "correct_prediction"
     t.boolean "correct_over_under_prediction"
     t.integer "public_percentage_massey_over_under"
-    t.float "strength"
+    t.float "home_team_strength"
     t.boolean "ou_best_bet"
     t.string "time"
     t.float "home_contrarian"
@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_002618) do
     t.float "probability_home_wins"
     t.float "probability_home_covers"
     t.datetime "start_time"
+    t.float "away_team_strength"
+    t.float "away_team_line_diff"
   end
 
   create_table "massey_games", force: :cascade do |t|

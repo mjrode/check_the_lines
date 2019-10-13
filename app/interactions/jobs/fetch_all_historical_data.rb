@@ -20,7 +20,6 @@ class Jobs::FetchAllHistoricalData < Less::Interaction
     Jobs::ProcessAndUpdateGames.run(process_all_games: true)
   end
 
-private
   def fetch_historical_massey_data(res, sport)
     array_of_start_date_of_weeks(res).each do |date|
       puts "Fetching historical data for Massey, sport: #{sport}, date: #{date}"
@@ -37,14 +36,20 @@ private
 
   def array_of_past_weeks(res)
     current_week = res['current_week']
-    return [ "#{current_week + 1}" ] if future
-    res['calendar_info']['reg'].map{|week| week['week']}.select{|week| week <= current_week}
+    return (current_week + 1).to_s if future
+    res['calendar_info']['reg'].map { |week| week['week'] }.select do |week|
+      week <= current_week
+    end
   end
 
   def array_of_start_date_of_weeks(res)
     current_week = res['current_week']
     week_index = res['current_week'] - 1
-    return Array.wrap(res['calendar_info']['reg'][current_week + 1]['startDate']) if future
-    res['calendar_info']['reg'][0..week_index].map{|week| week['startDate']}
+    if future
+      return(
+        Array.wrap(res['calendar_info']['reg'][current_week + 1]['startDate'])
+      )
+    end
+    res['calendar_info']['reg'][0..week_index].map { |week| week['startDate'] }
   end
 end

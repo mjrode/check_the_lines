@@ -8,9 +8,9 @@ end
 
 
 
- Games::FetchPastGameData.run(sport: "all", start_date: "2016/12/10", end_date: "2017/07/01")
+ Jobs::FetchPastGameData.run(sport: "all", start_date: "2016/12/10", end_date: "2017/07/01")
 
- Games::FetchPastGameData.run(sport: "mlb", start_date: "2017/07/17", end_date: "2017/07/24")
+ Jobs::FetchPastGameData.run(sport: "mlb", start_date: "2017/07/17", end_date: "2017/07/24")
 
  Jobs::ProcessAndUpdateGames.run
 
