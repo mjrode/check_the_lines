@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_072007) do
+ActiveRecord::Schema.define(version: 2019_10_19_233033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_072007) do
     t.text "home_team_abbr"
     t.text "away_team_abbr"
     t.string "week"
+    t.jsonb "edge_data", default: {}, null: false
+    t.index ["edge_data"], name: "index_action_games_on_edge_data", using: :gin
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -128,6 +130,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_072007) do
     t.float "away_team_strength"
     t.float "away_team_line_diff"
     t.float "best_bet_strength"
+    t.jsonb "edge_data", default: {}, null: false
+    t.index ["edge_data"], name: "index_games_on_edge_data", using: :gin
   end
 
   create_table "massey_games", force: :cascade do |t|
