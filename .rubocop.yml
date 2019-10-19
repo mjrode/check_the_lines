@@ -22,6 +22,8 @@ Naming/AccessorMethodName:
 #   Description: 'Use only ascii symbols in comments.'
 #   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-comments'
 #   Enabled: false
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
 
 # Naming/AsciiIdentifiers:
 #   Description: 'Use only ascii symbols in identifiers.'

@@ -71,6 +71,7 @@ class Games::CreateGameRecord < Less::Interaction
         away_team_logo:         action_game.away_team_logo,
         home_team_abbr:         action_game.home_team_abbr,
         away_team_abbr:         action_game.away_team_abbr,
+        edge_data:              action_game.edge_data,
       }
     game_hash = merge_pred_game_stats(game_hash, pred_game) if pred_game
     game_hash = merge_massey_game_stats(game_hash, massey_game) if massey_game

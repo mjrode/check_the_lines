@@ -42,12 +42,12 @@ describe 'Games::Calculate' do
       assert_equal game.home_team_vegas_line, 34.5
       assert_equal game.away_team_vegas_line, -34.5
       assert_equal game.vegas_over_under, 57.5
-      assert_equal game.best_bet, true
+      assert_equal game.best_bet, false
       assert_equal game.massey_over_under, 59.5
       assert_equal game.home_team_line_diff, -13.0
       assert_equal game.away_team_line_diff, 13.0
       assert_equal game.over_under_diff, 2.0
-      assert_equal game.team_to_bet, 'Alabama Crimson Tide'
+      assert_equal game.team_to_bet, 'Duke Blue Devils'
       assert_equal game.over_under_pick, 'Over'
       assert_equal game.home_team_final_score, 3
       assert_equal game.away_team_final_score, 42
@@ -59,11 +59,11 @@ describe 'Games::Calculate' do
       assert_equal game.under_percent, '17'
       assert_equal game.public_percentage_on_massey_team, 22
       assert_equal game.game_over, true
-      assert_equal game.correct_prediction, true
+      assert_equal game.correct_prediction, false
       assert_equal game.correct_over_under_prediction, false
       assert_equal game.public_percentage_massey_over_under, 83
-      assert_equal game.home_team_strength, 0.0
-      assert_equal game.away_team_strength, 164.0
+      assert_equal game.home_team_strength, 50.0
+      assert_equal game.away_team_strength, 21.0
       assert_equal game.time, 'Final'
       assert_equal game.home_contrarian, 0.0
       assert_equal game.away_contrarian, 70.0
@@ -81,7 +81,7 @@ describe 'Games::Calculate' do
       assert_equal game.away_team_abbr, 'BAMA'
       assert_equal game.massey_favors_home_or_away, 'home'
       assert_equal game.in_progress, true
-      assert_equal game.best_bet_strength, 164.0
+      assert_equal game.best_bet_strength, 50.0
       assert_nil game.week
       assert_nil game.ou_best_bet
 
@@ -96,12 +96,12 @@ describe 'Games::Calculate' do
       assert_equal game.home_team_vegas_line, 5.5
       assert_equal game.away_team_vegas_line, -5.5
       assert_equal game.vegas_over_under, 49.0
-      assert_equal game.best_bet, true
+      assert_equal game.best_bet, false
       assert_equal game.massey_over_under, 44.5
       assert_equal game.home_team_line_diff, -2.0
       assert_equal game.away_team_line_diff, 2.0
       assert_equal game.over_under_diff, -4.5
-      assert_equal game.team_to_bet, 'BYU Cougars'
+      assert_equal game.team_to_bet, 'Utah Utes'
       assert_equal game.over_under_pick, 'Under'
       assert_equal game.home_team_final_score, 12
       assert_equal game.away_team_final_score, 30
@@ -113,11 +113,11 @@ describe 'Games::Calculate' do
       assert_equal game.under_percent, '58'
       assert_equal game.public_percentage_on_massey_team, 43
       assert_equal game.game_over, true
-      assert_equal game.correct_prediction, false
+      assert_equal game.correct_prediction, true
       assert_equal game.correct_over_under_prediction, true
       assert_equal game.public_percentage_massey_over_under, 58
-      assert_equal game.home_team_strength, 73.0
-      assert_equal game.away_team_strength, 0.0
+      assert_equal game.home_team_strength, 1.0
+      assert_equal game.away_team_strength, 2.0
       assert_equal game.time, 'Final'
       assert_equal game.home_contrarian, 0.0
       assert_equal game.away_contrarian, 0.0
@@ -136,7 +136,7 @@ describe 'Games::Calculate' do
       assert_equal game.massey_favors_home_or_away, 'home'
       assert_equal game.in_progress, true
       assert_equal game.external_id, 68_493
-      assert_equal game.best_bet_strength, 73.0
+      assert_equal game.best_bet_strength, 2.0
       assert_nil game.week
       assert_nil game.average_home_predicted_line
       assert_nil game.median_home_predicted_line
