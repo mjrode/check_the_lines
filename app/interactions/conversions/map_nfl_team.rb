@@ -51,7 +51,7 @@ class Conversions::MapNflTeam < Less::Interaction
       'Pittsburgh' => 'Pittsburgh Steelers',
       'Cincinnati' => 'Cincinnati Bengals',
       'San Francisco' => 'San Francisco 49ers',
-      'N.Y. Jets' => 'New York Jets'
+      'NY Jets' => 'New York Jets'
     }
   end
 end

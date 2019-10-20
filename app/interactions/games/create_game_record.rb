@@ -35,7 +35,7 @@ class Games::CreateGameRecord < Less::Interaction
   end
 
   def set_game_time(action_game)
-    action_game.game_over ? 'Final' : action_game.start_time.to_time.strftime("%I:%M %p")
+    action_game.start_time.to_time.in_time_zone('America/Chicago').strftime("%I:%M %p")
   end
 
   def save_or_update_game(game, massey_game, action_game, pred_game)
@@ -56,7 +56,7 @@ class Games::CreateGameRecord < Less::Interaction
         away_team_spread_percent: action_game.away_team_ats_percent,
         over_percent: action_game.over_percent,
         under_percent: action_game.under_percent,
-        game_over: action_game.game_over || Date.today > ((massey_game&.game_date || Date.parse('01-01-3000')) + 1.day),
+        game_over: action_game.game_over || Date.today > (action_game&.game_date + 1.day),
         home_team_money_percent: action_game.home_team_ml_percent,
         away_team_money_percent: action_game.away_team_ml_percent,
         home_contrarian:        action_game.home_contrarian,

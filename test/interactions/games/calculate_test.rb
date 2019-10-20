@@ -64,7 +64,7 @@ describe 'Games::Calculate' do
       assert_equal game.public_percentage_massey_over_under, 83
       assert_equal game.home_team_strength, 50.0
       assert_equal game.away_team_strength, 21.0
-      assert_equal game.time, 'Final'
+      assert_equal game.time, '02:30 PM'
       assert_equal game.home_contrarian, 0.0
       assert_equal game.away_contrarian, 70.0
       assert_equal game.home_steam, 0.0
@@ -118,7 +118,7 @@ describe 'Games::Calculate' do
       assert_equal game.public_percentage_massey_over_under, 58
       assert_equal game.home_team_strength, 1.0
       assert_equal game.away_team_strength, 2.0
-      assert_equal game.time, 'Final'
+      assert_equal game.time, '09:15 PM'
       assert_equal game.home_contrarian, 0.0
       assert_equal game.away_contrarian, 0.0
       assert_equal game.home_steam, 0.0

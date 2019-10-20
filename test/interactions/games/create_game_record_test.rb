@@ -43,7 +43,7 @@ describe 'Games::CreateGameRecord' do
       assert_equal game.over_percent, "83"
       assert_equal game.under_percent, "17"
       assert_equal game.game_over, true
-      assert_equal game.time, "Final"
+      assert_equal game.time, "02:30 PM"
       assert_equal game.home_contrarian, 0.0
       assert_equal game.away_contrarian, 70.0
       assert_equal game.home_steam, 0.0

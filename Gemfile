@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'minitest-rails'
   gem 'minitest-reporters'
   gem 'rubocop'
