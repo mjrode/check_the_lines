@@ -32,6 +32,20 @@ class Games::Calculate < Less::Interaction
     }
   end
 
+  def home_action_line_diff
+    game.edge_data['math_model']['home_true_spread'] - game.home_team_vegas_line
+  rescue NoMethodError
+    puts "No math model for game external id #{game.external_id}"
+    0
+  end
+
+  def away_action_line_diff
+    game.edge_data['math_model']['away_true_spread'] - game.away_team_vegas_line
+  rescue NoMethodError
+    puts "No math model for game external id #{game.external_id}"
+    0
+  end
+
   def home_line_diff
     return nil if game.home_team_massey_line.nil? || game.home_team_vegas_line.nil?
     game.home_team_massey_line - game.home_team_vegas_line
@@ -59,15 +73,21 @@ class Games::Calculate < Less::Interaction
     @away_team_strength ||= strength('away')
   end
 
+  def set_line_strength(params)
+    params[:line_strength].to_i > 1 && params[:action_line_strength].to_i > 1 ? 1 : 0
+  end
+
   def strength(home_or_away)
     strength_params = set_strength_params(home_or_away)
-    strength = strength_params[:line_strength]
-    strength += strength_params[:public_percentage_strength]
-    strength += strength_params[:rlm_strength]
-    strength += strength_params[:contrarian_strength]
-    strength += strength_params[:steam_strength]
-    strength += strength_params[:overall_rating_strength]
-    print_strength_results(strength_params, strength, home_or_away) if strength > BEST_BET_STRENGTH
+    strength = 0 #set_line_strength(strength_params)
+    strength += strength_params[:public_percentage_strength].to_i
+    strength += strength_params[:rlm_strength].to_i
+    strength += strength_params[:contrarian_strength].to_i
+    strength += strength_params[:steam_strength].to_i
+    strength += strength_params[:overall_rating_strength].to_i
+    strength += strength_params[:experts_strength].to_i
+    strength += strength_params[:sharp_money_strength].to_i
+    # print_strength_results(strength_params, strength, home_or_away) if strength > BEST_BET_STRENGTH
 
     strength.round(2)
   end
@@ -78,13 +98,24 @@ class Games::Calculate < Less::Interaction
     steam = game.send("#{home_or_away}_steam").to_i
     overall_rating = game.send("#{home_or_away}_overall_rating").to_i
     contrarian = game.send("#{home_or_away}_contrarian").to_i
+    experts_pick = experts_favor(game, home_or_away)
+    sharp_money_percentage = get_sharp_money_percentage(game, home_or_away)
+
 
     overall_rating_strength = overall_rating * OVERALL_RATING_STRENGTH
     rlm_strength = rlm * RLM_STRENGTH
+    rlm_strength = 1 if rlm.positive?
     line_strength = [LINE_STRENGTH * send("#{home_or_away}_line_diff").to_i, 0].max
-    public_percentage_strength = 5 * PUBLIC_PERCENTAGE_STRENGTH if pub_percent <= 35
-    steam_strength = STEAM_STRENGTH * steam
+    action_line_strength = [LINE_STRENGTH * send("#{home_or_away}_action_line_diff").to_i, 0].max
+    # public_percentage_strength = 5 * PUBLIC_PERCENTAGE_STRENGTH if pub_percent <= 35
+    public_percentage_strength = 1 if pub_percent <= 35
+    # steam_strength = STEAM_STRENGTH * steam
+    steam_strength = 1 if steam.positive?
     contrarian_strength = CONTRARIAN_STRENGTH * contrarian
+    # experts_strength = EXPERTS_STRENGTH * experts_pick
+    experts_strength = 1 if experts_pick.positive?
+    # sharp_money_strength = SHARP_MONEY_STRENGTH * sharp_money_percentage
+    sharp_money_strength = 1 if sharp_money_percentage.positive?
 
     {
       rlm: rlm,
@@ -96,16 +127,28 @@ class Games::Calculate < Less::Interaction
       overall_rating: overall_rating,
       overall_rating_strength: overall_rating_strength,
       line_strength: line_strength,
+      action_line_strength: action_line_strength,
       public_percentage_strength: public_percentage_strength.to_i,
       pub_percent: pub_percent.to_f,
-      home_away: home_or_away
+      home_away: home_or_away,
+      experts_strength: experts_strength,
+      experts_pick: experts_pick,
+      sharp_money_percentage: sharp_money_percentage,
+      sharp_money_strength: sharp_money_strength,
     }
   end
 
   def experts_favor(game, home_away)
     team_to_check = home_away
     opposing_team = home_away == 'home' ? 'away' : 'home'
-    game.edge_data['signals']['spread'][team_to_check] > game.edge_data['signals']['spread'][opposing_team]
+    favored = game.edge_data['signals']['spread'][team_to_check] - game.edge_data['signals']['spread'][opposing_team]
+    favored.positive? ? favored : 0
+  end
+
+  def get_sharp_money_percentage(game, home_away)
+    team_sharp_money = game.edge_data['sharp_money']["spread_#{home_away}_money"]
+    percentage = (100 - team_sharp_money) - team_sharp_money
+    percentage.positive? ? percentage : 0
   end
 
   def print_strength_results(strength_params, strength, home_or_away)
