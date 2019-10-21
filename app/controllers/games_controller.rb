@@ -4,7 +4,6 @@ class GamesController < ApplicationController
   def home
     @sport_filter = 'all'
     select_games_for_display
-    puts "Params -- #{params}"
   end
 
   def nfl

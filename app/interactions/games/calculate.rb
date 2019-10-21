@@ -102,6 +102,12 @@ class Games::Calculate < Less::Interaction
     }
   end
 
+  def experts_favor(game, home_away)
+    team_to_check = home_away
+    opposing_team = home_away == 'home' ? 'away' : 'home'
+    game.edge_data['signals']['spread'][team_to_check] > game.edge_data['signals']['spread'][opposing_team]
+  end
+
   def print_strength_results(strength_params, strength, home_or_away)
     ::RESULTS <<
       "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{

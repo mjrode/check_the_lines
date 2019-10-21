@@ -3,6 +3,6 @@
     %div.ml-auto.form-text-size.text-center
       %div.btn.btn-outline-primary{:type => "button"}
         - if @game_filter == 'not_over'
-          = link_to "Past Games", set_filter_url(sport, 'game_over'), method: "get", class: 'btn'
+          = link_to "View Past Games", set_filter_url(sport, 'game_over'), method: "get", class: 'btn'
         - else
-          = link_to "Current Games", set_filter_url(sport, 'not_over'), method: "get", class: 'btn'
+          = link_to "View Current Games", set_filter_url(sport, 'not_over'), method: "get", class: 'btn'

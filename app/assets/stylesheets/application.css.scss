@@ -12,9 +12,10 @@
  *
  *= require_tree .
  *= require_self
- *= require font-awesome
+ *= require font_awesome5
+ *= require font_awesome5_webfont
  */
-@import "font-awesome";
+
 @import "bootstrap";
 @import 'daterangepicker';
 @import 'rails_bootstrap_forms';
@@ -264,3 +265,6 @@ img{
 .round-bottom{
   border-radius: 0 0 2em 2em;
 }
+ .vert-align-middle td {
+   vertical-align: middle !important;
+ }

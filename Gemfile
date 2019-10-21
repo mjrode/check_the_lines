@@ -23,10 +23,10 @@ gem "http"
 gem 'bootstrap'
 gem 'bootstrap-daterangepicker-rails', git: 'https://github.com/jordanbrock/bootstrap-daterangepicker-rails.git', branch: 'master'
 gem "bootstrap_form"
+gem 'font_awesome5_rails'
 gem 'momentjs-rails'
 gem 'simple_form'
 gem 'rails_12factor', group: :production
-gem "font-awesome-rails"
 gem 'sprockets', '~>3.0'
 
 

@@ -117,8 +117,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.11.1)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
+    font_awesome5_rails (0.9.0)
+      railties (>= 4.2)
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -378,7 +378,7 @@ DEPENDENCIES
   coffee-rails
   delayed_job_active_record
   draper
-  font-awesome-rails
+  font_awesome5_rails
   guard
   guard-minitest
   haml-rails

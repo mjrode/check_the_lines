@@ -2,12 +2,10 @@
 
 = render "game_table_header", sport: sport
 = render "filter_form", sport: sport
-- @games = set_games_for_display(@games, sport)
 - if @games.present?
-
   - @games.each do |game|
     - next if game.home_team_abbr.nil?
-    %table.table.mx-auto.small-width.top-border
+    %table.table.mx-auto.small-width.top-border.vert-align-middle
       %div.max
         %thead
         %tr
@@ -37,20 +35,53 @@
 
           - if game.away_team_massey_line
             %tr
+              %td.center-text= sharp_projected_line(game, 'away')
+              %th.center-text Avg Predicted Line
+              %td.center-text= sharp_projected_line(game, 'home')
+          - if game.away_team_massey_line
+            %tr
               %td.center-text= game.away_team_massey_line
-              %th.center-text Predicted Line
+              %th.center-text Massey Predicted Line
               %td.center-text= game.home_team_massey_line
           - if game.away_rlm && game.away_rlm.to_i > 0 || game.home_rlm && game.home_rlm.to_i > 0
             %tr
               - if game.away_rlm && game.away_rlm.to_i > 0
-                %td.center-text= fa_icon 'balance-scale 2x'
+                %td.center-text= fa_icon 'balance-scale-left 2x'
               - else
                 %td
               %th.center-text RLM
               - if game.home_rlm && game.home_rlm.to_i > 0
-                %td.center-text= fa_icon 'balance-scale 2x'
+                %td.center-text= fa_icon 'balance-scale-right 2x'
               - else
                 %td
+          %tr
+          - if sharp_money_percentage(game, 'away')
+            %td.center-text
+              = sharp_money_percentage(game, 'away')
+              = fa_icon 'percentage'
+          - else
+            %td
+          %th.center-text Sharp Money
+          - if sharp_money_percentage(game, 'home')
+            %td.center-text
+              = sharp_money_percentage(game, 'home')
+              = fa_icon 'percentage'
+          - else
+            %td
+          %tr
+          - if sharp_expert_count(game, 'away')
+            %td.center-text
+              = sharp_expert_count(game, 'away')
+              = fa_icon 'user-tie'
+          - else
+            %td
+          %th.center-text Expert Picks
+          - if sharp_expert_count(game, 'home')
+            %td.center-text
+              = sharp_expert_count(game, 'home')
+              = fa_icon 'user-tie'
+          - else
+          %td
           - if game.away_steam && game.away_steam.to_i > 0 || game.home_steam && game.home_steam.to_i > 0
             %tr
               - if game.away_steam && game.away_steam.to_i > 0
