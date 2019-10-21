@@ -1,6 +1,8 @@
-%div.container.m-6.mb-3.small-width.mt-4
-  %div.ml-auto.form-text-size
-    = bootstrap_form_tag url: '/', method: 'get' do |f|
-      = f.select(:game_filter, [["Live and Upcoming Games", 'not_over'], ["Historical Games", 'game_over'], ['Best Bets', :best_bets]], selected: @game_filter)
-      = f.select(:sport_filter, [['All', 'all'],['NFL', 'nfl'], ["NCAAF", 'ncaaf']], selected: @sport_filter)
-      = f.submit 'Filter'
+- if SPORTS.include?(sport)
+  %div.container.m-6.mb-3.small-width.mt-4
+    %div.ml-auto.form-text-size.text-center
+      %div.btn.btn-outline-primary{:type => "button"}
+        - if @game_filter == 'not_over'
+          = link_to "Past Games", set_filter_url(sport, 'game_over'), method: "get", class: 'btn'
+        - else
+          = link_to "Current Games", set_filter_url(sport, 'not_over'), method: "get", class: 'btn'

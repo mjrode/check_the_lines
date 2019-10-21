@@ -1,14 +1,11 @@
-# require 'test_helper'
+require 'test_helper'
 
-# class GamesControllerTest < ActionController::TestCase
-#   test "should get index" do
-#     get :index
-#     assert_response :success
-#   end
+class GamesControllerTest < ActionController::TestCase
+  test "should get home and return all in progress or upcoming games" do
+    get :home
+    assert_response :success
+    games = assigns(:games)
+    binding.pry
+  end
 
-#   test "should get show" do
-#     get :show
-#     assert_response :success
-#   end
-
-# end
+end

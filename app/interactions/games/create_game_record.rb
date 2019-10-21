@@ -43,7 +43,7 @@ class Games::CreateGameRecord < Less::Interaction
       {
         external_id: action_game.external_id,
         sport: action_game.sport,
-        date: action_game.start_time,
+        date: action_game.game_date,
         time: set_game_time(action_game),
         home_team_name: action_game.home_team_name,
         away_team_name: action_game.away_team_name,

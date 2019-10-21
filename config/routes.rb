@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     collection do
       get 'ncaaf'
       get 'refresh'
+      get 'about'
       get 'best_bets'
+      get 'nfl'
     end
   end
 

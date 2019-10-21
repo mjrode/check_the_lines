@@ -4,6 +4,18 @@
     =link_to root_path, class: 'nav-link' do
       %span.sr-only (current)
   %nav.nav-item
+  =link_to nfl_games_path, class: 'nav-link' do
+    NFL
+    %span.sr-only (current)
+  %nav.nav-item
+  =link_to ncaaf_games_path, class: 'nav-link' do
+    NCAAF
+    %span.sr-only (current)
+  %nav.nav-item
   =link_to best_bets_games_path, class: 'nav-link' do
     Best Bets
+    %span.sr-only (current)
+  %nav.nav-item
+  =link_to about_games_path, class: 'nav-link' do
+    About
     %span.sr-only (current)
