@@ -74,12 +74,14 @@ class Games::Calculate < Less::Interaction
   end
 
   def set_line_strength(params)
-    params[:line_strength].to_i > 1 && params[:action_line_strength].to_i > 1 ? 1 : 0
+    # params[:line_strength].to_i > 1 && params[:action_line_strength].to_i > 1 ? 1 : 0
+     params[:action_line_strength].to_i > 1 ? 1 : 0
   end
 
   def strength(home_or_away)
     strength_params = set_strength_params(home_or_away)
-    strength = 0 #set_line_strength(strength_params)
+    # strength = 0 #set_line_strength(strength_params)
+    strength =  set_line_strength(strength_params)
     strength += strength_params[:public_percentage_strength].to_i
     strength += strength_params[:rlm_strength].to_i
     strength += strength_params[:contrarian_strength].to_i
