@@ -93,17 +93,6 @@
                 %td.center-text= fa_icon 'thermometer-empty 2x'
               - else
                 %td
-          - if game.away_overall_rating && game.away_overall_rating.to_i > 0 || game.home_overall_rating && game.home_overall_rating.to_i > 0
-            %tr
-              - if game.away_overall_rating && game.away_overall_rating.to_i > 0
-                %td.center-text= fa_icon 'diamond 2x'
-              - else
-                %td
-              %th.center-text Value
-              - if game.home_overall_rating && game.home_overall_rating.to_i > 0
-                %td.center-text= fa_icon 'diamond 2x'
-              - else
-                %td
           %tr
             %td.center-text.container.pli.public-mobile
               .skills.html.round{:style => "--width: #{game.away_team_spread_percent}%;"}= "#{game.away_team_spread_percent}%"
