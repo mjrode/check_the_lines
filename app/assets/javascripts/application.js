@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require moment
-//= require daterangepicker
 //= require jquery3
 //= require popper
 //= require bootstrap

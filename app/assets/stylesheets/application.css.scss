@@ -16,12 +16,13 @@
 
 @import 'font_awesome5_webfont';
 @import 'font_awesome5.css';
-@import 'daterangepicker';
 @import 'rails_bootstrap_forms';
 @import "bootstrap";
 
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   select:focus,
+
   textarea:focus,
   input:focus {
     font-size: 1.2em;
@@ -31,6 +32,10 @@
 .padding-top-5{
 	padding-top: 6em;
 }
+.btn{
+  -webkit-appearance: none;
+}
+
 .form-width-25{
 	width: 25%;
 
@@ -268,3 +273,9 @@ img{
  .vert-align-middle td {
    vertical-align: middle !important;
  }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
