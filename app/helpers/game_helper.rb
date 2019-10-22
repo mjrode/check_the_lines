@@ -30,6 +30,7 @@ module GameHelper
     sharp_money = game.edge_data['sharp_money']
     return nil unless sharp_money
     team_sharp_money = sharp_money["spread_#{home_away}_money"]
+    return nil unless team_sharp_money
     percentage = (100 - team_sharp_money) - team_sharp_money
     percentage.positive? ? percentage : nil
   end
