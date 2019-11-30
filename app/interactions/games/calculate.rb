@@ -25,7 +25,7 @@ class Games::Calculate < Less::Interaction
       in_progress: in_progress?,
       home_team_strength: home_team_strength,
       away_team_strength: away_team_strength,
-      best_bet: best_bet?,
+      best_bet: !best_bet?,
       team_to_bet: strength_team_to_bet,
       correct_prediction: correct_line_prediction?,
       best_bet_strength: best_bet_strength
@@ -62,7 +62,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def best_bet?
-    home_team_strength.to_i < BEST_BET_STRENGTH || away_team_strength.to_i < BEST_BET_STRENGTH
+    home_team_strength.to_i > BEST_BET_STRENGTH || away_team_strength.to_i > BEST_BET_STRENGTH
   end
 
   def home_team_strength
