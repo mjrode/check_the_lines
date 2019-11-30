@@ -79,7 +79,6 @@ class Games::Calculate < Less::Interaction
 
   def strength(home_or_away)
     strength_params = set_strength_params(home_or_away)
-    # strength = 0 #set_line_strength(strength_params)
     strength = set_line_strength(strength_params)
     strength += strength_params[:public_percentage_strength].to_i
     strength += strength_params[:rlm_strength].to_i
@@ -88,7 +87,6 @@ class Games::Calculate < Less::Interaction
     strength += strength_params[:overall_rating_strength].to_i
     strength += strength_params[:experts_strength].to_i
     strength += strength_params[:sharp_money_strength].to_i
-    # print_strength_results(strength_params, strength, home_or_away) if strength > BEST_BET_STRENGTH
 
     strength.round(2)
   end
@@ -147,7 +145,7 @@ class Games::Calculate < Less::Interaction
 
   def get_sharp_money_percentage(game, home_away)
     team_sharp_money = game.edge_data['sharp_money']["spread_#{home_away}_money"]
-    percentage = (100 - team_sharp_money) - team_sharp_money
+    percentage = (100 - team_sharp_money.to_i) - team_sharp_money
     percentage.positive? ? percentage : 0
   end
 
@@ -261,7 +259,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def strength_team_to_bet
-    home_team_strength > away_team_strength ? game.away_team_name : game.home_team_name
+    home_team_strength < away_team_strength ? game.away_team_name : game.home_team_name
   end
 
   def best_bet_strength
