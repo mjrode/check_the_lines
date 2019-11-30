@@ -19,16 +19,15 @@ class Games::Calculate < Less::Interaction
       over_under_pick: pick_over_under,
       public_percentage_on_massey_team: get_public_percentage_on_massey_team,
       massey_favors_home_or_away: massey_favors_home_or_away,
-      public_percentage_massey_over_under:
-        get_public_percentage_massey_over_under,
+      public_percentage_massey_over_under: get_public_percentage_massey_over_under,
       correct_over_under_prediction: correct_over_under_prediction?,
       in_progress: in_progress?,
       home_team_strength: home_team_strength,
       away_team_strength: away_team_strength,
-      best_bet: !best_bet?,
+      best_bet: best_bet?,
       team_to_bet: strength_team_to_bet,
       correct_prediction: correct_line_prediction?,
-      best_bet_strength: best_bet_strength
+      best_bet_strength: best_bet_strength,
     }
   end
 
@@ -75,13 +74,13 @@ class Games::Calculate < Less::Interaction
 
   def set_line_strength(params)
     # params[:line_strength].to_i > 1 && params[:action_line_strength].to_i > 1 ? 1 : 0
-     params[:action_line_strength].to_i > 1 ? 1 : 0
+    params[:action_line_strength].to_i > 1 ? 1 : 0
   end
 
   def strength(home_or_away)
     strength_params = set_strength_params(home_or_away)
     # strength = 0 #set_line_strength(strength_params)
-    strength =  set_line_strength(strength_params)
+    strength = set_line_strength(strength_params)
     strength += strength_params[:public_percentage_strength].to_i
     strength += strength_params[:rlm_strength].to_i
     strength += strength_params[:contrarian_strength].to_i
@@ -102,7 +101,6 @@ class Games::Calculate < Less::Interaction
     contrarian = game.send("#{home_or_away}_contrarian").to_i
     experts_pick = experts_favor(game, home_or_away)
     sharp_money_percentage = get_sharp_money_percentage(game, home_or_away)
-
 
     overall_rating_strength = overall_rating * OVERALL_RATING_STRENGTH
     rlm_strength = rlm * RLM_STRENGTH
@@ -155,11 +153,7 @@ class Games::Calculate < Less::Interaction
 
   def print_strength_results(strength_params, strength, home_or_away)
     ::RESULTS <<
-      "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{
-        game.home_team_final_score
-      } Away Final #{game.away_team_final_score}  Home vegas  #{
-        game.home_team_vegas_line
-      } Away Vegas #{game.away_team_vegas_line}"
+      "Home Team: #{game.home_team_name} Away #{game.away_team_name} Home Final #{game.home_team_final_score} Away Final #{game.away_team_final_score}  Home vegas  #{game.home_team_vegas_line} Away Vegas #{game.away_team_vegas_line}"
 
     ::RESULTS << "Strength from rlm of #{strength_params[:rlm]} is #{strength_params[:rlm_strength]}" if strength_params[:rlm_strength]
     ::RESULTS << "Strength from steam of #{strength_params[:steam]} is #{strength_params[:rlm_strength]}" if strength_params[:steam_strength]
@@ -167,9 +161,7 @@ class Games::Calculate < Less::Interaction
     ::RESULTS << "Strength from overall_rating of #{strength_params[:overall_rating]} is #{strength_params[:overall_rating_strength]}" if strength_params[:overall_rating_strength]
     ::RESULTS << "Strength from line diff of #{send("#{home_or_away}_line_diff")} is #{strength_params[:line_strength]}"
     ::RESULTS <<
-      "Strength from public % of #{strength_params[:pub_percent]} is #{
-        strength_params[:public_percentage_strength]
-      }"
+      "Strength from public % of #{strength_params[:pub_percent]} is #{strength_params[:public_percentage_strength]}"
 
     ::RESULTS << "Final Strength: #{strength.round(2)} \n\n"
   end
@@ -269,7 +261,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def strength_team_to_bet
-    home_team_strength > away_team_strength ? game.home_team_name : game.away_team_name
+    home_team_strength > away_team_strength ? game.away_team_name : game.home_team_name
   end
 
   def best_bet_strength
