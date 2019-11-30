@@ -1,8 +1,0 @@
-Running in verbose mode
-
------------------------------------------------------------------
-  pg_upgrade run on Sat Nov 30 14:57:55 2019
------------------------------------------------------------------
-
-check for "/usr/local/Cellar/postgresql@10/10.10/bin" failed: No such file or directory
-
