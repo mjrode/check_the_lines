@@ -202,7 +202,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def correct_over_under_prediction?
-    return nil unless game.game_over
+    return nil unless game_over?
     return true if correct_over_pick || correct_under_pick
     false
   end
@@ -226,7 +226,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def correct_line_prediction?
-    return nil unless game.game_over
+    return nil unless game_over?
     team_to_bet_home_or_away? == 'home' ? correct_home_prediction : correct_away_prediction
   end
 
