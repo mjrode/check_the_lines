@@ -265,4 +265,8 @@ class Games::Calculate < Less::Interaction
   def best_bet_strength
     [home_team_strength, away_team_strength].max
   end
+
+  def game_over?
+    Date.today > (game.date + 1.day)
+  end
 end
