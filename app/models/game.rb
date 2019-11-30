@@ -10,6 +10,6 @@ class Game < ActiveRecord::Base
   scope :correct_spread_best_bets,
         -> { where(best_bet: true, correct_prediction: true, game_over: true) }
   scope :best_bets_game_over,
-        -> { where(best_bet: true, game_over: true) }
+        -> { where(best_bet: true, game_over: true).where_not(correct_prediction: nil) }
   scope :best_bets, -> { where(best_bet: true).reorder('date DESC') }
 end
