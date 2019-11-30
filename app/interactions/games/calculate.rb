@@ -28,6 +28,7 @@ class Games::Calculate < Less::Interaction
       team_to_bet: strength_team_to_bet,
       correct_prediction: correct_line_prediction?,
       best_bet_strength: best_bet_strength,
+      game_over: game_over?,
     }
   end
 
@@ -133,7 +134,6 @@ class Games::Calculate < Less::Interaction
       experts_pick: experts_pick,
       sharp_money_percentage: sharp_money_percentage,
       sharp_money_strength: sharp_money_strength,
-      game_over: game_over?,
     }
   end
 
