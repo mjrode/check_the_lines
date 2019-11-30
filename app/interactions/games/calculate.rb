@@ -260,7 +260,7 @@ class Games::Calculate < Less::Interaction
   end
 
   def strength_team_to_bet
-    home_team_strength > away_team_strength ? game.away_team_name : game.home_team_name
+    home_team_strength > away_team_strength ? game.home_team_name : game.away_team_name
   end
 
   def best_bet_strength
