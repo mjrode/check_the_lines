@@ -133,6 +133,7 @@ class Games::Calculate < Less::Interaction
       experts_pick: experts_pick,
       sharp_money_percentage: sharp_money_percentage,
       sharp_money_strength: sharp_money_strength,
+      game_over: game_over?,
     }
   end
 
