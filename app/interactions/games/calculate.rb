@@ -145,7 +145,7 @@ class Games::Calculate < Less::Interaction
 
   def get_sharp_money_percentage(game, home_away)
     team_sharp_money = game.edge_data['sharp_money']["spread_#{home_away}_money"]
-    percentage = (100 - team_sharp_money.to_i) - team_sharp_money
+    percentage = (100 - team_sharp_money.to_i) - team_sharp_money.to_i
     percentage.positive? ? percentage : 0
   end
 
